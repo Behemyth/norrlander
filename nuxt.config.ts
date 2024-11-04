@@ -87,10 +87,6 @@ export default defineNuxtConfig({
 		strict: true
 	},
 
-	alias: {
-		'types': fileURLToPath(new URL('./types', import.meta.url)),
-	},
-
 	nitro: {
 		// static: true, // Not set, to support 'dev' server. Default is `static: true` for 'start' and 'generate' commands
 		prerender: {
@@ -130,5 +126,5 @@ export default defineNuxtConfig({
 		}
 	},
 
-	compatibilityDate: '2024-07-09'
+	compatibilityDate: '2024-11-04'
 })

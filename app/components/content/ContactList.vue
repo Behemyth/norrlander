@@ -8,7 +8,7 @@
 
 <script setup lang="ts">
 
-import type { MetaData } from 'types/metadata'
+import type { MetaData } from '~~/shared/metadata'
 
 // queryContent() is wrapped with useAsyncData() to prevent query duplication
 const { data: contacts } = useAsyncData('contacts', () =>

@@ -8,7 +8,7 @@
 
 <script setup lang="ts">
 
-import type { Social } from 'types/metadata'
+import type { Social } from '~~/shared/metadata'
 
 const props = defineProps({
 	socials: {

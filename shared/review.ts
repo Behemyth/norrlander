@@ -1,3 +1,5 @@
+import { z } from "zod"
+
 export enum MediaType {
 	Movie = 'movie',
 	Show = 'show'

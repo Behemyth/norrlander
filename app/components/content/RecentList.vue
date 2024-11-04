@@ -15,9 +15,9 @@
 
 <script setup lang="ts">
 
-import type { ReviewMetadata } from 'types/review'
-import {  MediaType as ReviewMediaType } from 'types/review'
-import {  MediaType as TMDBMediaType } from 'types/tmdb'
+import type { ReviewMetadata } from '~~/shared/review'
+import {  MediaType as ReviewMediaType } from '~~/shared/review'
+import {  MediaType as TMDBMediaType } from '~~/shared/tmdb'
 
 const props = defineProps({
 	size: {

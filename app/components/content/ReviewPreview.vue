@@ -16,7 +16,7 @@
 
 <script setup lang="ts">
 
-import type { Media, MediaType } from 'types/tmdb'
+import type { Media, MediaType } from '~~/shared/tmdb'
 
 const props = defineProps({
 	category: {
@@ -47,11 +47,11 @@ const imgURL = computed(() => {
 
 async function QueryTMDB() {
 	const { data } = await useFetch<Media>(`/api/tmdb/media/${props.category}/${props.tmdbID}`)
-	
+
 	if(data.value === undefined) {
 		throw new Error('TMDB data is undefined')
 	}
-	
+
 	return data.value;
 }
 
