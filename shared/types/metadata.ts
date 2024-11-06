@@ -1,12 +1,12 @@
 import { z } from "zod"
 
-export const SocialSchema = z.object({
+export const SocialMetaDataSchema = z.object({
 	name: z.string(),
 	icon: z.string(),
 	link: z.string().url()
   });
 
-export type Social = z.infer<typeof SocialSchema>;
+export type SocialMetaData = z.infer<typeof SocialMetaDataSchema>;
 
 export const MetaDataSchema = z.object({
 	socials: z.array(SocialSchema),

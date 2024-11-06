@@ -1,15 +1,15 @@
 
-export enum MediaType {
+export enum TMDBMediaType {
 	Movie = 'movie',
 	Show = 'tv'
 }
 
-export interface Genre {
+export interface TMDBGenre {
 	id: number
 	name: string
 }
 
-export type Media = {
+export type TMDBMedia = {
 	backdrop_path: string
 	id: number
 	title: string

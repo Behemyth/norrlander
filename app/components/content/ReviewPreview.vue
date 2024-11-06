@@ -16,8 +16,6 @@
 
 <script setup lang="ts">
 
-import type { Media, MediaType } from '~~/shared/tmdb'
-
 const props = defineProps({
 	category: {
 		type: String as PropType<MediaType>,

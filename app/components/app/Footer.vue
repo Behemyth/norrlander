@@ -22,8 +22,6 @@
 
 <script setup lang="ts">
 
-import type { MetaData } from 'shared/metadata'
-
 const { data: socials } = useLazyAsyncData('socials', () =>
 	queryContent<MetaData>('_data')
 		.where({ _partial: true, title: 'Metadata' })
