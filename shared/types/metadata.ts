@@ -9,8 +9,8 @@ export const SocialMetaDataSchema = z.object({
 export type SocialMetaData = z.infer<typeof SocialMetaDataSchema>;
 
 export const MetaDataSchema = z.object({
-	socials: z.array(SocialSchema),
-	contacts: z.array(SocialSchema)
+	socials: z.array(SocialMetaDataSchema),
+	contacts: z.array(SocialMetaDataSchema)
   });
 
-export type MetaData = z.infer<typeof SocialSchema>;
+export type MetaData = z.infer<typeof MetaDataSchema>;
