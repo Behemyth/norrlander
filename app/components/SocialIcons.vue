@@ -10,7 +10,7 @@
 
 const props = defineProps({
 	socials: {
-		type: Array<Social>,
+		type: Array<SocialMetaData>,
 		required: true
 	}
 })

@@ -18,7 +18,7 @@
 
 const props = defineProps({
 	category: {
-		type: String as PropType<MediaType>,
+		type: String as PropType<TMDBMediaType>,
 		required: true
 	},
 	path: {
@@ -44,7 +44,7 @@ const imgURL = computed(() => {
 })
 
 async function QueryTMDB() {
-	const { data } = await useFetch<Media>(`/api/tmdb/media/${props.category}/${props.tmdbID}`)
+	const { data } = await useFetch<TMDBMedia>(`/api/tmdb/media/${props.category}/${props.tmdbID}`)
 
 	if(data.value === undefined) {
 		throw new Error('TMDB data is undefined')
