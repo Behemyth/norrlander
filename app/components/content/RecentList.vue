@@ -15,6 +15,8 @@
 
 <script setup lang="ts">
 
+import type { ParsedContent } from '@nuxt/content';
+
 const props = defineProps({
 	size: {
 		type: Number,
@@ -39,13 +41,24 @@ function TransformMediaType(reviewMediaType: ReviewMediaType): TMDBMediaType {
 	}
 }
 
+function MapNuxtReview(value: ParsedContent): ReviewMetadata {
+
+	const result = ReviewMetadataSchema.safeParse(value);
+
+	if (!result.success) {
+		throw new Error(`Failed to parse review metadata for "${value.title}" with error:
+					${JSON.stringify(result.error.format())}`,
+			)
+	}
+
+	return result.data
+}
+
 async function QueryReviews(mediaType:ReviewMediaType): Promise<ReviewMetadata[]> {
 	return await queryContent('reviews', mediaType)
 	.where({ layout: 'review' })
 	.sort({ date_published: -1 }).limit(props.limit).find().then((values) => {
-		return values.map(value => {
-  			return ReviewMetadataSchema.parse(value);
-		})
+		return values.map(MapNuxtReview)
 	})
 }
 
