@@ -1,10 +1,10 @@
 import { serverQueryContent } from '#content/server'
-import type { NuxtContent, NuxtFeed, JSONFeed, JSONFeedAuthor, JSONFeedItem } from 'types/content'
+import type { ParsedContent } from '@nuxt/content'
 
 export default defineEventHandler(async (event) => {
 
 	const path = getRouterParam(event, 'category')!
-	const feedContent: NuxtFeed | undefined = await serverQueryContent<NuxtFeed>(event, path).findOne()
+	const feedContent: ParsedContent | undefined = await serverQueryContent(event, path).findOne()
 
 	if (!feedContent) {
 		throw createError({
@@ -18,6 +18,14 @@ export default defineEventHandler(async (event) => {
 		name: 'Asher Norland',
 		url: new URL('/contact', 'https://ashernorland.com').toString(),
 		avatar: new URL('/avatar/293a56bef971ab4999d6230491957d33', 'https://www.gravatar.com').toString()
+	}
+
+	if(feedContent.title === undefined ) {
+		throw createError({
+			statusCode: 404,
+			statusMessage:
+				'Feed title not found'
+		})
 	}
 
 	const feed: JSONFeed = {
@@ -35,7 +43,7 @@ export default defineEventHandler(async (event) => {
 		items: []
 	}
 
-	const docs: NuxtContent[] = await serverQueryContent<NuxtContent>(event, path)
+	const docs: ParsedContent[] = await serverQueryContent(event, path)
 		.sort({ date_published: -1 })
 		.where({ layout: 'review' })
 		.find()
