@@ -1,9 +1,9 @@
 <template>
 	<ULink
-		:to="path" :title="data?.title"
+		:to="path" :title="data.title"
 		class="not-prose h-32 flex w-full items-center bg-white border border-gray-200 rounded-lg shadow md:h-48 lg:h-64 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
 		<NuxtPicture
-			:src="imgURL" preload :img-attrs="{ class: 'rounded-s-lg' }"
+			:src="data.poster_path" preload :img-attrs="{ class: 'rounded-s-lg' }"
 			class="h-32 aspect-[2/3] md:h-48 lg:h-64" />
 		<div class="flex flex-col justify-between p-4 leading-normal">
 			<h5 class="prose dark:prose-invert mb-2 font-bold tracking-tight text-gray-900 md:text-l lg:text-xl dark:text-white">{{ data?.title
@@ -39,20 +39,9 @@ const props = defineProps({
 	}
 })
 
-const imgURL = computed(() => {
-	return data.poster_path ? `/tmdb${data.poster_path}` : '/images/tmdb.svg'
+
+const data = await useTMDB<TMDBMedia>(`/${props.category}/${props.tmdbID}`, {
+  pick: ['title', 'poster_path']
 })
-
-async function QueryTMDB() {
-	const { data } = await useFetch<TMDBMedia>(`/api/tmdb/media/${props.category}/${props.tmdbID}`)
-
-	if(data.value === undefined) {
-		throw new Error('TMDB data is undefined')
-	}
-
-	return data.value;
-}
-
-const data = await QueryTMDB()
 
 </script>

@@ -17,7 +17,7 @@ export type TMDBGenre = z.infer<typeof TMDBGenreSchema>;
 
 
 export const TMDBMediaSchema = z.object({
-	backdrop_path: z.string(),
+	backdrop_path: z.string().url(),
 	id: z.number().int(),
 	title: z.string(),
 	media_type: TMDBMediaTypeSchema.optional(),
