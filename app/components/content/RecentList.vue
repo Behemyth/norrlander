@@ -40,10 +40,12 @@ function TransformMediaType(reviewMediaType: ReviewMediaType): TMDBMediaType {
 }
 
 async function QueryReviews(mediaType:ReviewMediaType): Promise<ReviewMetadata[]> {
-	return await queryContent<NuxtContentReview>('reviews', mediaType)
+	return await queryContent('reviews', mediaType)
 	.where({ layout: 'review' })
-	.sort({ date_published: -1 }).limit(props.limit).find().then((value: NuxtContentReview[]) => {
-		return value.map(MapNuxtReview)
+	.sort({ date_published: -1 }).limit(props.limit).find().then((values) => {
+		return values.map(value => {
+  			return ReviewMetadataSchema.parse(value);
+		})
 	})
 }
 
