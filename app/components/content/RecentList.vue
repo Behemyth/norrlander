@@ -1,11 +1,12 @@
 <template>
-	<div class="not-prose grid grid-flow-row gap-2 grid-cols-1 md:gap-4 md:grid-cols-2">
+	<div class="not-prose grid grid-flow-row grid-cols-1 md:grid-cols-2">
 		<ReviewPreview
 			v-for="review in reviews"
 			:key="review.title"
-			:category="TransformMediaType(category)"
+			:category="category"
 			:path="review._path"
 			:rating="review.rating"
+			:title="review.title"
 			:description="review.description"
 			:tmdb-i-d="review.TMDB_ID" />
 	</div>
@@ -31,15 +32,6 @@ const props = defineProps({
 		default: 0
 	}
 })
-
-function TransformMediaType(reviewMediaType: ReviewMediaType): TMDBMediaType {
-	switch (reviewMediaType) {
-		case ReviewMediaType.Movie:
-			return TMDBMediaType.Movie
-		case ReviewMediaType.Show:
-			return TMDBMediaType.Show
-	}
-}
 
 function MapNuxtReview(value: ParsedContent): ReviewMetadata {
 	const result = ReviewMetadataSchema.safeParse(value);
