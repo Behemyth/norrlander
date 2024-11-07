@@ -4,7 +4,7 @@
 			v-for="review in reviews"
 			:key="review.title"
 			:category="TransformMediaType(category)"
-			:path="review.path"
+			:path="review._path"
 			:rating="review.rating"
 			:description="review.description"
 			:tmdb-i-d="review.TMDB_ID" />
@@ -42,13 +42,16 @@ function TransformMediaType(reviewMediaType: ReviewMediaType): TMDBMediaType {
 }
 
 function MapNuxtReview(value: ParsedContent): ReviewMetadata {
-
 	const result = ReviewMetadataSchema.safeParse(value);
 
 	if (!result.success) {
-		throw new Error(`Failed to parse review metadata for "${value.title}" with error:
-					${JSON.stringify(result.error.format())}`,
-			)
+
+		const entries = Object.entries(result.error.flatten().fieldErrors)
+		const errorString = entries.join('\n\t\t')
+
+		console.error(`Failed to parse review metadata for "${value.title}":\n\t\t${errorString}`)
+
+		throw new Error(`Failed to parse review metadata for "${value.title}"`)
 	}
 
 	return result.data
