@@ -13,9 +13,9 @@
 				</USlideover>
 			</div>
 			<ULink to="/contact" rel="author" class="flex flex-none items-center p-2 md:p-4">
-				<NuxtPicture 
+				<NuxtPicture
 					src="/gravatar/avatar/293a56bef971ab4999d6230491957d33"
-					:img-attrs="{ class: 'h-9 md:h-12 rounded-full' }" preload class="m-0" />
+					:img-attrs="{ class: 'h-9 md:h-12 rounded-full' }" class="m-0" />
 			</ULink>
 			<ColorModeSwitch class="hover:text-gray-700 dark:hover:text-gray-300" />
 		</div>

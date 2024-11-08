@@ -1,5 +1,3 @@
-import { fileURLToPath } from "node:url";
-
 // https://v3.nuxtjs.org/docs/directory-structure/nuxt.config
 export default defineNuxtConfig({
 	ssr: true,
@@ -23,12 +21,6 @@ export default defineNuxtConfig({
 	],
 
 	eslint: {
-	},
-
-	// https://nuxt.com/docs/guide/going-further/debugging
-	sourcemap: {
-		server: true,
-		client: true
 	},
 
 	// https://color-mode.nuxtjs.org
@@ -87,40 +79,34 @@ export default defineNuxtConfig({
 		strict: true
 	},
 
-	alias: {
-		'types': fileURLToPath(new URL('./types', import.meta.url)),
-	},
-
 	nitro: {
 		// static: true, // Not set, to support 'dev' server. Default is `static: true` for 'start' and 'generate' commands
 		prerender: {
 			crawlLinks: true,
-			interval: 50, // 50ms to avoid rate limiting of the TMDB API
+			interval: 50, // To avoid rate limiting of the TMDB API
 			routes: ['/']
 		}
 	},
 
 	i18n: {
-		detectBrowserLanguage: {
-			useCookie: true,
-			fallbackLocale: 'en'
-		},
-		strategy: 'no_prefix',
 		locales: [
 			{
 				code: 'en',
+				language: 'en-US',
 				name: 'English',
 				file: 'en.json'
 			},
 			{
 				code: 'pl',
+				language: 'pl-PL',
 				name: 'Polski',
 				file: 'pl.json'
 			}
 		],
 		lazy: true,
-		langDir: 'locales',
-		defaultLocale: 'en'
+		strategy: 'no_prefix',
+		defaultLocale: 'en',
+		vueI18n: './i18n/i18n.config.ts'
 	},
 
 	runtimeConfig: {
@@ -130,5 +116,5 @@ export default defineNuxtConfig({
 		}
 	},
 
-	compatibilityDate: '2024-07-09'
+	compatibilityDate: '2024-11-04'
 })

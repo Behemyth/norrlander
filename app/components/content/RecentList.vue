@@ -1,11 +1,12 @@
 <template>
-	<div class="not-prose grid grid-flow-row gap-2 grid-cols-1 md:gap-4 md:grid-cols-2">
+	<div class="not-prose grid grid-flow-row gap-8 grid-cols-1 md:grid-cols-2">
 		<ReviewPreview
 			v-for="review in reviews"
 			:key="review.title"
-			:category="TransformMediaType(category)"
-			:path="review.path"
+			:category="category"
+			:path="review._path"
 			:rating="review.rating"
+			:title="review.title"
 			:description="review.description"
 			:tmdb-i-d="review.TMDB_ID" />
 	</div>
@@ -15,10 +16,7 @@
 
 <script setup lang="ts">
 
-import type { NuxtContentReview } from 'types/nuxt'
-import type { ReviewMetadata } from 'types/review'
-import {  MediaType as ReviewMediaType } from 'types/review'
-import {  MediaType as TMDBMediaType } from 'types/tmdb'
+import type { ParsedContent } from '@nuxt/content';
 
 const props = defineProps({
 	size: {
@@ -35,36 +33,27 @@ const props = defineProps({
 	}
 })
 
-function TransformMediaType(reviewMediaType: ReviewMediaType): TMDBMediaType {
-	switch (reviewMediaType) {
-		case ReviewMediaType.Movie:
-			return TMDBMediaType.Movie
-		case ReviewMediaType.Show:
-			return TMDBMediaType.Show
-	}
-}
+function MapNuxtReview(value: ParsedContent): ReviewMetadata {
+	const result = ReviewMetadataSchema.safeParse(value);
 
-function MapNuxtReview(review: NuxtContentReview): ReviewMetadata {
-	if(review._path === undefined) {
-		throw new Error('Review path is undefined')
+	if (!result.success) {
+
+		const entries = Object.entries(result.error.flatten().fieldErrors)
+		const errorString = entries.join('\n\t\t')
+
+		console.error(`Failed to parse review metadata for "${value.title}":\n\t\t${errorString}`)
+
+		throw new Error(`Failed to parse review metadata for "${value.title}"`)
 	}
 
-	return {
-				path: review._path,
-				description: review.description,
-				TMDB_ID: review.TMDB_ID,
-				title: review.title,
-				intRating: review.intRating,
-				entRating: review.entRating,
-				rating: review.rating
-			}
+	return result.data
 }
 
 async function QueryReviews(mediaType:ReviewMediaType): Promise<ReviewMetadata[]> {
-	return await queryContent<NuxtContentReview>('reviews', mediaType)
+	return await queryContent('reviews', mediaType)
 	.where({ layout: 'review' })
-	.sort({ date_published: -1 }).limit(props.limit).find().then((value: NuxtContentReview[]) => {
-		return value.map(MapNuxtReview)
+	.sort({ date_published: -1 }).limit(props.limit).find().then((values) => {
+		return values.map(MapNuxtReview)
 	})
 }
 

@@ -1,5 +1,3 @@
-import type { ParsedContent } from '@nuxt/content'
-
 export type JSONFeedAuthor = {
 	name: string, // The author's name.
 	url?: string, // The URL of a site owned by the author.
@@ -53,22 +51,4 @@ export type JSONFeed = {
 	expired?: boolean, // Whether or not the feed is finished, or if it will continue updating.
 	hubs?: Array<JSONFeedHub>, // Endpoints for real-time updates
 	items: Array<JSONFeedItem> // The items in the feed.
-}
-
-// Extended feed information
-export interface NuxtFeed extends ParsedContent {
-	title: string
-	id: string
-	description: string
-}
-
-// Extended content information
-export interface NuxtContent extends ParsedContent {
-	title: string
-	date_published: string
-	date_modified: string
-	description: string
-	intRating: number
-	entRating: number
-	rating: number
 }
