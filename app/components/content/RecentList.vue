@@ -1,5 +1,5 @@
 <template>
-	<div class="not-prose grid grid-flow-row grid-cols-1 md:grid-cols-2">
+	<div class="not-prose grid grid-flow-row gap-8 grid-cols-1 md:grid-cols-2">
 		<ReviewPreview
 			v-for="review in reviews"
 			:key="review.title"
