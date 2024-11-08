@@ -6,7 +6,6 @@
 			:category="category"
 			:path="review._path"
 			:rating="review.rating"
-			:title="review.title"
 			:description="review.description"
 			:tmdb-i-d="review.TMDB_ID" />
 	</div>

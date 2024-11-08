@@ -32,10 +32,6 @@ const props = defineProps({
 		type: Number,
 		required: true
 	},
-	title: {
-		type: String,
-		required: true
-	},
 	description: {
 		type: String,
 		required: true
@@ -75,6 +71,17 @@ const data = await useFetch<TMDBMovie | TMDBShow>(url).then((value) => {
 	}
 
 	return result.data
+})
+
+const title = computed(() => {
+	switch (category.value) {
+		case TMDBMediaType.Movie:
+			return data.title
+		case TMDBMediaType.Show:
+			return data.name
+		default:
+			throw new Error(`Unknown media type: ${category.value}`)
+	}
 })
 
 
