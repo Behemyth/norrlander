@@ -23,12 +23,6 @@ export default defineNuxtConfig({
 	eslint: {
 	},
 
-	// https://nuxt.com/docs/guide/going-further/debugging
-	sourcemap: {
-		server: true,
-		client: true
-	},
-
 	// https://color-mode.nuxtjs.org
 	colorMode: {
 	},
