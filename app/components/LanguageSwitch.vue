@@ -7,6 +7,8 @@
 
 <script setup lang="ts">
 
+import type { Locale } from 'vue-i18n'
+
 const { locale, locales, setLocale, loadLocaleMessages } = useI18n()
 
 async function processChange(newLocale: Locale) {
