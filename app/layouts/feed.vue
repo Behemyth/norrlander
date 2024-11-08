@@ -1,7 +1,5 @@
 <template>
-	<main class="flex flex-col min-h-dvh max-w-5xl mx-auto">
-		<UContainer class="grow prose dark:prose-invert">
-			<slot />
-		</UContainer>
+	<main class="max-w-5xl mx-auto prose dark:prose-invert">
+		<slot />
 	</main>
 </template>

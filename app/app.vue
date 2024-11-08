@@ -1,7 +1,9 @@
 <template>
-	<AppHeader />
-	<NuxtPage />
-	<AppFooter />
+	<div class="flex flex-col min-h-dvh">
+		<AppHeader />
+		<NuxtPage class="grow"/>
+		<AppFooter />
+	</div>
 </template>
 
 <script setup lang="ts">
