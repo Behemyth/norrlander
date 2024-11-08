@@ -1,8 +1,8 @@
 <template>
 	<USelect
-		v-model="locale" :options="availableLocales" option-attribute="name"
+		:model-value="locale" :options="availableLocales" option-attribute="name"
 		value-attribute="code" required
-		@change="processChange(locale)"/>
+		@change="processChange($event)"/>
 </template>
 
 <script setup lang="ts">
@@ -12,7 +12,7 @@ import type { Locale } from 'vue-i18n'
 const { locale, locales, setLocale, loadLocaleMessages } = useI18n()
 
 async function processChange(newLocale: Locale) {
-	loadLocaleMessages(newLocale).then(() => {
+	await loadLocaleMessages(newLocale).then(() => {
 		setLocale(newLocale)
 	})
 }
