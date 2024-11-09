@@ -3,7 +3,7 @@
 		:to="path" :title="title"
 		class="not-prose w-full h-32 flex items-center bg-white border border-gray-200 rounded-lg shadow md:h-48 lg:h-64 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
 		<NuxtPicture
-			:src="`/tmdb/${data.poster_path}`" loading="lazy" :img-attrs="{ class: 'rounded-s-lg' }"
+			:src="`/tmdb/${data.poster_path}`" placeholder loading="lazy" :img-attrs="{ class: 'rounded-s-lg' }"
 			class="aspect-[2/3] h-full" />
 
 

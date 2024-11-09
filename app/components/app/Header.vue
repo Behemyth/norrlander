@@ -26,7 +26,7 @@
 
 const isOpen = ref(false)
 
-const navigation = await fetchContentNavigation()
+const navigation = await fetchContentNavigation(queryContent().where({ header: true }))
 
 const links = computed(() => {
 	return navigation.map((link) => {

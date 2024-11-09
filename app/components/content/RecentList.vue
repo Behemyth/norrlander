@@ -9,8 +9,6 @@
 			:description="review.description"
 			:tmdb-i-d="review.TMDB_ID" />
 	</div>
-	<span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">These reviews uses the TMDB API but is not
-		endorsed or certified by TMDB.</span>
 </template>
 
 <script setup lang="ts">
