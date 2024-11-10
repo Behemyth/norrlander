@@ -1,31 +1,30 @@
-import { serverQueryContent } from '#content/server'
-import type { ParsedContent } from '@nuxt/content'
+import type { ParsedContent } from '@nuxt/content';
+import { serverQueryContent } from '#content/server';
 
 export default defineEventHandler(async (event) => {
-
-	const path = getRouterParam(event, 'category')!
-	const feedContent: ParsedContent | undefined = await serverQueryContent(event, path).findOne()
+	const path = getRouterParam(event, 'category')!;
+	const feedContent: ParsedContent | undefined = await serverQueryContent(event, path).findOne();
 
 	if (!feedContent) {
 		throw createError({
 			statusCode: 404,
 			statusMessage:
-				'Feed not found'
-		})
+				'Feed not found',
+		});
 	}
 
 	const author: JSONFeedAuthor = {
 		name: 'Asher Norland',
 		url: new URL('/contact', 'https://ashernorland.com').toString(),
-		avatar: new URL('/avatar/293a56bef971ab4999d6230491957d33', 'https://www.gravatar.com').toString()
-	}
+		avatar: new URL('/avatar/293a56bef971ab4999d6230491957d33', 'https://www.gravatar.com').toString(),
+	};
 
-	if(feedContent.title === undefined ) {
+	if (feedContent.title === undefined) {
 		throw createError({
 			statusCode: 404,
 			statusMessage:
-				'Feed title not found'
-		})
+				'Feed title not found',
+		});
 	}
 
 	const feed: JSONFeed = {
@@ -40,17 +39,17 @@ export default defineEventHandler(async (event) => {
 		author: [author],
 		language: 'en-US',
 		expired: false,
-		items: []
-	}
+		items: [],
+	};
 
 	const docs: ParsedContent[] = await serverQueryContent(event, path)
 		.sort({ date_published: -1 })
 		.where({ layout: 'review' })
-		.find()
+		.find();
 
 	for (const post of docs) {
-		let contentPath = post._path
-		contentPath = contentPath ??= '/'
+		let contentPath = post._path;
+		contentPath = contentPath ??= '/';
 
 		const item: JSONFeedItem = {
 			id: post.url,
@@ -63,12 +62,12 @@ export default defineEventHandler(async (event) => {
 			author: [author],
 			tags: [],
 			language: 'en-US',
-			attachments: []
-		}
-		feed.items.push(item)
+			attachments: [],
+		};
+		feed.items.push(item);
 	}
 
-	setResponseHeader(event, "Content-Type", "application/feed+json");
+	setResponseHeader(event, 'Content-Type', 'application/feed+json');
 
-	return feed
-})
+	return feed;
+});

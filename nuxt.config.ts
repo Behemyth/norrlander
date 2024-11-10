@@ -1,14 +1,5 @@
 // https://v3.nuxtjs.org/docs/directory-structure/nuxt.config
 export default defineNuxtConfig({
-	ssr: true,
-
-	future: {
-		compatibilityVersion: 4
-	},
-
-	experimental: {
-		renderJsonPayloads: true
-	},
 
 	modules: [
 		'@nuxt/content',
@@ -17,22 +8,20 @@ export default defineNuxtConfig({
 		'@nuxt/image',
 		'@nuxtjs/i18n',
 		'@nuxt/ui',
-		"@nuxt/eslint"
+		'@nuxt/eslint',
 	],
+	ssr: true,
 
-	eslint: {
+	devtools: {
+		enabled: true,
+	},
+
+	site: {
+		url: 'https://ashernorland.com',
 	},
 
 	// https://color-mode.nuxtjs.org
 	colorMode: {
-	},
-
-	// https://ui.nuxt.com/getting-started/theming
-	ui: {
-	},
-
-	site: {
-		url: 'https://ashernorland.com'
 	},
 
 	// https://content.nuxtjs.org
@@ -40,52 +29,68 @@ export default defineNuxtConfig({
 		markdown: {
 			toc: {
 				depth: 3,
-				searchDepth: 3
-			}
+				searchDepth: 3,
+			},
 		},
 		documentDriven: true,
 		navigation: {
-			fields: ['navTitle']
+			fields: ['navTitle'],
 		},
 		highlight: {
 			// See the available themes on https://github.com/shikijs/shiki/blob/main/docs/themes.md#all-theme
 			theme: {
 				dark: 'github-dark',
-				default: 'github-light'
-			}
+				default: 'github-light',
+			},
 		},
 		experimental: {
 			search: {
-				indexed: true
-			}
-		}
-	},
-	// https://image.nuxt.com/
-	image: {
-		format: ['webp'],
-		domains: ['www.gravatar.com', 'image.tmdb.org'],
-		alias: {
-			tmdb: 'https://image.tmdb.org/t/p/original',
-			gravatar: 'https://www.gravatar.com'
+				indexed: true,
+			},
 		},
-		dir: 'public'
 	},
 
-	devtools: {
-		enabled: true
+	// https://ui.nuxt.com/getting-started/theming
+	ui: {
 	},
 
-	typescript: {
-		strict: true
+	runtimeConfig: {
+		apiSecret: '', // can be overridden by NUXT_API_SECRET environment variable
+		public: {
+			apiBase: '', // can be overridden by NUXT_PUBLIC_API_BASE environment variable
+		},
 	},
+
+	future: {
+		compatibilityVersion: 4,
+	},
+
+	experimental: {
+		renderJsonPayloads: true,
+	},
+
+	compatibilityDate: '2024-11-04',
 
 	nitro: {
 		// static: true, // Not set, to support 'dev' server. Default is `static: true` for 'start' and 'generate' commands
 		prerender: {
 			crawlLinks: true,
 			interval: 50, // To avoid rate limiting of the TMDB API
-			routes: ['/']
-		}
+			routes: ['/'],
+		},
+	},
+
+	typescript: {
+		strict: true,
+	},
+
+	eslint: {
+		config: {
+			stylistic: {
+				indent: 'tab',
+				semi: true,
+			},
+		},
 	},
 
 	i18n: {
@@ -94,27 +99,28 @@ export default defineNuxtConfig({
 				code: 'en',
 				language: 'en-US',
 				name: 'English',
-				file: 'en.json'
+				file: 'en.json',
 			},
 			{
 				code: 'pl',
 				language: 'pl-PL',
 				name: 'Polski',
-				file: 'pl.json'
-			}
+				file: 'pl.json',
+			},
 		],
 		lazy: true,
 		strategy: 'no_prefix',
 		defaultLocale: 'en',
-		vueI18n: './i18n/i18n.config.ts'
+		vueI18n: './i18n/i18n.config.ts',
 	},
-
-	runtimeConfig: {
-		apiSecret: '', // can be overridden by NUXT_API_SECRET environment variable
-		public: {
-			apiBase: '' // can be overridden by NUXT_PUBLIC_API_BASE environment variable
-		}
+	// https://image.nuxt.com/
+	image: {
+		format: ['webp'],
+		domains: ['www.gravatar.com', 'image.tmdb.org'],
+		alias: {
+			tmdb: 'https://image.tmdb.org/t/p/original',
+			gravatar: 'https://www.gravatar.com',
+		},
+		dir: 'public',
 	},
-
-	compatibilityDate: '2024-11-04'
-})
+});

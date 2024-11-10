@@ -4,6 +4,7 @@
 			<slot />
 		</div>
 		<DiscussionList
-		category="Movies"/>
+			category="Movies"
+		/>
 	</main>
 </template>

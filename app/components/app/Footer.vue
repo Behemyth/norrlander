@@ -1,13 +1,18 @@
 <template>
 	<footer class="w-full max-w-5xl mx-auto p-4 bg-white shadow dark:bg-gray-900">
 		<div class="flex items-center justify-between">
-			<ULink to="/contact" rel="author" class="flex items-center">
+			<ULink
+				to="/contact"
+				rel="author"
+				class="flex items-center"
+			>
 				<NuxtPicture
 					src="/gravatar/avatar/293a56bef971ab4999d6230491957d33"
 					:img-attrs="{ class: 'rounded-full' }"
-					class="h-12 aspect-square mr-3"/>
+					class="h-12 aspect-square mr-3"
+				/>
 				<span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">{{ $t('Contact')
-					}}</span>
+				}}</span>
 			</ULink>
 
 			<UHorizontalNavigation :links="links" />
@@ -26,23 +31,22 @@
 </template>
 
 <script setup lang="ts">
-
-const navigation = await fetchContentNavigation(queryContent().where({ footer: true }))
+const navigation = await fetchContentNavigation(queryContent().where({ footer: true }));
 
 const links = computed(() => {
 	return navigation.map((link) => {
 		return {
 			label: link.navTitle || link.title,
-			to: link._path
-		}
-	})
-})
+			to: link._path,
+		};
+	});
+});
 
 const { data: socials } = useLazyAsyncData('socials', () =>
 	queryContent<MetaData>('_data')
 		.where({ _partial: true, title: 'Metadata' })
 		.findOne().then((value) => {
-			return value.socials
-		})
-)
+			return value.socials;
+		}),
+);
 </script>

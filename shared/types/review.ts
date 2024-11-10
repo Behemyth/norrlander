@@ -1,8 +1,8 @@
-import { z } from "zod"
+import { z } from 'zod';
 
 export enum ReviewMediaType {
 	Movie = 'movie',
-	Show = 'show'
+	Show = 'show',
 }
 
 export const ReviewMediaTypeSchema = z.nativeEnum(ReviewMediaType);
@@ -17,6 +17,6 @@ export const ReviewMetadataSchema = z.object({
 	TMDB_ID: z.number().int(),
 	date_published: z.coerce.date(),
 	date_modified: z.coerce.date(),
-  });
+});
 
 export type ReviewMetadata = z.infer<typeof ReviewMetadataSchema>;
