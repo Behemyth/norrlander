@@ -1,10 +1,10 @@
 <template>
-	<div class="flex flex-col min-h-dvh">
-		<AppHeader />
-		<!-- Fill the page so that the footer is always at the bottom. Give the option to the underlying layout to do the same via 'flex' -->
-		<NuxtPage class="flex grow" />
-		<AppFooter />
-	</div>
+	<main class="flex flex-col min-h-dvh max-w-5xl mx-auto">
+		<AppHeader class="flex-none" />
+		<!-- Fill the page so that the footer is always at the bottom -->
+		<NuxtPage class="p-4 w-full flex grow" />
+		<AppFooter class="flex-none" />
+	</main>
 </template>
 
 <script setup lang="ts">

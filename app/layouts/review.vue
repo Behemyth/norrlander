@@ -1,8 +1,8 @@
 <template>
-	<main class="flex flex-col grow min-h-fit p-4 max-w-5xl mx-auto prose dark:prose-invert">
-		<div class="grow">
+	<main class="flex flex-col w-full">
+		<article class="grow prose dark:prose-invert">
 			<slot />
-		</div>
+		</article>
 		<DiscussionList
 			category="Movies"
 		/>
