@@ -119,7 +119,6 @@ export default defineNuxtConfig({
 		domains: ['www.gravatar.com', 'image.tmdb.org'],
 		alias: {
 			tmdb: 'https://image.tmdb.org/t/p/original',
-			gravatar: 'https://www.gravatar.com',
 		},
 		dir: 'public',
 	},

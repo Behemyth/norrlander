@@ -1,10 +1,7 @@
 <template>
-	<nav class="max-w-5xl w-full mx-auto p-1 bg-white shadow dark:bg-gray-900">
-		<div class="flex items-center justify-around mx-auto md:justify-evenly">
-			<div class="hidden md:flex">
-				<UHorizontalNavigation :links="links" />
-			</div>
-			<div class="h-full aspect-square md:hidden">
+	<header class="max-w-5xl w-full mx-auto p-1 bg-white shadow dark:bg-gray-900">
+		<div class="flex flex-row items-center justify-evenly md:justify-between">
+			<nav class="h-full aspect-square md:hidden">
 				<UButton
 					icon="i-mdi-hamburger-menu"
 					color="primary"
@@ -24,21 +21,22 @@
 						@click="isOpen = false"
 					/>
 				</USlideover>
-			</div>
+			</nav>
 			<ULink
-				to="/contact"
+				to="/"
 				rel="author"
-				class="flex flex-none items-center p-2 md:p-4"
-			>
-				<NuxtPicture
-					src="/gravatar/avatar/293a56bef971ab4999d6230491957d33"
-					:img-attrs="{ class: 'h-9 md:h-12 rounded-full' }"
-					class="m-0"
-				/>
+				class="p-4 text-4xl font-mono font-extrabold"
+			> The Norlands
 			</ULink>
-			<ColorModeSwitch class="hover:text-gray-700 dark:hover:text-gray-300" />
+			<nav class="hidden md:flex">
+				<UHorizontalNavigation :links="links" />
+			</nav>
+
+			<div class="md:px-8">
+				<ColorModeSwitch class="hover:text-gray-700 dark:hover:text-gray-300" />
+			</div>
 		</div>
-	</nav>
+	</header>
 </template>
 
 <script setup lang="ts">
