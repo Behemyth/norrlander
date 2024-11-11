@@ -1,6 +1,7 @@
 ---
 layout: 'feed'
 navTitle: 'Reviews'
+header: true
 ---
 
 # Reviews

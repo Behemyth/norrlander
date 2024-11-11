@@ -1,9 +1,10 @@
 <template>
-	<main class="flex flex-col min-h-dvh max-w-5xl mx-auto">
-		<UContainer class="grow prose dark:prose-invert">
+	<main class="flex flex-col w-full">
+		<article class="grow prose dark:prose-invert">
 			<slot />
-		</UContainer>
+		</article>
 		<DiscussionList
-		category="Movies"/>
+			category="Movies"
+		/>
 	</main>
 </template>

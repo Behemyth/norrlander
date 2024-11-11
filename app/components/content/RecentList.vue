@@ -6,57 +6,52 @@
 			:category="category"
 			:path="review._path"
 			:rating="review.rating"
-			:title="review.title"
 			:description="review.description"
-			:tmdb-i-d="review.TMDB_ID" />
+			:tmdb-i-d="review.TMDB_ID"
+		/>
 	</div>
-	<span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">These reviews uses the TMDB API but is not
-		endorsed or certified by TMDB.</span>
 </template>
 
 <script setup lang="ts">
-
 import type { ParsedContent } from '@nuxt/content';
 
 const props = defineProps({
 	size: {
 		type: Number,
-		required: true
+		required: true,
 	},
 	category: {
 		type: String as PropType<ReviewMediaType>,
-		required: true
+		required: true,
 	},
 	limit: {
 		type: Number,
-		default: 0
-	}
-})
+		default: 0,
+	},
+});
 
 function MapNuxtReview(value: ParsedContent): ReviewMetadata {
 	const result = ReviewMetadataSchema.safeParse(value);
 
 	if (!result.success) {
+		const entries = Object.entries(result.error.flatten().fieldErrors);
+		const errorString = entries.join('\n\t\t');
 
-		const entries = Object.entries(result.error.flatten().fieldErrors)
-		const errorString = entries.join('\n\t\t')
+		console.error(`Failed to parse review metadata for "${value.title}":\n\t\t${errorString}`);
 
-		console.error(`Failed to parse review metadata for "${value.title}":\n\t\t${errorString}`)
-
-		throw new Error(`Failed to parse review metadata for "${value.title}"`)
+		throw new Error(`Failed to parse review metadata for "${value.title}"`);
 	}
 
-	return result.data
+	return result.data;
 }
 
-async function QueryReviews(mediaType:ReviewMediaType): Promise<ReviewMetadata[]> {
+async function QueryReviews(mediaType: ReviewMediaType): Promise<ReviewMetadata[]> {
 	return await queryContent('reviews', mediaType)
-	.where({ layout: 'review' })
-	.sort({ date_published: -1 }).limit(props.limit).find().then((values) => {
-		return values.map(MapNuxtReview)
-	})
+		.where({ layout: 'review' })
+		.sort({ date_published: -1 }).limit(props.limit).find().then((values) => {
+			return values.map(MapNuxtReview);
+		});
 }
 
-const reviews = await QueryReviews(props.category)
-
+const reviews = await QueryReviews(props.category);
 </script>
