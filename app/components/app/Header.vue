@@ -26,7 +26,7 @@
 				to="/"
 				rel="author"
 				class="p-4 text-4xl font-mono font-extrabold"
-			> The Norland
+			> The Norlander
 			</ULink>
 			<nav class="hidden md:flex">
 				<UHorizontalNavigation :links="links" />
