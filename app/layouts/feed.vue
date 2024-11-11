@@ -1,5 +1,5 @@
 <template>
-	<main class="mx-auto prose dark:prose-invert">
+	<main class="mx-auto w-full prose dark:prose-invert">
 		<slot />
 	</main>
 </template>
