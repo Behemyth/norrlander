@@ -16,7 +16,7 @@
 		"@nuxt/eslint": "^0.6.1",
 		"@nuxt/image": "^1.8.1",
 		"@nuxt/ui": "^2.19.2",
-		"@nuxtjs/i18n": "^9.0.0",
+		"@nuxtjs/i18n": "^9.1.0",
 		"@nuxtjs/sitemap": "^6.1.5",
 		"eslint": "^9.15.0",
 		"nuxt": "^3.14.159",
