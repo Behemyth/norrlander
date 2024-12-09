@@ -1,6 +1,6 @@
 <template>
 	<footer class="w-full max-w-5xl mx-auto p-4 bg-white shadow dark:bg-gray-900">
-		<div class="flex flex-row items-center justify-between">
+		<div class="flex flex-wrap flex-row items-center justify-between">
 			<ULink
 				to="/"
 				rel="author"
@@ -20,7 +20,7 @@
 			<SocialIcons :socials="socials ? socials : []" />
 		</div>
 		<hr class="my-4 border-gray-200 sm:mx-auto dark:border-gray-700">
-		<div class="flex flex-row items-center justify-between">
+		<div class="flex flex-wrap flex-row items-center justify-between">
 			<span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">Copyright &copy; {{ new
 				Date().getFullYear() }}</span>
 
