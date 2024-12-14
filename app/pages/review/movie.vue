@@ -1,14 +1,15 @@
+
 ---
 navTitle: 'About'
 ---
 
 # About
 
-### Recent Show Reviews
+Movie reviews to follow
 
 ::RecentList
 ---
 size: 35
-category: show
+category: movie
 ---
 ::

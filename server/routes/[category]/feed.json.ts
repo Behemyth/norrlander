@@ -1,9 +1,6 @@
-import type { ParsedContent } from '@nuxt/content';
-import { serverQueryContent } from '#content/server';
-
 export default defineEventHandler(async (event) => {
 	const path = getRouterParam(event, 'category')!;
-	const feedContent: ParsedContent | undefined = await serverQueryContent(event, path).findOne();
+	const feedContent: ParsedContent | undefined = await queryCollection(event, path).findOne();
 
 	if (!feedContent) {
 		throw createError({
@@ -42,7 +39,7 @@ export default defineEventHandler(async (event) => {
 		items: [],
 	};
 
-	const docs: ParsedContent[] = await serverQueryContent(event, path)
+	const docs: ParsedContent[] = await queryCollection(event, path)
 		.sort({ date_published: -1 })
 		.where({ layout: 'review' })
 		.find();

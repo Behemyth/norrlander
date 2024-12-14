@@ -32,7 +32,7 @@
 </template>
 
 <script setup lang="ts">
-const navigation = await fetchContentNavigation(queryContent().where({ footer: true }));
+const navigation = await queryCollectionNavigation(queryContent().where({ footer: true }));
 
 const links = computed(() => {
 	return navigation.map((link) => {

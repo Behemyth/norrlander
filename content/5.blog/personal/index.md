@@ -1,6 +1,0 @@
----
-navTitle: 'Personal Blog'
----
-
-# Blog
- 

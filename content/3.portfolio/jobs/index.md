@@ -1,5 +1,0 @@
----
-navTitle: 'Jobs'
----
-
-# Jobs

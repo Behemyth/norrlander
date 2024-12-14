@@ -1,6 +1,7 @@
 <template>
 	<main class="flex flex-col w-full">
-		<article class="grow mx-auto w-full prose dark:prose-invert">
+		<ReviewImageHeader />
+		<article class="grow mx-auto w-full">
 			<slot />
 		</article>
 		<DiscussionList
@@ -8,3 +9,7 @@
 		/>
 	</main>
 </template>
+
+<script setup lang="ts">
+
+</script>

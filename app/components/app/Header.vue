@@ -42,7 +42,7 @@
 <script setup lang="ts">
 const isOpen = ref(false);
 
-const navigation = await fetchContentNavigation(queryContent().where({ header: true }));
+const navigation = await queryCollectionNavigation(queryContent().where({ header: true }));
 
 const links = computed(() => {
 	return navigation.map((link) => {
