@@ -1,6 +1,16 @@
-import { defineContentConfig, defineCollection } from '@nuxt/content';
+import { defineContentConfig, defineCollection, z } from '@nuxt/content';
 
-import { ReviewMetadataSchema } from './shared/types/review';
+const ReviewMetadataSchema = z.object({
+	intRating: z.number().int().nonnegative().lte(8),
+	entRating: z.number().int().nonnegative().lte(8),
+	rating: z.number().int().nonnegative().lte(8),
+	_path: z.string(),
+	title: z.string(),
+	description: z.string(),
+	TMDB_ID: z.number().int(),
+	date_published: z.coerce.date(),
+	date_modified: z.coerce.date(),
+});
 
 export default defineContentConfig({
 	collections: {
@@ -8,17 +18,28 @@ export default defineContentConfig({
 		contact: defineCollection({
 			type: 'data',
 			source: 'data/contact/*.json',
-			schema: ,
+			schema: z.object({
+				name: z.string(),
+				icon: z.string(),
+				link: z.string().url(),
+			}),
 		}),
 		socials: defineCollection({
 			type: 'data',
 			source: 'data/socials/*.json',
-			schema: ,
+			schema: z.object({
+				name: z.string(),
+				icon: z.string(),
+				link: z.string().url(),
+			}),
 		}),
 		navigation: defineCollection({
 			type: 'data',
 			source: 'data/navigation/*.json',
-			schema: ,
+			schema: z.object({
+				label: z.string(),
+				to: z.string().url(),
+			}),
 		}),
 		movie: defineCollection({
 			type: 'page',

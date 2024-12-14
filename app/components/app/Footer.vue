@@ -32,22 +32,6 @@
 </template>
 
 <script setup lang="ts">
-const navigation = await queryCollectionNavigation(queryContent().where({ footer: true }));
-
-const links = computed(() => {
-	return navigation.map((link) => {
-		return {
-			label: link.navTitle || link.title,
-			to: link._path,
-		};
-	});
-});
-
-const { data: socials } = useLazyAsyncData('socials', () =>
-	queryContent<MetaData>('_data')
-		.where({ _partial: true, title: 'Metadata' })
-		.findOne().then((value) => {
-			return value.socials;
-		}),
-);
+const links = await queryCollection('navigation').all();
+const socials = await queryCollection('socials').all();
 </script>

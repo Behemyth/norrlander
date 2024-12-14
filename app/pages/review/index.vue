@@ -1,4 +1,8 @@
----
+<template>
+	<div />
+</template>
+
+<!-- ---
 layout: 'feed'
 navTitle: 'Reviews'
 header: true
@@ -28,4 +32,4 @@ limit: 4
 ---
 ::
 
-[All Show Reviews](/reviews/show)
+[All Show Reviews](/reviews/show) -->

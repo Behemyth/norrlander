@@ -1,5 +1,7 @@
-
----
+<template>
+	<div />
+</template>
+<!-- ---
 navTitle: 'About'
 ---
 
@@ -12,4 +14,4 @@ Movie reviews to follow
 size: 35
 category: movie
 ---
-::
+:: -->

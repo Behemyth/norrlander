@@ -42,14 +42,5 @@
 <script setup lang="ts">
 const isOpen = ref(false);
 
-const navigation = await queryCollectionNavigation(queryContent().where({ header: true }));
-
-const links = computed(() => {
-	return navigation.map((link) => {
-		return {
-			label: link.navTitle || link.title,
-			to: link._path,
-		};
-	});
-});
+const links = await queryCollection('navigation').all();
 </script>

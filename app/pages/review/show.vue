@@ -1,4 +1,7 @@
----
+<template>
+	<div />
+</template>
+<!-- ---
 navTitle: 'About'
 ---
 
@@ -11,4 +14,4 @@ Show reviews to follow
 size: 35
 category: show
 ---
-::
+:: -->
