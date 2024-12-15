@@ -1,12 +1,12 @@
 <template>
-	<main class="flex flex-col min-h-dvh max-w-5xl mx-auto">
+	<UApp class="flex flex-col min-h-dvh max-w-5xl mx-auto">
 		<AppHeader class="flex-none" />
-		<NuxtLayout>
+		<NuxtLayout class="flex-grow p-4 w-full">
 			<!-- Fill the page so that the footer is always at the bottom -->
-			<NuxtPage class="p-4 w-full flex grow" />
+			<NuxtPage />
 		</NuxtLayout>
 		<AppFooter class="flex-none" />
-	</main>
+	</UApp>
 </template>
 
 <script setup lang="ts">

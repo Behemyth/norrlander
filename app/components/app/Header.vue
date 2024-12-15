@@ -15,9 +15,9 @@
 					v-model="isOpen"
 					side="left"
 				>
-					<UVerticalNavigation
-						:links="links"
-						:ui="{ size: 'text-2xl' }"
+					<UNavigationMenu
+						orientation="vertical"
+						:items="items"
 						@click="isOpen = false"
 					/>
 				</USlideover>
@@ -29,7 +29,7 @@
 			> The Norlander
 			</ULink>
 			<nav class="hidden md:flex">
-				<UHorizontalNavigation :links="links" />
+				<UNavigationMenu :items="items" />
 			</nav>
 
 			<div class="md:px-8">
@@ -42,5 +42,10 @@
 <script setup lang="ts">
 const isOpen = ref(false);
 
-const links = await queryCollection('navigation').all();
+const items = [
+	{
+		label: 'Home',
+		to: '/',
+	},
+];
 </script>

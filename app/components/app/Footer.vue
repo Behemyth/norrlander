@@ -13,8 +13,8 @@
 			</ULink>
 
 			<div class="flex">
-				<UHorizontalNavigation
-					:links="links"
+				<UNavigationMenu
+					:items="items"
 				/>
 			</div>
 			<SocialIcons :socials="socials ? socials : []" />
@@ -32,6 +32,16 @@
 </template>
 
 <script setup lang="ts">
-const links = await queryCollection('navigation').all();
+const items = [
+	{
+		label: 'About',
+		to: '/about',
+	},
+	{
+		label: 'Contact',
+		to: '/contact',
+	},
+];
+
 const socials = await queryCollection('socials').all();
 </script>

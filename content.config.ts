@@ -14,7 +14,6 @@ const ReviewMetadataSchema = z.object({
 
 export default defineContentConfig({
 	collections: {
-
 		contact: defineCollection({
 			type: 'data',
 			source: 'data/contact/*.json',
@@ -31,14 +30,6 @@ export default defineContentConfig({
 				name: z.string(),
 				icon: z.string(),
 				link: z.string().url(),
-			}),
-		}),
-		navigation: defineCollection({
-			type: 'data',
-			source: 'data/navigation/*.json',
-			schema: z.object({
-				label: z.string(),
-				to: z.string().url(),
 			}),
 		}),
 		movie: defineCollection({
