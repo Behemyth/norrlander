@@ -2,7 +2,7 @@
 	<ClientOnly>
 		<UButton
 			:icon="colorMode.preference === 'dark' ? 'i-heroicons-moon' : 'i-heroicons-sun'"
-			color="gray"
+			color="neutral"
 			variant="ghost"
 			aria-label="Color Mode"
 			@click="onClick"

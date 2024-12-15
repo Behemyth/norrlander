@@ -1,14 +1,15 @@
 <template>
 	<UApp
 		:locale="locales[locale]"
-		class="flex flex-col min-h-dvh max-w-5xl mx-auto"
 	>
-		<AppHeader class="flex-none" />
-		<NuxtLayout class="flex-grow p-4 w-full">
-			<!-- Fill the page so that the footer is always at the bottom -->
-			<NuxtPage />
-		</NuxtLayout>
-		<AppFooter class="flex-none" />
+		<div class="flex flex-col min-h-dvh max-w-5xl mx-auto">
+			<AppHeader class="flex-none" />
+			<NuxtLayout class="grow p-4 w-full">
+				<!-- Fill the page so that the footer is always at the bottom -->
+				<NuxtPage />
+			</NuxtLayout>
+			<AppFooter class="flex-none" />
+		</div>
 	</UApp>
 </template>
 

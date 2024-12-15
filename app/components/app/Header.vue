@@ -42,10 +42,20 @@
 <script setup lang="ts">
 const isOpen = ref(false);
 
-const items = [
+const items = ref([
 	{
-		label: 'Home',
-		to: '/',
+		label: 'Reviews',
+		to: '/review',
+		children: [
+			{
+				label: 'Movies',
+				to: '/review/movie',
+			},
+			{
+				label: 'Shows',
+				to: '/review/show',
+			},
+		],
 	},
-];
+]);
 </script>
