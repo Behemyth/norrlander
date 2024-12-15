@@ -1,5 +1,8 @@
 <template>
-	<UApp class="flex flex-col min-h-dvh max-w-5xl mx-auto">
+	<UApp
+		:locale="locales[locale]"
+		class="flex flex-col min-h-dvh max-w-5xl mx-auto"
+	>
 		<AppHeader class="flex-none" />
 		<NuxtLayout class="flex-grow p-4 w-full">
 			<!-- Fill the page so that the footer is always at the bottom -->
@@ -10,6 +13,10 @@
 </template>
 
 <script setup lang="ts">
+import * as locales from '@nuxt/ui/locale';
+
+const { locale } = useI18n();
+
 // const links
 // 	= await queryCollection().path('/').where({ layout: 'feed' }).find().then((value) => {
 // 		return value.map((content) => {

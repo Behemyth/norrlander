@@ -1,3 +1,5 @@
+import type { Config } from 'tailwindcss';
+
 export default {
 	theme: {
 		extend: {
@@ -10,4 +12,4 @@ export default {
 			},
 		},
 	},
-};
+} satisfies Config;

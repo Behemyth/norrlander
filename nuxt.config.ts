@@ -11,7 +11,6 @@ export default defineNuxtConfig({
 		'@nuxt/eslint',
 	],
 	ssr: true,
-
 	devtools: {
 		enabled: true,
 	},
@@ -48,6 +47,9 @@ export default defineNuxtConfig({
 
 	// https://ui.nuxt.com/getting-started/theming
 	ui: {
+		theme: {
+			colors: ['primary', 'secondary', 'neutral'],
+		},
 	},
 
 	runtimeConfig: {
