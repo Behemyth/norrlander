@@ -5,13 +5,17 @@
 				side="left"
 			>
 				<UButton
+					color="neutral"
+					variant="ghost"
 					icon="i-mdi-hamburger-menu"
 					square
-					label="Open"
+					class="md:hidden"
 				/>
 				<template #content>
 					<UNavigationMenu
 						orientation="vertical"
+						color="neutral"
+						variant="link"
 						:items="items"
 					/>
 				</template>
@@ -24,8 +28,10 @@
 			</ULink>
 			<UNavigationMenu
 				orientation="horizontal"
+				color="neutral"
+				variant="link"
 				:items="items"
-				class="hidden md:flex"
+				class="hidden md:flex justify-center"
 			/>
 			<div class="md:px-8">
 				<ColorModeSwitch class="hover:text-gray-700 dark:hover:text-gray-300" />
@@ -39,6 +45,7 @@ const items = computed(() => [
 	{
 		label: 'Reviews',
 		to: '/review',
+		defaultOpen: true,
 		children: [
 			{
 				label: 'Movies',
