@@ -43,6 +43,10 @@
 <script setup lang="ts">
 const items = computed(() => [
 	{
+		label: 'Portfolio',
+		to: '/portfolio',
+	},
+	{
 		label: 'Reviews',
 		to: '/review',
 		defaultOpen: true,
@@ -56,6 +60,9 @@ const items = computed(() => [
 				to: '/review/show',
 			},
 		],
+	}, {
+		label: 'Blog',
+		to: '/blog',
 	},
 ]);
 </script>
