@@ -23,7 +23,7 @@
 			<ULink
 				to="/"
 				rel="author"
-				class="p-4 text-4xl font-mono font-extrabold"
+				class="text-nowrap p-4 text-4xl font-mono font-extrabold"
 			> The Norlander
 			</ULink>
 			<UNavigationMenu
