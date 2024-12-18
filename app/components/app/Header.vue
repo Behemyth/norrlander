@@ -13,6 +13,7 @@
 				/>
 				<template #content>
 					<UNavigationMenu
+						v-model:open="open"
 						orientation="vertical"
 						color="neutral"
 						variant="link"
@@ -41,28 +42,39 @@
 </template>
 
 <script setup lang="ts">
+const open = ref(false);
+
+function closeSlideover(_: Event): void {
+	open.value = false;
+}
+
 const items = computed(() => [
 	{
 		label: 'Portfolio',
 		to: '/portfolio',
+		onSelect: closeSlideover,
 	},
 	{
 		label: 'Reviews',
 		to: '/review',
 		defaultOpen: true,
+		onSelect: closeSlideover,
 		children: [
 			{
 				label: 'Movies',
 				to: '/review/movie',
+				onSelect: closeSlideover,
 			},
 			{
 				label: 'Shows',
 				to: '/review/show',
+				onSelect: closeSlideover,
 			},
 		],
 	}, {
 		label: 'Blog',
 		to: '/blog',
+		onSelect: closeSlideover,
 	},
 ]);
 </script>
