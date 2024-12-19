@@ -1,35 +1,20 @@
 <template>
-	<div />
+	<div>
+		<RecentList
+			:size="35"
+			:data="movies"
+		/>
+		<RecentList
+			:size="35"
+			:data="shows"
+		/>
+	</div>
 </template>
 
-<!-- ---
-layout: 'feed'
-navTitle: 'Reviews'
-header: true
----
+<script setup lang="ts">
+const movies = await queryCollection('movie')
+	.order('date_published', 'DESC').limit(4).all();
 
-# Reviews
-
-### Recent Movie Reviews
-
-::RecentList
----
-size: 35
-category: movie
-limit: 4
----
-::
-
-[All Movie Reviews](/reviews/movie)
-
-### Recent Show Reviews
-
-::RecentList
----
-size: 35
-category: show
-limit: 4
----
-::
-
-[All Show Reviews](/reviews/show) -->
+const shows = await queryCollection('show')
+	.order('date_published', 'DESC').limit(4).all();
+</script>
