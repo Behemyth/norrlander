@@ -2,10 +2,10 @@
 	<ULink
 		:to="path"
 		:title="title"
-		class="not-prose w-full h-32 flex items-center bg-white border border-gray-200 rounded-lg shadow md:h-48 lg:h-64 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
+		class="w-full h-32 flex items-center bg-white border border-gray-200 rounded-lg shadow md:h-48 lg:h-64 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
 	>
 		<NuxtPicture
-			:src="`/tmdb/${data.poster_path}`"
+			:src="`/tmdb/${poster_path}`"
 			placeholder
 			loading="lazy"
 			:img-attrs="{ class: 'rounded-s-lg' }"
@@ -28,9 +28,9 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
-	category: {
-		type: String as PropType<ReviewMediaType>,
+defineProps({
+	title: {
+		type: String,
 		required: true,
 	},
 	path: {
@@ -45,49 +45,9 @@ const props = defineProps({
 		type: String,
 		required: true,
 	},
-	tmdbID: {
-		type: Number,
+	poster_path: {
+		type: String,
 		required: true,
 	},
-});
-
-function TransformMediaType(reviewMediaType: ReviewMediaType): TMDBMediaType {
-	switch (reviewMediaType) {
-		case ReviewMediaType.Movie:
-			return TMDBMediaType.Movie;
-		case ReviewMediaType.Show:
-			return TMDBMediaType.Show;
-	}
-}
-
-const category = computed(() =>
-	TransformMediaType(props.category));
-
-const url = computed(() => `/api/tmdb/media/${category.value}/${props.tmdbID}`);
-
-const data = await useFetch<TMDBMovie | TMDBShow>(url).then((value) => {
-	const result = TMDBMediaSchema.passthrough().safeParse(value.data.value);
-
-	if (!result.success) {
-		const entries = Object.entries(result.error.flatten().fieldErrors);
-		const errorString = entries.join('\n\t\t');
-
-		console.error(`Failed to parse TMDB metadata for "${url.value}":\n\t\t${errorString}`);
-
-		throw new Error(`Failed to parse TMDB metadata for "${url.value}"`);
-	}
-
-	return result.data;
-});
-
-const title = computed(() => {
-	switch (category.value) {
-		case TMDBMediaType.Movie:
-			return data.title;
-		case TMDBMediaType.Show:
-			return data.name;
-		default:
-			throw new Error(`Unknown media type: ${category.value}`);
-	}
 });
 </script>

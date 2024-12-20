@@ -1,20 +1,64 @@
 <template>
 	<div>
-		<RecentList
-			:size="35"
-			:data="movies"
-		/>
-		<RecentList
-			:size="35"
-			:data="shows"
-		/>
+		<div class="grid grid-flow-row gap-8 grid-cols-2 md:grid-cols-3">
+			<ReviewPreview
+				v-for="review in movies"
+				:key="review.info.id"
+				:title="review.info.title"
+				:path="`/review/${review.info.id}`"
+				:rating="review.info.rating"
+				:description="review.info.description"
+				:poster-path="review.tmdb.poster_path"
+			/>
+		</div>
+		<div class="grid grid-flow-row gap-8 grid-cols-2 md:grid-cols-3">
+			<ReviewPreview
+				v-for="review in shows"
+				:key="review.info.id"
+				:title="review.info.title"
+				:path="`/review/${review.info.id}`"
+				:rating="review.info.rating"
+				:description="review.info.description"
+				:poster-path="review.tmdb.poster_path"
+			/>
+		</div>
 	</div>
 </template>
 
 <script setup lang="ts">
-const movies = await queryCollection('movie')
+const movieContent = await queryCollection('movie')
 	.order('date_published', 'DESC').limit(4).all();
 
-const shows = await queryCollection('show')
+const movieMetadata = await useAsyncData('recent-movies', async () => {
+	return await Promise.all(showContent.map(async (show) => {
+		return $fetch<TMDBMovie>(`/api/tmdb/media/movie/${show.TMDB_ID}`);
+	}));
+}).then((value) => {
+	return value.data.value!;
+});
+
+const movies = movieContent.map((movie, index) => {
+	return {
+		info: movie,
+		tmdb: movieMetadata[index]!,
+	};
+});
+
+const showContent = await queryCollection('show')
 	.order('date_published', 'DESC').limit(4).all();
+
+const showMetadata = await useAsyncData('recent-shows', async () => {
+	return await Promise.all(showContent.map(async (show) => {
+		return $fetch<TMDBShow>(`/api/tmdb/media/show/${show.TMDB_ID}`);
+	}));
+}).then((value) => {
+	return value.data.value!;
+});
+
+const shows = showContent.map((show, index) => {
+	return {
+		info: show,
+		tmdb: showMetadata[index]!,
+	};
+});
 </script>
