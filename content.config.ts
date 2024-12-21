@@ -34,12 +34,12 @@ export default defineContentConfig({
 		}),
 		movie: defineCollection({
 			type: 'page',
-			source: 'review/movie/**/*.md',
+			source: 'reviews/movie/**/*.md',
 			schema: ReviewMetadataSchema,
 		}),
 		show: defineCollection({
 			type: 'page',
-			source: 'review/show/**/*.md',
+			source: 'reviews/show/**/*.md',
 			schema: ReviewMetadataSchema,
 		}),
 	},
