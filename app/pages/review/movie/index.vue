@@ -1,6 +1,6 @@
 <template>
 	<div class="grid grid-flow-row gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-		<ReviewMovieCard
+		<LazyReviewMovieCard
 			v-for="movie in movies"
 			:key="movie.id"
 			:movie="movie"
