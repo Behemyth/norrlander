@@ -1,5 +1,5 @@
 ---
-layout: review
+
 intRating: 7
 entRating: 5
 rating: 5
