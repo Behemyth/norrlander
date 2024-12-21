@@ -1,6 +1,6 @@
 <template>
 	<header class="max-w-5xl w-full mx-auto p-1 bg-white shadow dark:bg-gray-900">
-		<div class="flex flex-row items-center justify-evenly md:justify-between">
+		<div class="flex flex-row items-center justify-around">
 			<USlideover
 				side="left"
 			>

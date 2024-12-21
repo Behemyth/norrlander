@@ -10,25 +10,29 @@ const ReviewMetadataSchema = z.object({
 	date_modified: z.coerce.date(),
 });
 
+const ContactSchema = z.object({
+	name: z.string(),
+	icon: z.string(),
+	link: z.string().url(),
+});
+
+const SocialSchema = z.object({
+	name: z.string(),
+	icon: z.string(),
+	link: z.string().url(),
+});
+
 export default defineContentConfig({
 	collections: {
 		contact: defineCollection({
 			type: 'data',
 			source: 'data/contact/*.json',
-			schema: z.object({
-				name: z.string(),
-				icon: z.string(),
-				link: z.string().url(),
-			}),
+			schema: ContactSchema,
 		}),
 		socials: defineCollection({
 			type: 'data',
 			source: 'data/socials/*.json',
-			schema: z.object({
-				name: z.string(),
-				icon: z.string(),
-				link: z.string().url(),
-			}),
+			schema: SocialSchema,
 		}),
 		movie: defineCollection({
 			type: 'page',

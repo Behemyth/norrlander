@@ -6,6 +6,10 @@
 </template>
 
 <script lang="ts" setup>
+definePageMeta({
+	layout: 'review',
+});
+
 const route = useRoute();
 
 const { data: page } = await useAsyncData(route.path, () => {

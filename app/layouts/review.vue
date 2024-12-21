@@ -1,6 +1,6 @@
 <template>
 	<main class="flex flex-col w-full">
-		<ReviewImageHeader />
+		<ReviewHeader />
 		<article class="grow mx-auto w-full">
 			<slot />
 		</article>
