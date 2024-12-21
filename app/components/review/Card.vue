@@ -6,7 +6,7 @@
 	>
 		<NuxtPicture
 			:src="posterPath"
-			placeholder
+			:placeholder="img(posterPath, { h: 10, blur: 2, q: 50 })"
 			loading="lazy"
 			:img-attrs="{ class: 'rounded-s-lg' }"
 			class="aspect-[2/3] h-full"
@@ -28,6 +28,8 @@
 </template>
 
 <script setup lang="ts">
+const img = useImage();
+
 defineProps({
 	title: {
 		type: String,

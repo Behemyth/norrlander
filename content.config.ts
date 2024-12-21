@@ -4,8 +4,6 @@ const ReviewMetadataSchema = z.object({
 	intRating: z.number().int().nonnegative().lte(8),
 	entRating: z.number().int().nonnegative().lte(8),
 	rating: z.number().int().nonnegative().lte(8),
-	_path: z.string(),
-	title: z.string(),
 	description: z.string(),
 	TMDB_ID: z.number().int(),
 	date_published: z.coerce.date(),
