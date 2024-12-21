@@ -5,7 +5,7 @@
 		class="w-full h-32 flex items-center bg-white border border-gray-200 rounded-lg shadow md:h-48 lg:h-64 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
 	>
 		<NuxtPicture
-			:src="`/tmdb/${posterPath}`"
+			:src="posterPath"
 			placeholder
 			loading="lazy"
 			:img-attrs="{ class: 'rounded-s-lg' }"

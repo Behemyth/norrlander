@@ -1,17 +1,14 @@
 <template>
-	<div />
+	<div class="grid grid-flow-row gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+		<ReviewShowCard
+			v-for="show in shows"
+			:key="show.id"
+			:show="show"
+		/>
+	</div>
 </template>
-<!-- ---
-navTitle: 'About'
----
 
-# About
-
-Show reviews to follow
-
-::RecentList
----
-size: 35
-category: show
----
-:: -->
+<script setup lang="ts">
+const shows = await queryCollection('show')
+	.order('date_published', 'DESC').all();
+</script>
