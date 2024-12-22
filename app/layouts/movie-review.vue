@@ -1,10 +1,9 @@
 <template>
 	<main class="flex flex-col w-full">
-		<ReviewHeader />
 		<article class="grow mx-auto w-full">
 			<slot />
 		</article>
-		<DiscussionList
+		<ReviewDiscussion
 			category="Movies"
 		/>
 	</main>

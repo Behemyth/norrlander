@@ -35,7 +35,7 @@
 				class="hidden md:flex justify-center"
 			/>
 			<div class="md:px-8">
-				<ColorModeSwitch class="hover:text-gray-700 dark:hover:text-gray-300" />
+				<AppColorSwitch class="hover:text-gray-700 dark:hover:text-gray-300" />
 			</div>
 		</div>
 	</header>

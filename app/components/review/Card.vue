@@ -15,7 +15,7 @@
 		<div class="flex flex-col justify-between p-4 leading-normal">
 			<h5 class="prose dark:prose-invert mb-2 font-bold tracking-tight text-gray-900 md:text-l lg:text-xl dark:text-white">{{ title
 			}}</h5>
-			<StarRating
+			<ReviewStarRating
 				:value="rating"
 				:size="16"
 			/>
