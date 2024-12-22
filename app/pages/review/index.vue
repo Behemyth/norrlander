@@ -23,4 +23,8 @@ const movies = await queryCollection('movie')
 
 const shows = await queryCollection('show')
 	.order('date_published', 'DESC').limit(6).all();
+
+useSeoMeta({
+	title: 'Reviews',
+});
 </script>

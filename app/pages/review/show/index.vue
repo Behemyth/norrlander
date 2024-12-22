@@ -11,4 +11,8 @@
 <script setup lang="ts">
 const shows = await queryCollection('show')
 	.order('date_published', 'DESC').all();
+
+useSeoMeta({
+	title: 'Show Reviews',
+});
 </script>

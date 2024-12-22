@@ -21,4 +21,8 @@
 
 <script setup lang="ts">
 const contacts = await queryCollection('contact').all();
+
+useSeoMeta({
+	title: 'Contact',
+});
 </script>

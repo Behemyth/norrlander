@@ -11,4 +11,8 @@
 <script setup lang="ts">
 const movies = await queryCollection('movie')
 	.order('date_published', 'DESC').all();
+
+useSeoMeta({
+	title: 'Movie Reviews',
+});
 </script>
