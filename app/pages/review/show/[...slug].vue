@@ -10,7 +10,7 @@
 <script lang="ts" setup>
 const route = useRoute();
 
-const page = await queryCollection('movie').path(route.path).first();
+const page = await queryCollection('show').path(route.path).first();
 
 const { data: tmdbData } = await useFetch<TMDBShow>(`/api/tmdb/media/tv/${page.TMDB_ID}`);
 
