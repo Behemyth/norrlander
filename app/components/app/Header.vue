@@ -2,6 +2,7 @@
 	<header class="max-w-5xl w-full mx-auto p-1 bg-white shadow dark:bg-gray-900">
 		<div class="flex flex-row items-center justify-around">
 			<USlideover
+				v-model:open="open"
 				side="left"
 			>
 				<UButton
@@ -13,7 +14,6 @@
 				/>
 				<template #content>
 					<UNavigationMenu
-						v-model:open="open"
 						orientation="vertical"
 						color="neutral"
 						variant="link"
@@ -49,6 +49,11 @@ function closeSlideover(_: Event): void {
 }
 
 const items = computed(() => [
+	{
+		label: 'Photography',
+		to: '/photography',
+		onSelect: closeSlideover,
+	},
 	{
 		label: 'Portfolio',
 		to: '/portfolio',
