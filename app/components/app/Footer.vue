@@ -1,6 +1,6 @@
 <template>
 	<footer class="w-full max-w-5xl mx-auto p-4 bg-white shadow dark:bg-gray-900">
-		<div class="flex flex-wrap flex-row items-center justify-between">
+		<div class="flex flex-wrap flex-row items-center justify-around">
 			<ULink
 				to="/"
 				rel="author"
@@ -13,41 +13,47 @@
 			</ULink>
 
 			<div class="flex">
-				<UHorizontalNavigation
-					:links="links"
+				<UNavigationMenu
+					:items="items"
 				/>
 			</div>
-			<SocialIcons :socials="socials ? socials : []" />
+			<div class="flex space-x-6">
+				<ULink
+					v-for="social in socials"
+					:key="social.name"
+					:to="social.link"
+					:title="social.name"
+				>
+					<UIcon
+						:name="social.icon"
+						class="shrink-0 w-6 h-6 align-middle text-gray-900 dark:text-gray-300"
+					/>
+				</ULink>
+			</div>
 		</div>
 		<hr class="my-4 border-gray-200 sm:mx-auto dark:border-gray-700">
-		<div class="flex flex-wrap flex-row items-center justify-between">
+		<div class="flex flex-wrap flex-row items-center justify-around">
 			<span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">Copyright &copy; {{ new
 				Date().getFullYear() }}</span>
 
 			<span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">Film data from TMDb.</span>
-			<LanguageSwitch />
+			<AppLanguageSwitch />
 			<span class="flex text-sm text-gray-500 sm:justify-center">Made with ❤️ by Asher and Ola</span>
 		</div>
 	</footer>
 </template>
 
 <script setup lang="ts">
-const navigation = await fetchContentNavigation(queryContent().where({ footer: true }));
+const items = [
+	{
+		label: 'About',
+		to: '/about',
+	},
+	{
+		label: 'Contact',
+		to: '/contact',
+	},
+];
 
-const links = computed(() => {
-	return navigation.map((link) => {
-		return {
-			label: link.navTitle || link.title,
-			to: link._path,
-		};
-	});
-});
-
-const { data: socials } = useLazyAsyncData('socials', () =>
-	queryContent<MetaData>('_data')
-		.where({ _partial: true, title: 'Metadata' })
-		.findOne().then((value) => {
-			return value.socials;
-		}),
-);
+const socials = await queryCollection('socials').all();
 </script>

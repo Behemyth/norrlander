@@ -1,55 +1,80 @@
 <template>
 	<header class="max-w-5xl w-full mx-auto p-1 bg-white shadow dark:bg-gray-900">
-		<div class="flex flex-row items-center justify-evenly md:justify-between">
-			<nav class="h-full aspect-square md:hidden">
+		<div class="flex flex-row items-center justify-around">
+			<USlideover
+				side="left"
+			>
 				<UButton
+					color="neutral"
+					variant="ghost"
 					icon="i-mdi-hamburger-menu"
-					color="primary"
 					square
-					label="Open"
-					@click="isOpen = true"
-				>
-					<span class="sr-only">Open main menu</span>
-				</UButton>
-				<USlideover
-					v-model="isOpen"
-					side="left"
-				>
-					<UVerticalNavigation
-						:links="links"
-						:ui="{ size: 'text-2xl' }"
-						@click="isOpen = false"
+					class="md:hidden"
+				/>
+				<template #content>
+					<UNavigationMenu
+						v-model:open="open"
+						orientation="vertical"
+						color="neutral"
+						variant="link"
+						:items="items"
 					/>
-				</USlideover>
-			</nav>
+				</template>
+			</USlideover>
 			<ULink
 				to="/"
 				rel="author"
-				class="p-4 text-4xl font-mono font-extrabold"
+				class="text-nowrap p-4 text-4xl font-mono font-extrabold"
 			> The Norlander
 			</ULink>
-			<nav class="hidden md:flex">
-				<UHorizontalNavigation :links="links" />
-			</nav>
-
+			<UNavigationMenu
+				orientation="horizontal"
+				color="neutral"
+				variant="link"
+				:items="items"
+				class="hidden md:flex justify-center"
+			/>
 			<div class="md:px-8">
-				<ColorModeSwitch class="hover:text-gray-700 dark:hover:text-gray-300" />
+				<AppColorSwitch class="hover:text-gray-700 dark:hover:text-gray-300" />
 			</div>
 		</div>
 	</header>
 </template>
 
 <script setup lang="ts">
-const isOpen = ref(false);
+const open = ref(false);
 
-const navigation = await fetchContentNavigation(queryContent().where({ header: true }));
+function closeSlideover(_: Event): void {
+	open.value = false;
+}
 
-const links = computed(() => {
-	return navigation.map((link) => {
-		return {
-			label: link.navTitle || link.title,
-			to: link._path,
-		};
-	});
-});
+const items = computed(() => [
+	{
+		label: 'Portfolio',
+		to: '/portfolio',
+		onSelect: closeSlideover,
+	},
+	{
+		label: 'Reviews',
+		to: '/review',
+		defaultOpen: true,
+		onSelect: closeSlideover,
+		children: [
+			{
+				label: 'Movies',
+				to: '/review/movie',
+				onSelect: closeSlideover,
+			},
+			{
+				label: 'Shows',
+				to: '/review/show',
+				onSelect: closeSlideover,
+			},
+		],
+	}, {
+		label: 'Blog',
+		to: '/blog',
+		onSelect: closeSlideover,
+	},
+]);
 </script>

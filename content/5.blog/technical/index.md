@@ -1,6 +1,0 @@
----
-navTitle: 'Technical Blog'
----
-
-# Blog
- 

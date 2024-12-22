@@ -4,21 +4,20 @@ export default defineNuxtConfig({
 	modules: [
 		'@nuxt/content',
 		'@nuxt/devtools',
-		'@nuxtjs/sitemap',
+		// '@nuxtjs/sitemap', Enable when it works with Nuxt content 3
 		'@nuxt/image',
 		'@nuxtjs/i18n',
 		'@nuxt/ui',
 		'@nuxt/eslint',
 	],
 	ssr: true,
-
 	devtools: {
 		enabled: true,
 	},
-
-	site: {
-		url: 'https://ashernorland.com',
-	},
+	css: ['~/assets/css/main.css'],
+	// site: {
+	// 	url: 'https://ashernorland.com',
+	// },
 
 	// https://color-mode.nuxtjs.org
 	colorMode: {
@@ -26,32 +25,31 @@ export default defineNuxtConfig({
 
 	// https://content.nuxtjs.org
 	content: {
-		markdown: {
-			toc: {
-				depth: 3,
-				searchDepth: 3,
+		build: {
+			markdown: {
+				toc: {
+					depth: 3,
+					searchDepth: 3,
+				},
+				highlight: {
+					// See the available themes on https://github.com/shikijs/shiki/blob/main/docs/themes.md#all-theme
+					theme: {
+						dark: 'github-dark',
+						default: 'github-light',
+					},
+				},
 			},
-		},
-		documentDriven: true,
-		navigation: {
-			fields: ['navTitle'],
-		},
-		highlight: {
-			// See the available themes on https://github.com/shikijs/shiki/blob/main/docs/themes.md#all-theme
-			theme: {
-				dark: 'github-dark',
-				default: 'github-light',
-			},
-		},
-		experimental: {
-			search: {
-				indexed: true,
+			pathMeta: {
+
 			},
 		},
 	},
 
 	// https://ui.nuxt.com/getting-started/theming
 	ui: {
+		theme: {
+			colors: ['primary', 'secondary', 'neutral'],
+		},
 	},
 
 	runtimeConfig: {
