@@ -1,9 +1,11 @@
 <template>
 	<header class="max-w-5xl w-full mx-auto p-1 bg-white shadow dark:bg-gray-900">
 		<div class="flex flex-row items-center justify-around">
-			<USlideover
-				v-model:open="open"
-				side="left"
+			<UDropdownMenu
+				size="xl"
+				color="neutral"
+				variant="link"
+				:items="items"
 			>
 				<UButton
 					color="neutral"
@@ -12,15 +14,7 @@
 					square
 					class="md:hidden"
 				/>
-				<template #content>
-					<UNavigationMenu
-						orientation="vertical"
-						color="neutral"
-						variant="link"
-						:items="items"
-					/>
-				</template>
-			</USlideover>
+			</UDropdownMenu>
 			<ULink
 				to="/"
 				rel="author"
@@ -42,44 +36,32 @@
 </template>
 
 <script setup lang="ts">
-const open = ref(false);
-
-function closeSlideover(_: Event): void {
-	open.value = false;
-}
-
 const items = computed(() => [
 	{
 		label: 'Photography',
 		to: '/photography',
-		onSelect: closeSlideover,
 	},
 	{
 		label: 'Portfolio',
 		to: '/portfolio',
-		onSelect: closeSlideover,
 	},
 	{
 		label: 'Reviews',
 		to: '/review',
 		defaultOpen: true,
-		onSelect: closeSlideover,
 		children: [
 			{
 				label: 'Movies',
 				to: '/review/movie',
-				onSelect: closeSlideover,
 			},
 			{
 				label: 'Shows',
 				to: '/review/show',
-				onSelect: closeSlideover,
 			},
 		],
 	}, {
 		label: 'Blog',
 		to: '/blog',
-		onSelect: closeSlideover,
 	},
 ]);
 </script>
