@@ -1,11 +1,13 @@
 <template>
-	<div class="not-prose relative w-16 aspect-[9/2]">
+	<div class="flex flex-row not-prose relative">
 		<UIcon
 			v-for="index in fullStars"
 			:key="index"
 			name="i-mdi-star"
 			:size="props.size.toString()"
 			aria-hidden="true"
+			color="neutral"
+			variant="ghost"
 		/>
 		<UIcon
 			v-for="index in halfStars"
@@ -13,6 +15,8 @@
 			name="i-mdi-star-half-full"
 			:size="props.size.toString()"
 			aria-hidden="true"
+			color="neutral"
+			variant="ghost"
 		/>
 		<UIcon
 			v-for="index in noStars"
@@ -20,6 +24,8 @@
 			name="i-mdi-star-outline"
 			:size="props.size.toString()"
 			aria-hidden="true"
+			color="neutral"
+			variant="ghost"
 		/>
 	</div>
 </template>

@@ -11,7 +11,7 @@
 				<UIcon
 					:name="contact.icon"
 					class="w-12 h-12"
-					color="primary"
+					color="neutral"
 					variant="ghost"
 				/>
 			</ULink>
