@@ -48,7 +48,6 @@ const items = computed(() => [
 	{
 		label: 'Reviews',
 		to: '/review',
-		defaultOpen: true,
 		children: [
 			{
 				label: 'Movies',

@@ -27,6 +27,8 @@
 					<UIcon
 						:name="social.icon"
 						class="shrink-0 w-6 h-6 align-middle text-gray-900 dark:text-gray-300"
+						color="neutral"
+						variant="ghost"
 					/>
 				</ULink>
 			</div>

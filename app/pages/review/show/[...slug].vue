@@ -1,6 +1,10 @@
 <template>
-	<div>
-		<ReviewHeader />
+	<div class="prose">
+		<ReviewHeader
+			:title="tmdbData!.name"
+			:backdrop="tmdbData!.backdrop_path"
+			:rating="page.rating"
+		/>
 		<ContentRenderer
 			:value="page"
 		/>
