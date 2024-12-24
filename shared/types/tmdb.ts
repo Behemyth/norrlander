@@ -19,7 +19,6 @@ export const TMDBMediaSchema = z.object({
 	id: z.number().int(),
 	media_type: TMDBMediaTypeSchema.optional(),
 	genres: z.array(TMDBGenreSchema),
-	release_date: z.string().optional(),
 	poster_path: z.string(),
 });
 
@@ -27,12 +26,16 @@ export type TMDBMedia = z.infer<typeof TMDBMediaSchema>;
 
 export const TMDBMovieSchema = TMDBMediaSchema.extend({
 	title: z.string(),
+	runtime: z.number().int().optional(),
+	release_date: z.string().optional(),
+
 });
 
 export type TMDBMovie = z.infer<typeof TMDBMovieSchema>;
 
 export const TMDBShowSchema = TMDBMediaSchema.extend({
 	name: z.string(),
+	first_air_date: z.string().optional(),
 });
 
 export type TMDBShow = z.infer<typeof TMDBShowSchema>;

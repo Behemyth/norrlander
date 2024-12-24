@@ -4,6 +4,8 @@
 			:title="tmdbData!.name"
 			:backdrop="tmdbData!.backdrop_path"
 			:rating="page.rating"
+			:release-date="new Date(tmdbData!.first_air_date!)"
+			:published="new Date(page.date_published)"
 		/>
 		<ContentRenderer
 			:value="page"
