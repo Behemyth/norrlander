@@ -47,12 +47,26 @@
 <script setup lang="ts">
 const items = computed(() => [
 	{
+		label: 'Blog',
+		to: '/blog',
+	},
+	{
 		label: 'Photography',
 		to: '/photography',
 	},
 	{
 		label: 'Portfolio',
 		to: '/portfolio',
+		children: [
+			{
+				label: 'Career',
+				to: '/portfolio/career',
+			},
+			{
+				label: 'Projects',
+				to: '/portfolio/project',
+			},
+		],
 	},
 	{
 		label: 'Reviews',
@@ -67,9 +81,6 @@ const items = computed(() => [
 				to: '/review/show',
 			},
 		],
-	}, {
-		label: 'Blog',
-		to: '/blog',
 	},
 ]);
 </script>

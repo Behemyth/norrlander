@@ -39,6 +39,14 @@ export default defineContentConfig({
 			source: 'data/socials/*.json',
 			schema: SocialSchema,
 		}),
+		career: defineCollection({
+			type: 'page',
+			source: 'portfolio/career/**/*.md',
+		}),
+		project: defineCollection({
+			type: 'page',
+			source: 'portfolio/project/**/*.md',
+		}),
 		movie: defineCollection({
 			type: 'page',
 			source: 'review/movie/**/*.md',
