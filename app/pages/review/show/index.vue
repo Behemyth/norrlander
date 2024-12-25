@@ -24,5 +24,9 @@ const items = ref([
 		label: 'Reviews',
 		to: '/review',
 	},
+	{
+		label: 'Shows',
+		to: '/review/show',
+	},
 ]);
 </script>

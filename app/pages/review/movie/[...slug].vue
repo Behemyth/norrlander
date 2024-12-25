@@ -1,5 +1,6 @@
 <template>
 	<div class="prose">
+		<UBreadcrumb :items="items" />
 		<ReviewHeader
 			:title="tmdbData!.title"
 			:backdrop="tmdbData!.backdrop_path"
@@ -12,7 +13,6 @@
 				:value="page"
 			/>
 		</article>
-
 		<ReviewFooter />
 	</div>
 </template>
@@ -31,4 +31,19 @@ definePageMeta({
 useSeoMeta({
 	title: tmdbData.value!.title,
 });
+
+const items = ref([
+	{
+		label: 'Reviews',
+		to: '/review',
+	},
+	{
+		label: 'Movies',
+		to: '/review/movie',
+	},
+	{
+		label: tmdbData.value!.title,
+		to: route.path,
+	},
+]);
 </script>

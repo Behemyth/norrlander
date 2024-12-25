@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<UBreadcrumb :items="items" />
 		<div class="grid grid-flow-row gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
 			<ReviewMovieCard
 				v-for="movie in movies"
@@ -27,4 +28,11 @@ const shows = await queryCollection('show')
 useSeoMeta({
 	title: 'Reviews',
 });
+
+const items = ref([
+	{
+		label: 'Reviews',
+		to: '/review',
+	},
+]);
 </script>
