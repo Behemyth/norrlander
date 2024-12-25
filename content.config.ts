@@ -24,6 +24,10 @@ const SocialSchema = z.object({
 
 export default defineContentConfig({
 	collections: {
+		all: defineCollection({
+			type: 'page',
+			source: '**/*.json',
+		}),
 		contact: defineCollection({
 			type: 'data',
 			source: 'data/contact/*.json',

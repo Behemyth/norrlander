@@ -32,7 +32,7 @@
 import Fuse from 'fuse.js';
 
 const query = ref('');
-const { data } = await useAsyncData('search-data', () => queryCollectionSearchSections('movie'));
+const { data } = await useAsyncData('search-data', () => queryCollectionSearchSections('all'));
 
 const fuse = new Fuse(data.value!, {
 	keys: ['title', 'description'],
