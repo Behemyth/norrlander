@@ -7,9 +7,12 @@
 			:release-date="new Date(tmdbData!.first_air_date!)"
 			:published="new Date(page.date_published)"
 		/>
-		<ContentRenderer
-			:value="page"
-		/>
+		<article>
+			<ContentRenderer
+				:value="page"
+			/>
+		</article>
+		<ReviewFooter />
 	</div>
 </template>
 

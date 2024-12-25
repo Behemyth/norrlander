@@ -7,9 +7,13 @@
 			:release-date="new Date(tmdbData!.release_date!)"
 			:published="new Date(page.date_published)"
 		/>
-		<ContentRenderer
-			:value="page"
-		/>
+		<article>
+			<ContentRenderer
+				:value="page"
+			/>
+		</article>
+
+		<ReviewFooter />
 	</div>
 </template>
 
@@ -21,7 +25,7 @@ const page = await queryCollection('movie').path(route.path).first();
 const { data: tmdbData } = await useFetch<TMDBMovie>(`/api/tmdb/media/movie/${page.TMDB_ID}`);
 
 definePageMeta({
-	layout: 'show-review',
+	layout: 'movie-review',
 });
 
 useSeoMeta({
