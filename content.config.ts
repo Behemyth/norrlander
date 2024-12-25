@@ -26,7 +26,8 @@ export default defineContentConfig({
 	collections: {
 		all: defineCollection({
 			type: 'page',
-			source: '**/*.json',
+			source: '**',
+			exclude: 'data',
 		}),
 		contact: defineCollection({
 			type: 'data',
