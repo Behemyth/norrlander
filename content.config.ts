@@ -10,6 +10,10 @@ const ReviewMetadataSchema = z.object({
 	date_modified: z.coerce.date(),
 });
 
+const PhotographySchema = z.object({
+	name: z.string(),
+});
+
 const BlogSchema = z.object({
 	name: z.string(),
 });
@@ -47,6 +51,11 @@ export default defineContentConfig({
 			type: 'page',
 			source: 'blog/*.md',
 			schema: BlogSchema,
+		}),
+		photography: defineCollection({
+			type: 'page',
+			source: 'photography/*.md',
+			schema: PhotographySchema,
 		}),
 		contact: defineCollection({
 			type: 'data',
