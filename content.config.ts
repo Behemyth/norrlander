@@ -10,6 +10,10 @@ const ReviewMetadataSchema = z.object({
 	date_modified: z.coerce.date(),
 });
 
+const BlogSchema = z.object({
+	name: z.string(),
+});
+
 const ProjectSchema = z.object({
 	name: z.string(),
 	link: z.string().url(),
@@ -38,6 +42,11 @@ export default defineContentConfig({
 			type: 'page',
 			source: '**',
 			exclude: 'data',
+		}),
+		blog: defineCollection({
+			type: 'page',
+			source: 'blog/*.md',
+			schema: BlogSchema,
 		}),
 		contact: defineCollection({
 			type: 'data',
