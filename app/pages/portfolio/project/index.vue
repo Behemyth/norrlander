@@ -5,6 +5,9 @@
 			<LazyPortfolioCard
 				v-for="project in projects"
 				:key="project.id"
+				:title="project.title"
+				:website="project.link"
+				:link="project.path"
 			/>
 		</div>
 	</div>

@@ -5,6 +5,9 @@
 			<LazyPortfolioCard
 				v-for="job in jobs"
 				:key="job.id"
+				:title="job.title"
+				:link="job.path"
+				:website="job.link"
 			/>
 		</div>
 	</div>

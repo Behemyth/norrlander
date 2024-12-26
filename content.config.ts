@@ -10,6 +10,16 @@ const ReviewMetadataSchema = z.object({
 	date_modified: z.coerce.date(),
 });
 
+const ProjectSchema = z.object({
+	name: z.string(),
+	link: z.string().url(),
+});
+
+const JobSchema = z.object({
+	name: z.string(),
+	link: z.string().url(),
+});
+
 const ContactSchema = z.object({
 	name: z.string(),
 	icon: z.string(),
@@ -42,10 +52,12 @@ export default defineContentConfig({
 		career: defineCollection({
 			type: 'page',
 			source: 'portfolio/career/**/*.md',
+			schema: JobSchema,
 		}),
 		project: defineCollection({
 			type: 'page',
 			source: 'portfolio/project/**/*.md',
+			schema: ProjectSchema,
 		}),
 		movie: defineCollection({
 			type: 'page',

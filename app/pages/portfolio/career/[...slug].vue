@@ -15,7 +15,7 @@ const route = useRoute();
 const page = await queryCollection('career').path(route.path).first();
 
 useSeoMeta({
-	title: 'TODO',
+	title: page.title,
 });
 
 const items = ref([
@@ -28,7 +28,7 @@ const items = ref([
 		to: '/portfolio/career',
 	},
 	{
-		label: 'TODO',
+		label: page.title,
 		to: route.path,
 	},
 ]);
