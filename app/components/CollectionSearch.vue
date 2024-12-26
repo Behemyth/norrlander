@@ -1,31 +1,29 @@
 <template>
-	<UContainer class="p-4">
-		<UCard>
-			<UInput
-				v-model="query"
-				placeholder="Search..."
-				class="w-full"
-			/>
-			<ul>
-				<li
-					v-for="link of result"
-					:key="link.item.id"
-					class="mt-2"
+	<UCard>
+		<UInput
+			v-model="query"
+			placeholder="Search..."
+			class="w-full"
+		/>
+		<ul>
+			<li
+				v-for="link of result"
+				:key="link.item.id"
+				class="mt-2"
+			>
+				<UButton
+					variant="ghost"
+					class="w-full"
+					:to="link.item.id"
 				>
-					<UButton
-						variant="ghost"
-						class="w-full"
-						:to="link.item.id"
-					>
-						{{ link.item.title }}
-						<span class="text-gray-500 text-xs">
-							{{ link.item.content?.slice(0, 100) }}...
-						</span>
-					</UButton>
-				</li>
-			</ul>
-		</UCard>
-	</UContainer>
+					{{ link.item.title }}
+					<span class="text-gray-500 text-xs">
+						{{ link.item.content?.slice(0, 100) }}...
+					</span>
+				</UButton>
+			</li>
+		</ul>
+	</UCard>
 </template>
 
 <script setup lang="ts">
