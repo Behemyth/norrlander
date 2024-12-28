@@ -30,7 +30,7 @@
 			/>
 			<UPopover>
 				<UButton
-					icon="i-lucide-search"
+					icon="i-mdi-search"
 					color="neutral"
 					variant="ghost"
 				/>
