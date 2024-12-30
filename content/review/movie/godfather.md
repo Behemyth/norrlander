@@ -1,10 +1,10 @@
 ---
-intRating: 7
+intRating: 8
 entRating: 8
-rating: 7
-TMDB_ID: 419430
-date_published: 2024-10-24
-date_modified: 2024-10-24
+rating: 8
+TMDB_ID: 238
+date_published: 2024-12-31
+date_modified: 2024-12-31
 description: This is a description
 ---
 
