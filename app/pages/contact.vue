@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<h1>Contact</h1>
+		<h1 />{{ $t('Contact') }}
 		<div class="flex space-x-6">
 			<ULink
 				v-for="contact in contacts"
