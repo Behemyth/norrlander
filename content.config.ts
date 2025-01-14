@@ -10,6 +10,24 @@ const ReviewMetadataSchema = z.object({
 	date_modified: z.coerce.date(),
 });
 
+const PhotographySchema = z.object({
+	name: z.string(),
+});
+
+const BlogSchema = z.object({
+	name: z.string(),
+});
+
+const ProjectSchema = z.object({
+	name: z.string(),
+	link: z.string().url(),
+});
+
+const JobSchema = z.object({
+	name: z.string(),
+	link: z.string().url(),
+});
+
 const ContactSchema = z.object({
 	name: z.string(),
 	icon: z.string(),
@@ -24,6 +42,21 @@ const SocialSchema = z.object({
 
 export default defineContentConfig({
 	collections: {
+		all: defineCollection({
+			type: 'page',
+			source: '**',
+			exclude: 'data',
+		}),
+		blog: defineCollection({
+			type: 'page',
+			source: 'blog/*.md',
+			schema: BlogSchema,
+		}),
+		photography: defineCollection({
+			type: 'page',
+			source: 'photography/*.md',
+			schema: PhotographySchema,
+		}),
 		contact: defineCollection({
 			type: 'data',
 			source: 'data/contact/*.json',
@@ -33,6 +66,16 @@ export default defineContentConfig({
 			type: 'data',
 			source: 'data/socials/*.json',
 			schema: SocialSchema,
+		}),
+		career: defineCollection({
+			type: 'page',
+			source: 'portfolio/career/**/*.md',
+			schema: JobSchema,
+		}),
+		project: defineCollection({
+			type: 'page',
+			source: 'portfolio/project/**/*.md',
+			schema: ProjectSchema,
 		}),
 		movie: defineCollection({
 			type: 'page',

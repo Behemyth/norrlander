@@ -28,9 +28,18 @@
 				:items="items"
 				class="hidden md:flex justify-center"
 			/>
-			<div class="md:px-8">
-				<AppColorSwitch class="hover:text-gray-700 dark:hover:text-gray-300" />
-			</div>
+			<UPopover>
+				<UButton
+					icon="i-mdi-search"
+					color="neutral"
+					variant="ghost"
+				/>
+
+				<template #content>
+					<CollectionSearch />
+				</template>
+			</UPopover>
+			<AppColorSwitch class="md:px-8 hover:text-gray-700 dark:hover:text-gray-300" />
 		</div>
 	</header>
 </template>
@@ -38,12 +47,26 @@
 <script setup lang="ts">
 const items = computed(() => [
 	{
+		label: 'Blog',
+		to: '/blog',
+	},
+	{
 		label: 'Photography',
 		to: '/photography',
 	},
 	{
 		label: 'Portfolio',
 		to: '/portfolio',
+		children: [
+			{
+				label: 'Career',
+				to: '/portfolio/career',
+			},
+			{
+				label: 'Projects',
+				to: '/portfolio/project',
+			},
+		],
 	},
 	{
 		label: 'Reviews',
@@ -58,9 +81,6 @@ const items = computed(() => [
 				to: '/review/show',
 			},
 		],
-	}, {
-		label: 'Blog',
-		to: '/blog',
 	},
 ]);
 </script>

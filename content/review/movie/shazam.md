@@ -1,5 +1,4 @@
 ---
-
 intRating: 3
 entRating: 6
 rating: 2

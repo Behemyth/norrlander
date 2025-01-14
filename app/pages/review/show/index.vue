@@ -1,10 +1,14 @@
 <template>
-	<div class="grid grid-flow-row gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-		<LazyReviewShowCard
-			v-for="show in shows"
-			:key="show.id"
-			:show="show"
-		/>
+	<div>
+		<UBreadcrumb :items="items" />
+		<ReviewFilter />
+		<div class="grid grid-flow-row gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+			<LazyReviewShowCard
+				v-for="show in shows"
+				:key="show.id"
+				:show="show"
+			/>
+		</div>
 	</div>
 </template>
 
@@ -15,4 +19,15 @@ const shows = await queryCollection('show')
 useSeoMeta({
 	title: 'Show Reviews',
 });
+
+const items = ref([
+	{
+		label: 'Reviews',
+		to: '/review',
+	},
+	{
+		label: 'Shows',
+		to: '/review/show',
+	},
+]);
 </script>

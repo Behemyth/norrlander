@@ -1,19 +1,34 @@
 <template>
-	<h1 class="prose text-3xl font-bold">
-		{{ title }}
-	</h1>
-	<div class="flex flex-row">
+	<div class="flex flex-row prose">
+		<h1 class="text-3xl font-bold">
+			{{ title }}
+		</h1>
+	</div>
+	<div class="flex flex-row prose">
 		<ReviewStarRating
 			:value="rating"
 			:size="24"
+			class="mr-2"
 		/>
-		<p class="text-lg ml-2">
+		<p class="text-lg mx-2">
 			{{ releaseDate.getFullYear() }}
 		</p>
+		<p class="text-lg mx-2">
+			Genre
+		</p>
+		<p class="text-lg mx-2">
+			Runtime
+		</p>
 	</div>
-	<div class="flex flex-row">
-		<p class="text-lg">
+	<div class="flex flex-row prose">
+		<p class="text-lg mr-2">
+			Asher Norland
+		</p>
+		<p class="text-lg mx-2">
 			{{ published.toDateString() }}
+		</p>
+		<p class="text-lg mx-2">
+			Time to Read
 		</p>
 	</div>
 	<NuxtPicture

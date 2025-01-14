@@ -1,8 +1,9 @@
 <template>
 	<main class="flex flex-col w-full">
-		<article class="grow mx-auto w-full">
+		<div class="grow mx-auto w-full">
 			<slot />
-		</article>
+		</div>
+		<USeparator class="my-2" />
 		<ReviewDiscussion
 			category="Shows"
 		/>

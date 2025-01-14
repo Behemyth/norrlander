@@ -3,27 +3,31 @@
 		<UBreadcrumb :items="items" />
 		<div class="grid grid-flow-row gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
 			<LazyPortfolioCard
-				v-for="post in posts"
-				:key="post.id"
-				:title="post.title"
-				:link="post.path"
-				website="/"
+				v-for="job in jobs"
+				:key="job.id"
+				:title="job.title"
+				:link="job.path"
+				:website="job.link"
 			/>
 		</div>
 	</div>
 </template>
 
 <script setup lang="ts">
-const posts = await queryCollection('photography').all();
+const jobs = await queryCollection('career').all();
 
 useSeoMeta({
-	title: 'Photography',
+	title: 'Career',
 });
 
 const items = ref([
 	{
-		label: 'Photography',
-		to: '/photography',
+		label: 'Portfolio',
+		to: '/portfolio',
+	},
+	{
+		label: 'Career',
+		to: '/portfolio/career',
 	},
 ]);
 </script>
