@@ -15,6 +15,8 @@
 			<div class="flex">
 				<UNavigationMenu
 					:items="items"
+					color="neutral"
+					variant="link"
 				/>
 			</div>
 			<div class="flex space-x-6">
