@@ -1,40 +1,43 @@
 <template>
-	<UCard>
-		<UInput
-			v-model="query"
-			placeholder="Search..."
-			class="w-full"
-		/>
-		<ul>
-			<li
-				v-for="link of result"
-				:key="link.item.id"
-				class="mt-2"
-			>
-				<UButton
-					variant="ghost"
-					class="w-full"
-					:to="link.item.id"
-				>
-					{{ link.item.title }}
-					<span class="text-gray-500 text-xs">
-						{{ link.item.content?.slice(0, 100) }}...
-					</span>
-				</UButton>
-			</li>
-		</ul>
-	</UCard>
+	<UCommandPalette
+		placeholder="Search..."
+		icon="i-mdi-search"
+		:groups="[{ id: 'content', items: content }]"
+		:fuse="useFuseOptions"
+		:ui="{ input: '[&>input]:h-8' }"
+		@update:model-value="onSelect"
+	/>
 </template>
 
 <script setup lang="ts">
-import Fuse from 'fuse.js';
+import type { CommandPaletteItem } from '@nuxt/ui';
 
-const query = ref('');
-const { data } = await useAsyncData('search-data', () => queryCollectionSearchSections('all'));
+// Our type extension for selection data
+interface Command extends CommandPaletteItem {
+	to?: string;
+}
 
-const fuse = new Fuse(data.value!, {
-	keys: ['title', 'description'],
-});
+function onSelect(item: Command) {
+	navigateTo(item.to);
+}
 
-const result = computed(() => fuse.search(toValue(query)).slice(0, 10));
+const { data: content } = await useAsyncData('search-data', () => queryCollectionSearchSections('all').then((value) => {
+	return value.map((content) => {
+		return {
+			id: content.id,
+			label: content.title,
+			suffix: content.content?.slice(0, 72) + '...',
+			to: content.id,
+		};
+	});
+}));
+
+// From an implicit dependency containing `useFuse`
+const useFuseOptions = {
+	fuseOptions: {
+		includeMatches: true,
+	},
+	resultLimit: 10,
+	matchAllWhenSearchEmpty: false,
+};
 </script>
