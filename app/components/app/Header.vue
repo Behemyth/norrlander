@@ -36,7 +36,7 @@
 				/>
 
 				<template #content>
-					<CollectionSearch class="m-4 inline-flex" />
+					<CollectionSearch />
 				</template>
 			</UPopover>
 			<AppColorSwitch class="md:px-8 hover:text-gray-700 dark:hover:text-gray-300" />

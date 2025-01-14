@@ -5,6 +5,7 @@
 		:groups="[{ id: 'content', items: content }]"
 		:fuse="useFuseOptions"
 		:ui="{ input: '[&>input]:h-8' }"
+		class="flex-1"
 		@update:model-value="onSelect"
 	/>
 </template>
@@ -35,7 +36,7 @@ const { data: content } = await useAsyncData('search-data', () => queryCollectio
 // From an implicit dependency containing `useFuse`
 const useFuseOptions = {
 	fuseOptions: {
-		includeMatches: true,
+		includeMatches: false,
 	},
 	resultLimit: 10,
 	matchAllWhenSearchEmpty: false,
