@@ -18,7 +18,7 @@
 			<ULink
 				to="/"
 				rel="author"
-				class="text-nowrap p-4 text-4xl font-mono font-extrabold"
+				class="text-nowrap p-4 text-xl md:text-4xl font-mono font-extrabold"
 			> The Norlander
 			</ULink>
 			<UNavigationMenu
@@ -28,7 +28,7 @@
 				:items="items"
 				class="hidden md:flex justify-center"
 			/>
-			<div class="flex space-x-6">
+			<div class="flex space-x-2 md:space-x-6">
 				<UPopover>
 					<UButton
 						icon="i-mdi-search"
