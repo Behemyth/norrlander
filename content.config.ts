@@ -10,6 +10,14 @@ const ReviewMetadataSchema = z.object({
 	date_modified: z.coerce.date(),
 });
 
+const ReviewMovieSchema = ReviewMetadataSchema.extend({
+
+});
+
+const ReviewShowSchema = ReviewMetadataSchema.extend({
+
+});
+
 const PhotographySchema = z.object({
 	name: z.string(),
 });
@@ -80,12 +88,12 @@ export default defineContentConfig({
 		movie: defineCollection({
 			type: 'page',
 			source: 'review/movie/**/*.md',
-			schema: ReviewMetadataSchema,
+			schema: ReviewMovieSchema,
 		}),
 		show: defineCollection({
 			type: 'page',
 			source: 'review/show/**/*.md',
-			schema: ReviewMetadataSchema,
+			schema: ReviewShowSchema,
 		}),
 	},
 });
