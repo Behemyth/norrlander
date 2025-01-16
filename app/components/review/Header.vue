@@ -1,10 +1,10 @@
 <template>
-	<div class="flex flex-row prose">
+	<div class="flex flex-row">
 		<h1 class="text-3xl font-bold">
 			{{ title }}
 		</h1>
 	</div>
-	<div class="flex flex-row prose">
+	<div class="flex flex-row">
 		<ReviewStarRating
 			:value="rating"
 			:size="24"
@@ -20,7 +20,7 @@
 			Runtime
 		</p>
 	</div>
-	<div class="flex flex-row prose">
+	<div class="flex flex-row">
 		<p class="text-lg mr-2">
 			Asher Norland
 		</p>

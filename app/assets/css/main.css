@@ -2,5 +2,5 @@
 @import "@nuxt/ui";
 
 @theme {
-
+	--font-sans: Lato, sans-serif;
 }

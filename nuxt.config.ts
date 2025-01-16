@@ -85,6 +85,11 @@ export default defineNuxtConfig({
 			},
 		},
 	},
+	fonts: {
+		experimental: {
+			processCSSVariables: true,
+		},
+	},
 
 	i18n: {
 		locales: [
@@ -101,7 +106,6 @@ export default defineNuxtConfig({
 				file: 'pl.json',
 			},
 		],
-		lazy: true,
 		strategy: 'no_prefix',
 		defaultLocale: 'en',
 		vueI18n: './i18n/i18n.config.ts',

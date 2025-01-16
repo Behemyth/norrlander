@@ -13,7 +13,7 @@
 		/>
 
 		<div class="flex flex-col justify-between p-4 leading-normal">
-			<h5 class="prose dark:prose-invert mb-2 font-bold tracking-tight text-gray-900 md:text-l dark:text-white">{{ title
+			<h5 class="mb-2 font-bold tracking-tight text-gray-900 md:text-l dark:text-white">{{ title
 			}}</h5>
 			<ReviewStarRating
 				:value="rating"
@@ -38,10 +38,6 @@ defineProps({
 	},
 	rating: {
 		type: Number,
-		required: true,
-	},
-	description: {
-		type: String,
 		required: true,
 	},
 	posterPath: {
