@@ -48,13 +48,19 @@
 </template>
 
 <script setup lang="ts">
+const i18n = useI18n();
+
+const contactLocalized = computed(() => {
+	return i18n.t('Contact');
+});
+
 const items = [
 	{
 		label: 'About',
 		to: '/about',
 	},
 	{
-		label: 'Contact',
+		label: contactLocalized,
 		to: '/contact',
 	},
 ];
