@@ -4,7 +4,7 @@
 		:path="show.path"
 		:rating="show.rating"
 		:description="show.description"
-		:poster-path="`tmdb/${props.show.tmdbData.poster_path}`"
+		:poster-path="`tmdb${props.show.tmdbData.poster_path}`"
 	/>
 </template>
 

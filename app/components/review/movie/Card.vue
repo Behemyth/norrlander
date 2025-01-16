@@ -4,7 +4,7 @@
 		:path="movie.path"
 		:rating="movie.rating"
 		:description="movie.description"
-		:poster-path="`tmdb/${props.movie.tmdbData.poster_path}`"
+		:poster-path="`tmdb${props.movie.tmdbData.poster_path}`"
 	/>
 </template>
 
