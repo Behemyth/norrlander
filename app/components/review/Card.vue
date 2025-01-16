@@ -40,10 +40,6 @@ defineProps({
 		type: Number,
 		required: true,
 	},
-	description: {
-		type: String,
-		required: true,
-	},
 	posterPath: {
 		type: String,
 		required: true,
