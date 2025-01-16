@@ -37,6 +37,7 @@ interface Command extends CommandPaletteItem {
 
 function onSelect(item: Command) {
 	navigateTo(item.to);
+	open.value = false;
 }
 
 // TODO: Use named Nuxt/Content type when it exists
