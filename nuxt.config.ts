@@ -106,12 +106,6 @@ export default defineNuxtConfig({
 		defaultLocale: 'en',
 		vueI18n: './i18n/i18n.config.ts',
 	},
-	icon: {
-		clientBundle:
-		{
-			scan: true,
-		},
-	},
 	// https://image.nuxt.com/
 	image: {
 		format: ['webp'],
