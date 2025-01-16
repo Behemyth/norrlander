@@ -1,18 +1,34 @@
 <template>
-	<UCommandPalette
-		placeholder="Search..."
-		icon="i-mdi-search"
-		autofocus
-		:groups="groups"
-		:fuse="useFuseOptions"
-		:ui="{ input: '[&>input]:h-8' }"
-		class="flex-1"
-		@update:model-value="onSelect"
-	/>
+	<UModal
+		v-model:open="open"
+	>
+		<UButton
+			icon="i-mdi-search"
+			color="neutral"
+			variant="ghost"
+		/>
+
+		<template #content>
+			<UCommandPalette
+				placeholder="Search..."
+				icon="i-mdi-search"
+				autofocus
+				close
+				:groups="groups"
+				:fuse="useFuseOptions"
+				:ui="{ input: '[&>input]:h-8' }"
+				class="flex-1"
+				@update:model-value="onSelect"
+				@update:open="open = $event"
+			/>
+		</template>
+	</UModal>
 </template>
 
 <script setup lang="ts">
 import type { CommandPaletteItem } from '@nuxt/ui';
+
+const open = ref(false);
 
 // Our type extension for selection data
 interface Command extends CommandPaletteItem {

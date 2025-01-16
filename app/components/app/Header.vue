@@ -29,17 +29,7 @@
 				class="hidden md:flex justify-center"
 			/>
 			<div class="flex space-x-2 md:space-x-6">
-				<UPopover>
-					<UButton
-						icon="i-mdi-search"
-						color="neutral"
-						variant="ghost"
-					/>
-
-					<template #content>
-						<CollectionSearch />
-					</template>
-				</UPopover>
+				<CollectionSearch />
 				<AppColorSwitch class="md:px-8 hover:text-gray-700 dark:hover:text-gray-300" />
 			</div>
 		</div>
