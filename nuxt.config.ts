@@ -22,7 +22,6 @@ export default defineNuxtConfig({
 	// https://color-mode.nuxtjs.org
 	colorMode: {
 	},
-
 	// https://content.nuxtjs.org
 	content: {
 		build: {
@@ -106,6 +105,12 @@ export default defineNuxtConfig({
 		strategy: 'no_prefix',
 		defaultLocale: 'en',
 		vueI18n: './i18n/i18n.config.ts',
+	},
+	icon: {
+		clientBundle:
+		{
+			scan: true,
+		},
 	},
 	// https://image.nuxt.com/
 	image: {
