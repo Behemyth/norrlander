@@ -2,10 +2,10 @@
 	<div class="prose">
 		<UBreadcrumb :items="items" />
 		<ReviewHeader
-			:title="tmdbData!.title"
-			:backdrop="tmdbData!.backdrop_path"
+			:title="page.tmdbData.title"
+			:backdrop="page.tmdbData.backdrop_path"
 			:rating="page.rating"
-			:release-date="new Date(tmdbData!.release_date!)"
+			:release-date="new Date(page.tmdbData.release_date!)"
 			:published="new Date(page.date_published)"
 		/>
 		<article>
@@ -22,14 +22,12 @@ const route = useRoute();
 
 const page = await queryCollection('movie').path(route.path).first();
 
-const { data: tmdbData } = await useFetch<TMDBMovie>(`/api/tmdb/media/movie/${page.TMDB_ID}`);
-
 definePageMeta({
 	layout: 'movie-review',
 });
 
 useSeoMeta({
-	title: tmdbData.value!.title,
+	title: page.tmdbData.title,
 });
 
 const items = ref([
@@ -42,7 +40,7 @@ const items = ref([
 		to: '/review/movie',
 	},
 	{
-		label: tmdbData.value!.title,
+		label: page.tmdbData.title,
 		to: route.path,
 	},
 ]);

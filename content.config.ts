@@ -1,5 +1,7 @@
 import { defineContentConfig, defineCollection, z } from '@nuxt/content';
 
+import { TMDBMovieSchema, TMDBShowSchema } from './shared/types/tmdb';
+
 const ReviewMetadataSchema = z.object({
 	intRating: z.number().int().nonnegative().lte(8),
 	entRating: z.number().int().nonnegative().lte(8),
@@ -8,6 +10,14 @@ const ReviewMetadataSchema = z.object({
 	TMDB_ID: z.number().int(),
 	date_published: z.coerce.date(),
 	date_modified: z.coerce.date(),
+});
+
+const ReviewMovieSchema = ReviewMetadataSchema.extend({
+	tmdbData: TMDBMovieSchema,
+});
+
+const ReviewShowSchema = ReviewMetadataSchema.extend({
+	tmdbData: TMDBShowSchema,
 });
 
 const PhotographySchema = z.object({
@@ -42,11 +52,6 @@ const SocialSchema = z.object({
 
 export default defineContentConfig({
 	collections: {
-		all: defineCollection({
-			type: 'page',
-			source: '**',
-			exclude: 'data',
-		}),
 		blog: defineCollection({
 			type: 'page',
 			source: 'blog/*.md',
@@ -80,12 +85,12 @@ export default defineContentConfig({
 		movie: defineCollection({
 			type: 'page',
 			source: 'review/movie/**/*.md',
-			schema: ReviewMetadataSchema,
+			schema: ReviewMovieSchema,
 		}),
 		show: defineCollection({
 			type: 'page',
 			source: 'review/show/**/*.md',
-			schema: ReviewMetadataSchema,
+			schema: ReviewShowSchema,
 		}),
 	},
 });

@@ -1,11 +1,10 @@
 <template>
 	<ReviewCard
-		v-if="tmdbData"
-		:title="tmdbData.title"
+		:title="props.movie.tmdbData.title"
 		:path="movie.path"
 		:rating="movie.rating"
 		:description="movie.description"
-		:poster-path="`tmdb/${tmdbData.poster_path}`"
+		:poster-path="`tmdb/${props.movie.tmdbData.poster_path}`"
 	/>
 </template>
 
@@ -18,6 +17,4 @@ const props = defineProps({
 		required: true,
 	},
 });
-
-const { data: tmdbData } = await useFetch<TMDBMovie>(`/api/tmdb/media/movie/${props.movie.TMDB_ID}`);
 </script>

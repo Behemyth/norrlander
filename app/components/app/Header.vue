@@ -18,7 +18,7 @@
 			<ULink
 				to="/"
 				rel="author"
-				class="text-nowrap p-4 text-4xl font-mono font-extrabold"
+				class="text-nowrap p-4 text-xl md:text-4xl font-mono font-extrabold"
 			> The Norlander
 			</ULink>
 			<UNavigationMenu
@@ -28,18 +28,10 @@
 				:items="items"
 				class="hidden md:flex justify-center"
 			/>
-			<UPopover>
-				<UButton
-					icon="i-mdi-search"
-					color="neutral"
-					variant="ghost"
-				/>
-
-				<template #content>
-					<CollectionSearch />
-				</template>
-			</UPopover>
-			<AppColorSwitch class="md:px-8 hover:text-gray-700 dark:hover:text-gray-300" />
+			<div class="flex space-x-2 md:space-x-6">
+				<CollectionSearch />
+				<AppColorSwitch class="md:px-8 hover:text-gray-700 dark:hover:text-gray-300" />
+			</div>
 		</div>
 	</header>
 </template>

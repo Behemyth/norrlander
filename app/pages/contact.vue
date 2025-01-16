@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<h1>Contact</h1>
+		<h1 />{{ contactLoc }}
 		<div class="flex space-x-6">
 			<ULink
 				v-for="contact in contacts"
@@ -21,8 +21,13 @@
 
 <script setup lang="ts">
 const contacts = await queryCollection('contact').all();
+const i18n = useI18n();
+
+const contactLoc = computed(() => {
+	return i18n.t('Contact');
+});
 
 useSeoMeta({
-	title: 'Contact',
+	title: contactLoc,
 });
 </script>

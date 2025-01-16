@@ -15,9 +15,11 @@
 			<div class="flex">
 				<UNavigationMenu
 					:items="items"
+					color="neutral"
+					variant="link"
 				/>
 			</div>
-			<div class="flex space-x-6">
+			<div class="flex space-x-2 md:space-x-6">
 				<ULink
 					v-for="social in socials"
 					:key="social.name"
