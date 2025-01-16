@@ -1,5 +1,5 @@
 <template>
-	<div class="flex flex-row not-prose relative">
+	<div class="flex flex-row relative">
 		<UIcon
 			v-for="index in fullStars"
 			:key="index"

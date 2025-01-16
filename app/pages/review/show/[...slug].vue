@@ -1,5 +1,5 @@
 <template>
-	<div class="prose">
+	<div>
 		<UBreadcrumb :items="items" />
 		<ReviewHeader
 			:title="page.tmdbData.name"
