@@ -63,10 +63,6 @@ export default defineNuxtConfig({
 		compatibilityVersion: 4,
 	},
 
-	experimental: {
-		renderJsonPayloads: true,
-	},
-
 	compatibilityDate: '2024-11-04',
 
 	nitro: {
