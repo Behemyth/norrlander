@@ -85,6 +85,11 @@ export default defineNuxtConfig({
 			},
 		},
 	},
+	fonts: {
+		experimental: {
+			processCSSVariables: true,
+		},
+	},
 
 	i18n: {
 		locales: [
