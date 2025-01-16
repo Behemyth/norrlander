@@ -2,7 +2,8 @@
 	<UCommandPalette
 		placeholder="Search..."
 		icon="i-mdi-search"
-		:groups="[{ id: 'content', items: content }]"
+		autofocus
+		:groups="groups"
 		:fuse="useFuseOptions"
 		:ui="{ input: '[&>input]:h-8' }"
 		class="flex-1"
@@ -22,16 +23,74 @@ function onSelect(item: Command) {
 	navigateTo(item.to);
 }
 
-const { data: content } = await useAsyncData('search-data', () => queryCollectionSearchSections('all').then((value) => {
-	return value.map((content) => {
+// TODO: Use named Nuxt/Content type when it exists
+interface Section {
+	id: string;
+	title: string;
+	titles: string[];
+	level: number;
+	content: string;
+};
+
+function contentToItems(content: Section[]) {
+	return content.map((item: Section) => {
 		return {
-			id: content.id,
-			label: content.title,
-			suffix: content.content?.slice(0, 72) + '...',
-			to: content.id,
+			label: item.title,
+			suffix: item.content?.slice(0, 72) + '...',
+			to: item.id,
 		};
 	});
-}));
+}
+
+const { data: groups } = await useAsyncData('search-data',
+	() => {
+		return Promise.all([
+			queryCollectionSearchSections('blog').then((value) => {
+				return {
+					id: 'blog',
+					label: 'Blog',
+					items: contentToItems(value),
+				};
+			}),
+			queryCollectionSearchSections('photography').then((value) => {
+				return {
+					id: 'photography',
+					label: 'Photography',
+					items: contentToItems(value),
+				};
+			}),
+			queryCollectionSearchSections('career').then((value) => {
+				return {
+					id: 'career',
+					label: 'Career',
+					items: contentToItems(value),
+				};
+			}),
+			queryCollectionSearchSections('project').then((value) => {
+				return {
+					id: 'project',
+					label: 'Projects',
+					items: contentToItems(value),
+				};
+			}),
+			queryCollectionSearchSections('movie').then((value) => {
+				return {
+					id: 'movie',
+					label: 'Movies',
+					items: contentToItems(value),
+				};
+			}),
+			queryCollectionSearchSections('show').then((value) => {
+				return {
+					id: 'show',
+					label: 'Shows',
+					items: contentToItems(value),
+				};
+			}),
+
+		]);
+	},
+);
 
 // From an implicit dependency containing `useFuse`
 const useFuseOptions = {

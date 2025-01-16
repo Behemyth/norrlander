@@ -1,5 +1,7 @@
 import { defineContentConfig, defineCollection, z } from '@nuxt/content';
 
+import { TMDBMovieSchema, TMDBShowSchema } from './shared/types/tmdb';
+
 const ReviewMetadataSchema = z.object({
 	intRating: z.number().int().nonnegative().lte(8),
 	entRating: z.number().int().nonnegative().lte(8),
@@ -11,11 +13,11 @@ const ReviewMetadataSchema = z.object({
 });
 
 const ReviewMovieSchema = ReviewMetadataSchema.extend({
-
+	tmdbData: TMDBMovieSchema,
 });
 
 const ReviewShowSchema = ReviewMetadataSchema.extend({
-
+	tmdbData: TMDBShowSchema,
 });
 
 const PhotographySchema = z.object({
@@ -50,11 +52,6 @@ const SocialSchema = z.object({
 
 export default defineContentConfig({
 	collections: {
-		all: defineCollection({
-			type: 'page',
-			source: '**',
-			exclude: 'data',
-		}),
 		blog: defineCollection({
 			type: 'page',
 			source: 'blog/*.md',

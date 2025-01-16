@@ -1,29 +1,51 @@
 import type { FileAfterParseHook } from '@nuxt/content';
 
-import { defineNuxtModule } from '@nuxt/kit';
+import { defineNuxtModule, useRuntimeConfig } from '@nuxt/kit';
 
-import { useFetch } from '#app/composables/fetch';
+import { $fetch } from 'ofetch';
 
 export default defineNuxtModule({
-	hooks: {
-		async 'content:file:afterParse'(ctx: FileAfterParseHook) {
+	setup(resolvedOptions, nuxt) {
+		const config = useRuntimeConfig();
+
+		nuxt.addHooks({ async 'content:file:afterParse'(ctx: FileAfterParseHook) {
 			switch (ctx.collection.name) {
 				case 'movie':
 				{
-					const { data: tmdbData } = await useFetch<TMDBMovie>(`/api/tmdb/media/movie/${ctx.content.TMDB_ID}`);
-					ctx.content.title = tmdbData.value?.title;
+					const tmdbData = await $fetch<TMDBMovie>(`/movie/${ctx.content.TMDB_ID}`, {
+						baseURL: `${config.public.apiBase}`,
+						params: {
+							language: 'en-US',
+						},
+						headers: {
+							Authorization: `Bearer ${config.apiSecret}`,
+						},
+
+					});
+
+					ctx.content.title = tmdbData.title;
 					ctx.content.tmdbData = tmdbData;
 					break;
 				}
 				case 'show':
 				{
-					const { data: tmdbData } = await useFetch<TMDBShow>(`/api/tmdb/media/tv/${ctx.content.TMDB_ID}`);
-					ctx.content.title = tmdbData.value?.name;
+					const tmdbData = await $fetch<TMDBShow>(`/tv/${ctx.content.TMDB_ID}`, {
+						baseURL: `${config.public.apiBase}`,
+						params: {
+							language: 'en-US',
+						},
+						headers: {
+							Authorization: `Bearer ${config.apiSecret}`,
+						},
+					});
+
+					ctx.content.title = tmdbData.name;
 					ctx.content.tmdbData = tmdbData;
 					break;
 				}
 				default:
 			}
 		},
+		});
 	},
 });
