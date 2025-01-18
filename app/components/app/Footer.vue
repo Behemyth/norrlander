@@ -1,5 +1,5 @@
 <template>
-	<footer class="w-full max-w-5xl mx-auto p-4 bg-white shadow dark:bg-gray-900">
+	<DFooter>
 		<div class="flex flex-wrap flex-row items-center justify-around">
 			<ULink
 				to="/"
@@ -48,7 +48,7 @@
 			<AppLanguageSwitch />
 			<span class="flex text-sm text-gray-500 sm:justify-center">Made with ❤️ by Asher and Ola</span>
 		</div>
-	</footer>
+	</DFooter>
 </template>
 
 <script setup lang="ts">

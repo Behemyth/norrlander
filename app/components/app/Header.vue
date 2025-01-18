@@ -1,39 +1,15 @@
 <template>
-	<header class="max-w-5xl w-full mx-auto p-1 bg-white shadow dark:bg-gray-900">
-		<div class="flex flex-row items-center justify-around">
-			<UDropdownMenu
-				size="xl"
-				color="neutral"
-				variant="link"
-				:items="items"
-			>
-				<UButton
-					color="neutral"
-					variant="ghost"
-					icon="i-mdi-hamburger-menu"
-					square
-					class="md:hidden"
-				/>
-			</UDropdownMenu>
-			<ULink
-				to="/"
-				rel="author"
-				class="text-nowrap p-4 text-xl md:text-4xl font-mono font-extrabold"
-			> The Norlander
-			</ULink>
-			<UNavigationMenu
-				orientation="horizontal"
-				color="neutral"
-				variant="link"
-				:items="items"
-				class="hidden md:flex justify-center"
-			/>
-			<div class="flex space-x-2 md:space-x-6">
-				<CollectionSearch />
-				<AppColorSwitch class="md:px-8 hover:text-gray-700 dark:hover:text-gray-300" />
-			</div>
-		</div>
-	</header>
+	<DHeader title="The Norlander">
+		<UNavigationMenu
+			color="neutral"
+			variant="link"
+			:items="items"
+		/>
+		<template #right>
+			<CollectionSearch />
+			<AppColorSwitch class="md:px-8 hover:text-gray-700 dark:hover:text-gray-300" />
+		</template>
+	</DHeader>
 </template>
 
 <script setup lang="ts">

@@ -2,14 +2,13 @@
 	<UApp
 		:locale="locales[locale]"
 	>
-		<div class="flex flex-col min-h-dvh max-w-5xl mx-auto">
-			<AppHeader class="flex-none" />
-			<NuxtLayout class="grow p-4 w-full">
-				<!-- Fill the page so that the footer is always at the bottom -->
+		<AppHeader />
+		<DMain>
+			<NuxtLayout>
 				<NuxtPage />
 			</NuxtLayout>
-			<AppFooter class="flex-none" />
-		</div>
+		</DMain>
+		<AppFooter />
 	</UApp>
 </template>
 
@@ -37,6 +36,13 @@ const { locale } = useI18n();
 </script>
 
 <style>
+	@import "tailwindcss";
+	@import "@nuxt/ui";
+
+	@theme {
+		--font-sans: Lato, sans-serif;
+	}
+
 	/* Prevents content shifting. Note: Currently not supported on Safari */
 	html {
 		scrollbar-gutter: stable;
