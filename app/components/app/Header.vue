@@ -1,5 +1,10 @@
 <template>
-	<DHeader title="The Norlander">
+	<DHeader
+		title="The Norlander"
+		:ui="{
+			title: 'text-nowrap font-mono',
+		}"
+	>
 		<UNavigationMenu
 			color="neutral"
 			variant="link"
