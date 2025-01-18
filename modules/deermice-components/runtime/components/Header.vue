@@ -30,7 +30,12 @@
 		<slot
 			name="content"
 			:class="ui.content()"
-		/>
+		>
+			<slot
+				name="content"
+				:class="ui.content()"
+			/>
+		</slot>
 	</header>
 </template>
 
