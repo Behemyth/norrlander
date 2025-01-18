@@ -40,7 +40,11 @@
 			<span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">Copyright &copy; {{ new
 				Date().getFullYear() }}</span>
 
-			<span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">Film data from TMDb.</span>
+			<span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">
+				<ULink to="/about#film-data">Film data</ULink>
+				<div class="inline" /> from
+				<ULink to="https://www.themoviedb.org/">TMDb</ULink>
+			</span>
 			<AppLanguageSwitch />
 			<span class="flex text-sm text-gray-500 sm:justify-center">Made with ❤️ by Asher and Ola</span>
 		</div>
@@ -60,7 +64,7 @@ const items = [
 		to: '/about',
 	},
 	{
-		label: contactLocalized,
+		label: contactLocalized.value,
 		to: '/contact',
 	},
 ];

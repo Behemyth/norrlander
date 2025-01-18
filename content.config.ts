@@ -91,5 +91,9 @@ export default defineContentConfig({
 			source: 'review/show/**/*.md',
 			schema: ReviewShowSchema,
 		}),
+		page: defineCollection({
+			type: 'page',
+			source: 'page/**/*.md',
+		}),
 	},
 });

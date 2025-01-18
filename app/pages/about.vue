@@ -1,12 +1,17 @@
 <template>
-	<div>
-		<h1>About</h1>
-		<p>This is a movie database app built with Nuxt.js and the TMDB API.</p>
-	</div>
+	<ContentRenderer
+		v-if="page"
+		:value="page"
+	/>
 </template>
 
 <script setup lang="ts">
+const { data: page } = await useAsyncData('about', () => {
+	return queryCollection('page').where('title', '=', 'About',
+	).first();
+});
+
 useSeoMeta({
-	title: 'About ',
+	title: 'About',
 });
 </script>
