@@ -4,6 +4,7 @@
 		<article>
 			<ContentRenderer
 				:value="page"
+				:prose="true"
 			/>
 		</article>
 	</div>
