@@ -13,9 +13,8 @@
 			>
 				<slot
 					name="title"
-					:class="ui.title()"
 				>
-					{{ title }}
+					<h1 :class="ui.title()">{{ title }} </h1>
 				</slot>
 			</ULink>
 			<slot />
