@@ -117,6 +117,6 @@ export default defineNuxtConfig({
 		alias: {
 			tmdb: 'https://image.tmdb.org/t/p/original',
 		},
-		dir: 'public',
+		dir: 'public/images',
 	},
 });
