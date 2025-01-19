@@ -4,7 +4,7 @@ export default defineNuxtConfig({
 	modules: [
 		'@nuxt/content',
 		'@nuxt/devtools',
-		// '@nuxtjs/sitemap', Enable when it works with Nuxt content 3
+		'@nuxtjs/sitemap',
 		'@nuxt/image',
 		'@nuxtjs/i18n',
 		'@nuxt/ui',
