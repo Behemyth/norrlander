@@ -4,6 +4,7 @@
 		:ui="{
 			title: 'text-nowrap font-mono',
 		}"
+		:content-toggle="{ icon: 'i-mdi-hamburger-menu' }"
 	>
 		<UNavigationMenu
 			color="neutral"
@@ -15,6 +16,14 @@
 			<DColorButton
 				:light-icon="'i-heroicons-sun'"
 				:dark-icon="'i-heroicons-moon'"
+			/>
+		</template>
+		<template #content>
+			<UNavigationMenu
+				orientation="vertical"
+				color="neutral"
+				variant="link"
+				:items="items"
 			/>
 		</template>
 	</DHeader>

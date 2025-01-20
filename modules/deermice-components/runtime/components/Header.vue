@@ -36,17 +36,35 @@
 					<slot
 						name="right"
 					/>
+					<UButton
+						color="neutral"
+						variant="ghost"
+						:class="ui.contentToggle()"
+						v-bind="contentToggle"
+						@click="open = true"
+					/>
 				</UContainer>
 			</UContainer>
 		</header>
-		<slot
-			name="content"
+		<UModal
+			v-model:open="open"
 			:class="ui.content()"
-		/>
+		>
+			<template #body>
+				<div
+					:class="ui.contentBody()"
+				>
+					<slot
+						name="content"
+					/>
+				</div>
+			</template>
+		</UModal>
 	</div>
 </template>
 
 <script lang="ts">
+import type { ButtonProps } from '@nuxt/ui';
 import type { PartialString } from '@nuxt/ui/runtime/types/utils.js';
 import { tv } from 'tailwind-variants';
 
@@ -73,6 +91,12 @@ const theme = tv({
 		// Right side of the header, typically used for actions
 		right: 'flex items-center justify-end md:flex-1 gap-1.5',
 
+		// The attributes of the toggle button used to show the content
+		contentToggle: 'md:hidden',
+
+		// Body slot for the underlying `model`
+		contentBody: 'p-4 sm:p-6 overflow-y-auto',
+
 		// The content shown within the 'modal' component on smaller screens
 		content: 'md:hidden',
 	},
@@ -84,6 +108,9 @@ export interface HeaderProps {
 
 	// The link to navigate to when the '#left' slot is clicked.
 	to?: string;
+
+	// The attributes of the toggle button used to show the content.
+	contentToggle: ButtonProps;
 
 	// The UI configuration overrides.
 	ui?: PartialString<typeof theme.slots>;
@@ -99,6 +126,8 @@ export interface HeaderSlots {
 </script>
 
 <script setup lang="ts">
+const open = ref(false);
+
 const props = withDefaults(defineProps<HeaderProps>(), {
 	title: 'Your Title',
 	to: '/',
