@@ -4,17 +4,17 @@
 			<slot name="top" />
 		</UContainer>
 		<UContainer :class="ui.container()">
-			<UContainer :class="ui.left()">
+			<div :class="ui.left()">
 				<slot name="left" />
-			</UContainer>
+			</div>
 
-			<UContainer :class="ui.center()">
+			<div :class="ui.center()">
 				<slot />
-			</UContainer>
+			</div>
 
-			<UContainer :class="ui.right()">
+			<div :class="ui.right()">
 				<slot name="right" />
-			</UContainer>
+			</div>
 		</UContainer>
 		<UContainer :class="ui.bottom()">
 			<slot name="bottom" />

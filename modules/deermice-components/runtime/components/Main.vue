@@ -9,7 +9,7 @@ import { tv } from 'tailwind-variants';
 
 const theme = tv({
 	slots: {
-		root: 'min-h-[calc(100vh-var(--ui-header-height))]',
+		root: '',
 	},
 });
 

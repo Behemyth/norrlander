@@ -1,7 +1,7 @@
 <template>
-	<main class="mx-auto w-full">
+	<UContainer>
 		<slot />
-	</main>
+	</UContainer>
 </template>
 
 <script setup lang="ts">

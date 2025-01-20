@@ -1,5 +1,5 @@
 <template>
-	<main class="flex flex-col w-full">
+	<UContainer class="flex flex-col">
 		<div class="grow mx-auto w-full">
 			<slot />
 		</div>
@@ -7,7 +7,7 @@
 		<ReviewDiscussion
 			category="Shows"
 		/>
-	</main>
+	</UContainer>
 </template>
 
 <script setup lang="ts">

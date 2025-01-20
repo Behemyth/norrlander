@@ -66,7 +66,7 @@ const theme = tv({
 		header: '',
 
 		// Container for the header, constraining the width
-		container: 'flex items-center justify-between gap-3 h-[var(--ui-header-height)]',
+		container: 'flex items-center justify-between gap-3',
 
 		// The left side of the header containing the wrapping link and title
 		left: 'md:flex-1 flex items-center gap-1.5',

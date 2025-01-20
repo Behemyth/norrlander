@@ -1,14 +1,14 @@
 <template>
-	<UApp
-		:locale="locales[locale]"
-	>
-		<AppHeader />
-		<DMain>
-			<NuxtLayout>
-				<NuxtPage />
-			</NuxtLayout>
-		</DMain>
-		<AppFooter />
+	<UApp :locale="locales[locale]">
+		<div class="flex flex-col min-h-dvh">
+			<AppHeader class="flex-none" />
+			<DMain class="grow">
+				<NuxtLayout>
+					<NuxtPage />
+				</NuxtLayout>
+			</DMain>
+			<AppFooter class="flex-none" />
+		</div>
 	</UApp>
 </template>
 
@@ -41,10 +41,6 @@ const { locale } = useI18n();
 
 	@theme {
 		--font-sans: Lato, sans-serif;
-	}
-
-	:root {
-		--ui-header-height: calc(var(--spacing) * 16);
 	}
 
 	/* Prevents content shifting. Note: Currently not supported on Safari */
