@@ -1,6 +1,6 @@
 <template>
 	<UContainer class="flex flex-col">
-		<div class="grow mx-auto w-full">
+		<div class="flex grow">
 			<slot />
 		</div>
 		<USeparator class="my-2" />

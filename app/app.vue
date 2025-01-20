@@ -2,8 +2,8 @@
 	<UApp :locale="locales[locale]">
 		<div class="flex flex-col min-h-dvh">
 			<AppHeader class="flex-none" />
-			<DMain class="grow">
-				<NuxtLayout>
+			<DMain class="flex grow">
+				<NuxtLayout class="grow">
 					<NuxtPage />
 				</NuxtLayout>
 			</DMain>

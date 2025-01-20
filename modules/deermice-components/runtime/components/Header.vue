@@ -1,8 +1,8 @@
 <template>
-	<UContainer :class="ui.root()">
+	<div :class="ui.root()">
 		<header :class="ui.header()">
 			<UContainer :class="ui.container()">
-				<UContainer :class="ui.left()">
+				<div :class="ui.left()">
 					<slot name="left" />
 					<ULink
 						:to="to"
@@ -12,11 +12,11 @@
 							{{ title }}
 						</slot>
 					</ULink>
-				</UContainer>
-				<UContainer :class="ui.center()">
+				</div>
+				<div :class="ui.center()">
 					<slot />
-				</UContainer>
-				<UContainer :class="ui.right()">
+				</div>
+				<div :class="ui.right()">
 					<slot name="right" />
 					<UButton
 						color="neutral"
@@ -25,7 +25,7 @@
 						v-bind="contentToggle"
 						@click="open = true"
 					/>
-				</UContainer>
+				</div>
 			</UContainer>
 		</header>
 		<UModal
@@ -49,7 +49,7 @@
 				</div>
 			</template>
 		</UModal>
-	</UContainer>
+	</div>
 </template>
 
 <script lang="ts">
