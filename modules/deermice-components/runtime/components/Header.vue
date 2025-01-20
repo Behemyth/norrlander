@@ -11,7 +11,6 @@
 				>
 					<slot
 						name="left"
-						:class="ui.left()"
 					/>
 
 					<ULink
