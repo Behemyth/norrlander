@@ -2,9 +2,9 @@
 export default defineNuxtConfig({
 
 	modules: [
-		'@nuxt/content',
 		'@nuxt/devtools',
-		'@nuxtjs/sitemap',
+		'@nuxtjs/sitemap', // nuxtjs/sitemap should be loaded before 'nuxt/content'
+		'@nuxt/content',
 		'@nuxt/image',
 		'@nuxtjs/i18n',
 		'@nuxt/ui',

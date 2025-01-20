@@ -11,8 +11,11 @@
 			:items="items"
 		/>
 		<template #right>
-			<CollectionSearch />
-			<AppColorSwitch class="md:px-8 hover:text-gray-700 dark:hover:text-gray-300" />
+			<AppSearch />
+			<DColorButton
+				:light-icon="'i-heroicons-sun'"
+				:dark-icon="'i-heroicons-moon'"
+			/>
 		</template>
 	</DHeader>
 </template>

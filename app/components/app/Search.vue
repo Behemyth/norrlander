@@ -1,45 +1,14 @@
 <template>
-	<UModal
-		v-model:open="open"
-	>
+	<DContentSearch :groups="groups">
 		<UButton
 			icon="i-mdi-search"
 			color="neutral"
 			variant="ghost"
 		/>
-
-		<template #content>
-			<UCommandPalette
-				placeholder="Search..."
-				icon="i-mdi-search"
-				autofocus
-				close
-				:groups="groups"
-				:fuse="useFuseOptions"
-				:ui="{ input: '[&>input]:h-8' }"
-				class="flex-1"
-				@update:model-value="onSelect"
-				@update:open="open = $event"
-			/>
-		</template>
-	</UModal>
+	</DContentSearch>
 </template>
 
 <script setup lang="ts">
-import type { CommandPaletteItem } from '@nuxt/ui';
-
-const open = ref(false);
-
-// Our type extension for selection data
-interface Command extends CommandPaletteItem {
-	to?: string;
-}
-
-function onSelect(item: Command) {
-	navigateTo(item.to);
-	open.value = false;
-}
-
 // TODO: Use named Nuxt/Content type when it exists
 interface Section {
 	id: string;
@@ -108,13 +77,4 @@ const { data: groups } = await useAsyncData('search-data',
 		]);
 	},
 );
-
-// From an implicit dependency containing `useFuse`
-const useFuseOptions = {
-	fuseOptions: {
-		includeMatches: false,
-	},
-	resultLimit: 10,
-	matchAllWhenSearchEmpty: false,
-};
 </script>
