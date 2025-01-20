@@ -1,5 +1,5 @@
 <template>
-	<div :class="ui.root()">
+	<UContainer :class="ui.root()">
 		<header :class="ui.header()">
 			<UContainer :class="ui.container()">
 				<UContainer :class="ui.left()">
@@ -49,7 +49,7 @@
 				</div>
 			</template>
 		</UModal>
-	</div>
+	</UContainer>
 </template>
 
 <script lang="ts">
