@@ -1,6 +1,6 @@
 <template>
 	<header :class="ui.root()">
-		<div
+		<UContainer
 			:class="ui.container()"
 		>
 			<slot
@@ -25,17 +25,11 @@
 				name="right"
 				:class="ui.right()"
 			/>
-			<div />
-		</div>
+		</UContainer>
 		<slot
 			name="content"
 			:class="ui.content()"
-		>
-			<slot
-				name="content"
-				:class="ui.content()"
-			/>
-		</slot>
+		/>
 	</header>
 </template>
 
@@ -52,7 +46,6 @@ const theme = tv({
 		right: 'flex items-center justify-end lg:flex-1 gap-1.5',
 		title: 'shrink-0 font-bold text-xl text-[var(--ui-text-highlighted)] flex items-end gap-1.5',
 		content: 'lg:hidden',
-		body: 'p-4 sm:p-6 overflow-y-auto',
 	},
 });
 
