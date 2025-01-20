@@ -1,36 +1,48 @@
 <template>
-	<header :class="ui.root()">
-		<UContainer
-			:class="ui.container()"
-		>
-			<slot
-				name="left"
-				:class="ui.left()"
-			/>
-			<ULink
-				:to="to"
-				rel="author"
+	<div
+		:class="ui.root()"
+	>
+		<header :class="ui.header()">
+			<UContainer
+				:class="ui.container()"
 			>
-				<slot
-					name="title"
+				<span
+					:class="ui.left()"
 				>
-					<h1 :class="ui.title()">{{ title }} </h1>
-				</slot>
-			</ULink>
-			<slot />
-			<div
-				:class="ui.center()"
-			/>
-			<slot
-				name="right"
-				:class="ui.right()"
-			/>
-		</UContainer>
+					<slot
+						name="left"
+						:class="ui.left()"
+					/>
+				</span>
+				<ULink
+					:to="to"
+					:class="ui.title()"
+				>
+					<slot
+						name="title"
+					>
+						{{ title }}
+					</slot>
+				</ULink>
+				<span
+					:class="ui.center()"
+				>
+					<slot />
+				</span>
+				<span
+					:class="ui.right()"
+				>
+					<slot
+						name="right"
+					/>
+				</span>
+			</UContainer>
+		</header>
 		<slot
 			name="content"
 			:class="ui.content()"
 		/>
-	</header>
+	</div>
 </template>
 
 <script lang="ts">
@@ -39,6 +51,7 @@ import { tv } from 'tailwind-variants';
 
 const theme = tv({
 	slots: {
+		header: '',
 		root: 'bg-[var(--ui-bg)]/75 backdrop-blur border-b border-[var(--ui-border)] sticky top-0 z-50',
 		container: 'flex items-center justify-between gap-3 h-[var(--ui-header-height)]',
 		left: 'lg:flex-1 flex items-center gap-1.5',
