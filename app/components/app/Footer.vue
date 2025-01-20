@@ -1,53 +1,51 @@
 <template>
 	<DFooter>
-		<div class="flex flex-wrap flex-row items-center justify-around">
+		<UNavigationMenu
+			:items="items"
+			color="neutral"
+			variant="link"
+		/>
+
+		<template #left>
 			<ULink
 				to="/"
 				rel="author"
-				class="px-4"
 			>
 				<UAvatar
 					size="2xl"
 					src="https://www.gravatar.com/avatar/293a56bef971ab4999d6230491957d33"
 				/>
 			</ULink>
+		</template>
 
-			<div class="flex">
-				<UNavigationMenu
-					:items="items"
-					color="neutral"
-					variant="link"
-				/>
-			</div>
-			<div class="flex space-x-2 md:space-x-6">
-				<ULink
-					v-for="social in socials"
-					:key="social.name"
-					:to="social.link"
-					:title="social.name"
-				>
-					<UIcon
-						:name="social.icon"
-						class="shrink-0 w-6 h-6 align-middle text-gray-900 dark:text-gray-300"
-						color="neutral"
-						variant="ghost"
-					/>
-				</ULink>
-			</div>
-		</div>
-		<hr class="my-4 border-gray-200 sm:mx-auto dark:border-gray-700">
-		<div class="flex flex-wrap flex-row items-center justify-around">
-			<span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">Copyright &copy; {{ new
-				Date().getFullYear() }}</span>
+		<template #right>
+			<UButton
+				v-for="social in socials"
+				:key="social.name"
+				:icon="social.icon"
+				color="neutral"
+				variant="ghost"
+				:to="social.link"
+				target="_blank"
+				:title="social.name"
+			/>
+		</template>
 
-			<span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">
-				<ULink to="/about#film-data">Film data</ULink>
-				<div class="inline" /> from
-				<ULink to="https://www.themoviedb.org/">TMDb</ULink>
+		<template #bottom>
+			<span class="flex flex-wrap flex-row items-center justify-around gap-x-3 gap-y-1.5 text-(--ui-text-muted) text-sm">
+				<span>Copyright &copy;
+					{{ new Date().getFullYear() }}
+				</span>
+
+				<span>
+					<ULink to="/about#film-data">Film data</ULink>
+					<div class="inline" /> from
+					<ULink to="https://www.themoviedb.org/">TMDb</ULink>
+				</span>
+				<AppLanguageSwitch />
+				<span>Made with ❤️ by Asher and Ola</span>
 			</span>
-			<AppLanguageSwitch />
-			<span class="flex text-sm text-gray-500 sm:justify-center">Made with ❤️ by Asher and Ola</span>
-		</div>
+		</template>
 	</DFooter>
 </template>
 
