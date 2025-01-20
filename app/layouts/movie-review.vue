@@ -1,13 +1,13 @@
 <template>
-	<main class="flex flex-col w-full">
-		<div class="grow mx-auto w-full">
+	<UContainer class="flex flex-col">
+		<div class="flex grow">
 			<slot />
 		</div>
 		<USeparator class="my-2" />
 		<ReviewDiscussion
 			category="Movies"
 		/>
-	</main>
+	</UContainer>
 </template>
 
 <script setup lang="ts">

@@ -2,9 +2,9 @@
 export default defineNuxtConfig({
 
 	modules: [
-		'@nuxt/content',
 		'@nuxt/devtools',
-		// '@nuxtjs/sitemap', Enable when it works with Nuxt content 3
+		'@nuxtjs/sitemap', // nuxtjs/sitemap should be loaded before 'nuxt/content'
+		'@nuxt/content',
 		'@nuxt/image',
 		'@nuxtjs/i18n',
 		'@nuxt/ui',
@@ -14,7 +14,6 @@ export default defineNuxtConfig({
 	devtools: {
 		enabled: true,
 	},
-	css: ['~/assets/css/main.css'],
 	// site: {
 	// 	url: 'https://ashernorland.com',
 	// },
@@ -117,6 +116,6 @@ export default defineNuxtConfig({
 		alias: {
 			tmdb: 'https://image.tmdb.org/t/p/original',
 		},
-		dir: 'public',
+		dir: 'public/images',
 	},
 });

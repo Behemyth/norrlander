@@ -1,14 +1,15 @@
 <template>
-	<div>
-		<h1>{{ props.error!.statusCode }}</h1>
-		<NuxtLink to="/">Home</NuxtLink>
-	</div>
+	<UApp>
+		<AppHeader />
+		<DError :error="error" />
+		<AppFooter />
+	</UApp>
 </template>
 
 <script setup lang="ts">
 import type { NuxtError } from '#app';
 
-const props = defineProps({
-	error: Object as () => NuxtError,
-});
+defineProps<{
+	error: NuxtError;
+}>();
 </script>

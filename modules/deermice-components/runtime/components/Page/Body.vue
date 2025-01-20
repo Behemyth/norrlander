@@ -1,8 +1,11 @@
 <template>
-	<UContainer>
+	<div>
 		<slot />
-	</UContainer>
+	</div>
 </template>
 
 <script setup lang="ts">
+defineProps({
+
+});
 </script>

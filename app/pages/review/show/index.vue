@@ -1,7 +1,6 @@
 <template>
 	<div>
 		<UBreadcrumb :items="items" />
-		<ReviewFilter />
 		<div class="grid grid-flow-row gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
 			<LazyReviewShowCard
 				v-for="show in shows"
