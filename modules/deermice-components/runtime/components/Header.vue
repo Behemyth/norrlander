@@ -32,6 +32,17 @@
 			v-model:open="open"
 			:class="ui.content()"
 		>
+			<template #title>
+				<ULink
+					:to="to"
+					:class="ui.title()"
+					@click="open = false"
+				>
+					<slot name="title">
+						{{ title }}
+					</slot>
+				</ULink>
+			</template>
 			<template #body>
 				<div :class="ui.contentBody()">
 					<slot name="content" />
