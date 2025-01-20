@@ -43,6 +43,10 @@ const { locale } = useI18n();
 		--font-sans: Lato, sans-serif;
 	}
 
+	:root {
+		--ui-header-height: calc(var(--spacing) * 16);
+	}
+
 	/* Prevents content shifting. Note: Currently not supported on Safari */
 	html {
 		scrollbar-gutter: stable;

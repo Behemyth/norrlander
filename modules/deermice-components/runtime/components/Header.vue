@@ -116,6 +116,12 @@ export interface HeaderSlots {
 
 <script setup lang="ts">
 const open = ref(false);
+const router = useRouter();
+
+// Close the `modal` when the route changes
+router.afterEach(() => {
+	open.value = false;
+});
 
 const props = withDefaults(defineProps<HeaderProps>(), {
 	title: 'Your Title',

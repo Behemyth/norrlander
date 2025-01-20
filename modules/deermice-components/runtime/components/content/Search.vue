@@ -23,7 +23,6 @@
 
 <script lang="ts">
 import type { CommandPaletteGroup, CommandPaletteItem } from '@nuxt/ui';
-import { navigateTo } from 'nuxt/app';
 import { ref } from 'vue';
 import type { PartialString } from '@nuxt/ui/runtime/types/utils.js';
 import { tv } from 'tailwind-variants';
@@ -57,8 +56,12 @@ export interface ContentSearchSlots {
 <script setup lang="ts">
 const open = ref(false);
 
+const router = useRouter();
+
 function onSelect(item: ContentSearchItem) {
-	navigateTo(item.to);
+	if (item.to) {
+		router.push(item.to);
+	}
 	open.value = false;
 }
 
