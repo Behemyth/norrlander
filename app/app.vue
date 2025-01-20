@@ -1,5 +1,8 @@
 <template>
-	<UApp :locale="locales[locale]">
+	<UApp
+		:locale="locales[locale]"
+		:scroll-body="false"
+	>
 		<div class="flex flex-col min-h-dvh">
 			<AppHeader class="flex-none" />
 			<DMain class="flex grow">
