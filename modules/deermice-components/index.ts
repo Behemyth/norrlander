@@ -20,6 +20,7 @@ export default defineNuxtModule<ModuleOptions>({
 		nuxt.options.alias['#deermice'] = resolve('./runtime');
 
 		// Modules
+		await installModule('@nuxt/ui'); // nuxtjs/ui should be loaded before 'nuxt/icon'
 		await installModule('@nuxt/icon');
 		await installModule('@nuxt/fonts');
 		await installModule('@nuxtjs/color-mode', { classSuffix: '' });
