@@ -14,9 +14,9 @@ export default defineNuxtConfig({
 	devtools: {
 		enabled: true,
 	},
-	// site: {
-	// 	url: 'https://ashernorland.com',
-	// },
+	site: {
+		url: 'https://ashernorland.com',
+	},
 
 	// https://color-mode.nuxtjs.org
 	colorMode: {
