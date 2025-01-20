@@ -1,40 +1,23 @@
 <template>
-	<div
-		:class="ui.root()"
-	>
+	<div :class="ui.root()">
 		<header :class="ui.header()">
-			<UContainer
-				:class="ui.container()"
-			>
-				<UContainer
-					:class="ui.left()"
-				>
-					<slot
-						name="left"
-					/>
-
+			<UContainer :class="ui.container()">
+				<UContainer :class="ui.left()">
+					<slot name="left" />
 					<ULink
 						:to="to"
 						:class="ui.title()"
 					>
-						<slot
-							name="title"
-						>
+						<slot name="title">
 							{{ title }}
 						</slot>
 					</ULink>
 				</UContainer>
-				<UContainer
-					:class="ui.center()"
-				>
+				<UContainer :class="ui.center()">
 					<slot />
 				</UContainer>
-				<UContainer
-					:class="ui.right()"
-				>
-					<slot
-						name="right"
-					/>
+				<UContainer :class="ui.right()">
+					<slot name="right" />
 					<UButton
 						color="neutral"
 						variant="ghost"
@@ -50,12 +33,8 @@
 			:class="ui.content()"
 		>
 			<template #body>
-				<div
-					:class="ui.contentBody()"
-				>
-					<slot
-						name="content"
-					/>
+				<div :class="ui.contentBody()">
+					<slot name="content" />
 				</div>
 			</template>
 		</UModal>
