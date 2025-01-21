@@ -28,6 +28,7 @@
 				:to="social.link"
 				target="_blank"
 				:title="social.name"
+				size="lg"
 			/>
 		</template>
 

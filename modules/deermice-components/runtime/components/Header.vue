@@ -1,27 +1,27 @@
 <template>
-	<div :class="ui.root()">
-		<header :class="ui.header()">
-			<UContainer :class="ui.container()">
-				<div :class="ui.left()">
+	<div :class="theme.root({ class: ui?.root })">
+		<header :class="theme.header({ class: ui?.header })">
+			<UContainer :class="theme.container({ class: ui?.container })">
+				<div :class="theme.left({ class: ui?.left })">
 					<slot name="left" />
 					<ULink
 						:to="to"
-						:class="ui.title()"
+						:class="theme.title({ class: ui?.title })"
 					>
 						<slot name="title">
 							{{ title }}
 						</slot>
 					</ULink>
 				</div>
-				<div :class="ui.center()">
+				<div :class="theme.center({ class: ui?.center })">
 					<slot />
 				</div>
-				<div :class="ui.right()">
+				<div :class="theme.right({ class: ui?.right })">
 					<slot name="right" />
 					<UButton
 						color="neutral"
 						variant="ghost"
-						:class="ui.contentToggle()"
+						:class="theme.contentToggle({ class: ui?.contentToggle })"
 						v-bind="contentToggle"
 						@click="open = true"
 					/>
@@ -30,12 +30,12 @@
 		</header>
 		<UModal
 			v-model:open="open"
-			:class="ui.content()"
+			:class="theme.content({ class: ui?.content })"
 		>
 			<template #title>
 				<ULink
 					:to="to"
-					:class="ui.title()"
+					:class="theme.title({ class: ui?.title })"
 					@click="open = false"
 				>
 					<slot name="title">
@@ -44,7 +44,7 @@
 				</ULink>
 			</template>
 			<template #body>
-				<div :class="ui.contentBody()">
+				<div :class="theme.contentBody({ class: ui?.contentBody })">
 					<slot name="content" />
 				</div>
 			</template>
@@ -57,16 +57,16 @@ import type { ButtonProps } from '@nuxt/ui';
 import type { PartialString } from '@nuxt/ui/runtime/types/utils.js';
 import { tv } from 'tailwind-variants';
 
-const theme = tv({
+const baseTheme = tv({
 	slots: {
 		// Root of the component
-		root: 'bg-[var(--ui-bg)]/75 backdrop-blur border-b border-[var(--ui-border)] sticky top-0 z-50',
+		root: 'bg-[var(--ui-bg)]/75 backdrop-blur sticky top-0 z-50',
 
 		// HTML header element. Wraps the container but not the content
 		header: '',
 
 		// Container for the header, constraining the width
-		container: 'flex items-center justify-between gap-3',
+		container: 'flex items-center justify-between gap-3 h-[var(--ui-header-height)] border-b border-[var(--ui-border)]',
 
 		// The left side of the header containing the wrapping link and title
 		left: 'md:flex-1 flex items-center gap-1.5',
@@ -102,7 +102,7 @@ export interface HeaderProps {
 	contentToggle: ButtonProps;
 
 	// The UI configuration overrides.
-	ui?: PartialString<typeof theme.slots>;
+	ui?: PartialString<typeof baseTheme.slots>;
 };
 
 export interface HeaderSlots {
@@ -123,12 +123,12 @@ router.afterEach(() => {
 	open.value = false;
 });
 
-const props = withDefaults(defineProps<HeaderProps>(), {
+withDefaults(defineProps<HeaderProps>(), {
 	title: 'Your Title',
 	to: '/',
 });
 
 defineSlots<HeaderSlots>();
 
-const ui = theme(props.ui);
+const theme = baseTheme();
 </script>

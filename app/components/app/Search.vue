@@ -4,6 +4,7 @@
 			icon="i-mdi-search"
 			color="neutral"
 			variant="ghost"
+			size="lg"
 		/>
 	</DContentSearch>
 </template>

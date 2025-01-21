@@ -1,7 +1,7 @@
 <template>
 	<UModal
 		v-model:open="open"
-		:class="ui.modal()"
+		:class="theme.modal({ class: ui?.modal })"
 	>
 		<slot />
 
@@ -13,7 +13,7 @@
 				close
 				:groups="groups"
 				:fuse="useFuseOptions"
-				:class="ui.commandPalette()"
+				:class="theme.commandPalette({ class: ui?.commandPalette })"
 				@update:model-value="onSelect"
 				@update:open="open = $event"
 			/>
@@ -27,7 +27,7 @@ import { ref } from 'vue';
 import type { PartialString } from '@nuxt/ui/runtime/types/utils.js';
 import { tv } from 'tailwind-variants';
 
-const theme = tv({
+const baseTheme = tv({
 	slots: {
 		modal: '',
 		commandPalette: 'flex-1',
@@ -45,7 +45,7 @@ export interface ContentSearchProps {
 	groups?: CommandPaletteGroup<ContentSearchItem>[];
 
 	// The UI configuration overrides.
-	ui?: PartialString<typeof theme.slots>;
+	ui?: PartialString<typeof baseTheme.slots>;
 };
 
 export interface ContentSearchSlots {
@@ -74,7 +74,7 @@ const useFuseOptions = {
 	matchAllWhenSearchEmpty: false,
 };
 
-const props = withDefaults(defineProps<ContentSearchProps>(),
+withDefaults(defineProps<ContentSearchProps>(),
 	{
 		groups: () => [],
 	},
@@ -82,5 +82,5 @@ const props = withDefaults(defineProps<ContentSearchProps>(),
 
 defineSlots<ContentSearchSlots>();
 
-const ui = theme(props.ui);
+const theme = baseTheme();
 </script>

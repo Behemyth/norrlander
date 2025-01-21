@@ -5,6 +5,7 @@
 			color="neutral"
 			variant="ghost"
 			aria-label="Color Toggle"
+			size="lg"
 			@click="onClick"
 		/>
 		<template #fallback>
