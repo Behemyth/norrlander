@@ -1,5 +1,5 @@
 <template>
-	<UContainer class="flex flex-col">
+	<UContainer class="flex flex-col max-w-4xl">
 		<div class="flex grow">
 			<slot />
 		</div>
