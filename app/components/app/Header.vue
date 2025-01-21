@@ -5,6 +5,7 @@
 			title: 'text-nowrap font-mono text-2xl md:text-3xl',
 		}"
 		:content-toggle="{ icon: 'i-mdi-hamburger-menu', size: 'lg' }"
+		class="mb-2"
 	>
 		<UNavigationMenu
 			color="neutral"

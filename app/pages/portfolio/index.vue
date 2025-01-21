@@ -1,6 +1,9 @@
 <template>
 	<div>
-		<UBreadcrumb :items="items" />
+		<UBreadcrumb
+			:items="items"
+			class="m-2"
+		/>
 	</div>
 </template>
 
@@ -10,6 +13,10 @@ useSeoMeta({
 });
 
 const items = ref([
+	{
+		label: 'Home',
+		to: '/',
+	},
 	{
 		label: 'Portfolio',
 		to: '/portfolio',

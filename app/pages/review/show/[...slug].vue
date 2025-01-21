@@ -1,6 +1,9 @@
 <template>
 	<div>
-		<UBreadcrumb :items="items" />
+		<UBreadcrumb
+			:items="items"
+			class="m-2"
+		/>
 		<ReviewHeader
 			:title="page.tmdbData.name"
 			:backdrop="page.tmdbData.backdrop_path"
@@ -32,6 +35,10 @@ useSeoMeta({
 });
 
 const items = ref([
+	{
+		label: 'Home',
+		to: '/',
+	},
 	{
 		label: 'Reviews',
 		to: '/review',

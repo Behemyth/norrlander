@@ -1,6 +1,9 @@
 <template>
 	<div>
-		<UBreadcrumb :items="items" />
+		<UBreadcrumb
+			:items="items"
+			class="m-2"
+		/>
 		<article>
 			<ContentRenderer
 				:value="page"
@@ -20,6 +23,10 @@ useSeoMeta({
 });
 
 const items = ref([
+	{
+		label: 'Home',
+		to: '/',
+	},
 	{
 		label: 'Blog',
 		to: '/blog',
