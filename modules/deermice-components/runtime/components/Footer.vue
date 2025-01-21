@@ -53,8 +53,6 @@ export interface FooterSlots {
 </script>
 
 <script setup lang="ts">
-const slots = useSlots();
-
 defineProps<FooterProps>();
 
 defineSlots<FooterSlots>();
