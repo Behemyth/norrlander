@@ -3,9 +3,6 @@
 		<UContainer :class="theme.top({ class: ui?.top })">
 			<slot name="top" />
 		</UContainer>
-		<UContainer>
-			<USeparator v-if="!!slots.top" />
-		</UContainer>
 		<UContainer :class="theme.container({ class: ui?.container })">
 			<div :class="theme.left()">
 				<slot name="left" />
@@ -18,9 +15,6 @@
 			<div :class="theme.right({ class: ui?.right })">
 				<slot name="right" />
 			</div>
-		</UContainer>
-		<UContainer>
-			<USeparator v-if="!!slots.bottom" />
 		</UContainer>
 		<UContainer :class="theme.bottom({ class: ui?.bottom })">
 			<slot name="bottom" />
@@ -37,7 +31,7 @@ const baseTheme = tv({
 		root: '',
 		top: 'py-4',
 		bottom: 'py-4',
-		container: 'py-4 flex flex-wrap items-center justify-between gap-x-3',
+		container: 'py-4 flex flex-wrap items-center justify-between gap-x-3 border-y border-[var(--ui-border)]',
 		left: 'flex flex-1 items-center justify-center gap-x-1.5 order-1',
 		center: 'flex items-center justify-center order-2',
 		right: 'flex flex-1 items-center justify-center gap-x-1.5 order-3',
