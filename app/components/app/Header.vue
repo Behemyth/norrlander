@@ -2,9 +2,9 @@
 	<DHeader
 		title="The Norlander"
 		:ui="{
-			title: 'text-nowrap font-mono',
+			title: 'text-nowrap font-mono text-2xl md:text-3xl',
 		}"
-		:content-toggle="{ icon: 'i-mdi-hamburger-menu' }"
+		:content-toggle="{ icon: 'i-mdi-hamburger-menu', size: 'lg' }"
 	>
 		<UNavigationMenu
 			color="neutral"

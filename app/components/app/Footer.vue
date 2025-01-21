@@ -28,6 +28,7 @@
 				:to="social.link"
 				target="_blank"
 				:title="social.name"
+				size="lg"
 			/>
 		</template>
 
@@ -50,22 +51,18 @@
 </template>
 
 <script setup lang="ts">
-const i18n = useI18n();
+const { t } = useI18n();
 
-const contactLocalized = computed(() => {
-	return i18n.t('Contact');
-});
-
-const items = [
+const items = computed(() => [
 	{
 		label: 'About',
 		to: '/about',
 	},
 	{
-		label: contactLocalized.value,
+		label: t('Contact'),
 		to: '/contact',
 	},
-];
+]);
 
 const socials = await queryCollection('socials').all();
 </script>
