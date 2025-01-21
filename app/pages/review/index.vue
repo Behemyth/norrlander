@@ -1,20 +1,20 @@
 <template>
 	<div>
 		<UBreadcrumb :items="items" />
-		<h2 class="text-2xl font-bold">
+		<ProseH2 class="text-2xl font-bold">
 			Recent Movie Reviews
-		</h2>
-		<div class="grid grid-flow-row gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+		</ProseH2>
+		<div class="grid grid-flow-row gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
 			<ReviewMovieCard
 				v-for="movie in movies"
 				:key="movie.id"
 				:movie="movie"
 			/>
 		</div>
-		<h2 class="text-2xl font-bold">
+		<ProseH2 class="text-2xl font-bold">
 			Recent Show Reviews
-		</h2>
-		<div class="grid grid-flow-row gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+		</ProseH2>
+		<div class="grid grid-flow-row gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
 			<ReviewShowCard
 				v-for="show in shows"
 				:key="show.id"
