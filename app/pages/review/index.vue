@@ -1,6 +1,9 @@
 <template>
 	<div>
-		<UBreadcrumb :items="items" />
+		<UBreadcrumb
+			:items="items"
+			class="m-2"
+		/>
 		<ProseH2 class="text-2xl font-bold">
 			Recent Movie Reviews
 		</ProseH2>
@@ -36,6 +39,10 @@ useSeoMeta({
 });
 
 const items = ref([
+	{
+		label: 'Home',
+		to: '/',
+	},
 	{
 		label: 'Reviews',
 		to: '/review',
