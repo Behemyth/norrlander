@@ -37,9 +37,6 @@ export default defineNuxtConfig({
 					},
 				},
 			},
-			pathMeta: {
-
-			},
 		},
 	},
 
@@ -61,7 +58,7 @@ export default defineNuxtConfig({
 		compatibilityVersion: 4,
 	},
 
-	compatibilityDate: '2024-11-04',
+	compatibilityDate: '2025-01-21',
 
 	nitro: {
 		// static: true, // Not set, to support 'dev' server. Default is `static: true` for 'start' and 'generate' commands
