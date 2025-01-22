@@ -1,6 +1,7 @@
 <template>
 	<div>
 		<slot name="top" />
+		<p>{{ title }}</p>
 		<slot name="bottom" />
 	</div>
 </template>

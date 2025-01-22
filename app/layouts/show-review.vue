@@ -1,12 +1,18 @@
 <template>
-	<UContainer class="flex flex-col max-w-4xl">
-		<div class="flex grow">
-			<slot />
-		</div>
-		<USeparator class="my-2" />
-		<ReviewDiscussion
-			category="Shows"
-		/>
+	<UContainer class="flex">
+		<DPage>
+			<div class="flex grow">
+				<slot />
+			</div>
+			<USeparator class="my-2" />
+			<ReviewDiscussion
+				category="Shows"
+			/>
+
+			<template #right>
+				<DPageAside />
+			</template>
+		</DPage>
 	</UContainer>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<UContainer>
 		<UBreadcrumb
 			:items="items"
 			class="m-2"
@@ -18,7 +18,7 @@
 			/>
 		</article>
 		<ReviewFooter />
-	</div>
+	</UContainer>
 </template>
 
 <script lang="ts" setup>
