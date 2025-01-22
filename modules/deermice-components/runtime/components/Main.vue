@@ -1,5 +1,5 @@
 <template>
-	<main :class="ui.root()">
+	<main :class="baseTheme()">
 		<slot />
 	</main>
 </template>
@@ -7,10 +7,8 @@
 <script lang="ts">
 import { tv } from 'tailwind-variants';
 
-const theme = tv({
-	slots: {
-		root: '',
-	},
+const baseTheme = tv({
+	base: 'flex grow',
 });
 
 export interface MainSlots {
@@ -20,6 +18,4 @@ export interface MainSlots {
 
 <script setup lang="ts">
 defineSlots<MainSlots>();
-
-const ui = theme();
 </script>

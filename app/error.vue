@@ -1,9 +1,9 @@
 <template>
-	<UApp>
+	<DApp>
 		<AppHeader />
 		<DError :error="error" />
 		<AppFooter />
-	</UApp>
+	</DApp>
 </template>
 
 <script setup lang="ts">
