@@ -18,9 +18,9 @@ const baseTheme = tv({
 });
 
 // TODO: Forward UApp props to UApp
-export interface AppProps {
+// export interface AppProps {
 
-}
+// }
 
 export interface AppSlots {
 	default(props?: object): any;
@@ -29,7 +29,7 @@ export interface AppSlots {
 
 <script setup lang="ts">
 const { locale } = useI18n();
-defineProps<AppProps>();
+// defineProps<AppProps>();
 defineSlots<AppSlots>();
 </script>
 
