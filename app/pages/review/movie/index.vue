@@ -4,13 +4,7 @@
 			:items="items"
 			class="m-2"
 		/>
-		<div class="grid grid-flow-row gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
-			<LazyReviewMovieCard
-				v-for="movie in movies"
-				:key="movie.id"
-				:movie="movie"
-			/>
-		</div>
+		<ReviewMovieCardGrid :movies="movies" />
 	</div>
 </template>
 
