@@ -31,10 +31,10 @@ const baseTheme = tv({
 		root: '',
 		top: 'py-4',
 		bottom: 'py-4',
-		container: 'py-4 flex flex-wrap items-center justify-between gap-x-3 border-y border-[var(--ui-border)]',
-		left: 'flex flex-1 items-center justify-center gap-x-1.5 order-1',
-		center: 'flex items-center justify-center order-2',
-		right: 'flex flex-1 items-center justify-center gap-x-1.5 order-3',
+		container: 'py-4 flex flex-wrap items-center justify-around gap-x-3 border-y border-[var(--ui-border)]',
+		left: 'flex items-center gap-x-1.5 order-1',
+		center: 'flex items-center order-2',
+		right: 'flex items-center gap-x-1.5 order-3',
 	},
 });
 
