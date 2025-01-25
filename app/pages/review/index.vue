@@ -5,21 +5,8 @@
 			class="m-2"
 		/>
 
-		<ProseH2>
-			What Makes a Movie 'Good'?
-		</ProseH2>
-
 		<ContentRenderer
-			:value="goodPage"
-			:prose="true"
-		/>
-
-		<ProseH2>
-			My Review Process
-		</ProseH2>
-
-		<ContentRenderer
-			:value="processPage"
+			:value="page"
 			:prose="true"
 		/>
 
@@ -44,8 +31,7 @@ const movies = await queryCollection('movie')
 const shows = await queryCollection('show')
 	.order('date_published', 'DESC').limit(6).all();
 
-const goodPage = await queryCollection('page').where('title', '=', 'Good').first();
-const processPage = await queryCollection('page').where('title', '=', 'Process').first();
+const page = await queryCollection('page').where('title', '=', 'Review').first();
 
 useSeoMeta({
 	title: 'Reviews',
