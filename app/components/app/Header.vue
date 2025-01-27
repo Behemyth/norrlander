@@ -8,6 +8,7 @@
 		class="mb-2"
 	>
 		<UNavigationMenu
+			content-orientation="vertical"
 			color="neutral"
 			variant="link"
 			:items="items"
