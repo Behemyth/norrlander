@@ -4,26 +4,23 @@
 			:items="items"
 			class="m-2"
 		/>
-		<ProseH2 class="text-2xl font-bold">
+
+		<ContentRenderer
+			:value="page"
+			:prose="true"
+		/>
+
+		<ProseH2>
 			Recent Movie Reviews
 		</ProseH2>
-		<div class="grid grid-flow-row gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
-			<ReviewMovieCard
-				v-for="movie in movies"
-				:key="movie.id"
-				:movie="movie"
-			/>
-		</div>
-		<ProseH2 class="text-2xl font-bold">
+
+		<ReviewMovieCardGrid :movies="movies" />
+
+		<ProseH2>
 			Recent Show Reviews
 		</ProseH2>
-		<div class="grid grid-flow-row gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
-			<ReviewShowCard
-				v-for="show in shows"
-				:key="show.id"
-				:show="show"
-			/>
-		</div>
+
+		<ReviewShowCardGrid :shows="shows" />
 	</div>
 </template>
 
@@ -33,6 +30,8 @@ const movies = await queryCollection('movie')
 
 const shows = await queryCollection('show')
 	.order('date_published', 'DESC').limit(6).all();
+
+const page = await queryCollection('page').where('title', '=', 'Review').first();
 
 useSeoMeta({
 	title: 'Reviews',

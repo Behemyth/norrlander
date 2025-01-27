@@ -18,6 +18,10 @@
 			/>
 		</article>
 		<ReviewFooter />
+		<USeparator class="my-2" />
+		<ReviewDiscussion
+			category="Shows"
+		/>
 	</div>
 </template>
 
@@ -27,7 +31,7 @@ const route = useRoute();
 const page = await queryCollection('show').path(route.path).first();
 
 definePageMeta({
-	layout: 'show-review',
+	layout: 'content',
 });
 
 useSeoMeta({

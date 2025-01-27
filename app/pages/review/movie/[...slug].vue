@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<UContainer>
 		<UBreadcrumb
 			:items="items"
 			class="m-2"
@@ -18,7 +18,11 @@
 			/>
 		</article>
 		<ReviewFooter />
-	</div>
+		<USeparator class="my-2" />
+		<ReviewDiscussion
+			category="Movies"
+		/>
+	</UContainer>
 </template>
 
 <script lang="ts" setup>
@@ -27,7 +31,7 @@ const route = useRoute();
 const page = await queryCollection('movie').path(route.path).first();
 
 definePageMeta({
-	layout: 'movie-review',
+	layout: 'content',
 });
 
 useSeoMeta({

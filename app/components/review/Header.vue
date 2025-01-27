@@ -34,7 +34,9 @@
 	<NuxtPicture
 		:src="`tmdb/${backdrop}`"
 		:alt="title"
-		class="w-full h-64 object-cover"
+		:img-attrs="{
+			class: 'w-full',
+		}"
 	/>
 </template>
 

@@ -1,25 +1,16 @@
 <template>
-	<UApp
-		:locale="locales[locale]"
-		:scroll-body="false"
-	>
-		<div class="flex flex-col min-h-dvh">
-			<AppHeader class="flex-none" />
-			<DMain class="flex grow">
-				<NuxtLayout class="grow">
-					<NuxtPage />
-				</NuxtLayout>
-			</DMain>
-			<AppFooter class="flex-none" />
-		</div>
-	</UApp>
+	<DApp>
+		<AppHeader class="flex-none" />
+		<DMain>
+			<NuxtLayout class="grow">
+				<NuxtPage />
+			</NuxtLayout>
+		</DMain>
+		<AppFooter class="flex-none" />
+	</DApp>
 </template>
 
 <script setup lang="ts">
-import * as locales from '@nuxt/ui/locale';
-
-const { locale } = useI18n();
-
 // const links
 // 	= await queryCollection().path('/').where({ layout: 'feed' }).find().then((value) => {
 // 		return value.map((content) => {
@@ -39,19 +30,14 @@ const { locale } = useI18n();
 </script>
 
 <style>
-	@import "tailwindcss";
-	@import "@nuxt/ui";
+@import "tailwindcss";
+@import "@nuxt/ui";
 
-	@theme {
-		--font-sans: Lato, sans-serif;
-	}
+@theme {
+	--font-sans: Lato, sans-serif;
+}
 
-	:root {
-		--ui-header-height: calc(var(--spacing) * 16);
-	}
-
-	/* Prevents content shifting. Note: Currently not supported on Safari */
-	html {
-		scrollbar-gutter: stable;
-	}
+:root {
+	--ui-header-height: calc(var(--spacing) * 16);
+}
 </style>

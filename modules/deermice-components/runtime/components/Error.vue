@@ -20,7 +20,7 @@ import type { NuxtError } from '#app';
 
 const theme = tv({
 	slots: {
-		root: 'min-h-[calc(100vh-var(--ui-header-height))] flex flex-col items-center justify-center text-center',
+		root: 'flex flex-col grow items-center justify-center text-center',
 		statusCode: 'text-base font-semibold text-[var(--ui-primary)]',
 		statusMessage: 'mt-2 text-4xl sm:text-5xl font-bold text-[var(--ui-text-highlighted)] text-balance',
 	},

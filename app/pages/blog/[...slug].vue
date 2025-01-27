@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<UContainer>
 		<UBreadcrumb
 			:items="items"
 			class="m-2"
@@ -10,7 +10,7 @@
 				:prose="true"
 			/>
 		</article>
-	</div>
+	</UContainer>
 </template>
 
 <script lang="ts" setup>

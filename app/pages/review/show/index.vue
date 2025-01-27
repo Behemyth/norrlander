@@ -4,13 +4,7 @@
 			:items="items"
 			class="m-2"
 		/>
-		<div class="grid grid-flow-row gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
-			<LazyReviewShowCard
-				v-for="show in shows"
-				:key="show.id"
-				:show="show"
-			/>
-		</div>
+		<ReviewShowCardGrid :shows="shows" />
 	</div>
 </template>
 
