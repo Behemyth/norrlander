@@ -1,6 +1,8 @@
 <template>
 	<nav :class="theme.root({ class: ui?.root })">
-		<p>{{ title }}</p>
+		<p :class="theme.title({ class: ui?.title })">
+			{{ toc.title }}
+		</p>
 		<div :class="theme.container({ class: ui?.container })">
 			<ul>
 				<li
@@ -35,13 +37,11 @@ const baseTheme = tv({
 		 	overflow-y-auto max-h-[calc(100vh-var(--ui-header-height))]`,
 		container: `pt-4 sm:pt-6 pb-2.5 sm:pb-4.5 lg:py-8 border-b
 			border-dashed border-[var(--ui-border)] lg:border-0 flex flex-col`,
+		title: 'truncate',
 	},
 });
 
 export interface ContentSectionListProps {
-
-	title?: string;
-
 	toc: Toc;
 
 	// The UI configuration overrides.

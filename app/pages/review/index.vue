@@ -61,8 +61,15 @@ const items = [
 
 const toc: Toc = {
 	title: 'Table of Contents',
-	links: [],
 	depth: 0,
 	searchDepth: 0,
+	links: [
+		{
+			id: 'Section 1',
+			text: 'Section 1',
+			depth: 1,
+			children: [],
+		},
+	],
 };
 </script>
