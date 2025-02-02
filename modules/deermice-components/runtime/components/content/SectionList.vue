@@ -4,20 +4,24 @@
 			{{ toc.title }}
 		</ProseH4>
 		<nav :class="theme.container({ class: ui?.container })">
-			<ul>
+			<ul :class="theme.list({ class: ui?.list })">
 				<li
 					v-for="section in toc.links"
 					:key="section.id"
 					@click="onClick(section.id)"
 				>
-					<ProseH4>{{ section.text }}</ProseH4>
+					<ProseH4 :class="theme.link({ class: ui?.link })">
+						{{ section.text }}
+					</ProseH4>
 					<ul>
 						<li
 							v-for="link in section.children"
 							:key="link.id"
 							@click.stop="onClick(link.id)"
 						>
-							<ProseH4>{{ link.text }}</ProseH4>
+							<ProseH4 :class="theme.link({ class: ui?.link })">
+								{{ link.text }}
+							</ProseH4>
 						</li>
 					</ul>
 				</li>
@@ -34,12 +38,48 @@ import type { Toc } from '@nuxt/content';
 
 const baseTheme = tv({
 	slots: {
-		root: `sticky top-[calc(var(--ui-header-height)+1px)]
-			bg-[var(--ui-bg)]/75 backdrop-blur -mx-4 px-4 sm:px-6 sm:-mx-6
-		 	overflow-y-auto max-h-[calc(100vh-var(--ui-header-height))]`,
+		root: '',
 		container: `pt-4 sm:pt-6 pb-2.5 sm:pb-4.5 lg:py-8 border-b
 			border-dashed border-[var(--ui-border)] lg:border-0 flex flex-col`,
 		title: 'truncate',
+		list: '',
+		listWithChildren: 'ms-3',
+		item: '',
+		itemWithChildren: '',
+		link: 'group text-sm block truncate focus-visible:outline-[var(--ui-primary)] py-1',
+	},
+	variants: {
+		color: {
+			primary: '',
+			neutral: '',
+		},
+		active: {
+			false: {
+				link: [
+					'text-[var(--ui-text-muted)] hover:text-[var(--ui-text)]',
+					'transition-colors',
+				],
+			},
+		},
+	},
+	compoundVariants: [
+		{
+			color: 'primary',
+			active: true,
+			class: {
+				link: 'text-[var(--ui-primary)]',
+			},
+		},
+		{
+			color: 'neutral',
+			active: true,
+			class: {
+				link: 'text-[var(--ui-text-highlighted)]',
+			},
+		},
+	],
+	defaultVariants: {
+		color: 'primary',
 	},
 });
 
