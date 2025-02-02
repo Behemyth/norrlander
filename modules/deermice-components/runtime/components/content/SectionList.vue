@@ -15,6 +15,7 @@
 						<li
 							v-for="link in section.children"
 							:key="link.id"
+							@click.stop="onClick(link.id)"
 						>
 							<ProseH4>{{ link.text }}</ProseH4>
 						</li>

@@ -14,13 +14,13 @@
 				:prose="true"
 			/>
 
-			<ProseH2>
+			<ProseH2 :id="recentMoviesID">
 				{{ recentMoviesText }}
 			</ProseH2>
 
 			<ReviewMovieCardGrid :movies="movies" />
 
-			<ProseH2>
+			<ProseH2 :id="recentShowsID">
 				{{ recentShowsText }}
 			</ProseH2>
 
@@ -62,8 +62,6 @@ const items = [
 // We have to manually create some of the ToC
 const toc = computed(() => {
 	const contentToC = page.body.toc!;
-
-	console.log('contentToC', contentToC);
 
 	contentToC.title = 'Reviews';
 
