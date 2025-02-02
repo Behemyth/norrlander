@@ -2,25 +2,19 @@
 export default defineNuxtConfig({
 
 	modules: [
-		'@nuxt/devtools',
 		'@nuxtjs/sitemap', // nuxtjs/sitemap should be loaded before 'nuxt/content'
-		'@nuxt/content',
+		'@nuxt/content', // nuxtjs/content should be loaded after 'nuxt/ui' or 'deermice-ui'
 		'@nuxt/image',
 		'@nuxtjs/i18n',
-		'@nuxt/ui',
 		'@nuxt/eslint',
 	],
+
 	ssr: true,
-	devtools: {
-		enabled: true,
-	},
+
 	site: {
 		url: 'https://ashernorland.com',
 	},
 
-	// https://color-mode.nuxtjs.org
-	colorMode: {
-	},
 	// https://content.nuxtjs.org
 	content: {
 		build: {
@@ -81,11 +75,6 @@ export default defineNuxtConfig({
 			},
 		},
 	},
-	fonts: {
-		experimental: {
-			processCSSVariables: true,
-		},
-	},
 
 	i18n: {
 		locales: [
@@ -106,6 +95,7 @@ export default defineNuxtConfig({
 		defaultLocale: 'en',
 		vueI18n: './i18n/i18n.config.ts',
 	},
+
 	// https://image.nuxt.com/
 	image: {
 		format: ['webp'],

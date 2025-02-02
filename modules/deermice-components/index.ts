@@ -1,4 +1,4 @@
-import { defineNuxtModule, createResolver, installModule, addComponentsDir } from '@nuxt/kit';
+import { defineNuxtModule, createResolver, installModule, addImportsDir, addComponentsDir } from '@nuxt/kit';
 
 // Module options TypeScript interface definition
 export interface ModuleOptions {
@@ -20,17 +20,20 @@ export default defineNuxtModule<ModuleOptions>({
 		nuxt.options.alias['#deermice'] = resolve('./runtime');
 
 		// Modules
-		await installModule('@nuxt/ui'); // nuxtjs/ui should be loaded before 'nuxt/icon'
-		await installModule('@nuxt/icon');
-		await installModule('@nuxt/fonts');
+		await installModule('@nuxt/ui');
+		await installModule('@nuxtjs/mdc', { components: { prose: true } }); // nuxt/icon should be loaded after 'nuxt/ui'
+		await installModule('@nuxt/icon'); // nuxt/icon should be loaded after 'nuxt/ui'
+		await installModule('@nuxt/fonts', { experimental: { processCSSVariables: true } });
 		await installModule('@nuxtjs/color-mode', { classSuffix: '' });
 
 		// Components
-		await addComponentsDir({
+		addComponentsDir({
 			path: resolve('./runtime/components'),
 			pathPrefix: true,
 			prefix: options.prefix,
 			global: true,
 		});
+
+		addImportsDir(resolve('./runtime/composables'));
 	},
 });

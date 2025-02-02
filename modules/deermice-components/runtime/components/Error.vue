@@ -1,11 +1,11 @@
 <template>
 	<main :class="ui.root()">
-		<h3 :class="ui.statusCode()">
+		<ProseH3 :class="ui.statusCode()">
 			{{ error.statusCode }}
-		</h3>
-		<h1 :class="ui.statusMessage()">
+		</ProseH3>
+		<ProseH1 :class="ui.statusMessage()">
 			{{ error.message }}
-		</h1>
+		</ProseH1>
 		<UButton
 			label="Home"
 			:to="redirect"

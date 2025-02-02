@@ -25,7 +25,7 @@ const i18n = useI18n();
 
 const contactLoc = computed(() => i18n.t('contact'));
 
-useSeoMeta({
+useHead({
 	title: contactLoc,
 });
 </script>

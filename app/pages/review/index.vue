@@ -11,7 +11,6 @@
 
 			<ContentRenderer
 				:value="page"
-				:prose="true"
 			/>
 
 			<ProseH2 :id="recentMoviesID">
