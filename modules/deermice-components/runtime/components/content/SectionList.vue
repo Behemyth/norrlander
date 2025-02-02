@@ -1,28 +1,29 @@
 <template>
-	<nav :class="theme.root({ class: ui?.root })">
-		<p :class="theme.title({ class: ui?.title })">
+	<div :class="theme.root({ class: ui?.root })">
+		<ProseH4 :class="theme.title({ class: ui?.title })">
 			{{ toc.title }}
-		</p>
-		<div :class="theme.container({ class: ui?.container })">
+		</ProseH4>
+		<nav :class="theme.container({ class: ui?.container })">
 			<ul>
 				<li
 					v-for="section in toc.links"
 					:key="section.id"
+					@click="onClick(section.id)"
 				>
-					<p>{{ section.id }}</p>
+					<ProseH4>{{ section.text }}</ProseH4>
 					<ul>
 						<li
 							v-for="link in section.children"
 							:key="link.id"
 						>
-							<p>{{ link.id }}</p>
+							<ProseH4>{{ link.text }}</ProseH4>
 						</li>
 					</ul>
 				</li>
 			</ul>
-		</div>
+		</nav>
 		<slot />
-	</nav>
+	</div>
 </template>
 
 <script lang="ts">
@@ -53,6 +54,17 @@ export interface ContentSectionListSlots {
 </script>
 
 <script setup lang="ts">
+const router = useRouter();
+
+const onClick = (id: string) => {
+	console.log('onClick', id);
+	const element = document.getElementById(id);
+	if (element) {
+		router.push({ hash: `#${id}` });
+		element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+	}
+};
+
 defineProps<ContentSectionListProps>();
 defineSlots<ContentSectionListSlots>();
 
