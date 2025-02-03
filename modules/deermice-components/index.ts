@@ -21,7 +21,6 @@ export default defineNuxtModule<ModuleOptions>({
 
 		// Modules
 		await installModule('@nuxt/ui');
-		await installModule('@nuxtjs/mdc', { components: { prose: true } }); // nuxt/icon should be loaded after 'nuxt/ui'
 		await installModule('@nuxt/icon'); // nuxt/icon should be loaded after 'nuxt/ui'
 		await installModule('@nuxt/fonts', { experimental: { processCSSVariables: true } });
 		await installModule('@nuxtjs/color-mode', { classSuffix: '' });
