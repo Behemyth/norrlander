@@ -33,6 +33,7 @@ export default defineNuxtModule<ModuleOptions>({
 			global: true,
 		});
 
+		// Composables
 		addImportsDir(resolve('./runtime/composables'));
 	},
 });
