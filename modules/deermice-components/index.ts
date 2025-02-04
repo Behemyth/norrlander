@@ -30,6 +30,13 @@ export default defineNuxtModule<ModuleOptions>({
 			global: true,
 		});
 
+		// Prose Overrides
+		addComponentsDir({
+			path: resolve('./runtime/prose'),
+			pathPrefix: false,
+			global: true,
+		});
+
 		// Composables
 		addImportsDir(resolve('./runtime/composables'));
 	},
