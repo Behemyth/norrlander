@@ -4,28 +4,28 @@
 			{{ toc.title }}
 		</ProseH4>
 		<nav :class="theme.container({ class: ui?.container })">
-			<ul :class="theme.list({ class: ui?.list })">
-				<li
+			<ProseUl :class="theme.list({ class: ui?.list })">
+				<ProseLi
 					v-for="section in toc.links"
 					:key="section.id"
 					@click="onClick(section.id)"
 				>
-					<ProseH4 :class="theme.link({ class: ui?.link })">
+					<ProseP :class="theme.link({ class: ui?.link })">
 						{{ section.text }}
-					</ProseH4>
-					<ul>
-						<li
+					</ProseP>
+					<ProseUl>
+						<ProseLi
 							v-for="link in section.children"
 							:key="link.id"
 							@click.stop="onClick(link.id)"
 						>
-							<ProseH4 :class="theme.link({ class: ui?.link })">
+							<ProseP :class="theme.link({ class: ui?.link })">
 								{{ link.text }}
-							</ProseH4>
-						</li>
-					</ul>
-				</li>
-			</ul>
+							</ProseP>
+						</ProseLi>
+					</ProseUl>
+				</ProseLi>
+			</ProseUl>
 		</nav>
 		<slot />
 	</div>
@@ -38,9 +38,15 @@ import type { Toc } from '@nuxt/content';
 
 const baseTheme = tv({
 	slots: {
-		root: '',
-		container: `pt-4 sm:pt-6 pb-2.5 sm:pb-4.5 lg:py-8 border-b
-			border-dashed border-[var(--ui-border)] lg:border-0 flex flex-col`,
+		root: [
+			'sticky top-[calc(var(--ui-header-height)+1px)] bg-[var(--ui-bg)]/75',
+			'backdrop-blur px-4 sm:px-6 overflow-y-auto',
+			'max-h-[calc(100vh-var(--ui-header-height))]',
+		],
+		container: [
+			'pt-4 sm:pt-6 pb-2.5 sm:pb-4.5 lg:py-8 border-b',
+			'border-dashed border-[var(--ui-border)] lg:border-0 flex flex-col',
+		],
 		title: 'truncate',
 		list: '',
 		listWithChildren: 'ms-3',
