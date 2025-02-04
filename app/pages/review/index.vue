@@ -1,30 +1,25 @@
 <template>
 	<div>
-		<NuxtLayout
-			name="content"
-			:toc="toc"
-		>
-			<UBreadcrumb
-				:items="items"
-				class="m-2"
-			/>
+		<UBreadcrumb
+			:items="items"
+			class="m-2"
+		/>
 
-			<ContentRenderer
-				:value="page"
-			/>
+		<ContentRenderer
+			:value="page"
+		/>
 
-			<ProseH2 :id="recentMoviesID">
-				{{ recentMoviesText }}
-			</ProseH2>
+		<ProseH2 :id="recentMoviesID">
+			{{ recentMoviesText }}
+		</ProseH2>
 
-			<ReviewMovieCardGrid :movies="movies" />
+		<ReviewMovieCardGrid :movies="movies" />
 
-			<ProseH2 :id="recentShowsID">
-				{{ recentShowsText }}
-			</ProseH2>
+		<ProseH2 :id="recentShowsID">
+			{{ recentShowsText }}
+		</ProseH2>
 
-			<ReviewShowCardGrid :shows="shows" />
-		</NuxtLayout>
+		<ReviewShowCardGrid :shows="shows" />
 	</div>
 </template>
 
@@ -40,7 +35,7 @@ const shows = await queryCollection('show')
 const page = await queryCollection('page').where('title', '=', 'Review').first();
 
 definePageMeta({
-	layout: false,
+	layout: 'content',
 });
 
 useSeoMeta({
