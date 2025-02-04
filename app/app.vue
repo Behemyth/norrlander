@@ -33,6 +33,9 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 
+/* Used to apply tailwind classes to content files */
+@source "../content/**/*";
+
 @theme {
 	--font-sans: Lato, sans-serif;
 }
