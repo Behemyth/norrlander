@@ -7,7 +7,7 @@
 
 			<template #left>
 				<DPageAside>
-					<DContentSectionList :toc="$attrs.toc as Toc" />
+					<DContentSectionList :toc="page.body.toc!" />
 				</DPageAside>
 			</template>
 		</DPage>
@@ -15,5 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Toc } from '@nuxt/content';
+const route = useRoute();
+
+const page = await queryCollection('page').path(route.path).first();
 </script>

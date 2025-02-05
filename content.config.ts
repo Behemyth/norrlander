@@ -51,16 +51,7 @@ const SocialSchema = z.object({
 
 export default defineContentConfig({
 	collections: {
-		blog: defineCollection({
-			type: 'page',
-			source: 'blog/*.md',
-			schema: BlogSchema,
-		}),
-		photography: defineCollection({
-			type: 'page',
-			source: 'photography/*.md',
-			schema: PhotographySchema,
-		}),
+
 		contact: defineCollection({
 			type: 'data',
 			source: 'data/contact/*.json',
@@ -71,29 +62,67 @@ export default defineContentConfig({
 			source: 'data/socials/*.json',
 			schema: SocialSchema,
 		}),
+		blog: defineCollection({
+			type: 'page',
+			source: {
+				include: 'blog/*.md',
+				exclude: ['blog/index.md'],
+			},
+			schema: BlogSchema,
+		}),
+		photography: defineCollection({
+			type: 'page',
+			source: {
+				include: 'photography/*.md',
+				exclude: ['photography/index.md'],
+			},
+			schema: PhotographySchema,
+		}),
 		career: defineCollection({
 			type: 'page',
-			source: 'portfolio/career/**/*.md',
+			source: {
+				include: 'portfolio/career/*.md',
+				exclude: ['portfolio/career/index.md'],
+			},
 			schema: JobSchema,
 		}),
 		project: defineCollection({
 			type: 'page',
-			source: 'portfolio/project/**/*.md',
+			source: {
+				include: 'portfolio/project/*.md',
+				exclude: ['portfolio/project/index.md'],
+			},
 			schema: ProjectSchema,
 		}),
 		movie: defineCollection({
 			type: 'page',
-			source: 'review/movie/**/*.md',
+			source: {
+				include: 'review/movie/*.md',
+				exclude: ['review/movie/index.md'],
+			},
 			schema: ReviewMovieSchema,
 		}),
 		show: defineCollection({
 			type: 'page',
-			source: 'review/show/**/*.md',
+			source: {
+				include: 'review/show/*.md',
+				exclude: ['review/show/index.md'],
+			},
 			schema: ReviewShowSchema,
 		}),
 		page: defineCollection({
 			type: 'page',
-			source: 'page/**/*.md',
+			source: [
+				{
+					include: '**/index.md',
+				},
+				{
+					include: 'about.md',
+				},
+				{
+					include: 'contact.md',
+				},
+			],
 		}),
 	},
 });

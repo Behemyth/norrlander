@@ -29,10 +29,6 @@ const route = useRoute();
 
 const page = await queryCollection('show').path(route.path).first();
 
-definePageMeta({
-	layout: 'content',
-});
-
 useSeoMeta({
 	title: page.tmdbData.name,
 });
