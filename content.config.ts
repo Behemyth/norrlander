@@ -110,7 +110,7 @@ export default defineContentConfig({
 			},
 			schema: ReviewShowSchema,
 		}),
-		page: defineCollection({
+		content: defineCollection({
 			type: 'page',
 			source: [
 				{
