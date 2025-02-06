@@ -7,7 +7,10 @@
 
 			<template #left>
 				<DPageAside>
-					<DContentSectionList :toc="page.body.toc!" />
+					<DContentSectionList
+						v-if="page"
+						:toc="page.body.toc!"
+					/>
 				</DPageAside>
 			</template>
 		</DPage>
@@ -17,5 +20,7 @@
 <script setup lang="ts">
 const route = useRoute();
 
-const page = await queryCollection('content').path(route.path).first();
+const { data: page } = await useAsyncData(route.path, () => {
+	return queryCollection('content').path(route.path).first();
+});
 </script>

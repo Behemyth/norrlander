@@ -1,5 +1,6 @@
 <template>
 	<ContentRenderer
+		v-if="page"
 		:value="page"
 	/>
 </template>
@@ -7,7 +8,9 @@
 <script lang="ts" setup>
 const route = useRoute();
 
-const page = await queryCollection('content').path(route.path).first();
+const { data: page } = await useAsyncData(route.path, () => {
+	return queryCollection('content').path(route.path).first();
+});
 
 definePageMeta({
 	layout: 'content',
