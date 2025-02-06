@@ -49,6 +49,10 @@ const SocialSchema = z.object({
 	link: z.string().url(),
 });
 
+const ContentSchema = z.object({
+	title: z.string(),
+});
+
 export default defineContentConfig({
 	collections: {
 
@@ -123,6 +127,7 @@ export default defineContentConfig({
 					include: 'contact.md',
 				},
 			],
+			schema: ContentSchema,
 		}),
 	},
 });

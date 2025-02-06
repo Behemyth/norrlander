@@ -1,14 +1,23 @@
 <template>
-	<ContentRenderer
-		v-if="page"
-		:value="page"
-	/>
+	<DPage v-if="page">
+		<ContentRenderer
+			:value="page.body"
+		/>
+
+		<template #left>
+			<DPageAside>
+				<DContentSectionList
+					:toc="page.body.toc!"
+				/>
+			</DPageAside>
+		</template>
+	</DPage>
 </template>
 
 <script lang="ts" setup>
 const route = useRoute();
 
-const { data: page } = await useAsyncData(route.path, () => {
+const { data: page } = await useAsyncData(() => {
 	return queryCollection('content').path(route.path).first();
 });
 
@@ -17,6 +26,7 @@ definePageMeta({
 });
 
 useSeoMeta({
-	title: page.title,
+	title: page.value?.title,
+	description: page.value?.description,
 });
 </script>
