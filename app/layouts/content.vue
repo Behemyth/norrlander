@@ -17,5 +17,5 @@
 <script setup lang="ts">
 const route = useRoute();
 
-const page = await queryCollection('page').path(route.path).first();
+const page = await queryCollection('content').path(route.path).first();
 </script>

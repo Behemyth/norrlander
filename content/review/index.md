@@ -19,3 +19,13 @@ TODO
 #### Entertainment Rating
 
 TODO
+
+## Recent Movie Reviews
+
+::RecentMovies{:count=6}
+::
+
+## Recent Show Reviews
+
+::RecentShows{:count=6}
+::
