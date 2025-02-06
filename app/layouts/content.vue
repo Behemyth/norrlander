@@ -1,6 +1,8 @@
 <template>
 	<UContainer>
-		<slot />
+		<DPage>
+			<slot />
+		</DPage>
 	</UContainer>
 </template>
 

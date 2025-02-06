@@ -68,65 +68,47 @@ export default defineContentConfig({
 		}),
 		blog: defineCollection({
 			type: 'page',
-			source: {
-				include: 'blog/*.md',
-				exclude: ['blog/index.md'],
-			},
+			source: 'blog/*.md',
 			schema: BlogSchema,
 		}),
 		photography: defineCollection({
 			type: 'page',
-			source: {
-				include: 'photography/*.md',
-				exclude: ['photography/index.md'],
-			},
+			source: 'photography/*.md',
 			schema: PhotographySchema,
 		}),
 		career: defineCollection({
 			type: 'page',
-			source: {
-				include: 'portfolio/career/*.md',
-				exclude: ['portfolio/career/index.md'],
-			},
+			source: 'portfolio/career/*.md',
 			schema: JobSchema,
 		}),
 		project: defineCollection({
 			type: 'page',
-			source: {
-				include: 'portfolio/project/*.md',
-				exclude: ['portfolio/project/index.md'],
-			},
+			source: 'portfolio/project/*.md',
 			schema: ProjectSchema,
 		}),
 		movie: defineCollection({
 			type: 'page',
-			source: {
-				include: 'review/movie/*.md',
-				exclude: ['review/movie/index.md'],
-			},
+			source: 'review/movie/*.md',
 			schema: ReviewMovieSchema,
 		}),
 		show: defineCollection({
 			type: 'page',
-			source: {
-				include: 'review/show/*.md',
-				exclude: ['review/show/index.md'],
-			},
+			source: 'review/show/*.md',
 			schema: ReviewShowSchema,
 		}),
 		content: defineCollection({
 			type: 'page',
-			source: [
+			source:
 				{
-					include: '**/index.md',
+					include: '**/*.md',
+					exclude: [
+						'blog/*.md',
+						'photography/*.md',
+						'portfolio/*.md',
+						'review/movie/*.md',
+						'review/show/*.md',
+					],
 				},
-				{
-					include: 'about.md',
-				},
-				{
-					include: 'contact.md',
-				},
-			],
 			schema: ContentSchema,
 		}),
 	},
