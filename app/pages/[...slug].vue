@@ -31,7 +31,7 @@ const { data: page } = await useAsyncData(() => {
 
 const { data: navigation } = await useAsyncData('navigation', () => queryCollectionNavigation('content'));
 
-const breadcrumb = computed(() => mapContentNavigation(findBreadcrumbs(navigation?.value, route.path)));
+const breadcrumb = computed(() => mapContentBreadcrumbs(navigation?.value, route.path));
 
 definePageMeta({
 	layout: 'content',

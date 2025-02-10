@@ -1,8 +1,8 @@
 import type { ContentNavigationItem } from '@nuxt/content';
-import type { NavigationMenuItem, NavigationMenuChildItem } from '@nuxt/ui';
+import type { NavigationMenuItem, NavigationMenuChildItem, BreadcrumbItem } from '@nuxt/ui';
 
 /**
- * @brief A helper to process children of a navigation item
+ * @brief A helper to process children of a navigation item. Only one-deep due to the NavigationItem depth limit.
  */
 function mapContentNavigationChildren(children: ContentNavigationItem[] | undefined): NavigationMenuChildItem[] {
 	if (!children) {
@@ -39,26 +39,41 @@ export function mapContentNavigation(navigationItems: ContentNavigationItem[] | 
 	);
 };
 
-export function findBreadcrumbs(navigationItems: ContentNavigationItem[] | undefined, path: string): NavigationMenuItem[] {
+export function mapContentBreadcrumbs(
+	navigationItems: ContentNavigationItem[] | undefined,
+	path: string): BreadcrumbItem[] {
+	const breadcrumbs: BreadcrumbItem[] = [];
+
+	// Decompose the path into its parts
+	const parts = path.split('/').filter(Boolean);
+	let currentPath = '';
+
+	// Init the first element
+	breadcrumbs.push({
+		label: 'Home',
+		to: '/',
+	});
+
 	if (!navigationItems) {
 		return [];
 	}
 
-	const breadcrumbs: NavigationMenuItem[] = [];
-	let currentPath = path;
+	while (parts.length) {
+		// Construct the current path
+		currentPath += '/' + parts.shift();
 
-	while (currentPath !== '/') {
-		const item = navigationItems.find(item => item.path === currentPath);
+		const item: ContentNavigationItem | undefined = navigationItems?.find(item => item.path === currentPath);
+
 		if (!item) {
 			break;
 		}
 
-		breadcrumbs.unshift({
+		breadcrumbs.push({
 			label: item.title,
 			to: item.path,
 		});
 
-		currentPath = item.parentPath as string;
+		navigationItems = item.children;
 	}
 
 	return breadcrumbs;

@@ -40,7 +40,7 @@ export default defineNuxtModule<ModuleOptions>({
 		// Utilities
 		addImports([
 			{ name: 'mapContentNavigation', from: resolve('./runtime/utility') },
-			{ name: 'findPageBreadcrumb', from: resolve('./runtime/utility') },
+			{ name: 'mapContentBreadcrumbs', from: resolve('./runtime/utility') },
 		]);
 
 		// Composables
