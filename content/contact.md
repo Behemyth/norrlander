@@ -1,3 +1,4 @@
 ---
 title: "Contact"
+navigation: false
 ---

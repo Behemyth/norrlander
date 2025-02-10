@@ -32,42 +32,7 @@
 </template>
 
 <script setup lang="ts">
-const items = computed(() => [
-	{
-		label: 'Blog',
-		to: '/blog',
-	},
-	{
-		label: 'Photography',
-		to: '/photography',
-	},
-	{
-		label: 'Portfolio',
-		to: '/portfolio',
-		children: [
-			{
-				label: 'Career',
-				to: '/portfolio/career',
-			},
-			{
-				label: 'Projects',
-				to: '/portfolio/project',
-			},
-		],
-	},
-	{
-		label: 'Reviews',
-		to: '/review',
-		children: [
-			{
-				label: 'Movies',
-				to: '/review/movie',
-			},
-			{
-				label: 'Shows',
-				to: '/review/show',
-			},
-		],
-	},
-]);
+const { data: navigation } = await useAsyncData('navigation', () => queryCollectionNavigation('content'));
+
+const items = computed(() => mapContentNavigation(navigation?.value));
 </script>

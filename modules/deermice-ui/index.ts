@@ -1,4 +1,4 @@
-import { defineNuxtModule, createResolver, installModule, addImportsDir, addComponentsDir } from '@nuxt/kit';
+import { defineNuxtModule, createResolver, installModule, addImportsDir, addComponentsDir, addImports } from '@nuxt/kit';
 
 // Module options TypeScript interface definition
 export interface ModuleOptions {
@@ -36,6 +36,12 @@ export default defineNuxtModule<ModuleOptions>({
 			pathPrefix: false,
 			global: true,
 		});
+
+		// Utilities
+		addImports([
+			{ name: 'mapContentNavigation', from: resolve('./runtime/utility') },
+			{ name: 'findPageBreadcrumb', from: resolve('./runtime/utility') },
+		]);
 
 		// Composables
 		addImportsDir(resolve('./runtime/composables'));
