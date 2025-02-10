@@ -15,7 +15,7 @@
 		<template #left>
 			<DPageAside>
 				<DContentSectionList
-					:toc="page.body.toc!"
+					:toc="page.body.toc"
 				/>
 			</DPageAside>
 		</template>
