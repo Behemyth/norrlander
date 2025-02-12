@@ -25,10 +25,10 @@ import { tv } from 'tailwind-variants';
 
 const baseTheme = tv({
 	slots: {
-		root: 'relative border-b border-(--ui-border) py-8',
+		root: 'relative border-b border-(--ui-border) py-4',
 		container: '',
 		wrapper: 'flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4',
-		headline: 'mb-2.5 text-sm font-semibold text-(--ui-primary) flex items-center gap-1.5',
+		headline: 'mb-2 text-sm font-semibold text-(--ui-primary) flex items-center gap-2',
 	},
 });
 

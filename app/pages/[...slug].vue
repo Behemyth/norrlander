@@ -1,11 +1,5 @@
 <template>
 	<DPage v-if="page">
-		<DPageHeader v-bind="page">
-			<template #headline>
-				<UBreadcrumb :items="breadcrumb" />
-			</template>
-		</DPageHeader>
-
 		<DPageBody>
 			<ContentRenderer
 				:value="page.body"
@@ -31,10 +25,6 @@ const route = useRoute();
 const { data: page } = await useAsyncData(route.path, () => {
 	return queryCollection('content').path(route.path).first();
 });
-
-const { data: navigation } = await useAsyncData('navigation', () => queryCollectionNavigation('content'));
-
-const breadcrumb = computed(() => mapContentBreadcrumbs(navigation?.value, route.path));
 
 definePageMeta({
 	layout: 'content',
