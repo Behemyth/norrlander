@@ -1,2 +1,6 @@
+---
+title: "Movie Reviews"
+---
+
 ::RecentMovies
 ::

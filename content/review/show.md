@@ -1,2 +1,6 @@
+---
+title: "Show Reviews"
+---
+
 ::RecentShows
 ::
