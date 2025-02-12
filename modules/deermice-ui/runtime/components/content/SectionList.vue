@@ -1,16 +1,16 @@
 <template>
 	<div
-		v-if="toc && renderRoot"
+		v-if="toc.title || toc.links.length"
 		:class="theme.root({ class: ui?.root })"
 	>
 		<ProseH4
-			v-if="renderTitle"
+			v-if="toc.title"
 			:class="theme.title({ class: ui?.title })"
 		>
 			{{ toc.title }}
 		</ProseH4>
 		<nav
-			v-if="renderElements"
+			v-if="toc.links.length"
 			:class="theme.container({ class: ui?.container })"
 		>
 			<ProseUl :class="theme.list({ class: ui?.list })">
@@ -99,7 +99,7 @@ const baseTheme = tv({
 });
 
 export interface ContentSectionListProps {
-	toc?: Toc;
+	toc: Toc;
 
 	// The UI configuration overrides.
 	ui?: PartialString<typeof baseTheme.slots>;
@@ -121,12 +121,8 @@ const onClick = (id: string) => {
 	}
 };
 
-const props = defineProps<ContentSectionListProps>();
+defineProps<ContentSectionListProps>();
 defineSlots<ContentSectionListSlots>();
-
-const renderElements = computed(() => props.toc?.links.length);
-const renderTitle = computed(() => props.toc?.title);
-const renderRoot = computed(() => renderElements.value || renderTitle.value);
 
 const theme = baseTheme();
 </script>

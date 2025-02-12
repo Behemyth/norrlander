@@ -1,6 +1,6 @@
 <template>
-	<div
-		v-if="renderTop || renderDefault || renderBottom"
+	<aside
+		v-if="!!$slots.top || !!$slots.default || !!$slots.bottom"
 		:class="theme.root({ class: ui?.root })"
 	>
 		<slot
@@ -10,7 +10,7 @@
 		<slot
 			name="bottom"
 		/>
-	</div>
+	</aside>
 </template>
 
 <script lang="ts">
@@ -41,13 +41,7 @@ export interface PageAsideSlots {
 
 <script setup lang="ts">
 defineProps<PageAsideProps>();
-const slots = defineSlots<PageAsideSlots>();
-
-const renderTop = computed(() => !!slots.top);
-const renderDefault = computed(() => !!slots.default);
-const renderBottom = computed(() => !!slots.bottom);
-
-console.log('slots', slots);
+defineSlots<PageAsideSlots>();
 
 const theme = baseTheme();
 </script>

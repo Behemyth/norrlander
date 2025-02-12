@@ -12,7 +12,10 @@
 			/>
 		</DPageBody>
 
-		<template #left>
+		<template
+			v-if="page.body.toc && page.body.toc.links.length"
+			#left
+		>
 			<DPageAside>
 				<DContentSectionList
 					:toc="page.body.toc"

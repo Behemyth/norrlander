@@ -3,7 +3,7 @@
 		:class="theme.root({ class: ui?.root })"
 	>
 		<div
-			v-if="leftEnabled"
+			v-if="!!$slots.left"
 			:class="theme.left({ class: ui?.left })"
 		>
 			<slot name="left" />
@@ -12,7 +12,7 @@
 			<slot />
 		</div>
 		<div
-			v-if="rightEnabled"
+			v-if="!!$slots.right"
 			:class="theme.right({ class: ui?.right })"
 		>
 			<slot name="right" />
@@ -61,8 +61,8 @@ export interface PageProps {
 	ui?: PartialString<typeof baseTheme.slots>;
 }
 export interface PageSlots {
-	default(props?: object): any;
 	left(props?: object): any;
+	default(props?: object): any;
 	right(props?: object): any;
 }
 </script>
@@ -71,10 +71,7 @@ export interface PageSlots {
 defineProps<PageProps>();
 const slots = defineSlots<PageSlots>();
 
-const rightEnabled = computed(() => !!slots.right);
-const leftEnabled = computed(() => !!slots.left);
-
 const theme = computed(() => baseTheme({
-	right: rightEnabled.value, left: leftEnabled.value,
+	left: Boolean(slots.left), right: Boolean(slots.right),
 }));
 </script>
