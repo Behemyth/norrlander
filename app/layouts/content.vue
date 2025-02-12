@@ -1,10 +1,11 @@
 <template>
-	<DPage>
-		<div class="flex grow">
+	<UContainer>
+		<DPage>
 			<slot />
-		</div>
-	</DPage>
+		</DPage>
+	</UContainer>
 </template>
 
 <script setup lang="ts">
+
 </script>

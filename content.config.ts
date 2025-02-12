@@ -49,18 +49,13 @@ const SocialSchema = z.object({
 	link: z.string().url(),
 });
 
+const ContentSchema = z.object({
+	title: z.string(),
+});
+
 export default defineContentConfig({
 	collections: {
-		blog: defineCollection({
-			type: 'page',
-			source: 'blog/*.md',
-			schema: BlogSchema,
-		}),
-		photography: defineCollection({
-			type: 'page',
-			source: 'photography/*.md',
-			schema: PhotographySchema,
-		}),
+
 		contact: defineCollection({
 			type: 'data',
 			source: 'data/contact/*.json',
@@ -71,29 +66,50 @@ export default defineContentConfig({
 			source: 'data/socials/*.json',
 			schema: SocialSchema,
 		}),
+		blog: defineCollection({
+			type: 'page',
+			source: 'blog/*.md',
+			schema: BlogSchema,
+		}),
+		photography: defineCollection({
+			type: 'page',
+			source: 'photography/*.md',
+			schema: PhotographySchema,
+		}),
 		career: defineCollection({
 			type: 'page',
-			source: 'portfolio/career/**/*.md',
+			source: 'portfolio/career/*.md',
 			schema: JobSchema,
 		}),
 		project: defineCollection({
 			type: 'page',
-			source: 'portfolio/project/**/*.md',
+			source: 'portfolio/project/*.md',
 			schema: ProjectSchema,
 		}),
 		movie: defineCollection({
 			type: 'page',
-			source: 'review/movie/**/*.md',
+			source: 'review/movie/*.md',
 			schema: ReviewMovieSchema,
 		}),
 		show: defineCollection({
 			type: 'page',
-			source: 'review/show/**/*.md',
+			source: 'review/show/*.md',
 			schema: ReviewShowSchema,
 		}),
-		page: defineCollection({
+		content: defineCollection({
 			type: 'page',
-			source: 'page/**/*.md',
+			source:
+				{
+					include: '**/*.md',
+					exclude: [
+						'blog/*.md',
+						'photography/*.md',
+						'portfolio/*.md',
+						'review/movie/*.md',
+						'review/show/*.md',
+					],
+				},
+			schema: ContentSchema,
 		}),
 	},
 });

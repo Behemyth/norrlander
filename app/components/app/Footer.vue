@@ -59,7 +59,7 @@ const items = computed(() => [
 		to: '/about',
 	},
 	{
-		label: t('Contact'),
+		label: t('contact'),
 		to: '/contact',
 	},
 ]);

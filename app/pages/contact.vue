@@ -23,11 +23,9 @@
 const contacts = await queryCollection('contact').all();
 const i18n = useI18n();
 
-const contactLoc = computed(() => {
-	return i18n.t('Contact');
-});
+const contactLoc = computed(() => i18n.t('contact'));
 
-useSeoMeta({
+useHead({
 	title: contactLoc,
 });
 </script>
