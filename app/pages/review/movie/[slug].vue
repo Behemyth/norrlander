@@ -1,54 +1,45 @@
 <template>
-	<UContainer>
-		<UBreadcrumb
-			:items="items"
-			class="m-2"
-		/>
-		<ReviewHeader
-			:title="page.tmdbData.title"
-			:backdrop="page.tmdbData.backdrop_path"
-			:rating="page.rating"
-			:release-date="new Date(page.tmdbData.release_date!)"
-			:published="new Date(page.date_published)"
-		/>
-		<article>
-			<ContentRenderer
-				:value="page"
+	<DPage
+		v-if="page"
+		class="max-w-4xl mx-auto"
+	>
+		<DPageHeader>
+			<ReviewHeader
+				:title="page.tmdbData.title"
+				:backdrop="page.tmdbData.backdrop_path"
+				:rating="page.rating"
+				:release-date="new Date(page.tmdbData.release_date!)"
+				:published="new Date(page.date_published)"
 			/>
-		</article>
-		<ReviewFooter />
-		<USeparator class="my-2" />
-		<ReviewDiscussion
-			category="Movies"
-		/>
-	</UContainer>
+		</DPageHeader>
+		<DPageBody>
+			<article>
+				<ContentRenderer
+					:value="page"
+				/>
+			</article>
+			<ReviewFooter />
+			<USeparator class="my-2" />
+			<ReviewDiscussion
+				category="Movies"
+			/>
+		</DPageBody>
+	</DPage>
 </template>
 
 <script lang="ts" setup>
 const route = useRoute();
 
-const page = await queryCollection('movie').path(route.path).first();
-
-useSeoMeta({
-	title: page.tmdbData.title,
+const { data: page } = await useAsyncData(route.path, () => {
+	return queryCollection('movie').path(route.path).first();
 });
 
-const items = ref([
-	{
-		label: 'Home',
-		to: '/',
-	},
-	{
-		label: 'Reviews',
-		to: '/review',
-	},
-	{
-		label: 'Movies',
-		to: '/review/movie',
-	},
-	{
-		label: page.tmdbData.title,
-		to: route.path,
-	},
-]);
+definePageMeta({
+	layout: 'content',
+});
+
+useSeoMeta({
+	title: page.value?.tmdbData.title,
+	description: page.value?.description,
+});
 </script>
