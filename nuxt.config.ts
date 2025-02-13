@@ -33,7 +33,6 @@ export default defineNuxtConfig({
 			},
 		},
 	},
-
 	// https://ui.nuxt.com/getting-started/theming
 	ui: {
 		theme: {
@@ -96,8 +95,17 @@ export default defineNuxtConfig({
 		vueI18n: './i18n/i18n.config.ts',
 	},
 
+	icon: {
+		clientBundle: {
+			// scan all components in the project and include icons
+			scan: true,
+		},
+		provider: 'iconify',
+	},
+
 	// https://image.nuxt.com/
 	image: {
+		provider: 'ipx',
 		format: ['webp'],
 		domains: ['www.gravatar.com', 'image.tmdb.org'],
 		alias: {
