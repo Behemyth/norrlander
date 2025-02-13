@@ -101,6 +101,7 @@ export default defineNuxtConfig({
 			scan: true,
 		},
 		provider: 'iconify',
+		serverBundle: 'local',
 	},
 
 	// https://image.nuxt.com/
