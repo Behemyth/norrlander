@@ -1,6 +1,6 @@
 export default defineEventHandler(async (event) => {
-	const path = getRouterParam(event, 'category')!;
-	const feedContent: ParsedContent | undefined = await queryCollection(event, path).findOne();
+	const { slug } = getRouterParams(event);
+	const feedContent = await queryCollection(event, 'feed').path(slug).first();
 
 	if (!feedContent) {
 		throw createError({

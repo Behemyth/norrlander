@@ -2,6 +2,11 @@ import { defineContentConfig, defineCollection, z } from '@nuxt/content';
 
 import { TMDBMovieSchema, TMDBShowSchema } from './shared/types/tmdb';
 
+const FeedSchema = z.object({
+	title: z.string(),
+	description: z.string(),
+});
+
 const ReviewMetadataSchema = z.object({
 	intRating: z.number().int().nonnegative().lte(8),
 	entRating: z.number().int().nonnegative().lte(8),
@@ -56,6 +61,11 @@ const ContentSchema = z.object({
 export default defineContentConfig({
 	collections: {
 
+		feed: defineCollection({
+			type: 'data',
+			source: 'data/feed/*.json',
+			schema: FeedSchema,
+		}),
 		contact: defineCollection({
 			type: 'data',
 			source: 'data/contact/*.json',
