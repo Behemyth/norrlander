@@ -1,16 +1,16 @@
 <template>
 	<div
-		v-if="!!slots.headline || !!slots.default"
+		v-if="!!$slots.headline || !!$slots.default"
 		:class="theme.root({ class: ui?.root })"
 	>
 		<div :class="theme.container({ class: ui?.container })">
 			<slot
-				v-if="!!slots.headline"
+				v-if="!!$slots.headline"
 				name="headline"
 				:class="theme.headline()"
 			/>
 			<div
-				v-if="!!slots.default"
+				v-if="!!$slots.default"
 				:class="theme.wrapper({ class: ui?.wrapper })"
 			>
 				<slot />
@@ -45,7 +45,7 @@ export interface PageHeaderSlots {
 
 <script setup lang="ts">
 defineProps<PageHeaderProps>();
-const slots = defineSlots<PageHeaderSlots>();
+defineSlots<PageHeaderSlots>();
 
 const theme = baseTheme();
 </script>
