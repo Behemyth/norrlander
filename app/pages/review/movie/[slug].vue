@@ -1,7 +1,7 @@
 <template>
 	<DPage
 		v-if="page"
-		class="max-w-4xl mx-auto"
+		class="max-w-4xl mx-auto w-full"
 	>
 		<DPageHeader>
 			<ReviewHeader
