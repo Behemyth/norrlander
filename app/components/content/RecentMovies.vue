@@ -13,7 +13,7 @@ export interface RecentMovieProps {
 <script setup lang="ts">
 const props = defineProps<RecentMovieProps>();
 
-let movieQuery = queryCollection('movie')
+let movieQuery = queryCollection('movie').where('publish', '=', true)
 	.order('date_published', 'DESC');
 
 if (props.count) {

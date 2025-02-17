@@ -13,7 +13,7 @@ export interface RecentShowsProps {
 <script setup lang="ts">
 const props = defineProps<RecentShowsProps>();
 
-let showQuery = queryCollection('show')
+let showQuery = queryCollection('show').where('publish', '=', true)
 	.order('date_published', 'DESC');
 
 if (props.count) {
