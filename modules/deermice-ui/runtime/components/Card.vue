@@ -1,12 +1,35 @@
 <template>
-	<div :class="theme.root()">
-		<slot />
+	<div :class="theme.root({ class: ui?.root })">
+		<div :class="theme.container({ class: ui?.container })">
+			<div :class="theme.wrapper({ class: ui?.wrapper })">
+				<slot name="header">
+					<slot name="title">
+						<p :class="theme.title({ class: ui?.title })">
+							{{ title }}
+						</p>
+					</slot>
+					<slot name="description">
+						<p :class="theme.description({ class: ui?.description })">
+							{{ description }}
+						</p>
+					</slot>
+				</slot>
+				<slot
+					name="body"
+					:class="theme.body({ class: ui?.body })"
+				>
+					<slot />
+				</slot>
+				<slot name="footer" />
+			</div>
+		</div>
 	</div>
 </template>
 
 <script lang="ts">
 import type { PartialString } from '@nuxt/ui/runtime/types/utils.js';
 import { tv } from 'tailwind-variants';
+import type { RouteLocationAsRelativeGeneric, RouteLocationAsPathGeneric } from 'vue-router';
 
 const baseTheme = tv({
 	slots: {
@@ -46,6 +69,7 @@ export interface CardProps {
 	description?: string;
 	orientation: 'vertical' | 'horizontal';
 	reverse?: boolean;
+	to: string | RouteLocationAsRelativeGeneric | RouteLocationAsPathGeneric;
 	ui?: PartialString<typeof baseTheme.slots>;
 }
 
