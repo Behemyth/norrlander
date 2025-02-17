@@ -28,6 +28,14 @@
 		<div :class="theme.footer({ class: ui?.footer })">
 			<slot name="footer" />
 		</div>
+		<NuxtLink
+			v-if="to"
+			:to="to"
+		>
+			<span
+				class="absolute inset-0"
+			/>
+		</NuxtLink>
 	</div>
 </template>
 
