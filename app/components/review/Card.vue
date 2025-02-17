@@ -4,6 +4,10 @@
 		reverse
 		:to="path"
 		class="flex grow"
+		:ui="{
+			container: 'p-0',
+			header: 'p-2',
+		}"
 	>
 		<NuxtPicture
 			:src="posterPath"

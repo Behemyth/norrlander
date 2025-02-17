@@ -1,31 +1,26 @@
 <template>
 	<div :class="theme.root({ class: ui?.root })">
 		<div :class="theme.container({ class: ui?.container })">
-			<div :class="theme.wrapper({ class: ui?.wrapper })">
-				<div :class="theme.header({ class: ui?.header })">
-					<slot name="header">
-						<slot name="title">
-							<p :class="theme.title({ class: ui?.title })">
-								{{ title }}
-							</p>
-						</slot>
-						<slot name="description">
-							<p :class="theme.description({ class: ui?.description })">
-								{{ description }}
-							</p>
-						</slot>
-					</slot>
-				</div>
-			</div>
-			<div :class="theme.body({ class: ui?.body })">
-				<slot
-					name="body"
-				>
-					<slot />
+			<div :class="theme.header({ class: ui?.header })">
+				<slot name="title">
+					<p :class="theme.title({ class: ui?.title })">
+						{{ title }}
+					</p>
+				</slot>
+				<slot name="description">
+					<p :class="theme.description({ class: ui?.description })">
+						{{ description }}
+					</p>
 				</slot>
 			</div>
+			<div :class="theme.default({ class: ui?.default })">
+				<slot />
+			</div>
 		</div>
-		<div :class="theme.footer({ class: ui?.footer })">
+		<div
+			v-if="!!$slots.footer"
+			:class="theme.footer({ class: ui?.footer })"
+		>
 			<slot name="footer" />
 		</div>
 		<NuxtLink
@@ -46,11 +41,10 @@ import type { RouteLocationAsRelativeGeneric, RouteLocationAsPathGeneric } from 
 
 const baseTheme = tv({
 	slots: {
-		root: 'relative group flex',
+		root: 'relative group flex bg-(--ui-bg) ring ring-(--ui-border) divide-y divide-(--ui-border)',
 		container: 'relative flex flex-col flex-1 lg:grid gap-2 p-2',
-		wrapper: '',
 		header: 'mb-2',
-		body: '',
+		default: '',
 		footer: 'mt-2',
 		title: 'text-base text-pretty font-semibold text-(--ui-text-highlighted)',
 		description: 'text-[15px] text-pretty',
@@ -66,7 +60,7 @@ const baseTheme = tv({
 		},
 		reverse: {
 			true: {
-				wrapper: 'order-last',
+				header: 'order-last',
 			},
 		},
 		title: {
@@ -87,12 +81,10 @@ export interface CardProps {
 }
 
 export interface CardSlots {
-	header(props?: object): any;
-	body(props?: object): any;
 	title(props?: object): any;
 	description(props?: object): any;
-	footer(props?: object): any;
 	default(props?: object): any;
+	footer(props?: object): any;
 }
 </script>
 
