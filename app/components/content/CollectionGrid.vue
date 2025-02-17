@@ -26,7 +26,7 @@ const props = defineProps<{
 	count?: number;
 }>();
 
-let collectionQuery = queryCollection(props.collection);
+let collectionQuery = queryCollection(props.collection).where('draft', '<>', true);
 
 if (props.orderValue) {
 	collectionQuery = collectionQuery.order(props.orderValue, 'DESC');

@@ -2,12 +2,17 @@ import { defineContentConfig, defineCollection, z } from '@nuxt/content';
 
 import { TMDBMovieSchema, TMDBShowSchema } from './shared/types/tmdb';
 
+const PageSchema = z.object({
+	title: z.string(),
+	draft: z.boolean().optional().default(false),
+});
+
 const FeedSchema = z.object({
 	title: z.string(),
 	description: z.string(),
 });
 
-const ReviewMetadataSchema = z.object({
+const ReviewMetadataSchema = PageSchema.extend({
 	intRating: z.number().int().nonnegative().lte(8),
 	entRating: z.number().int().nonnegative().lte(8),
 	rating: z.number().int().nonnegative().lte(8),
@@ -24,20 +29,20 @@ const ReviewShowSchema = ReviewMetadataSchema.extend({
 	tmdbData: TMDBShowSchema,
 });
 
-const PhotographySchema = z.object({
+const PhotographySchema = PageSchema.extend({
 	name: z.string(),
 });
 
-const BlogSchema = z.object({
+const BlogSchema = PageSchema.extend({
 	name: z.string(),
 });
 
-const ProjectSchema = z.object({
+const ProjectSchema = PageSchema.extend({
 	name: z.string(),
 	link: z.string().url(),
 });
 
-const JobSchema = z.object({
+const JobSchema = PageSchema.extend({
 	name: z.string(),
 	link: z.string().url(),
 });
