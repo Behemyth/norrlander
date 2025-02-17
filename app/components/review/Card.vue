@@ -3,20 +3,17 @@
 		:title="title"
 		reverse
 		:to="path"
-		:ui="
-			{
-				footer: 'flex flex-col grow',
-			}"
-		class="flex grow flex-col w-full"
+		class="flex grow"
 	>
 		<NuxtPicture
 			:src="posterPath"
 			loading="lazy"
 			:placeholder="img(posterPath, { h: 10, blur: 2, q: 50 })"
 			:img-attrs="{ class: 'aspect-[2/3] w-full h-full' }"
+			class="flex grow"
 		/>
 
-		<template #footer>
+		<template #description>
 			<USeparator class="my-2" />
 			<ReviewStarRating
 				:value="rating"

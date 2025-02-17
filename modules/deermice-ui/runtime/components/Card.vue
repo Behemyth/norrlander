@@ -39,11 +39,11 @@ import type { RouteLocationAsRelativeGeneric, RouteLocationAsPathGeneric } from 
 const baseTheme = tv({
 	slots: {
 		root: 'relative group flex',
-		container: 'relative flex flex-col flex-1 lg:grid gap-x-8 gap-y-4 p-4 sm:p-6',
+		container: 'relative flex flex-col flex-1 lg:grid gap-2 p-2',
 		wrapper: '',
-		header: 'mb-4',
+		header: 'mb-2',
 		body: '',
-		footer: 'mt-4',
+		footer: 'mt-2',
 		title: 'text-base text-pretty font-semibold text-(--ui-text-highlighted)',
 		description: 'text-[15px] text-pretty',
 	},
@@ -58,7 +58,7 @@ const baseTheme = tv({
 		},
 		reverse: {
 			true: {
-				wrapper: 'lg:order-last',
+				wrapper: 'order-last',
 			},
 		},
 		title: {
