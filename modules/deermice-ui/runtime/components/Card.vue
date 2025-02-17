@@ -2,26 +2,31 @@
 	<div :class="theme.root({ class: ui?.root })">
 		<div :class="theme.container({ class: ui?.container })">
 			<div :class="theme.wrapper({ class: ui?.wrapper })">
-				<slot name="header">
-					<slot name="title">
-						<p :class="theme.title({ class: ui?.title })">
-							{{ title }}
-						</p>
+				<div :class="theme.header({ class: ui?.header })">
+					<slot name="header">
+						<slot name="title">
+							<p :class="theme.title({ class: ui?.title })">
+								{{ title }}
+							</p>
+						</slot>
+						<slot name="description">
+							<p :class="theme.description({ class: ui?.description })">
+								{{ description }}
+							</p>
+						</slot>
 					</slot>
-					<slot name="description">
-						<p :class="theme.description({ class: ui?.description })">
-							{{ description }}
-						</p>
-					</slot>
-				</slot>
+				</div>
+			</div>
+			<div :class="theme.body({ class: ui?.body })">
 				<slot
 					name="body"
-					:class="theme.body({ class: ui?.body })"
 				>
 					<slot />
 				</slot>
-				<slot name="footer" />
 			</div>
+		</div>
+		<div :class="theme.footer({ class: ui?.footer })">
+			<slot name="footer" />
 		</div>
 	</div>
 </template>
@@ -33,7 +38,7 @@ import type { RouteLocationAsRelativeGeneric, RouteLocationAsPathGeneric } from 
 
 const baseTheme = tv({
 	slots: {
-		root: 'relative group flex rounded-[calc(var(--ui-radius)*2)]',
+		root: 'relative group flex',
 		container: 'relative flex flex-col flex-1 lg:grid gap-x-8 gap-y-4 p-4 sm:p-6',
 		wrapper: '',
 		header: 'mb-4',
@@ -67,9 +72,9 @@ const baseTheme = tv({
 export interface CardProps {
 	title?: string;
 	description?: string;
-	orientation: 'vertical' | 'horizontal';
+	orientation?: 'vertical' | 'horizontal';
 	reverse?: boolean;
-	to: string | RouteLocationAsRelativeGeneric | RouteLocationAsPathGeneric;
+	to?: string | RouteLocationAsRelativeGeneric | RouteLocationAsPathGeneric;
 	ui?: PartialString<typeof baseTheme.slots>;
 }
 
@@ -84,7 +89,7 @@ export interface CardSlots {
 </script>
 
 <script setup lang="ts">
-withDefaults(defineProps<CardProps>(),
+const props = withDefaults(defineProps<CardProps>(),
 	{
 		orientation: 'vertical',
 		reverse: false,
@@ -92,5 +97,9 @@ withDefaults(defineProps<CardProps>(),
 );
 defineSlots<CardSlots>();
 
-const theme = baseTheme();
+const theme = baseTheme({
+	orientation: props.orientation,
+	reverse: props.reverse,
+	title: !!props.title,
+});
 </script>
