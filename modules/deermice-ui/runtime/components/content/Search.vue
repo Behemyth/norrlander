@@ -34,15 +34,10 @@ const baseTheme = tv({
 	},
 });
 
-// Our type extension for selection data
-export interface ContentSearchItem extends CommandPaletteItem {
-	to?: string;
-}
-
 export interface ContentSearchProps {
 
 	// The groups of items to search as defined by 'UCommandPalette'
-	groups?: CommandPaletteGroup<ContentSearchItem>[];
+	groups?: CommandPaletteGroup<CommandPaletteItem>[];
 
 	// The UI configuration overrides.
 	ui?: PartialString<typeof baseTheme.slots>;
@@ -58,7 +53,7 @@ const open = ref(false);
 
 const router = useRouter();
 
-function onSelect(item: ContentSearchItem) {
+function onSelect(item: CommandPaletteItem) {
 	if (item.to) {
 		router.push(item.to);
 	}
