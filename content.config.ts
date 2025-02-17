@@ -114,7 +114,8 @@ export default defineContentConfig({
 					exclude: [
 						'blog/*.md',
 						'photography/*.md',
-						'portfolio/*.md',
+						'portfolio/career/*.md',
+						'portfolio/project/*.md',
 						'review/movie/*.md',
 						'review/show/*.md',
 					],

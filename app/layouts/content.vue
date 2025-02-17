@@ -14,7 +14,8 @@
 <script setup lang="ts">
 const route = useRoute();
 
-const { data: navigation } = await useAsyncData('navigation', () => queryCollectionNavigation('content'));
+// Don't await in wrapper/layout
+const { data: navigation } = useAsyncData('navigation', () => queryCollectionNavigation('content'));
 
 // The content sub-category is not a part of the page navigation query. As a result we only add the navigational
 //	breadcrumbs. For example '/review/movie' instead of '/review/movie/<movie>'.
