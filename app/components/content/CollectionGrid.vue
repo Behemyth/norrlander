@@ -1,18 +1,11 @@
 <template>
 	<div class="grid grid-flow-row gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
-		<ULink
+		<LazyDCard
 			v-for="element in elements"
 			:key="element.id"
+			:title="element.title"
 			:to="element.path"
-		>
-			<LazyUCard>
-				<template #header>
-					<ProseH3>
-						{{ element[titleValue] }}
-					</ProseH3>
-				</template>
-			</LazyUCard>
-		</ULink>
+		/>
 	</div>
 </template>
 
@@ -21,7 +14,6 @@ import type { PageCollections } from '@nuxt/content';
 
 const props = defineProps<{
 	collection: T;
-	titleValue: keyof PageCollections[T];
 	orderValue?: keyof PageCollections[T];
 	count?: number;
 }>();

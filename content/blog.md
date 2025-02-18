@@ -2,5 +2,5 @@
 title: "Blog"
 ---
 
-::CollectionGrid{collection="blog" titleValue="name"}
+::CollectionGrid{collection="blog"}
 ::

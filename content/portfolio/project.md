@@ -2,5 +2,5 @@
 title: "Projects"
 ---
 
-::CollectionGrid{collection="project" titleValue="name"}
+::CollectionGrid{collection="project"}
 ::
