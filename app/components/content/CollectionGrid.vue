@@ -1,5 +1,17 @@
 <template>
-	<CollectionElementGrid :items="items" />
+	<div class="grid grid-flow-row gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
+		<LazyDCard
+			v-for="element in items"
+			:key="element.id"
+			:title="element.title"
+			:to="element.path"
+		/>
+		<div
+			v-for="index in skeletonCount"
+			:key="index"
+			class="w-full h-full bg-(--ui-bg-elevated)"
+		/>
+	</div>
 </template>
 
 <script setup lang="ts" generic="T extends keyof PageCollections">
@@ -7,19 +19,13 @@ import type { PageCollections } from '@nuxt/content';
 
 const props = defineProps<{
 	collection: T;
-	orderValue?: keyof PageCollections[T];
-	count?: number;
+	count: number;
 }>();
 
-let collectionQuery = queryCollection(props.collection).where('publish', '=', true);
+const items = await queryCollection(props.collection)
+	.where('publish', '=', true)
+	.limit(props.count)
+	.all();
 
-if (props.orderValue) {
-	collectionQuery = collectionQuery.order(props.orderValue, 'DESC');
-}
-
-if (props.count) {
-	collectionQuery = collectionQuery.limit(props.count);
-}
-
-const items = await collectionQuery.all();
+const skeletonCount = computed(() => props.count - items.length);
 </script>

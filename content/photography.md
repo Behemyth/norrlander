@@ -2,5 +2,5 @@
 title: "Photography"
 ---
 
-::CollectionGrid{collection="photography"}
+::CollectionGrid{collection="photography" :count="4"}
 ::
