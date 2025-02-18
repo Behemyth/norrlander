@@ -18,7 +18,12 @@
 					:value="page"
 				/>
 			</article>
-			<ReviewFooter />
+			<ReviewFooter
+				:title="page.title"
+				:poster="page.tmdbData.poster_path"
+				:rating="page.rating"
+				:release-date="new Date(page.tmdbData.first_air_date!)"
+			/>
 			<USeparator class="my-2" />
 			<ReviewDiscussion
 				category="Shows"
@@ -39,7 +44,7 @@ definePageMeta({
 });
 
 useSeoMeta({
-	title: page.value?.tmdbData.name,
+	title: page.value?.title,
 	description: page.value?.description,
 });
 </script>

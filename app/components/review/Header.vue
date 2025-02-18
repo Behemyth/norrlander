@@ -36,7 +36,7 @@
 			:src="`tmdb/${backdrop}`"
 			:alt="title"
 			:img-attrs="{
-				class: 'w-full',
+				class: 'object-cover w-full aspect-[12/5]',
 			}"
 		/>
 	</div>

@@ -24,7 +24,7 @@
 				:rating="page.rating"
 				:release-date="new Date(page.tmdbData.release_date!)"
 			/>
-			<USeparator class="my-4" />
+			<USeparator class="my-8" />
 			<ReviewDiscussion
 				category="Movies"
 			/>
@@ -44,7 +44,7 @@ definePageMeta({
 });
 
 useSeoMeta({
-	title: page.value?.tmdbData.title,
+	title: page.value?.title,
 	description: page.value?.description,
 });
 </script>
