@@ -56,7 +56,7 @@ const baseTheme = tv({
 		title: 'truncate',
 		list: '',
 		subList: 'ms-3',
-		link: 'group text-sm block truncate focus-visible:outline-[var(--ui-primary)] py-1',
+		link: 'group text-sm block truncate cursor-pointer focus-visible:outline-[var(--ui-primary)] py-1',
 	},
 	variants: {
 		color: {
