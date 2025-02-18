@@ -18,8 +18,13 @@
 					:value="page"
 				/>
 			</article>
-			<ReviewFooter />
-			<USeparator class="my-2" />
+			<ReviewFooter
+				:title="page.tmdbData.title"
+				:poster="page.tmdbData.poster_path"
+				:rating="page.rating"
+				:release-date="new Date(page.tmdbData.release_date!)"
+			/>
+			<USeparator class="my-4" />
 			<ReviewDiscussion
 				category="Movies"
 			/>
