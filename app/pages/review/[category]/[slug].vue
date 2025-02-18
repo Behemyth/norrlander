@@ -1,15 +1,10 @@
 <template>
 	<DPage
 		v-if="page"
-		class=""
 	>
 		<DPageHeader class="max-w-4xl mx-auto w-full">
 			<ReviewHeader
-				:title="page.tmdbData.title"
-				:backdrop="page.tmdbData.backdrop_path"
-				:rating="page.rating"
-				:release-date="new Date(page.tmdbData.release_date!)"
-				:published="new Date(page.date_published)"
+				:content="page"
 			/>
 		</DPageHeader>
 		<DPageBody>
@@ -19,15 +14,12 @@
 				/>
 			</article>
 			<ReviewFooter
-				:title="page.tmdbData.title"
-				:poster="page.tmdbData.poster_path"
-				:rating="page.rating"
-				:release-date="new Date(page.tmdbData.release_date!)"
+				:content="page"
 			/>
 			<USeparator class="my-8" />
 			<div class="max-w-4xl mx-auto w-full">
 				<ReviewDiscussion
-					category="Movies"
+					:category="capitalizedCategory"
 				/>
 			</div>
 		</DPageBody>
@@ -41,6 +33,10 @@ if (route.params.category !== 'movie' && route.params.category !== 'show') {
 	throw createError('Invalid review category');
 }
 const category = computed(() => route.params.category as 'movie' | 'show');
+
+const capitalizedCategory = computed(() => {
+	return category.value.charAt(0).toUpperCase() + category.value.slice(1);
+});
 
 const { data: page } = await useAsyncData(route.path, () => {
 	return queryCollection(category.value).path(route.path).first();

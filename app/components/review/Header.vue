@@ -2,17 +2,17 @@
 	<div class="flex flex-col">
 		<div class="flex flex-row">
 			<h1 class="text-3xl font-bold">
-				{{ title }}
+				{{ content.title }}
 			</h1>
 		</div>
 		<div class="flex flex-row">
 			<ReviewStarRating
-				:value="rating"
+				:value="content.rating"
 				:size="24"
 				class="mr-2"
 			/>
 			<p class="text-lg mx-2">
-				{{ releaseDate.getFullYear() }}
+				Release Year
 			</p>
 			<p class="text-lg mx-2">
 				Genre
@@ -26,15 +26,15 @@
 				Asher Norland
 			</p>
 			<p class="text-lg mx-2">
-				{{ published.toDateString() }}
+				Published Date
 			</p>
 			<p class="text-lg mx-2">
 				Time to Read
 			</p>
 		</div>
 		<NuxtPicture
-			:src="`tmdb/${backdrop}`"
-			:alt="title"
+			:src="`tmdb/${content.tmdbData.backdrop_path}`"
+			:alt="content.title"
 			:img-attrs="{
 				class: 'object-cover w-full aspect-[12/5]',
 			}"
@@ -43,26 +43,9 @@
 </template>
 
 <script setup lang="ts">
-defineProps({
-	title: {
-		type: String,
-		required: true,
-	},
-	backdrop: {
-		type: String,
-		required: true,
-	},
-	rating: {
-		type: Number,
-		required: true,
-	},
-	releaseDate: {
-		type: Date,
-		required: true,
-	},
-	published: {
-		type: Date,
-		required: true,
-	},
-});
+import type { MovieCollectionItem, ShowCollectionItem } from '@nuxt/content';
+
+defineProps<{
+	content: MovieCollectionItem | ShowCollectionItem;
+}>();
 </script>
