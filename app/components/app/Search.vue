@@ -32,48 +32,60 @@ function contentToItems(content: Section[]) {
 const { data: groups } = await useAsyncData('search-data',
 	() => {
 		return Promise.all([
-			queryCollectionSearchSections('blog').then((value) => {
-				return {
-					id: 'blog',
-					label: 'Blog',
-					items: contentToItems(value),
-				};
-			}),
-			queryCollectionSearchSections('photography').then((value) => {
-				return {
-					id: 'photography',
-					label: 'Photography',
-					items: contentToItems(value),
-				};
-			}),
-			queryCollectionSearchSections('career').then((value) => {
-				return {
-					id: 'career',
-					label: 'Career',
-					items: contentToItems(value),
-				};
-			}),
-			queryCollectionSearchSections('project').then((value) => {
-				return {
-					id: 'project',
-					label: 'Projects',
-					items: contentToItems(value),
-				};
-			}),
-			queryCollectionSearchSections('movie').then((value) => {
-				return {
-					id: 'movie',
-					label: 'Movies',
-					items: contentToItems(value),
-				};
-			}),
-			queryCollectionSearchSections('show').then((value) => {
-				return {
-					id: 'show',
-					label: 'Shows',
-					items: contentToItems(value),
-				};
-			}),
+			queryCollectionSearchSections('blog')
+				.where('publish', '=', true)
+				.then((value) => {
+					return {
+						id: 'blog',
+						label: 'Blog',
+						items: contentToItems(value),
+					};
+				}),
+			queryCollectionSearchSections('photography')
+				.where('publish', '=', true)
+				.then((value) => {
+					return {
+						id: 'photography',
+						label: 'Photography',
+						items: contentToItems(value),
+					};
+				}),
+			queryCollectionSearchSections('career')
+				.where('publish', '=', true)
+				.then((value) => {
+					return {
+						id: 'career',
+						label: 'Career',
+						items: contentToItems(value),
+					};
+				}),
+			queryCollectionSearchSections('project')
+				.where('publish', '=', true)
+				.then((value) => {
+					return {
+						id: 'project',
+						label: 'Projects',
+						items: contentToItems(value),
+					};
+				}),
+			queryCollectionSearchSections('movie')
+				.where('publish', '=', true)
+				.then((value) => {
+					return {
+						id: 'movie',
+						label: 'Movies',
+						items: contentToItems(value),
+					};
+				}),
+			queryCollectionSearchSections('show')
+				.where('publish', '=', true)
+				.then((value) => {
+					return {
+						id: 'show',
+						label: 'Shows',
+						items: contentToItems(value),
+					};
+				}),
 
 		]);
 	},
