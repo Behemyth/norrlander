@@ -19,19 +19,19 @@
 					:key="section.id"
 					@click="onClick(section.id)"
 				>
-					<p :class="theme.link({ class: ui?.link })">
+					<ULink :class="theme.link({ class: ui?.link })">
 						{{ section.text }}
-					</p>
+					</ULink>
+
 					<div :class="theme.subList({ class: ui?.subList })">
-						<div
+						<ULink
 							v-for="link in section.children"
 							:key="link.id"
+							:class="theme.link({ class: ui?.link })"
 							@click.stop="onClick(link.id)"
 						>
-							<p :class="theme.link({ class: ui?.link })">
-								{{ link.text }}
-							</p>
-						</div>
+							{{ link.text }}
+						</ULink>
 					</div>
 				</div>
 			</div>
