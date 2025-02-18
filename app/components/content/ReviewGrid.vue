@@ -8,11 +8,6 @@
 			:rating="review.rating"
 			:poster-path="`tmdb${review.tmdbData.poster_path}`"
 		/>
-		<div
-			v-for="index in skeletonCount"
-			:key="index"
-			class="w-full h-full bg-(--ui-bg-elevated)"
-		/>
 	</div>
 </template>
 
@@ -27,6 +22,4 @@ const items = await queryCollection(props.collection)
 	.order('date_published', 'DESC')
 	.limit(props.count)
 	.all();
-
-const skeletonCount = computed(() => props.count - items.length);
 </script>

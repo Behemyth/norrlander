@@ -6,11 +6,6 @@
 			:title="element.title"
 			:to="element.path"
 		/>
-		<div
-			v-for="index in skeletonCount"
-			:key="index"
-			class="w-full h-full bg-(--ui-bg-elevated)"
-		/>
 	</div>
 </template>
 
@@ -26,6 +21,4 @@ const items = await queryCollection(props.collection)
 	.where('publish', '=', true)
 	.limit(props.count)
 	.all();
-
-const skeletonCount = computed(() => props.count - items.length);
 </script>
