@@ -1,9 +1,9 @@
 <template>
 	<DPage
 		v-if="page"
-		class="max-w-4xl mx-auto w-full"
+		class=""
 	>
-		<DPageHeader>
+		<DPageHeader class="max-w-4xl mx-auto w-full">
 			<ReviewHeader
 				:title="page.tmdbData.title"
 				:backdrop="page.tmdbData.backdrop_path"
@@ -13,7 +13,7 @@
 			/>
 		</DPageHeader>
 		<DPageBody>
-			<article>
+			<article class="max-w-4xl mx-auto w-full">
 				<ContentRenderer
 					:value="page"
 				/>
@@ -25,9 +25,11 @@
 				:release-date="new Date(page.tmdbData.release_date!)"
 			/>
 			<USeparator class="my-8" />
-			<ReviewDiscussion
-				category="Movies"
-			/>
+			<div class="max-w-4xl mx-auto w-full">
+				<ReviewDiscussion
+					category="Movies"
+				/>
+			</div>
 		</DPageBody>
 	</DPage>
 </template>
