@@ -2,5 +2,5 @@
 title: "Movie Reviews"
 ---
 
-::RecentMovies
+::ReviewGrid{collection="movie"}
 ::

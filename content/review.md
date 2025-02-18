@@ -27,10 +27,10 @@ TODO
 
 ## Recent Movie Reviews
 
-::RecentMovies{:count=6}
+::ReviewGrid{collection="movie" :count=6}
 ::
 
 ## Recent Show Reviews
 
-::RecentShows{:count=6}
+::ReviewGrid{collection="show" :count=6}
 ::

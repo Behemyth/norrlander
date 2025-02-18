@@ -2,5 +2,5 @@
 title: "Show Reviews"
 ---
 
-::RecentShows
+::ReviewGrid{collection="show"}
 ::
