@@ -2,10 +2,6 @@
 title: "Reviews"
 ---
 
-[All Movie Reviews](/review/movie)
-
-[All Show Reviews](/review/show)
-
 ## What Makes a Movie 'Good'?
 
 A good film is a film that achieves what it sets out to communicate to the audience. A film that is trying to be a comedy should be funny, a film that is trying to be a drama should be moving, and a film that is trying to be a horror should be scary.

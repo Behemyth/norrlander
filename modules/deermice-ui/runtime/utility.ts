@@ -1,5 +1,21 @@
 import type { ContentNavigationItem } from '@nuxt/content';
-import type { NavigationMenuItem, BreadcrumbItem } from '@nuxt/ui';
+import type { NavigationMenuItem, NavigationMenuChildItem, BreadcrumbItem } from '@nuxt/ui';
+/**
+ * @brief A helper to process children of a navigation item. Only one-deep due to the NavigationItem depth limit.
+ */
+function mapContentNavigationChildren(children: ContentNavigationItem[] | undefined): NavigationMenuChildItem[] {
+	if (!children) {
+		return [];
+	}
+	return children.map(
+		(item): NavigationMenuChildItem => {
+			return {
+				label: item.title,
+				to: item.path,
+			};
+		},
+	);
+}
 
 /**
  * @brief Takes the data that is given by `queryCollectionNavigation`, a nuxt/content utility,
@@ -15,6 +31,7 @@ export function mapContentNavigation(navigationItems: ContentNavigationItem[] | 
 			return {
 				label: item.title,
 				to: item.path,
+				children: mapContentNavigationChildren(item.children),
 			};
 		},
 	);
