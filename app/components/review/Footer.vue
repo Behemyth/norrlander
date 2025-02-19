@@ -14,10 +14,10 @@
 			loading="lazy"
 		/>
 		<div class="my-auto">
-			TODO Cast
+			Cast
 		</div>
 		<div class="my-auto">
-			TODO Director/Screenplay
+			Director/Screenplay
 		</div>
 	</div>
 </template>
