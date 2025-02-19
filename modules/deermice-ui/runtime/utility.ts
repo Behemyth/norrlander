@@ -1,6 +1,5 @@
 import type { ContentNavigationItem } from '@nuxt/content';
 import type { NavigationMenuItem, NavigationMenuChildItem, BreadcrumbItem } from '@nuxt/ui';
-
 /**
  * @brief A helper to process children of a navigation item. Only one-deep due to the NavigationItem depth limit.
  */
@@ -8,7 +7,6 @@ function mapContentNavigationChildren(children: ContentNavigationItem[] | undefi
 	if (!children) {
 		return [];
 	}
-
 	return children.map(
 		(item): NavigationMenuChildItem => {
 			return {

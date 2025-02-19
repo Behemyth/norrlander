@@ -1,6 +1,6 @@
 ---
-title: "Show Reviews"
+title:	"Show Reviews"
 ---
 
-::RecentShows
+::ReviewGridFilter{collection="show"}
 ::

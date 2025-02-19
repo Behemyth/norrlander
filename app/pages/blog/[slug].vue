@@ -1,38 +1,31 @@
 <template>
-	<UContainer>
-		<UBreadcrumb
-			:items="items"
-			class="m-2"
-		/>
-		<article>
-			<ContentRenderer
-				:value="page"
-			/>
-		</article>
-	</UContainer>
+	<DPage
+		v-if="page"
+		class="max-w-4xl mx-auto w-full"
+	>
+		<DPageBody>
+			<article>
+				<ContentRenderer
+					:value="page"
+				/>
+			</article>
+		</DPageBody>
+	</DPage>
 </template>
 
 <script lang="ts" setup>
 const route = useRoute();
 
-const page = await queryCollection('blog').path(route.path).first();
-
-useSeoMeta({
-	title: page.title,
+const { data: page } = await useAsyncData(route.path, () => {
+	return queryCollection('blog').path(route.path).first();
 });
 
-const items = ref([
-	{
-		label: 'Home',
-		to: '/',
-	},
-	{
-		label: 'Blog',
-		to: '/blog',
-	},
-	{
-		label: page.title,
-		to: route.path,
-	},
-]);
+definePageMeta({
+	layout: 'content',
+});
+
+useSeoMeta({
+	title: page.value?.title,
+	description: page.value?.description,
+});
 </script>

@@ -2,35 +2,63 @@
 title: "Reviews"
 ---
 
-
-## What Makes a Movie 'Good'?
-
-A good film is a film that achieves what it sets out to communicate to the audience. A film that is trying to be a comedy should be funny, a film that is trying to be a drama should be moving, and a film that is trying to be a horror should be scary.
-
-However, each film does not exist in a vacuum. A film is a product of its time, its culture, and its creators. All parts evolve independently and inform the films made after them.
-
-## My Review Process
-
-When I analyze a film there are two broad traits that I consider: the film's intellectual value and its emotional value.
-
-### Rating System
-
-I rate films on a scale of 0 to 4 with half increments.
-
-#### Intellectual Rating
-
-TODO
-
-#### Entertainment Rating
-
-TODO
-
 ## Recent Movie Reviews
 
-::RecentMovies{:count=6}
+::ReviewGrid{collection="movie" :count=6}
 ::
 
 ## Recent Show Reviews
 
-::RecentShows{:count=6}
+::ReviewGrid{collection="show" :count=6}
 ::
+
+
+## Why Review?
+
+Reviews provide a way to contextualize art within a social and cultural framework. Art is a product of its time, shaped by its culture and creators, with each influencing and evolving alongside one another. While it’s impossible to fully grasp another person’s perspective, media serves as a partial representation of an artist’s intent, communicated through abstract forms. A review functions as a tool to solidify these ideas into a tangible, personal experience.
+
+Art, like all forms of communication, passes through multiple layers of translation. In film, for example, the creator must first conceptualize their thoughts and decide how to communicate them—much like choosing precise words in an essay, where even small variations can dramatically alter the message. These ideas then interact with contributions from others in the creative process. Once finalized, the art must be interpreted by an audience, who translate its visuals, sounds, and themes into their own language of understanding. From there, this interpretation is internalized as abstract thought. This process is inherently "lossy," with meaning often altered or diminished through each layer of translation.
+
+A review serves as the final step in this communicative journey, a way for the reviewer to articulate and concretize their experience in a personal framework. For me, reviews are an outlet to process and reflect on what I’ve experienced. By reading my reviews, you might gain insight into the work itself, but more importantly, you’re learning about my perspective. As you familiarize yourself with how I engage with art, you can frame your own thoughts alongside mine, using my words to guide or challenge your choices in exploring art.
+
+## Review Process
+
+I evaluate media through two primary categories: the intellectual value it holds when reflecting on it and the emotional value it offers during the experience. These categories are not independent—emotions provoke thought, and rational ideas elicit emotional reactions. Together, they create a cycle of interaction between the viewer and the work.
+
+An ideal piece of art doesn’t need to excel in one category or even both. Rather, it succeeds by achieving its intended goals more effectively than other works pursuing similar purposes.
+
+### Balancing Subjectivity
+
+Art inherently resides in a subjective realm—it’s designed to evoke personal feelings, interpretations, and connections. Yet, there are technical aspects and cultural contexts that can be analyzed more objectively. My reviews aim to balance these two perspectives.
+
+### Acknowledging the Tension
+
+Both axes of my reviews—the intellectual (rational) and emotional—blend subjectivity and objectivity. I prioritize a work’s effectiveness in communication, a subjective concept, over attempting to define rigid standards for what constitutes "good" art. By focusing on how well a piece conveys its message, I create a framework for interpreting art that promotes understanding over deconstruction.
+
+### Rating System
+
+I use a 0-to-4 scale with half-point increments to evaluate media. This limited scale encourages deliberate consideration of a work’s value and prevents the inflation of scores based on fleeting preferences.
+
+A more granular rating system often invites arbitrary comparisons—rating one film higher than another simply because it was more enjoyable, rather than evaluating its merits with thoughtfulness. By narrowing the scale, I force myself to engage more deeply with the meaning behind the rating, rather than the number itself.
+
+### Example Criteria
+
+Below are examples of questions that fit into my categorical reviews. These should help clarify the broader implications of each category:
+#### Rational Rating
+
+- How effectively does the work present its ideas compared to similar works?
+- Is the narrative coherent and consistent within its own framework?
+- Does the work explore its themes in depth or in an original way?
+- How effectively are the technical elements—such as cinematography, editing, sound design, and visual effects—used to serve the ideas?
+- Are the performances aligned with the film’s goals?
+
+#### Emotional Rating
+
+- Did the media successfully evoke the intended emotions?
+- Were there unique traits or moments that couldn’t be experienced elsewhere?
+- Did I feel immersed or engaged throughout the experience?
+- Did the emotional beats resonate effectively, or did they feel forced or hollow?
+
+## My Purpose
+
+Ultimately, reviews are my way of processing and engaging with art. They are as much about understanding myself as they are about critiquing the media. If my reviews spark thought, inspire discussion, or help guide your own exploration of art, then they’ve served a greater purpose than I intended. For that, I’m grateful. Cheers.

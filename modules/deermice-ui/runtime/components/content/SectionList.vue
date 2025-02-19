@@ -3,38 +3,38 @@
 		v-if="toc.title || toc.links.length"
 		:class="theme.root({ class: ui?.root })"
 	>
-		<ProseH4
+		<p
 			v-if="toc.title"
 			:class="theme.title({ class: ui?.title })"
 		>
 			{{ toc.title }}
-		</ProseH4>
+		</p>
 		<nav
 			v-if="toc.links.length"
 			:class="theme.container({ class: ui?.container })"
 		>
-			<ProseUl :class="theme.list({ class: ui?.list })">
-				<ProseLi
+			<div :class="theme.list({ class: ui?.list })">
+				<div
 					v-for="section in toc.links"
 					:key="section.id"
 					@click="onClick(section.id)"
 				>
-					<ProseP :class="theme.link({ class: ui?.link })">
+					<ULink :class="theme.link({ class: ui?.link })">
 						{{ section.text }}
-					</ProseP>
-					<ProseUl>
-						<ProseLi
+					</ULink>
+
+					<div :class="theme.subList({ class: ui?.subList })">
+						<ULink
 							v-for="link in section.children"
 							:key="link.id"
+							:class="theme.link({ class: ui?.link })"
 							@click.stop="onClick(link.id)"
 						>
-							<ProseP :class="theme.link({ class: ui?.link })">
-								{{ link.text }}
-							</ProseP>
-						</ProseLi>
-					</ProseUl>
-				</ProseLi>
-			</ProseUl>
+							{{ link.text }}
+						</ULink>
+					</div>
+				</div>
+			</div>
 		</nav>
 		<slot />
 	</div>
@@ -49,19 +49,14 @@ const baseTheme = tv({
 	slots: {
 		root: [
 			'sticky top-[calc(var(--ui-header-height)+1px)] bg-[var(--ui-bg)]/75',
-			'backdrop-blur px-4 sm:px-6 overflow-y-auto',
+			'backdrop-blur px-2 overflow-y-auto',
 			'max-h-[calc(100vh-var(--ui-header-height))]',
 		],
-		container: [
-			'pt-4 sm:pt-6 pb-2.5 sm:pb-4.5 lg:py-8 border-b',
-			'border-dashed border-[var(--ui-border)] lg:border-0 flex flex-col',
-		],
+		container: 'py-2 flex flex-col',
 		title: 'truncate',
 		list: '',
-		listWithChildren: 'ms-3',
-		item: '',
-		itemWithChildren: '',
-		link: 'group text-sm block truncate focus-visible:outline-[var(--ui-primary)] py-1',
+		subList: 'ms-3',
+		link: 'group text-sm block truncate cursor-pointer focus-visible:outline-[var(--ui-primary)] py-1',
 	},
 	variants: {
 		color: {

@@ -2,12 +2,17 @@ import { defineContentConfig, defineCollection, z } from '@nuxt/content';
 
 import { TMDBMovieSchema, TMDBShowSchema } from './shared/types/tmdb';
 
+const PageSchema = z.object({
+	title: z.string(),
+	published: z.boolean().optional().default(false),
+});
+
 const FeedSchema = z.object({
 	title: z.string(),
 	description: z.string(),
 });
 
-const ReviewMetadataSchema = z.object({
+const ReviewMetadataSchema = PageSchema.extend({
 	intRating: z.number().int().nonnegative().lte(8),
 	entRating: z.number().int().nonnegative().lte(8),
 	rating: z.number().int().nonnegative().lte(8),
@@ -24,21 +29,21 @@ const ReviewShowSchema = ReviewMetadataSchema.extend({
 	tmdbData: TMDBShowSchema,
 });
 
-const PhotographySchema = z.object({
-	name: z.string(),
+const PhotographySchema = PageSchema.extend({
+	title: z.string(),
 });
 
-const BlogSchema = z.object({
-	name: z.string(),
+const BlogSchema = PageSchema.extend({
+	namtitlee: z.string(),
 });
 
-const ProjectSchema = z.object({
-	name: z.string(),
+const ProjectSchema = PageSchema.extend({
+	title: z.string(),
 	link: z.string().url(),
 });
 
-const JobSchema = z.object({
-	name: z.string(),
+const JobSchema = PageSchema.extend({
+	title: z.string(),
 	link: z.string().url(),
 });
 
@@ -114,7 +119,8 @@ export default defineContentConfig({
 					exclude: [
 						'blog/*.md',
 						'photography/*.md',
-						'portfolio/*.md',
+						'portfolio/career/*.md',
+						'portfolio/project/*.md',
 						'review/movie/*.md',
 						'review/show/*.md',
 					],

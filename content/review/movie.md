@@ -1,6 +1,6 @@
 ---
-title: "Movie Reviews"
+title:	"Movie Reviews"
 ---
 
-::RecentMovies
+::ReviewGridFilter{collection="movie"}
 ::
