@@ -30,20 +30,20 @@ const ReviewShowSchema = ReviewMetadataSchema.extend({
 });
 
 const PhotographySchema = PageSchema.extend({
-	name: z.string(),
+	title: z.string(),
 });
 
 const BlogSchema = PageSchema.extend({
-	name: z.string(),
+	namtitlee: z.string(),
 });
 
 const ProjectSchema = PageSchema.extend({
-	name: z.string(),
+	title: z.string(),
 	link: z.string().url(),
 });
 
 const JobSchema = PageSchema.extend({
-	name: z.string(),
+	title: z.string(),
 	link: z.string().url(),
 });
 

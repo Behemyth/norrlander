@@ -1,3 +1,3 @@
 ---
-name: Perceptual Segmentation
+title: Perceptual Segmentation
 ---
