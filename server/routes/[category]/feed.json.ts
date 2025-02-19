@@ -1,12 +1,17 @@
+import type { PageCollections } from '@nuxt/content';
+
 export default defineEventHandler(async (event) => {
-	const { slug } = getRouterParams(event);
-	const feedContent = await queryCollection(event, 'feed').path(slug).first();
+	const category = getRouterParam(event, 'category') as keyof PageCollections;
+
+	const feedContent = await queryCollection(event, 'feed')
+		.where('category', '=', category)
+		.first();
 
 	if (!feedContent) {
 		throw createError({
 			statusCode: 404,
 			statusMessage:
-				'Feed not found',
+				'Feed data not found',
 		});
 	}
 
@@ -16,19 +21,11 @@ export default defineEventHandler(async (event) => {
 		avatar: new URL('/avatar/293a56bef971ab4999d6230491957d33', 'https://www.gravatar.com').toString(),
 	};
 
-	if (feedContent.title === undefined) {
-		throw createError({
-			statusCode: 404,
-			statusMessage:
-				'Feed title not found',
-		});
-	}
-
 	const feed: JSONFeed = {
 		version: 'https://jsonfeed.org/version/1.1',
 		title: feedContent.title,
 		home_page_url: new URL('https://ashernorland.com').toString(),
-		feed_url: new URL(path, 'https://ashernorland.com').toString(),
+		feed_url: new URL(event.path, 'https://ashernorland.com').toString(),
 		description: feedContent.description,
 		user_comment: 'Copyright © ' + new Date().getFullYear() + ' Asher Norland',
 		icon: new URL('/favicon.ico', 'https://ashernorland.com').toString(),
@@ -39,17 +36,17 @@ export default defineEventHandler(async (event) => {
 		items: [],
 	};
 
-	const docs: ParsedContent[] = await queryCollection(event, path)
-		.sort({ date_published: -1 })
-		.where({ layout: 'review' })
-		.find();
+	const data = await queryCollection(event, category)
+		.where('published', '=', true)
+		.order('date_published', 'DESC')
+		.all();
 
-	for (const post of docs) {
-		let contentPath = post._path;
+	for (const post of data) {
+		let contentPath = post.path;
 		contentPath = contentPath ??= '/';
 
 		const item: JSONFeedItem = {
-			id: post.url,
+			id: post.id,
 			url: new URL(contentPath, 'https://ashernorland.com').toString(),
 			title: post.title,
 			content_html: '',

@@ -5,11 +5,14 @@ import { TMDBMovieSchema, TMDBShowSchema } from './shared/types/tmdb';
 const PageSchema = z.object({
 	title: z.string(),
 	published: z.boolean().optional().default(false),
+	date_published: z.coerce.date(),
+	date_modified: z.coerce.date(),
 });
 
 const FeedSchema = z.object({
 	title: z.string(),
 	description: z.string(),
+	category: z.string(),
 });
 
 const ReviewMetadataSchema = PageSchema.extend({
@@ -17,8 +20,6 @@ const ReviewMetadataSchema = PageSchema.extend({
 	entRating: z.number().int().nonnegative().lte(8),
 	rating: z.number().int().nonnegative().lte(8),
 	TMDB_ID: z.number().int(),
-	date_published: z.coerce.date(),
-	date_modified: z.coerce.date(),
 });
 
 const ReviewMovieSchema = ReviewMetadataSchema.extend({
@@ -34,7 +35,7 @@ const PhotographySchema = PageSchema.extend({
 });
 
 const BlogSchema = PageSchema.extend({
-	namtitlee: z.string(),
+	title: z.string(),
 });
 
 const ProjectSchema = PageSchema.extend({
@@ -45,6 +46,10 @@ const ProjectSchema = PageSchema.extend({
 const JobSchema = PageSchema.extend({
 	title: z.string(),
 	link: z.string().url(),
+});
+
+const ContentSchema = PageSchema.extend({
+	title: z.string(),
 });
 
 const ContactSchema = z.object({
@@ -59,13 +64,8 @@ const SocialSchema = z.object({
 	link: z.string().url(),
 });
 
-const ContentSchema = z.object({
-	title: z.string(),
-});
-
 export default defineContentConfig({
 	collections: {
-
 		feed: defineCollection({
 			type: 'data',
 			source: 'data/feed/*.json',

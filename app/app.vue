@@ -11,22 +11,22 @@
 </template>
 
 <script setup lang="ts">
-// const links
-// 	= await queryCollection().path('/').where({ layout: 'feed' }).find().then((value) => {
-// 		return value.map((content) => {
-// 			return {
-// 				rel: 'alternate',
-// 				title: content.title,
-// 				type: 'application/feed+json',
-// 				href: content._path + '/feed.json',
-// 			};
-// 		});
-// 	});
+const links
+	= await queryCollection('feed').all().then((value) => {
+		return value.map((content) => {
+			return {
+				rel: 'alternate',
+				title: content.title,
+				type: 'application/feed+json',
+				href: '/' + content.category + '/feed.json',
+			};
+		});
+	});
 
-// // These links will also be picked up by the pre-renderer
-// useHead({
-// 	link: links,
-// });
+// These links will also be picked up by the pre-renderer
+useHead({
+	link: links,
+});
 </script>
 
 <style>
