@@ -4,6 +4,7 @@ import { TMDBMovieSchema, TMDBShowSchema } from './shared/types/tmdb';
 
 const PageSchema = z.object({
 	title: z.string(),
+	description: z.string(),
 	published: z.boolean().optional().default(false),
 	date_published: z.coerce.date(),
 	date_modified: z.coerce.date(),

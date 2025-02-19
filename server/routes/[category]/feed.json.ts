@@ -1,19 +1,22 @@
 import type { PageCollections } from '@nuxt/content';
 
 export default defineEventHandler(async (event) => {
-	const category = getRouterParam(event, 'category') as keyof PageCollections;
+	let category: keyof PageCollections;
+
+	try {
+		category = getRouterParam(event, 'category') as keyof PageCollections;
+	}
+	catch {
+		throw createError({
+			statusCode: 404,
+			statusMessage:
+				'The given category is not a valid category.',
+		});
+	}
 
 	const feedContent = await queryCollection(event, 'feed')
 		.where('category', '=', category)
 		.first();
-
-	if (!feedContent) {
-		throw createError({
-			statusCode: 404,
-			statusMessage:
-				'Feed data not found',
-		});
-	}
 
 	const author: JSONFeedAuthor = {
 		name: 'Asher Norland',
@@ -41,18 +44,18 @@ export default defineEventHandler(async (event) => {
 		.order('date_published', 'DESC')
 		.all();
 
-	for (const post of data) {
-		let contentPath = post.path;
+	for (const page of data) {
+		let contentPath = page.path;
 		contentPath = contentPath ??= '/';
 
 		const item: JSONFeedItem = {
-			id: post.id,
+			id: page.id,
 			url: new URL(contentPath, 'https://ashernorland.com').toString(),
-			title: post.title,
+			title: page.title,
 			content_html: '',
-			summary: post.description,
-			date_published: new Date(post.date_published).toISOString(),
-			date_modified: new Date(post.date_modified).toISOString(),
+			summary: page.description,
+			date_published: new Date(page.date_published).toISOString(),
+			date_modified: new Date(page.date_modified).toISOString(),
 			author: [author],
 			tags: [],
 			language: 'en-US',
