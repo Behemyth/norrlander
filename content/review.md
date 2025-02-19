@@ -2,6 +2,9 @@
 title: "Reviews"
 ---
 
+[All Movie Reviews](/review/movie)
+
+[All Show Reviews](/review/show)
 
 ## What Makes a Movie 'Good'?
 
