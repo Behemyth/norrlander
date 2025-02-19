@@ -1,4 +1,5 @@
 {
-    "title": "Movie Reviews",
-    "description": ""
+	"title": "Movie Reviews",
+	"description": "Reviews of the films Asher Norland is watching.",
+	"category": "movie"
 }
