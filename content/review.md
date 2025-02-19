@@ -27,17 +27,13 @@ I evaluate media through two primary categories: the intellectual value it holds
 
 An ideal piece of art doesn’t need to excel in one category or even both. Rather, it succeeds by achieving its intended goals more effectively than other works pursuing similar purposes.
 
-### Balancing Subjectivity and Objectivity
+### Balancing Subjectivity
 
 Art inherently resides in a subjective realm—it’s designed to evoke personal feelings, interpretations, and connections. Yet, there are technical aspects and cultural contexts that can be analyzed more objectively. My reviews aim to balance these two perspectives.
 
 ### Acknowledging the Tension
 
 Both axes of my reviews—the intellectual (rational) and emotional—blend subjectivity and objectivity. I prioritize a work’s effectiveness in communication, a subjective concept, over attempting to define rigid standards for what constitutes "good" art. By focusing on how well a piece conveys its message, I create a framework for interpreting art that promotes understanding over deconstruction.
-
-### Why This Balance Matters
-
-Acknowledging both subjective and objective elements fosters richer discussions about a work. A framework grounded in communication enhances how we exchange ideas about art and its impact.
 
 ### Rating System
 
