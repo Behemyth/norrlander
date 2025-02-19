@@ -1,4 +1,4 @@
 ---
 name: Mold I
-publish: true
+published: true
 ---

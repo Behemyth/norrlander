@@ -33,7 +33,7 @@ const { data: groups } = await useAsyncData('search-data',
 	() => {
 		return Promise.all([
 			queryCollectionSearchSections('blog')
-				.where('publish', '=', true)
+				.where('published', '=', true)
 				.then((value) => {
 					return {
 						id: 'blog',
@@ -42,7 +42,7 @@ const { data: groups } = await useAsyncData('search-data',
 					};
 				}),
 			queryCollectionSearchSections('photography')
-				.where('publish', '=', true)
+				.where('published', '=', true)
 				.then((value) => {
 					return {
 						id: 'photography',
@@ -51,7 +51,7 @@ const { data: groups } = await useAsyncData('search-data',
 					};
 				}),
 			queryCollectionSearchSections('career')
-				.where('publish', '=', true)
+				.where('published', '=', true)
 				.then((value) => {
 					return {
 						id: 'career',
@@ -60,7 +60,7 @@ const { data: groups } = await useAsyncData('search-data',
 					};
 				}),
 			queryCollectionSearchSections('project')
-				.where('publish', '=', true)
+				.where('published', '=', true)
 				.then((value) => {
 					return {
 						id: 'project',
@@ -69,7 +69,7 @@ const { data: groups } = await useAsyncData('search-data',
 					};
 				}),
 			queryCollectionSearchSections('movie')
-				.where('publish', '=', true)
+				.where('published', '=', true)
 				.then((value) => {
 					return {
 						id: 'movie',
@@ -78,7 +78,7 @@ const { data: groups } = await useAsyncData('search-data',
 					};
 				}),
 			queryCollectionSearchSections('show')
-				.where('publish', '=', true)
+				.where('published', '=', true)
 				.then((value) => {
 					return {
 						id: 'show',

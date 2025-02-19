@@ -18,7 +18,7 @@ const props = defineProps<{
 }>();
 
 const items = await queryCollection(props.collection)
-	.where('publish', '=', true)
+	.where('published', '=', true)
 	.limit(props.count)
 	.all();
 </script>
