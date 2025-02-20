@@ -1,34 +1,42 @@
 import type { PageCollections } from '@nuxt/content';
 
 export default defineEventHandler(async (event) => {
-	const stem = '/' + event.context.params!.slug;
+	let slug = getRouterParam(event, 'slug');
+
+	// Reject slugs that are empty or don't end with '.json'
+	if (!slug || !slug.endsWith('.json')) {
+		throw createError(
+			{
+				status: 404,
+				message: 'Invalid feed',
+			},
+		);
+	}
+
+	// Remove '.json' from the slug
+	slug = slug!.slice(0, -5);
 
 	const feedContent = await queryCollection(event, 'content')
-		.path(stem)
+		.path('/' + slug)
 		.first();
-
-	if (!feedContent || !feedContent.feed) {
-		throw createError({
-			statusCode: 404,
-			statusMessage: `There is no associated feed with 'https://ashernorland.com${stem}'`,
-		});
-	}
 
 	let category: keyof PageCollections;
 
+	// Check if the feed content exists and is a valid feed
 	try {
 		category = feedContent.feed as keyof PageCollections;
 
-		if (category === 'content') {
-			throw new Error('"content" type is not valid.');
+		if (!category || category === 'content') {
+			throw new Error();
 		}
 	}
 	catch {
-		throw createError({
-			statusCode: 404,
-			statusMessage:
-				`The given category ${feedContent.feed} is not a valid category.`,
-		});
+		throw createError(
+			{
+				status: 404,
+				message: `Content '/${slug}' not found with valid feed`,
+			},
+		);
 	}
 
 	const author: JSONFeedAuthor = {
@@ -39,10 +47,10 @@ export default defineEventHandler(async (event) => {
 
 	const feed: JSONFeed = {
 		version: 'https://jsonfeed.org/version/1.1',
-		title: feedContent.title,
+		title: 'TODO',
 		home_page_url: new URL('https://ashernorland.com').toString(),
 		feed_url: new URL(event.path, 'https://ashernorland.com').toString(),
-		description: feedContent.description,
+		description: 'A feed',
 		user_comment: 'Copyright © ' + new Date().getFullYear() + ' Asher Norland',
 		icon: new URL('/favicon.ico', 'https://ashernorland.com').toString(),
 		favicon: new URL('/favicon.ico', 'https://ashernorland.com').toString(),

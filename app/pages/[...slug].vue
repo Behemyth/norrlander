@@ -48,7 +48,7 @@ const links = computed(() => {
 			rel: 'alternate',
 			title: page.value?.title,
 			type: 'application/feed+json',
-			href: '/feed' + route.path,
+			href: '/feed' + route.path + '.json',
 		},
 	];
 });

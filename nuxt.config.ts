@@ -61,7 +61,7 @@ export default defineNuxtConfig({
 		prerender: {
 			crawlLinks: true,
 			interval: 50, // To avoid rate limiting of the TMDB API
-			routes: ['/', '/sitemap.xml', '/robots.txt'],
+			routes: ['/sitemap.xml', '/robots.txt'],
 		},
 	},
 
