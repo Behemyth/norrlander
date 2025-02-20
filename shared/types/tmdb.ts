@@ -1,4 +1,4 @@
-import { z } from '@nuxt/content';
+import { z } from 'zod';
 
 export enum TMDBMediaType {
 	Movie = 'movie',
@@ -12,6 +12,8 @@ export const TMDBGenreSchema = z.object({
 	name: z.string(),
 });
 
+export type TMDBGenre = z.infer<typeof TMDBGenreSchema>;
+
 export const TMDBMediaSchema = z.object({
 	backdrop_path: z.string(),
 	id: z.number().int(),
@@ -20,13 +22,20 @@ export const TMDBMediaSchema = z.object({
 	poster_path: z.string(),
 });
 
+export type TMDBMedia = z.infer<typeof TMDBMediaSchema>;
+
 export const TMDBMovieSchema = TMDBMediaSchema.extend({
 	title: z.string(),
 	runtime: z.number().int().optional(),
 	release_date: z.string().optional(),
+
 });
+
+export type TMDBMovie = z.infer<typeof TMDBMovieSchema>;
 
 export const TMDBShowSchema = TMDBMediaSchema.extend({
 	name: z.string(),
 	first_air_date: z.string().optional(),
 });
+
+export type TMDBShow = z.infer<typeof TMDBShowSchema>;
