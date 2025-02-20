@@ -85,7 +85,7 @@ export default defineEventHandler(async (event) => {
 		feed.items.push(item);
 	}
 
-	setResponseHeader(event, 'Content-Type', 'application/feed+json');
+	setResponseHeader(event, 'content-type', 'application/feed+json');
 
 	return feed;
 });
