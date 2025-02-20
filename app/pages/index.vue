@@ -12,7 +12,7 @@ const links
 				return {
 					rel: 'alternate',
 					title: page.title,
-					type: 'application/feed+json',
+					type: 'application/json',
 					href: 'https://ashernorland.com/feed' + page.path + '.json',
 				};
 			});
