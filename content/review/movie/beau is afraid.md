@@ -6,6 +6,7 @@ TMDB_ID: 798286
 date_published: 2024-12-31
 date_modified: 2025-02-18
 published: true
+description: "Beau is Afraid is a horror film that elicits laughter and a sense of giddy surprise. The humor here isn’t rooted in shock or bloodshed—it stems from the film’s sharp satirical lens."
 ---
 
 As is Beau, I am afraid. The fear "Beau is Afraid" inspires lingers, both during the viewing and in its aftermath. While firmly within the horror genre, the film also elicits laughter and a sense of giddy surprise. These emotions don’t conflict but instead blend into a startlingly unique concoction. You might be tempted to think the film taps into primal guilt, like a slasher or gore-fest, to provoke catharsis. However, the humor here isn’t rooted in shock or bloodshed—it stems from the film’s sharp satirical lens.
