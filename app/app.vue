@@ -10,25 +10,6 @@
 	</DApp>
 </template>
 
-<script setup lang="ts">
-const links
-	= await queryCollection('feed').all().then((value) => {
-		return value.map((content) => {
-			return {
-				rel: 'alternate',
-				title: content.title,
-				type: 'application/feed+json',
-				href: new URL(content.category + '/feed.json', 'https://ashernorland.com').toString(),
-			};
-		});
-	});
-
-// These links will also be picked up by the pre-renderer
-useHead({
-	link: links,
-});
-</script>
-
 <style>
 @import "tailwindcss";
 @import "@nuxt/ui";

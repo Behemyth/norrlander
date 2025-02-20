@@ -1,22 +1,35 @@
 import type { PageCollections } from '@nuxt/content';
 
 export default defineEventHandler(async (event) => {
+	const stem = '/' + event.context.params!.slug;
+
+	const feedContent = await queryCollection(event, 'content')
+		.path(stem)
+		.first();
+
+	if (!feedContent || !feedContent.feed) {
+		throw createError({
+			statusCode: 404,
+			statusMessage: `There is no associated feed with 'https://ashernorland.com${stem}'`,
+		});
+	}
+
 	let category: keyof PageCollections;
 
 	try {
-		category = getRouterParam(event, 'category') as keyof PageCollections;
+		category = feedContent.feed as keyof PageCollections;
+
+		if (category === 'content') {
+			throw new Error('"content" type is not valid.');
+		}
 	}
 	catch {
 		throw createError({
 			statusCode: 404,
 			statusMessage:
-				'The given category is not a valid category.',
+				`The given category ${feedContent.feed} is not a valid category.`,
 		});
 	}
-
-	const feedContent = await queryCollection(event, 'feed')
-		.where('category', '=', category)
-		.first();
 
 	const author: JSONFeedAuthor = {
 		name: 'Asher Norland',

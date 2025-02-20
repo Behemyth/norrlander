@@ -9,7 +9,7 @@ import { tv } from 'tailwind-variants';
 
 const baseTheme = tv({
 	slots: {
-		base: 'mt-8 pb-24 space-y-12',
+		base: 'pb-24 space-y-12',
 	},
 });
 

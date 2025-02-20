@@ -42,12 +42,16 @@ const { data: page } = await useAsyncData(route.path, () => {
 	return queryCollection(category.value).path(route.path).first();
 });
 
+if (!page.value) {
+	throw createError({
+		statusCode: 404,
+		message: 'Review not found',
+	});
+}
+
 definePageMeta({
 	layout: 'content',
 });
 
-useSeoMeta({
-	title: page.value?.title,
-	description: page.value?.description,
-});
+useSeoMeta(page.value?.seo || {});
 </script>

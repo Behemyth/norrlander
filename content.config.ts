@@ -1,10 +1,11 @@
 import { defineContentConfig, defineCollection, z } from '@nuxt/content';
 
+import { asSitemapCollection } from '@nuxtjs/sitemap/content';
 import { TMDBMovieSchema, TMDBShowSchema } from './shared/types/tmdb';
-
 /**
  * @brief A schema that should be applied to all pages. When using `queryCollection`
  * 	with a `keyof PageCollections`, the result will always contain this information
+ * 	(except ContentSchema, which we have to assert for at its use)
  */
 const PageSchema = z.object({
 	title: z.string(),
@@ -12,15 +13,6 @@ const PageSchema = z.object({
 	published: z.boolean().optional().default(false),
 	date_published: z.coerce.date(),
 	date_modified: z.coerce.date(),
-});
-
-/**
- * @brief A schema for all data feeds that will be used for RSS-like services
- */
-const FeedSchema = z.object({
-	title: z.string(),
-	description: z.string(),
-	category: z.string(),
 });
 
 /**
@@ -63,8 +55,9 @@ const JobSchema = PageSchema.extend({
 	link: z.string().url(),
 });
 
-const ContentSchema = PageSchema.extend({
+const ContentSchema = z.object({
 	title: z.string(),
+	feed: z.string().optional(),
 });
 
 // Data collections schemas
@@ -85,11 +78,6 @@ const SocialSchema = z.object({
 
 export default defineContentConfig({
 	collections: {
-		feed: defineCollection({
-			type: 'data',
-			source: 'data/feed/*.json',
-			schema: FeedSchema,
-		}),
 		contact: defineCollection({
 			type: 'data',
 			source: 'data/contact/*.json',
@@ -130,9 +118,10 @@ export default defineContentConfig({
 			source: 'review/show/*.md',
 			schema: ReviewShowSchema,
 		}),
-		content: defineCollection({
-			type: 'page',
-			source:
+		content: defineCollection(
+			asSitemapCollection({
+				type: 'page',
+				source:
 				{
 					include: '**/*.md',
 					exclude: [
@@ -144,7 +133,8 @@ export default defineContentConfig({
 						'review/show/*.md',
 					],
 				},
-			schema: ContentSchema,
-		}),
+				schema: ContentSchema,
+			}),
+		),
 	},
 });
