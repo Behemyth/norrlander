@@ -47,10 +47,10 @@ export default defineEventHandler(async (event) => {
 
 	const feed: JSONFeed = {
 		version: 'https://jsonfeed.org/version/1.1',
-		title: 'TODO',
+		title: feedContent.title,
 		home_page_url: new URL('https://ashernorland.com').toString(),
 		feed_url: new URL(event.path, 'https://ashernorland.com').toString(),
-		description: 'A feed',
+		description: feedContent.description,
 		user_comment: 'Copyright © ' + new Date().getFullYear() + ' Asher Norland',
 		icon: new URL('/favicon.ico', 'https://ashernorland.com').toString(),
 		favicon: new URL('/favicon.ico', 'https://ashernorland.com').toString(),
@@ -84,8 +84,6 @@ export default defineEventHandler(async (event) => {
 		};
 		feed.items.push(item);
 	}
-
-	setResponseHeader(event, 'content-type', 'application/feed+json');
 
 	return feed;
 });
