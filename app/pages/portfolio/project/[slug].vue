@@ -18,12 +18,16 @@ const { data: page } = await useAsyncData(route.path, () => {
 	return queryCollection('project').path(route.path).first();
 });
 
+if (!page.value) {
+	throw createError({
+		statusCode: 404,
+		message: 'Page not found',
+	});
+}
+
 definePageMeta({
 	layout: 'content',
 });
 
-useSeoMeta({
-	title: page.value?.title,
-	description: page.value?.description,
-});
+useSeoMeta(page.value?.seo || {});
 </script>

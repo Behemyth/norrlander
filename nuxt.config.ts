@@ -1,9 +1,12 @@
 // https://v3.nuxtjs.org/docs/directory-structure/nuxt.config
 export default defineNuxtConfig({
 
+	// nuxtjs/content should be loaded after 'nuxt/ui' or 'deermice-ui'
+	// nuxtjs/sitemap and robots should be loaded before 'nuxt/content'
 	modules: [
-		'@nuxtjs/sitemap', // nuxtjs/sitemap should be loaded before 'nuxt/content'
-		'@nuxt/content', // nuxtjs/content should be loaded after 'nuxt/ui' or 'deermice-ui'
+		'@nuxtjs/sitemap',
+		'@nuxtjs/robots',
+		'@nuxt/content',
 		'@nuxt/image',
 		'@nuxtjs/i18n',
 		'@nuxt/eslint',
@@ -58,7 +61,7 @@ export default defineNuxtConfig({
 		prerender: {
 			crawlLinks: true,
 			interval: 50, // To avoid rate limiting of the TMDB API
-			routes: ['/'],
+			routes: ['/', '/sitemap.xml', '/robots.txt'],
 		},
 	},
 
@@ -114,5 +117,9 @@ export default defineNuxtConfig({
 			gravatar: 'https://www.gravatar.com/avatar',
 		},
 		dir: 'public/images',
+	},
+
+	robots: {
+		autoI18n: false,
 	},
 });
