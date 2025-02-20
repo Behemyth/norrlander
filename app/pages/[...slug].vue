@@ -47,7 +47,7 @@ const links = computed(() => {
 		{
 			rel: 'alternate',
 			title: page.value?.title,
-			type: 'application/feed+json',
+			type: 'application/json',
 			href: '/feed' + route.path + '.json',
 		},
 	];
