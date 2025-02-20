@@ -11,6 +11,7 @@
 </template>
 
 <script setup lang="ts">
+const url = useRequestURL();
 const links
 	= await queryCollection('feed').all().then((value) => {
 		return value.map((content) => {
@@ -18,7 +19,7 @@ const links
 				rel: 'alternate',
 				title: content.title,
 				type: 'application/feed+json',
-				href: '/' + content.category + '/feed.json',
+				href: new URL(content.category + '/feed.json', url.href).toString(),
 			};
 		});
 	});

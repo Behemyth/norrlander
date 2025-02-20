@@ -2,6 +2,10 @@ import { defineContentConfig, defineCollection, z } from '@nuxt/content';
 
 import { TMDBMovieSchema, TMDBShowSchema } from './shared/types/tmdb';
 
+/**
+ * @brief A schema that should be applied to all pages. When using `queryCollection`
+ * 	with a `keyof PageCollections`, the result will always contain this information
+ */
 const PageSchema = z.object({
 	title: z.string(),
 	description: z.string(),
@@ -10,18 +14,28 @@ const PageSchema = z.object({
 	date_modified: z.coerce.date(),
 });
 
+/**
+ * @brief A schema for all data feeds that will be used for RSS-like services
+ */
 const FeedSchema = z.object({
 	title: z.string(),
 	description: z.string(),
 	category: z.string(),
 });
 
+/**
+ * @brief The base schema for all review types
+ */
 const ReviewMetadataSchema = PageSchema.extend({
 	intRating: z.number().int().nonnegative().lte(8),
 	entRating: z.number().int().nonnegative().lte(8),
 	rating: z.number().int().nonnegative().lte(8),
 	TMDB_ID: z.number().int(),
 });
+
+// --- Everything below here is a schema specifically for each collection ---
+
+// Page collections schemas
 
 const ReviewMovieSchema = ReviewMetadataSchema.extend({
 	tmdbData: TMDBMovieSchema,
@@ -53,6 +67,8 @@ const ContentSchema = PageSchema.extend({
 	title: z.string(),
 });
 
+// Data collections schemas
+
 const ContactSchema = z.object({
 	name: z.string(),
 	icon: z.string(),
@@ -64,6 +80,8 @@ const SocialSchema = z.object({
 	icon: z.string(),
 	link: z.string().url(),
 });
+
+// Collection definitions
 
 export default defineContentConfig({
 	collections: {
