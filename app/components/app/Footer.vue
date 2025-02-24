@@ -64,5 +64,5 @@ const items = computed(() => [
 	},
 ]);
 
-const socials = await queryCollection('socials').all();
+const { data: socials } = await useAsyncData('socials', () => queryCollection('socials').all());
 </script>

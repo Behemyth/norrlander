@@ -125,6 +125,7 @@ export default defineContentConfig({
 				{
 					include: '**/*.md',
 					exclude: [
+						'data/**',
 						'blog/*.md',
 						'photography/*.md',
 						'portfolio/career/*.md',
