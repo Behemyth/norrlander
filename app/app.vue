@@ -33,13 +33,13 @@ useHead({
 </script>
 
 <style>
-@import "tailwindcss";
+@import "tailwindcss" theme(static);
 @import "@nuxt/ui";
 
 /* Used to apply tailwind classes to content files */
 @source "../content/**/*";
 
-@theme {
+@theme static {
 	--font-sans: Lato, sans-serif;
 }
 
