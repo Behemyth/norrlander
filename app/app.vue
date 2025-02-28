@@ -31,19 +31,3 @@ useHead({
 	link: links,
 });
 </script>
-
-<style>
-@import "tailwindcss" theme(static);
-@import "@nuxt/ui";
-
-/* Used to apply tailwind classes to content files */
-@source "../content/**/*";
-
-@theme static {
-	--font-sans: Lato, sans-serif;
-}
-
-:root {
-	--ui-header-height: calc(var(--spacing) * 16);
-}
-</style>
