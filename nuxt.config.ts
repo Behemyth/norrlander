@@ -6,6 +6,7 @@ export default defineNuxtConfig({
 	modules: [
 		'@nuxtjs/sitemap',
 		'@nuxtjs/robots',
+		'@deermice/ui',
 		'@nuxt/content',
 		'@nuxt/image',
 		'@nuxtjs/i18n',
