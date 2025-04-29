@@ -21,7 +21,7 @@
 		"@nuxtjs/i18n": "^9.5.3",
 		"@nuxtjs/robots": "^5.2.10",
 		"@nuxtjs/sitemap": "^7.2.10",
-		"nuxt": "^3.17.0",
+		"nuxt": "^3.17.1",
 		"tailwind-variants": "^0.3.1",
 		"typescript": "^5.8.3",
 		"zod": "^3.24.3"
