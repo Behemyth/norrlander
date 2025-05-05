@@ -1,5 +1,5 @@
 <template>
-	<DApp>
+	<UApp>
 		<AppHeader class="flex-none" />
 		<DMain>
 			<NuxtLayout class="grow">
@@ -7,7 +7,7 @@
 			</NuxtLayout>
 		</DMain>
 		<AppFooter class="flex-none" />
-	</DApp>
+	</UApp>
 </template>
 
 <script setup lang="ts">
