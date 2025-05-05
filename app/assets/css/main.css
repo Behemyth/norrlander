@@ -9,5 +9,5 @@
 }
 
 :root {
-	--ui-header-height: calc(var(--spacing) * 16);
+	--ui-header-height: --spacing(16);
 }
