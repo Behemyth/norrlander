@@ -24,7 +24,7 @@
 		"nuxt": "^3.17.5",
 		"tailwind-variants": "^0.3.1",
 		"typescript": "^5.8.3",
-		"zod": "^3.25.49"
+		"zod": "^3.25.56"
 	},
 	"dependencies": {
 		"@giscus/vue": "^3.1.1",
