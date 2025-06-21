@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import "@nuxt/ui";
+@import "@deermice/ui";
 
 /* Used to apply tailwind classes to content files */
 @source "../../../content";
