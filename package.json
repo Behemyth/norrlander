@@ -13,22 +13,22 @@
 	"devDependencies": {
 		"@deermice/ui": "^0.3.3",
 		"@iconify-json/heroicons": "^1.2.2",
-		"@iconify-json/lucide": "^1.2.51",
+		"@iconify-json/lucide": "^1.2.56",
 		"@iconify-json/mdi": "^1.2.3",
-		"@nuxt/content": "^3.6.1",
-		"@nuxt/eslint": "^1.4.1",
+		"@nuxt/content": "^3.6.3",
+		"@nuxt/eslint": "^1.5.2",
 		"@nuxt/image": "^1.10.0",
-		"@nuxtjs/i18n": "^9.5.5",
-		"@nuxtjs/robots": "^5.2.11",
-		"@nuxtjs/sitemap": "^7.4.1",
-		"nuxt": "^3.17.5",
+		"@nuxtjs/i18n": "^9.5.6",
+		"@nuxtjs/robots": "^5.3.0",
+		"@nuxtjs/sitemap": "^7.4.3",
+		"nuxt": "^3.17.6",
 		"tailwind-variants": "^0.3.1",
 		"typescript": "^5.8.3",
 		"zod": "^3.25.67"
 	},
 	"dependencies": {
 		"@giscus/vue": "^3.1.1",
-		"better-sqlite3": "^12.0.0",
+		"better-sqlite3": "^12.2.0",
 		"fuse.js": "^7.1.0"
 	}
 }
