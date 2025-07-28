@@ -22,7 +22,7 @@
 		"@nuxtjs/robots": "^5.4.0",
 		"@nuxtjs/sitemap": "^7.4.3",
 		"nuxt": "^3.17.7",
-		"tailwind-variants": "^0.3.1",
+		"tailwind-variants": "^2.0.1",
 		"typescript": "^5.8.3",
 		"zod": "^4.0.5"
 	},
