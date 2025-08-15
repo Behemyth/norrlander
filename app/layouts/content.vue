@@ -15,7 +15,7 @@
 const route = useRoute();
 
 // Don't await in wrapper/layout
-const { data: navigation } = useAsyncData('navigation', () => queryCollectionNavigation('content'));
+const { data: navigation } = useContentNavigation();
 
 // The content sub-category is not a part of the page navigation query. As a result we only add the navigational
 //	breadcrumbs. For example '/review/movie' instead of '/review/movie/<movie>'.

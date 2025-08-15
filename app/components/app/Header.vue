@@ -29,7 +29,7 @@
 </template>
 
 <script setup lang="ts">
-const { data: navigation } = await useAsyncData('navigation', () => queryCollectionNavigation('content'));
+const { data: navigation } = await useContentNavigation();
 
 const items = computed(() => mapContentNavigation(navigation?.value));
 </script>
