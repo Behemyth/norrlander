@@ -3,5 +3,9 @@ export default defineAppConfig({
 		colors: {
 			primary: 'cool',
 		},
+		icons: {
+			light: 'i-heroicons-sun',
+			dark: 'i-heroicons-moon',
+		},
 	},
 });

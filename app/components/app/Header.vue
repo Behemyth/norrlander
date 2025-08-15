@@ -1,5 +1,5 @@
 <template>
-	<DHeader
+	<UHeader
 		title="The Norlander"
 		:ui="{
 			title: 'text-nowrap font-mono text-2xl md:text-3xl',
@@ -15,10 +15,7 @@
 		/>
 		<template #right>
 			<AppSearch />
-			<DColorButton
-				:light-icon="'i-heroicons-sun'"
-				:dark-icon="'i-heroicons-moon'"
-			/>
+			<UColorModeButton />
 		</template>
 		<template #content>
 			<UNavigationMenu
@@ -28,7 +25,7 @@
 				:items="items"
 			/>
 		</template>
-	</DHeader>
+	</UHeader>
 </template>
 
 <script setup lang="ts">

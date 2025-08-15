@@ -1,12 +1,11 @@
 // https://v3.nuxtjs.org/docs/directory-structure/nuxt.config
 export default defineNuxtConfig({
-	// nuxtjs/content should be loaded after 'nuxt/ui' or 'deermice-ui'
+	// nuxtjs/content should be loaded after 'nuxt/ui'
 	// nuxtjs/sitemap and robots should be loaded before 'nuxt/content'
 	modules: [
 		'@nuxtjs/sitemap',
 		'@nuxtjs/robots',
 		'@nuxt/ui',
-		'@deermice/ui',
 		'@nuxt/content',
 		'@nuxt/image',
 		'@nuxtjs/i18n',

@@ -1,13 +1,13 @@
 <template>
 	<UContainer>
-		<DPage>
-			<DPageHeader v-bind="route">
+		<UPage>
+			<UPageHeader v-bind="route">
 				<template #headline>
 					<UBreadcrumb :items="breadcrumb" />
 				</template>
-			</DPageHeader>
+			</UPageHeader>
 			<slot />
-		</DPage>
+		</UPage>
 	</UContainer>
 </template>
 

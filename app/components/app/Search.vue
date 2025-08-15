@@ -1,12 +1,14 @@
 <template>
-	<DContentSearch :groups="groups">
-		<UButton
-			icon="i-mdi-search"
-			color="neutral"
-			variant="ghost"
-			size="lg"
-		/>
-	</DContentSearch>
+	<ClientOnly>
+		<LazyUContentSearch :groups="groups">
+			<UButton
+				icon="i-mdi-search"
+				color="neutral"
+				variant="ghost"
+				size="lg"
+			/>
+		</LazyUContentSearch>
+	</ClientOnly>
 </template>
 
 <script setup lang="ts">

@@ -1,22 +1,22 @@
 <template>
-	<DPage v-if="page">
-		<DPageBody>
+	<UPage v-if="page">
+		<UPageBody>
 			<ContentRenderer
 				:value="page.body"
 			/>
-		</DPageBody>
+		</UPageBody>
 
 		<template
 			v-if="page.body.toc && page.body.toc.links.length"
 			#left
 		>
-			<DPageAside>
-				<DContentSectionList
+			<UPageAside>
+				<ContentSectionList
 					:toc="page.body.toc"
 				/>
-			</DPageAside>
+			</UPageAside>
 		</template>
-	</DPage>
+	</UPage>
 </template>
 
 <script lang="ts" setup>

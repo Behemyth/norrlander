@@ -1,16 +1,16 @@
 <template>
-	<DPage
+	<UPage
 		v-if="page"
 		class="max-w-4xl mx-auto w-full"
 	>
-		<DPageBody>
+		<UPageBody>
 			<article>
 				<ContentRenderer
 					:value="page"
 				/>
 			</article>
-		</DPageBody>
-	</DPage>
+		</UPageBody>
+	</UPage>
 </template>
 
 <script lang="ts" setup>

@@ -1,5 +1,5 @@
 <template>
-	<DFooter>
+	<UFooter>
 		<UNavigationMenu
 			:items="items"
 			color="neutral"
@@ -47,7 +47,7 @@
 				<span>Made with ❤️ by Asher and Ola</span>
 			</span>
 		</template>
-	</DFooter>
+	</UFooter>
 </template>
 
 <script setup lang="ts">

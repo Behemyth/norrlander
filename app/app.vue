@@ -1,11 +1,11 @@
 <template>
 	<UApp>
 		<AppHeader class="flex-none" />
-		<DMain>
+		<UMain>
 			<NuxtLayout class="grow">
 				<NuxtPage />
 			</NuxtLayout>
-		</DMain>
+		</UMain>
 		<AppFooter class="flex-none" />
 	</UApp>
 </template>
