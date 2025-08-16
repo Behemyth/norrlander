@@ -28,7 +28,6 @@ export const TMDBMovieSchema = TMDBMediaSchema.extend({
 	title: z.string(),
 	runtime: z.number().int().optional(),
 	release_date: z.string().optional(),
-
 });
 
 export type TMDBMovie = z.infer<typeof TMDBMovieSchema>;
