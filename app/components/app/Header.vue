@@ -15,7 +15,7 @@
 		/>
 		<template #right>
 			<AppSearch />
-			<UColorModeButton />
+			<AppColorMode />
 		</template>
 		<template #content>
 			<UNavigationMenu
