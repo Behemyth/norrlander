@@ -14,6 +14,12 @@ export default defineNuxtConfig({
 
 	ssr: true,
 
+	app: {
+		rootAttrs: {
+			class: 'min-h-svh flex flex-col',
+		},
+	},
+
 	css: ['~/assets/css/main.css'],
 
 	site: {

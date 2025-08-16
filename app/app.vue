@@ -1,12 +1,12 @@
 <template>
 	<UApp>
-		<AppHeader class="flex-none" />
-		<UMain>
-			<NuxtLayout class="grow">
+		<AppHeader />
+		<UMain class="grow min-h-0">
+			<NuxtLayout>
 				<NuxtPage />
 			</NuxtLayout>
 		</UMain>
-		<AppFooter class="flex-none" />
+		<AppFooter />
 	</UApp>
 </template>
 
