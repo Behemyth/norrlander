@@ -1,5 +1,5 @@
 <template>
-	<UCard
+	<UPageCard
 		:title="title"
 		reverse
 		:to="path"
@@ -23,7 +23,7 @@
 				:size="18"
 			/>
 		</template>
-	</UCard>
+	</UPageCard>
 </template>
 
 <script setup lang="ts">

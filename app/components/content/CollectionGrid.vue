@@ -1,6 +1,6 @@
 <template>
 	<div class="grid grid-flow-row gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
-		<LazyUCard
+		<LazyUPageCard
 			v-for="element in items"
 			:key="element.id"
 			:title="element.title"
