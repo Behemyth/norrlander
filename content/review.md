@@ -41,24 +41,6 @@ I use a 0-to-4 scale with half-point increments to evaluate media. This limited 
 
 A more granular rating system often invites arbitrary comparisons—rating one film higher than another simply because it was more enjoyable, rather than evaluating its merits with thoughtfulness. By narrowing the scale, I force myself to engage more deeply with the meaning behind the rating, rather than the number itself.
 
-### Example Criteria
-
-Below are examples of questions that fit into my categorical reviews. These should help clarify the broader implications of each category:
-#### Rational Rating
-
-- How effectively does the work present its ideas compared to similar works?
-- Is the narrative coherent and consistent within its own framework?
-- Does the work explore its themes in depth or in an original way?
-- How effectively are the technical elements—such as cinematography, editing, sound design, and visual effects—used to serve the ideas?
-- Are the performances aligned with the film’s goals?
-
-#### Emotional Rating
-
-- Did the media successfully evoke the intended emotions?
-- Were there unique traits or moments that couldn’t be experienced elsewhere?
-- Did I feel immersed or engaged throughout the experience?
-- Did the emotional beats resonate effectively, or did they feel forced or hollow?
-
 ## My Purpose
 
 Ultimately, reviews are my way of processing and engaging with art. They are as much about understanding myself as they are about critiquing the media. If my reviews spark thought, inspire discussion, or help guide your own exploration of art, then they’ve served a greater purpose than I intended. For that, I’m grateful. Cheers.
