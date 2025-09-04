@@ -37,7 +37,7 @@ Both axes of my reviews—the intellectual (rational) and emotional—blend subj
 
 ### Rating System
 
-I use a 0-to-4 scale with half-point increments to evaluate media. This limited scale encourages deliberate consideration of a work’s value and prevents the inflation of scores based on fleeting preferences.
+I use a 0-to-4 scale with half-point increments. This limited scale encourages deliberate consideration of a work’s value and prevents the inflation of scores based on fleeting preferences.
 
 A more granular rating system often invites arbitrary comparisons—rating one film higher than another simply because it was more enjoyable, rather than evaluating its merits with thoughtfulness. By narrowing the scale, I force myself to engage more deeply with the meaning behind the rating, rather than the number itself.
 
