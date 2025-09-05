@@ -12,6 +12,7 @@
 			:files="files"
 			:navigation="navigation"
 			:color-mode="false"
+			:fuse="{ resultLimit: 40 }"
 		/>
 	</ClientOnly>
 </template>
