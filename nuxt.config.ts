@@ -43,6 +43,9 @@ export default defineNuxtConfig({
 				},
 			},
 		},
+		experimental: {
+			sqliteConnector: 'native',
+		},
 	},
 	// https://ui.nuxt.com/getting-started/theming
 	ui: {
