@@ -1,21 +1,18 @@
 <template>
-	<UModal>
-		<UButton
-			icon="i-mdi-search"
-			color="neutral"
-			variant="ghost"
-			size="lg"
+	<UContentSearchButton
+		icon="i-mdi-search"
+		color="neutral"
+		variant="ghost"
+		size="lg"
+	/>
+	<ClientOnly>
+		<LazyUContentSearch
+			v-model:search-term="searchTerm"
+			:files="files"
+			:navigation="navigation"
+			:color-mode="false"
 		/>
-		<template #content>
-			<ClientOnly>
-				<LazyUContentSearch
-					v-model:search-term="searchTerm"
-					:files="files"
-					:color-mode="false"
-				/>
-			</ClientOnly>
-		</template>
-	</UModal>
+	</ClientOnly>
 </template>
 
 <script setup lang="ts">
@@ -35,6 +32,8 @@ const { data: files } = useLazyAsyncData(
 	},
 	{ server: false },
 );
+
+const { data: navigation } = useContentNavigation();
 
 const searchTerm = ref('');
 </script>
