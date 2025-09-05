@@ -1,5 +1,5 @@
 <template>
-	<UApp>
+	<UApp :scroll-body="false">
 		<AppHeader />
 		<UMain class="grow min-h-0">
 			<NuxtLayout>
