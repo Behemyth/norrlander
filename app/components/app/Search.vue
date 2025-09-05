@@ -8,6 +8,7 @@
 	<ClientOnly>
 		<LazyUContentSearch
 			v-model:search-term="searchTerm"
+			icon="i-mdi-search"
 			:files="files"
 			:navigation="navigation"
 			:color-mode="false"
