@@ -18,7 +18,8 @@ const PageSchema = z.object({
 /**
  * @brief The base schema for all review types
  */
-const ReviewMetadataSchema = PageSchema.extend({
+const ReviewMetadataSchema = z.object({
+	...PageSchema.shape,
 	intRating: z.number().int().nonnegative().lte(8),
 	entRating: z.number().int().nonnegative().lte(8),
 	rating: z.number().int().nonnegative().lte(8),
@@ -29,28 +30,34 @@ const ReviewMetadataSchema = PageSchema.extend({
 
 // Page collections schemas
 
-const ReviewMovieSchema = ReviewMetadataSchema.extend({
+const ReviewMovieSchema = z.object({
+	...ReviewMetadataSchema.shape,
 	tmdbData: TMDBMovieSchema,
 });
 
-const ReviewShowSchema = ReviewMetadataSchema.extend({
+const ReviewShowSchema = z.object({
+	...ReviewMetadataSchema.shape,
 	tmdbData: TMDBShowSchema,
 });
 
-const PhotographySchema = PageSchema.extend({
+const PhotographySchema = z.object({
+	...PageSchema.shape,
 	title: z.string(),
 });
 
-const BlogSchema = PageSchema.extend({
+const BlogSchema = z.object({
+	...PageSchema.shape,
 	title: z.string(),
 });
 
-const ProjectSchema = PageSchema.extend({
+const ProjectSchema = z.object({
+	...PageSchema.shape,
 	title: z.string(),
 	link: z.string().url(),
 });
 
-const JobSchema = PageSchema.extend({
+const JobSchema = z.object({
+	...PageSchema.shape,
 	title: z.string(),
 	link: z.string().url(),
 });
