@@ -11,8 +11,12 @@
 			#left
 		>
 			<UPageAside>
-				<ContentSectionList
-					:toc="page.body.toc"
+				<UContentToc
+					title="Contents"
+					highlight
+					highlight-color="neutral"
+					color="neutral"
+					:links="page.body.toc.links"
 				/>
 			</UPageAside>
 		</template>
