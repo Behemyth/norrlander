@@ -1,22 +1,26 @@
 <template>
-	<DPage v-if="page">
-		<DPageBody>
+	<UPage v-if="page">
+		<UPageBody>
 			<ContentRenderer
 				:value="page.body"
 			/>
-		</DPageBody>
+		</UPageBody>
 
 		<template
 			v-if="page.body.toc && page.body.toc.links.length"
 			#left
 		>
-			<DPageAside>
-				<DContentSectionList
-					:toc="page.body.toc"
+			<UPageAside>
+				<UContentToc
+					title="Contents"
+					highlight
+					highlight-color="neutral"
+					color="neutral"
+					:links="page.body.toc.links"
 				/>
-			</DPageAside>
+			</UPageAside>
 		</template>
-	</DPage>
+	</UPage>
 </template>
 
 <script lang="ts" setup>

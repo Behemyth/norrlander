@@ -1,13 +1,13 @@
 <template>
-	<DPage
+	<UPage
 		v-if="page"
 	>
-		<DPageHeader class="max-w-4xl mx-auto w-full">
+		<UPageHeader class="max-w-4xl mx-auto w-full">
 			<ReviewHeader
 				:content="page"
 			/>
-		</DPageHeader>
-		<DPageBody>
+		</UPageHeader>
+		<UPageBody>
 			<article class="max-w-4xl mx-auto w-full">
 				<ContentRenderer
 					:value="page"
@@ -22,8 +22,8 @@
 					:category="capitalizedCategory"
 				/>
 			</div>
-		</DPageBody>
-	</DPage>
+		</UPageBody>
+	</UPage>
 </template>
 
 <script lang="ts" setup>

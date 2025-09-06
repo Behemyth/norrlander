@@ -1,93 +1,41 @@
 <template>
-	<DContentSearch :groups="groups">
-		<UButton
+	<UContentSearchButton
+		icon="i-mdi-search"
+		color="neutral"
+		variant="ghost"
+		size="lg"
+	/>
+	<ClientOnly>
+		<LazyUContentSearch
+			v-model:search-term="searchTerm"
 			icon="i-mdi-search"
-			color="neutral"
-			variant="ghost"
-			size="lg"
+			:files="files"
+			:navigation="navigation"
+			:color-mode="false"
+			:fuse="{ resultLimit: 40 }"
 		/>
-	</DContentSearch>
+	</ClientOnly>
 </template>
 
 <script setup lang="ts">
-// TODO: Use named Nuxt/Content type when it exists
-interface Section {
-	id: string;
-	title: string;
-	titles: string[];
-	level: number;
-	content: string;
-};
-
-function contentToItems(content: Section[]) {
-	return content.map((item: Section) => {
-		return {
-			label: item.title,
-			suffix: item.content?.slice(0, 72) + '...',
-			to: item.id,
-		};
-	});
-}
-
-const { data: groups } = await useAsyncData('search-data',
-	() => {
-		return Promise.all([
-			queryCollectionSearchSections('blog')
-				.where('published', '=', true)
-				.then((value) => {
-					return {
-						id: 'blog',
-						label: 'Blog',
-						items: contentToItems(value),
-					};
-				}),
-			queryCollectionSearchSections('photography')
-				.where('published', '=', true)
-				.then((value) => {
-					return {
-						id: 'photography',
-						label: 'Photography',
-						items: contentToItems(value),
-					};
-				}),
-			queryCollectionSearchSections('career')
-				.where('published', '=', true)
-				.then((value) => {
-					return {
-						id: 'career',
-						label: 'Career',
-						items: contentToItems(value),
-					};
-				}),
-			queryCollectionSearchSections('project')
-				.where('published', '=', true)
-				.then((value) => {
-					return {
-						id: 'project',
-						label: 'Projects',
-						items: contentToItems(value),
-					};
-				}),
-			queryCollectionSearchSections('movie')
-				.where('published', '=', true)
-				.then((value) => {
-					return {
-						id: 'movie',
-						label: 'Movies',
-						items: contentToItems(value),
-					};
-				}),
-			queryCollectionSearchSections('show')
-				.where('published', '=', true)
-				.then((value) => {
-					return {
-						id: 'show',
-						label: 'Shows',
-						items: contentToItems(value),
-					};
-				}),
-
+const { data: files } = useLazyAsyncData(
+	'search-data',
+	async () => {
+		const results = await Promise.all([
+			queryCollectionSearchSections('blog').where('published', '=', true),
+			queryCollectionSearchSections('photography').where('published', '=', true),
+			queryCollectionSearchSections('career').where('published', '=', true),
+			queryCollectionSearchSections('project').where('published', '=', true),
+			queryCollectionSearchSections('movie').where('published', '=', true),
+			queryCollectionSearchSections('show').where('published', '=', true),
 		]);
+
+		return results.flat();
 	},
+	{ server: false },
 );
+
+const { data: navigation } = useContentNavigation();
+
+const searchTerm = ref('');
 </script>

@@ -1,11 +1,10 @@
 <template>
-	<DCard
+	<UPageCard
 		:title="title"
 		reverse
 		:to="path"
 		class="flex grow"
 		:ui="{
-			container: 'p-0',
 			header: 'p-2',
 		}"
 	>
@@ -24,7 +23,7 @@
 				:size="18"
 			/>
 		</template>
-	</DCard>
+	</UPageCard>
 </template>
 
 <script setup lang="ts">

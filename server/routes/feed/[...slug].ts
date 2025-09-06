@@ -15,9 +15,10 @@ export default defineEventHandler(async (event) => {
 
 	// Remove '.json' from the slug
 	slug = slug!.slice(0, -5);
+	const stem = '/' + slug;
 
 	const feedContent = await queryCollection(event, 'content')
-		.path('/' + slug)
+		.path(stem)
 		.first();
 
 	let category: keyof PageCollections;
@@ -34,7 +35,7 @@ export default defineEventHandler(async (event) => {
 		throw createError(
 			{
 				status: 404,
-				message: `Content '/${slug}' not found with valid feed`,
+				message: `Content '${stem}' not found with valid feed`,
 			},
 		);
 	}
@@ -48,7 +49,7 @@ export default defineEventHandler(async (event) => {
 	const feed: JSONFeed = {
 		version: 'https://jsonfeed.org/version/1.1',
 		title: feedContent.title,
-		home_page_url: new URL('https://ashernorland.com').toString(),
+		home_page_url: new URL(stem, 'https://ashernorland.com').toString(),
 		feed_url: new URL(event.path, 'https://ashernorland.com').toString(),
 		description: feedContent.description,
 		user_comment: 'Copyright © ' + new Date().getFullYear() + ' Asher Norland',

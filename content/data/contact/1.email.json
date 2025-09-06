@@ -1,5 +1,6 @@
 {
 	"name": "Email",
 	"icon": "i-mdi-email",
-	"link": "mailto:asher.norland@gmail.com"
+	"link": "mailto:asher.norland@gmail.com",
+	"description": "My preferred method of contact"
 }

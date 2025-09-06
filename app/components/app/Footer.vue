@@ -1,5 +1,5 @@
 <template>
-	<DFooter>
+	<UFooter>
 		<UNavigationMenu
 			:items="items"
 			color="neutral"
@@ -12,7 +12,7 @@
 				rel="author"
 			>
 				<UAvatar
-					size="2xl"
+					size="3xl"
 					src="/gravatar/293a56bef971ab4999d6230491957d33"
 				/>
 			</ULink>
@@ -47,7 +47,7 @@
 				<span>Made with ❤️ by Asher and Ola</span>
 			</span>
 		</template>
-	</DFooter>
+	</UFooter>
 </template>
 
 <script setup lang="ts">
@@ -64,5 +64,5 @@ const items = computed(() => [
 	},
 ]);
 
-const socials = await queryCollection('socials').all();
+const { data: socials } = await useSocialsData();
 </script>

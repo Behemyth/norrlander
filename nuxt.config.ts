@@ -1,11 +1,11 @@
 // https://v3.nuxtjs.org/docs/directory-structure/nuxt.config
 export default defineNuxtConfig({
-
-	// nuxtjs/content should be loaded after 'nuxt/ui' or 'deermice-ui'
+	// nuxtjs/content should be loaded after 'nuxt/ui'
 	// nuxtjs/sitemap and robots should be loaded before 'nuxt/content'
 	modules: [
 		'@nuxtjs/sitemap',
 		'@nuxtjs/robots',
+		'@nuxt/ui',
 		'@nuxt/content',
 		'@nuxt/image',
 		'@nuxtjs/i18n',
@@ -13,6 +13,14 @@ export default defineNuxtConfig({
 	],
 
 	ssr: true,
+
+	app: {
+		rootAttrs: {
+			class: 'min-h-svh flex flex-col',
+		},
+	},
+
+	css: ['~/assets/css/main.css'],
 
 	site: {
 		url: 'https://ashernorland.com',
@@ -35,6 +43,9 @@ export default defineNuxtConfig({
 				},
 			},
 		},
+		experimental: {
+			sqliteConnector: 'native',
+		},
 	},
 	// https://ui.nuxt.com/getting-started/theming
 	ui: {
@@ -54,7 +65,7 @@ export default defineNuxtConfig({
 		compatibilityVersion: 4,
 	},
 
-	compatibilityDate: '2025-01-21',
+	compatibilityDate: '2025-04-28',
 
 	nitro: {
 		// static: true, // Not set, to support 'dev' server. Default is `static: true` for 'start' and 'generate' commands

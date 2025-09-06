@@ -1,16 +1,23 @@
 <template>
-	<DApp>
-		<AppHeader class="flex-none" />
-		<DMain>
-			<NuxtLayout class="grow">
+	<UApp
+		:scroll-body="false"
+		:locale="locales[locale]"
+	>
+		<AppHeader />
+		<UMain class="grow min-h-0">
+			<NuxtLayout>
 				<NuxtPage />
 			</NuxtLayout>
-		</DMain>
-		<AppFooter class="flex-none" />
-	</DApp>
+		</UMain>
+		<AppFooter />
+	</UApp>
 </template>
 
 <script setup lang="ts">
+import * as locales from '@nuxt/ui/locale';
+
+const { locale } = useI18n();
+
 const links
 	= await queryCollection('content')
 		.where('feed', 'IS NOT NULL')
@@ -31,19 +38,3 @@ useHead({
 	link: links,
 });
 </script>
-
-<style>
-@import "tailwindcss";
-@import "@nuxt/ui";
-
-/* Used to apply tailwind classes to content files */
-@source "../content/**/*";
-
-@theme {
-	--font-sans: Lato, sans-serif;
-}
-
-:root {
-	--ui-header-height: calc(var(--spacing) * 16);
-}
-</style>
