@@ -73,12 +73,20 @@ const ContactSchema = z.object({
 	name: z.string(),
 	icon: z.string(),
 	link: z.string().url(),
+	description: z.string(),
 });
 
 const SocialSchema = z.object({
 	name: z.string(),
 	icon: z.string(),
 	link: z.string().url(),
+	description: z.string(),
+});
+
+const LocationSchema = z.object({
+	location: z.string(),
+	start_year: z.number().int().nonnegative(),
+	end_year: z.number().int().nonnegative().optional(),
 });
 
 // Collection definitions
@@ -94,6 +102,11 @@ export default defineContentConfig({
 			type: 'data',
 			source: 'data/socials/*.json',
 			schema: SocialSchema,
+		}),
+		locations: defineCollection({
+			type: 'data',
+			source: 'data/locations/*.json',
+			schema: LocationSchema,
 		}),
 		blog: defineCollection({
 			type: 'page',
