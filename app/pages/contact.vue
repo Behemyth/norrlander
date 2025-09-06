@@ -50,6 +50,24 @@
 						/>
 					</UPageList>
 				</UPageCard>
+				<UPageCard
+					title="Academics"
+					description="Placeholder for my desires"
+				>
+					<UPageList divide>
+						<UPageFeature
+							v-for="(academic, index) in academics"
+							:key="index"
+							class="m-2"
+							variant="ghost"
+							:title="academic.name"
+							:icon="academic.icon"
+							:to="academic.link"
+							target="_blank"
+							:description="academic.description"
+						/>
+					</UPageList>
+				</UPageCard>
 			</UPageColumns>
 		</UPageBody>
 	</UPage>
@@ -58,7 +76,7 @@
 <script lang="ts" setup>
 const { data: contact } = await useContactData();
 const { data: socials } = await useSocialsData();
-
+const { data: academics } = await useAcademicData();
 definePageMeta({
 	layout: 'default',
 });
