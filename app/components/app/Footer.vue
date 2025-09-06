@@ -12,7 +12,7 @@
 				rel="author"
 			>
 				<UAvatar
-					size="2xl"
+					size="3xl"
 					src="/gravatar/293a56bef971ab4999d6230491957d33"
 				/>
 			</ULink>
