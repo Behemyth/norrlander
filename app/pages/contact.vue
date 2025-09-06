@@ -79,7 +79,6 @@ const { data: socials } = await useSocialsData();
 const { data: academics } = await useAcademicData();
 const { data: location } = await useCurrentLocationData();
 
-console.log(location.value);
 definePageMeta({
 	layout: 'default',
 });
