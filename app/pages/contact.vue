@@ -9,7 +9,7 @@
 					<UPageFeature
 						variant="ghost"
 						icon="i-mdi-map-marker"
-						title="Towson, MD"
+						:title="location?.location"
 					/>
 				</template>
 			</UPageHeader>
@@ -77,6 +77,9 @@
 const { data: contact } = await useContactData();
 const { data: socials } = await useSocialsData();
 const { data: academics } = await useAcademicData();
+const { data: location } = await useCurrentLocationData();
+
+console.log(location.value);
 definePageMeta({
 	layout: 'default',
 });
