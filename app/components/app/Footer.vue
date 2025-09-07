@@ -13,7 +13,7 @@
 			>
 				<UAvatar
 					size="3xl"
-					src="/gravatar/293a56bef971ab4999d6230491957d33"
+					src="/gravatar/293a56bef971ab4999d6230491957d33?s=256"
 				/>
 			</ULink>
 		</template>

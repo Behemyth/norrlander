@@ -89,6 +89,13 @@ const LocationSchema = z.object({
 	end_year: z.number().int().nonnegative().optional(),
 });
 
+const AcademicSchema = z.object({
+	name: z.string(),
+	icon: z.string(),
+	link: z.string().url(),
+	description: z.string(),
+});
+
 // Collection definitions
 
 export default defineContentConfig({
@@ -107,6 +114,11 @@ export default defineContentConfig({
 			type: 'data',
 			source: 'data/locations/*.json',
 			schema: LocationSchema,
+		}),
+		academics: defineCollection({
+			type: 'data',
+			source: 'data/academics/*.json',
+			schema: AcademicSchema,
 		}),
 		blog: defineCollection({
 			type: 'page',

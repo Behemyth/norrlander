@@ -2,14 +2,23 @@
 title: "Reviews"
 ---
 
-## Recent Movie Reviews
+::UPageHeader
+---
+title: Reviews
+description: A collection of my reviews for movies and shows.
+links:
 
-::ReviewGrid{collection="movie" :count=6}
+- label: "All Movies"
+  to: "/review/movie"
+- label: "All Shows"
+  to: "/review/show"
+
+---
 ::
 
-## Recent Show Reviews
+## Recent Reviews
 
-::ReviewGrid{collection="show" :count=6}
+::ReviewGrid{:count=6}
 ::
 
 ## Why Review?

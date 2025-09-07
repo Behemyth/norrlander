@@ -13,13 +13,30 @@
 
 <script setup lang="ts">
 const props = defineProps<{
-	collection: 'movie' | 'show';
+	collection?: 'movie' | 'show';
 	count: number;
 }>();
 
-const items = await queryCollection(props.collection)
-	.where('published', '=', true)
-	.order('date_published', 'DESC')
-	.limit(props.count)
-	.all();
+async function getReviewsFromCollection(collection: 'movie' | 'show') {
+	return queryCollection(collection)
+		.where('published', '=', true)
+		.order('date_published', 'DESC')
+		.limit(props.count)
+		.all();
+}
+
+async function getAllReviews() {
+	const [movies, shows] = await Promise.all([
+		queryCollection('movie').where('published', '=', true).all(),
+		queryCollection('show').where('published', '=', true).all(),
+	]);
+
+	return [...movies, ...shows]
+		.sort((a, b) => new Date(b.date_published).getTime() - new Date(a.date_published).getTime())
+		.slice(0, props.count);
+}
+
+const items = props.collection
+	? await getReviewsFromCollection(props.collection)
+	: await getAllReviews();
 </script>
