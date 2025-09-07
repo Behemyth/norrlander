@@ -1,7 +1,7 @@
 <template>
 	<Giscus
 		id="comments"
-		repo="Behemyth/Website"
+		repo="Behemyth/norrlander"
 		repo-id="R_kgDOGNxb4w"
 		:category="props.category"
 		category-id="DIC_kwDOGNxb484Chz_u"
