@@ -21,6 +21,15 @@ export default defineEventHandler(async (event) => {
 		.path(stem)
 		.first();
 
+	if (!feedContent) {
+		throw createError(
+			{
+				status: 404,
+				message: `Content '${stem}' not found`,
+			},
+		);
+	}
+
 	let category: keyof PageCollections;
 
 	// Check if the feed content exists and is a valid feed
