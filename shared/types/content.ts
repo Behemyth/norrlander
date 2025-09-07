@@ -1,0 +1,120 @@
+import { z } from 'zod';
+import { TMDBMovieSchema, TMDBShowSchema } from './tmdb';
+
+/**
+ * @brief A schema that should be applied to all pages. When using `queryCollection`
+ * 	with a `keyof PageCollections`, the result will always contain this information
+ * 	(except ContentSchema, which we have to assert for at its use)
+ */
+export const PageSchema = z.object({
+	title: z.string(),
+	description: z.string(),
+	published: z.boolean().optional().default(false),
+	date_published: z.coerce.date(),
+	date_modified: z.coerce.date(),
+});
+
+/**
+ * @brief The base schema for all review types
+ */
+export const ReviewMetadataSchema = PageSchema.extend({
+	intRating: z.number().int().nonnegative().lte(8),
+	entRating: z.number().int().nonnegative().lte(8),
+	rating: z.number().int().nonnegative().lte(8),
+	TMDB_ID: z.number().int(),
+});
+
+/**
+ * @brief Base schema for data collections with name, icon, link, and description
+ */
+export const BaseDataSchema = z.object({
+	name: z.string(),
+	icon: z.string(),
+	link: z.string().url(),
+	description: z.string(),
+});
+
+// --- Everything below here is a schema specifically for each collection ---
+
+// Page collections schemas
+
+export const ReviewMovieSchema = ReviewMetadataSchema.extend({
+	tmdbData: TMDBMovieSchema,
+});
+
+export const ReviewShowSchema = ReviewMetadataSchema.extend({
+	tmdbData: TMDBShowSchema,
+});
+
+// Simple page schemas that only need the base PageSchema (title is already included)
+export const PhotographySchema = PageSchema;
+export const BlogSchema = PageSchema;
+
+export const AcademicSchema = PageSchema.extend({
+	location: z.string(),
+	start_date: z.coerce.date(),
+	end_date: z.coerce.date().optional(),
+	link: z.string().url(),
+});
+
+export const ProjectSchema = PageSchema.extend({
+	link: z.string().url(),
+});
+
+export const JobSchema = PageSchema.extend({
+	position: z.string(),
+	location: z.string(),
+	description: z.string(),
+	tags: z.array(z.string()).optional().default([]),
+	achievements: z.array(z.string()).optional().default([]),
+	start_date: z.coerce.date(),
+	end_date: z.coerce.date().optional(),
+	link: z.string().url(),
+});
+
+export const ContentSchema = z.object({
+	title: z.string(),
+	feed: z.string().optional(),
+});
+
+// Data collections schemas
+
+export const ContactSchema = BaseDataSchema;
+export const SocialSchema = BaseDataSchema;
+export const CommunitySchema = BaseDataSchema;
+
+export const LocationSchema = z.object({
+	location: z.string(),
+	start_year: z.number().int().nonnegative(),
+	end_year: z.number().int().nonnegative().optional(),
+});
+
+// TypeScript types derived from schemas
+
+/**
+ * Base interface that should be applied to all pages
+ */
+export type BasePage = z.infer<typeof PageSchema>;
+
+/**
+ * Base interface for all review types
+ */
+export type BaseReview = z.infer<typeof ReviewMetadataSchema>;
+
+// Page collection types
+
+export type ReviewMovie = z.infer<typeof ReviewMovieSchema>;
+export type ReviewShow = z.infer<typeof ReviewShowSchema>;
+export type Photography = z.infer<typeof PhotographySchema>;
+export type Blog = z.infer<typeof BlogSchema>;
+export type Academic = z.infer<typeof AcademicSchema>;
+export type Project = z.infer<typeof ProjectSchema>;
+export type Job = z.infer<typeof JobSchema>;
+export type Content = z.infer<typeof ContentSchema>;
+
+// Data collection types
+
+export type Contact = z.infer<typeof ContactSchema>;
+export type Social = z.infer<typeof SocialSchema>;
+export type Community = z.infer<typeof CommunitySchema>;
+export type Location = z.infer<typeof LocationSchema>;
