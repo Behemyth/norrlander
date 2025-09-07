@@ -50,6 +50,10 @@ const { t } = useI18n();
 
 const items = computed(() => [
 	{
+		label: 'Home',
+		to: '/',
+	},
+	{
 		label: 'About',
 		to: '/about',
 	},
