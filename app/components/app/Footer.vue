@@ -7,15 +7,10 @@
 		/>
 
 		<template #left>
-			<ULink
-				to="/"
-				rel="author"
-			>
-				<UAvatar
-					size="3xl"
-					src="/gravatar/293a56bef971ab4999d6230491957d33"
-				/>
-			</ULink>
+			<AppProfileCard
+				orientation="horizontal"
+				variant="ghost"
+			/>
 		</template>
 
 		<template #right>
@@ -54,6 +49,10 @@
 const { t } = useI18n();
 
 const items = computed(() => [
+	{
+		label: 'Home',
+		to: '/',
+	},
 	{
 		label: 'About',
 		to: '/about',

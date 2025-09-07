@@ -5,6 +5,7 @@
 				<AppProfileCard
 					orientation="vertical"
 					variant="ghost"
+					footer
 				/>
 			</UPageAside>
 		</template>
@@ -13,6 +14,7 @@
 				<AppProfileCard
 					orientation="horizontal"
 					class="lg:hidden"
+					footer
 				/>
 				<UPageCard
 					:title="$t('contact')"

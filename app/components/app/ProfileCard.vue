@@ -1,21 +1,23 @@
 <template>
-	<UPageCard
+	<UCard
 		title="Asher Norland"
 		description="Graphics Engineer"
-		:variant="variant"
-		:orientation="orientation"
+		:variant="props.variant as any"
 	>
-		<template #leading>
-			<NuxtImg
-				src="/gravatar/293a56bef971ab4999d6230491957d33"
-				alt="Asher Norland"
-				width="64"
-				height="64"
-				class="rounded-full shadow-lg"
-			/>
-		</template>
-
-		<template #footer>
+		<UUser
+			name="Asher Norland"
+			description="Graphics Engineer"
+			size="3xl"
+			:avatar="{
+				src: '/gravatar/293a56bef971ab4999d6230491957d33',
+			}"
+			to="/contact"
+			:orientation="orientation"
+		/>
+		<template
+			v-if="props.footer"
+			#footer
+		>
 			<UPageFeature
 				v-if="location"
 				icon="i-mdi-map-marker"
@@ -28,16 +30,19 @@
 				description="English"
 			/>
 		</template>
-	</UPageCard>
+	</UCard>
 </template>
 
 <script setup lang="ts">
 interface Props {
 	orientation: 'horizontal' | 'vertical';
 	variant?: 'ghost' | 'solid' | 'outline' | 'soft' | 'subtle' | 'naked';
+	footer?: boolean;
 }
 
-const { orientation } = defineProps<Props>();
+const props = withDefaults(defineProps<Props>(), {
+	footer: false,
+});
 
 const { data: location } = await useCurrentLocationData();
 </script>

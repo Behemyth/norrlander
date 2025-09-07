@@ -6,14 +6,14 @@ title: "Portfolio"
 ---
 
 title: Portfolio
-description: A collection of my work and projects
+description: My professional experience and projects
 ---
 
 ::
 
 ## Career
 
-::CollectionGrid{collection="career" :count="4"}
+::PortfolioTimeline
 ::
 
 ## Projects

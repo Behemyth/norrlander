@@ -1,6 +1,6 @@
 <template>
 	<UHeader
-		title="The Norlander"
+		title="The Norrlander"
 		:ui="{
 			title: 'text-nowrap font-mono text-2xl md:text-3xl',
 		}"
@@ -15,7 +15,15 @@
 		/>
 		<template #right>
 			<AppSearch />
-			<AppColorMode />
+			<UColorModeButton>
+				<template #fallback>
+					<UButton
+						loading
+						variant="ghost"
+						color="neutral"
+					/>
+				</template>
+			</UColorModeButton>
 		</template>
 		<template #content>
 			<UNavigationMenu

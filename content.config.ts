@@ -1,100 +1,20 @@
-import { defineContentConfig, defineCollection, z } from '@nuxt/content';
+import { defineContentConfig, defineCollection } from '@nuxt/content';
 
 import { asSitemapCollection } from '@nuxtjs/sitemap/content';
-import { TMDBMovieSchema, TMDBShowSchema } from './shared/types/tmdb';
-/**
- * @brief A schema that should be applied to all pages. When using `queryCollection`
- * 	with a `keyof PageCollections`, the result will always contain this information
- * 	(except ContentSchema, which we have to assert for at its use)
- */
-const PageSchema = z.object({
-	title: z.string(),
-	description: z.string(),
-	published: z.boolean().optional().default(false),
-	date_published: z.coerce.date(),
-	date_modified: z.coerce.date(),
-});
-
-/**
- * @brief The base schema for all review types
- */
-const ReviewMetadataSchema = z.object({
-	...PageSchema.shape,
-	intRating: z.number().int().nonnegative().lte(8),
-	entRating: z.number().int().nonnegative().lte(8),
-	rating: z.number().int().nonnegative().lte(8),
-	TMDB_ID: z.number().int(),
-});
-
-// --- Everything below here is a schema specifically for each collection ---
-
-// Page collections schemas
-
-const ReviewMovieSchema = z.object({
-	...ReviewMetadataSchema.shape,
-	tmdbData: TMDBMovieSchema,
-});
-
-const ReviewShowSchema = z.object({
-	...ReviewMetadataSchema.shape,
-	tmdbData: TMDBShowSchema,
-});
-
-const PhotographySchema = z.object({
-	...PageSchema.shape,
-	title: z.string(),
-});
-
-const BlogSchema = z.object({
-	...PageSchema.shape,
-	title: z.string(),
-});
-
-const ProjectSchema = z.object({
-	...PageSchema.shape,
-	title: z.string(),
-	link: z.string().url(),
-});
-
-const JobSchema = z.object({
-	...PageSchema.shape,
-	title: z.string(),
-	link: z.string().url(),
-});
-
-const ContentSchema = z.object({
-	title: z.string(),
-	feed: z.string().optional(),
-});
-
-// Data collections schemas
-
-const ContactSchema = z.object({
-	name: z.string(),
-	icon: z.string(),
-	link: z.string().url(),
-	description: z.string(),
-});
-
-const SocialSchema = z.object({
-	name: z.string(),
-	icon: z.string(),
-	link: z.string().url(),
-	description: z.string(),
-});
-
-const LocationSchema = z.object({
-	location: z.string(),
-	start_year: z.number().int().nonnegative(),
-	end_year: z.number().int().nonnegative().optional(),
-});
-
-const AcademicSchema = z.object({
-	name: z.string(),
-	icon: z.string(),
-	link: z.string().url(),
-	description: z.string(),
-});
+import {
+	ReviewMovieSchema,
+	ReviewShowSchema,
+	PhotographySchema,
+	BlogSchema,
+	AcademicSchema,
+	ProjectSchema,
+	JobSchema,
+	ContentSchema,
+	ContactSchema,
+	SocialSchema,
+	CommunitySchema,
+	LocationSchema,
+} from './shared/types/content';
 
 // Collection definitions
 
@@ -115,10 +35,10 @@ export default defineContentConfig({
 			source: 'data/locations/*.json',
 			schema: LocationSchema,
 		}),
-		academics: defineCollection({
+		communities: defineCollection({
 			type: 'data',
-			source: 'data/academics/*.json',
-			schema: AcademicSchema,
+			source: 'data/community/*.json',
+			schema: CommunitySchema,
 		}),
 		blog: defineCollection({
 			type: 'page',
@@ -129,6 +49,11 @@ export default defineContentConfig({
 			type: 'page',
 			source: 'photography/*.md',
 			schema: PhotographySchema,
+		}),
+		academic: defineCollection({
+			type: 'page',
+			source: 'portfolio/academic/*.md',
+			schema: AcademicSchema,
 		}),
 		career: defineCollection({
 			type: 'page',
@@ -160,6 +85,7 @@ export default defineContentConfig({
 						'data/**',
 						'blog/*.md',
 						'photography/*.md',
+						'portfolio/academic/*.md',
 						'portfolio/career/*.md',
 						'portfolio/project/*.md',
 						'review/movie/*.md',
