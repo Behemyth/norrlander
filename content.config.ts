@@ -49,6 +49,14 @@ const BlogSchema = z.object({
 	...PageSchema.shape,
 	title: z.string(),
 });
+const AcademicSchema = z.object({
+	...PageSchema.shape, // Required for server type handling
+	title: z.string(),
+	location: z.string(),
+	start_date: z.coerce.date(),
+	end_date: z.coerce.date().optional(),
+	link: z.string().url(),
+});
 
 const ProjectSchema = z.object({
 	...PageSchema.shape, // Required for server type handling
@@ -137,6 +145,11 @@ export default defineContentConfig({
 			source: 'photography/*.md',
 			schema: PhotographySchema,
 		}),
+		academic: defineCollection({
+			type: 'page',
+			source: 'portfolio/academic/*.md',
+			schema: AcademicSchema,
+		}),
 		career: defineCollection({
 			type: 'page',
 			source: 'portfolio/career/*.md',
@@ -167,6 +180,7 @@ export default defineContentConfig({
 						'data/**',
 						'blog/*.md',
 						'photography/*.md',
+						'portfolio/academic/*.md',
 						'portfolio/career/*.md',
 						'portfolio/project/*.md',
 						'review/movie/*.md',
