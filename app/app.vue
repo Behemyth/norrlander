@@ -28,7 +28,7 @@ const links
 					rel: 'alternate',
 					title: page.title,
 					type: 'application/json',
-					href: 'https://ashernorland.com/feed' + page.path + '.json',
+					href: 'https://norrlander.com/feed' + page.path + '.json',
 				};
 			});
 		});

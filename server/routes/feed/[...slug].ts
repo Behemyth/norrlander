@@ -51,19 +51,19 @@ export default defineEventHandler(async (event) => {
 
 	const author: JSONFeedAuthor = {
 		name: 'Asher Norland',
-		url: new URL('/contact', 'https://ashernorland.com').toString(),
+		url: new URL('/contact', 'https://norrlander.com').toString(),
 		avatar: new URL('/avatar/293a56bef971ab4999d6230491957d33', 'https://www.gravatar.com').toString(),
 	};
 
 	const feed: JSONFeed = {
 		version: 'https://jsonfeed.org/version/1.1',
 		title: feedContent.title,
-		home_page_url: new URL(stem, 'https://ashernorland.com').toString(),
-		feed_url: new URL(event.path, 'https://ashernorland.com').toString(),
+		home_page_url: new URL(stem, 'https://norrlander.com').toString(),
+		feed_url: new URL(event.path, 'https://norrlander.com').toString(),
 		description: feedContent.description,
 		user_comment: 'Copyright © ' + new Date().getFullYear() + ' Asher Norland',
-		icon: new URL('/favicon.ico', 'https://ashernorland.com').toString(),
-		favicon: new URL('/favicon.ico', 'https://ashernorland.com').toString(),
+		icon: new URL('/favicon.ico', 'https://norrlander.com').toString(),
+		favicon: new URL('/favicon.ico', 'https://norrlander.com').toString(),
 		author: [author],
 		language: 'en-US',
 		expired: false,
@@ -81,7 +81,7 @@ export default defineEventHandler(async (event) => {
 
 		const item: JSONFeedItem = {
 			id: page.id,
-			url: new URL(contentPath, 'https://ashernorland.com').toString(),
+			url: new URL(contentPath, 'https://norrlander.com').toString(),
 			title: page.title,
 			content_html: '',
 			summary: page.description,

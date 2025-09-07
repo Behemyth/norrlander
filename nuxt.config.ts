@@ -23,7 +23,7 @@ export default defineNuxtConfig({
 	css: ['~/assets/css/main.css'],
 
 	site: {
-		url: 'https://ashernorland.com',
+		url: 'https://norrlander.com',
 	},
 
 	// https://content.nuxtjs.org
