@@ -2,14 +2,9 @@
 title: "Reviews"
 ---
 
-## Recent Movie Reviews
+## Recent Reviews
 
-::ReviewGrid{collection="movie" :count=6}
-::
-
-## Recent Show Reviews
-
-::ReviewGrid{collection="show" :count=6}
+::ReviewGrid{:count=6}
 ::
 
 ## Why Review?
