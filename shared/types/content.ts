@@ -92,29 +92,6 @@ export const LocationSchema = z.object({
 // TypeScript types derived from schemas
 
 /**
- * Base interface that should be applied to all pages
- */
-export type BasePage = z.infer<typeof PageSchema>;
-
-/**
  * Base interface for all review types
  */
 export type BaseReview = z.infer<typeof ReviewMetadataSchema>;
-
-// Page collection types
-
-export type ReviewMovie = z.infer<typeof ReviewMovieSchema>;
-export type ReviewShow = z.infer<typeof ReviewShowSchema>;
-export type Photography = z.infer<typeof PhotographySchema>;
-export type Blog = z.infer<typeof BlogSchema>;
-export type Academic = z.infer<typeof AcademicSchema>;
-export type Project = z.infer<typeof ProjectSchema>;
-export type Job = z.infer<typeof JobSchema>;
-export type Content = z.infer<typeof ContentSchema>;
-
-// Data collection types
-
-export type Contact = z.infer<typeof ContactSchema>;
-export type Social = z.infer<typeof SocialSchema>;
-export type Community = z.infer<typeof CommunitySchema>;
-export type Location = z.infer<typeof LocationSchema>;
