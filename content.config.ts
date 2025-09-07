@@ -96,7 +96,7 @@ const LocationSchema = z.object({
 	end_year: z.number().int().nonnegative().optional(),
 });
 
-const AcademicSchema = z.object({
+const CommunitySchema = z.object({
 	name: z.string(),
 	icon: z.string(),
 	link: z.string().url(),
@@ -122,10 +122,10 @@ export default defineContentConfig({
 			source: 'data/locations/*.json',
 			schema: LocationSchema,
 		}),
-		academics: defineCollection({
+		communities: defineCollection({
 			type: 'data',
-			source: 'data/academics/*.json',
-			schema: AcademicSchema,
+			source: 'data/community/*.json',
+			schema: CommunitySchema,
 		}),
 		blog: defineCollection({
 			type: 'page',
