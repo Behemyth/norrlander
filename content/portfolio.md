@@ -11,7 +11,7 @@ description: A collection of my work and projects
 
 ::
 
-## My Career
+## Career
 
 ::CollectionGrid{collection="career" :count="4"}
 ::
