@@ -1,19 +1,19 @@
 <template>
 	<UPage>
+		<template #left>
+			<UPageAside class="hidden lg:block">
+				<AppProfileCard
+					orientation="vertical"
+					variant="ghost"
+				/>
+			</UPageAside>
+		</template>
 		<UPageBody>
-			<UPageHeader
-				title="Asher Norland"
-				description="Graphics Engineer"
-			>
-				<template #links>
-					<UPageFeature
-						variant="ghost"
-						icon="i-mdi-map-marker"
-						:title="location?.location"
-					/>
-				</template>
-			</UPageHeader>
 			<UPageColumns>
+				<AppProfileCard
+					orientation="horizontal"
+					class="lg:hidden"
+				/>
 				<UPageCard
 					:title="$t('contact')"
 					description="Use responsibly"
@@ -77,7 +77,6 @@
 const { data: contact } = await useContactData();
 const { data: socials } = await useSocialsData();
 const { data: academics } = await useAcademicData();
-const { data: location } = await useCurrentLocationData();
 
 definePageMeta({
 	layout: 'default',
