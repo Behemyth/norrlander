@@ -1,19 +1,18 @@
 <template>
-	<UPageList>
-		<template
-			v-for="item in items"
-			:key="item.path"
-		>
+	<UTimeline
+		:items="timelineItems"
+	>
+		<template #description="{ item }">
 			<CareerCard
-				v-if="isCareerItem(item)"
-				:job="item"
+				v-if="isCareerItem(item.data)"
+				:job="item.data"
 			/>
 			<AcademicCard
-				v-else-if="isAcademicItem(item)"
-				:academic="item"
+				v-else-if="isAcademicItem(item.data)"
+				:academic="item.data"
 			/>
 		</template>
-	</UPageList>
+	</UTimeline>
 </template>
 
 <script setup lang="ts">
@@ -42,6 +41,19 @@ async function getAllPortfolioItems() {
 }
 
 const items = await getAllPortfolioItems();
+
+// Transform items into timeline format
+const timelineItems = computed(() => {
+	return items.map(item => ({
+		data: item,
+		// You can add other timeline properties here like:
+		// label: item.title,
+		// description: item.description,
+		// icon: 'some-icon',
+		// color: 'primary',
+		// etc.
+	}));
+});
 
 // Type guard to determine item type
 function isCareerItem(item: CareerCollectionItem | AcademicCollectionItem): item is CareerCollectionItem {
