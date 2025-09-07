@@ -5,7 +5,6 @@
 			:key="item.path"
 			:title="item.title"
 			:description="item.position"
-			:to="item.path"
 			class="shadow-md hover:shadow-lg transition-shadow duration-300"
 		>
 			<div class="space-y-4">
