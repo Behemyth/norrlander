@@ -1,8 +1,8 @@
 ---
 title: Disbelief
 position: Programmer 1
-startDate: 2018-08-15
-endDate: 2020-09-22
+start_date: 2018-08-15
+end_date: 2020-09-22
 location: Cambridge, MA
 link: https://www.disbelief.com/
 robots: false
