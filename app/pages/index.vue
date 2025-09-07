@@ -4,6 +4,6 @@
 
 <script lang="ts" setup>
 useSeoMeta({
-	title: 'The Norlander',
+	title: 'The Norrlander',
 });
 </script>
