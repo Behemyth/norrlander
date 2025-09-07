@@ -51,14 +51,21 @@ const BlogSchema = z.object({
 });
 
 const ProjectSchema = z.object({
-	...PageSchema.shape,
+	...PageSchema.shape, // Required for server type handling
 	title: z.string(),
 	link: z.string().url(),
 });
 
 const JobSchema = z.object({
-	...PageSchema.shape,
+	...PageSchema.shape, // Required for server type handling
 	title: z.string(),
+	position: z.string(),
+	location: z.string(),
+	description: z.string(),
+	tags: z.array(z.string()).optional().default([]),
+	achievements: z.array(z.string()).optional().default([]),
+	start_date: z.coerce.date(),
+	end_date: z.coerce.date().optional(),
 	link: z.string().url(),
 });
 

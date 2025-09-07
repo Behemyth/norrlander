@@ -13,7 +13,7 @@ description: A collection of my work and projects
 
 ## Career
 
-::CollectionGrid{collection="career" :count="4"}
+::PortfolioTimeline
 ::
 
 ## Projects

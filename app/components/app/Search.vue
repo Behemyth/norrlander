@@ -24,7 +24,7 @@ const { data: files } = useLazyAsyncData(
 		const results = await Promise.all([
 			queryCollectionSearchSections('blog').where('published', '=', true),
 			queryCollectionSearchSections('photography').where('published', '=', true),
-			queryCollectionSearchSections('career').where('published', '=', true),
+			queryCollectionSearchSections('career'),
 			queryCollectionSearchSections('project').where('published', '=', true),
 			queryCollectionSearchSections('movie').where('published', '=', true),
 			queryCollectionSearchSections('show').where('published', '=', true),
