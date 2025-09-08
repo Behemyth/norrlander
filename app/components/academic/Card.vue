@@ -1,17 +1,10 @@
 <template>
 	<UPageCard
 		:title="academic.title"
-		:description="`${formatDateRange(academic.start_date, academic.end_date)}`"
+		:description="academic.description"
 		class="shadow-md hover:shadow-lg transition-shadow duration-300"
 	>
-		<div class="space-y-4">
-			<p
-				v-if="academic.description"
-				class="text-gray-700 dark:text-gray-300"
-			>
-				{{ academic.description }}
-			</p>
-
+		<UPageList>
 			<UPageFeature
 				v-if="academic.location"
 				title="Location"
@@ -34,7 +27,7 @@
 					</span>
 				</template>
 			</UPageFeature>
-		</div>
+		</UPageList>
 
 		<template #footer>
 			<div class="flex items-center justify-end">

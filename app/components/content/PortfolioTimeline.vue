@@ -2,15 +2,30 @@
 	<UTimeline
 		:items="timelineItems"
 	>
+		<template #date="{ item }">
+			<UButton
+				v-if="item.data.link"
+				:to="item.data.link"
+				target="_blank"
+				color="primary"
+				variant="ghost"
+				size="xs"
+				trailing-icon="i-heroicons-arrow-top-right-on-square"
+			>
+				View Company
+			</UButton>
+		</template>
 		<template #description="{ item }">
-			<CareerCard
-				v-if="isCareerItem(item.data)"
-				:job="item.data"
-			/>
-			<AcademicCard
-				v-else-if="isAcademicItem(item.data)"
-				:academic="item.data"
-			/>
+			<div v-if="isCareerItem(item.data)">
+				<CareerCard
+					:job="item.data"
+				/>
+			</div>
+			<div v-else-if="isAcademicItem(item.data)">
+				<AcademicCard
+					:academic="item.data"
+				/>
+			</div>
 		</template>
 	</UTimeline>
 </template>
@@ -45,11 +60,12 @@ const items = await getAllPortfolioItems();
 // Transform items into timeline format
 const timelineItems = computed(() => {
 	return items.map(item => ({
+		title: item.title,
 		data: item,
 		// You can add other timeline properties here like:
 		// label: item.title,
 		// description: item.description,
-		// icon: 'some-icon',
+		icon: isAcademicItem(item) ? 'i-mdi-school' : 'i-mdi-work',
 		// color: 'primary',
 		// etc.
 	}));

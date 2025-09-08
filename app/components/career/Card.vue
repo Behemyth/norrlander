@@ -4,7 +4,7 @@
 		:description="career.position"
 		class="shadow-md hover:shadow-lg transition-shadow duration-300"
 	>
-		<div class="space-y-4">
+		<UPageList>
 			<p
 				v-if="career.description"
 				class="text-gray-700 dark:text-gray-300"
@@ -65,7 +65,7 @@
 					</span>
 				</template>
 			</UPageFeature>
-		</div>
+		</UPageList>
 
 		<template #footer>
 			<div class="flex items-center justify-end">
