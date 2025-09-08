@@ -69,17 +69,11 @@ const items = await getAllPortfolioItems();
 // Transform items into timeline format
 const timelineItems = computed(() => {
 	return items.map(item => ({
-		description: 'TODO',
 		data: item,
 		date: item.end_date
 			? `${new Date(item.start_date).getFullYear()} - ${new Date(item.end_date).getFullYear()}`
 			: `${new Date(item.start_date).getFullYear()} - Present`,
-		// You can add other timeline properties here like:
-		// label: item.title,
-		// description: item.description,
 		icon: isAcademicItem(item) ? 'i-mdi-school' : 'i-mdi-work',
-		// color: 'primary',
-		// etc.
 	}));
 });
 
