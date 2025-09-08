@@ -18,5 +18,5 @@ description: My professional experience and projects
 
 ## Projects
 
-::CollectionGrid{collection="project" :count="4"}
+::ProjectGrid
 ::

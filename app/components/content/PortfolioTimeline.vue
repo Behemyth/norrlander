@@ -3,14 +3,38 @@
 		:items="timelineItems"
 	>
 		<template #description="{ item }">
-			<CareerCard
-				v-if="isCareerItem(item.data)"
-				:job="item.data"
-			/>
-			<AcademicCard
-				v-else-if="isAcademicItem(item.data)"
-				:academic="item.data"
-			/>
+			<div v-if="isCareerItem(item.data)">
+				<CareerCard
+					:job="item.data"
+				/>
+				<UButton
+					v-if="item.data.link"
+					:to="item.data.link"
+					target="_blank"
+					color="primary"
+					variant="ghost"
+					size="xs"
+					trailing-icon="i-heroicons-arrow-top-right-on-square"
+				>
+					View Company
+				</UButton>
+			</div>
+			<div v-else-if="isAcademicItem(item.data)">
+				<AcademicCard
+					:academic="item.data"
+				/>
+				<UButton
+					v-if="item.data.link"
+					:to="item.data.link"
+					target="_blank"
+					color="primary"
+					variant="ghost"
+					size="xs"
+					trailing-icon="i-heroicons-arrow-top-right-on-square"
+				>
+					View Institution
+				</UButton>
+			</div>
 		</template>
 	</UTimeline>
 </template>
@@ -46,12 +70,10 @@ const items = await getAllPortfolioItems();
 const timelineItems = computed(() => {
 	return items.map(item => ({
 		data: item,
-		// You can add other timeline properties here like:
-		// label: item.title,
-		// description: item.description,
-		// icon: 'some-icon',
-		// color: 'primary',
-		// etc.
+		date: item.end_date
+			? `${new Date(item.start_date).getFullYear()} - ${new Date(item.end_date).getFullYear()}`
+			: `${new Date(item.start_date).getFullYear()} - Present`,
+		icon: isAcademicItem(item) ? 'i-mdi-school' : 'i-mdi-work',
 	}));
 });
 
