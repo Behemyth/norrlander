@@ -32,11 +32,7 @@ Presented the paper at a poster session to RPI peers and professors.
 
 ### LifeSim
 
-RCOS
-Team Lead and Manager
-Aug. 2016 – Jan. 2017
-Developed a three-dimensional world with physics for genetically generated skeletal and muscle armatures.
-Trained the armatures for genetically learned movement across a procedurally generated terrain.
+My first RCOS project, LifeSim, was developed between Aug. 2016 – Jan. 2017. It is a three-dimensional world with physics for genetically generated skeletal and muscle armatures. The armatures were trained for genetically learned movement across a procedurally generated terrain.
 
 ### Atmosphere Rendering
 
@@ -75,3 +71,5 @@ There were a few gems in the curriculum that I really enjoyed.
 ### Outing Club
 
 ### Intramural Soccer
+
+I was a mediocre goalkeeper at best.
