@@ -2,12 +2,9 @@
 title:	"Show Reviews"
 feed: "show"
 ---
-::UPageHeader
----
 
-title: Show Reviews
----
-
+::ReviewSection{collection="show"}
 ::
+
 ::ReviewGridFilter{collection="show"}
 ::

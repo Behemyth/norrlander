@@ -1,14 +1,9 @@
 ---
-title:	"Movie Reviews"
+title: "Movie Reviews"
 feed: "movie"
 ---
 
-::UPageHeader
----
-
-title: Movie Reviews
----
-
+::ReviewSection{collection="movie"}
 ::
 
 ::ReviewGridFilter{collection="movie"}
