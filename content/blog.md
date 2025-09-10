@@ -1,6 +1,10 @@
 ---
 title: "Blog"
+feed: "blog"
 ---
 
-::CollectionGrid{collection="blog" :count="4"}
+::ContentSection{collection="blog"}
+::
+
+::BlogGrid
 ::
