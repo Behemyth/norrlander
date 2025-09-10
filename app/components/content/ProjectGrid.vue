@@ -12,7 +12,6 @@
 async function getProjectsFromCollection() {
 	return queryCollection('project')
 		.where('published', '=', true)
-		.order('date_published', 'DESC')
 		.all();
 }
 
