@@ -19,12 +19,12 @@ links:
 
 ::
 
-## Career
-
-::PortfolioTimeline
-::
-
 ## Projects
 
 ::ProjectGrid
+::
+
+## Career
+
+::PortfolioTimeline
 ::
