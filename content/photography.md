@@ -1,6 +1,10 @@
 ---
 title: "Photography"
+feed: "photography"
 ---
 
-::CollectionGrid{collection="photography" :count="4"}
+::ContentSection{collection="photography"}
+::
+
+::PhotographyGrid
 ::
