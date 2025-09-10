@@ -14,6 +14,8 @@ tags:
   - Python
   - Vulkan
 achievements:
-  - TODO
-  - TODO
+  - Created core procedural systems for in-game environments, including vegetation placement, buildings distribution, and river construction.
+  - Worked in close collaboration with multidisciplinary teams of artists and programmers, ensuring alignment and integration of product features across the product’s lifecycle.
+  - Implemented efficient CPU ray tracing algorithms for both single and batched intersection queries.
+  - Managed asset performance via extensive and automated performance testing.
 ---
