@@ -10,6 +10,7 @@
 				v-if="project.link"
 				icon="i-heroicons-link"
 				:description="project.link"
+				:ui="{ description: 'text-sm' }"
 			/>
 		</UPageList>
 	</UPageCard>
