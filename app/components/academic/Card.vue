@@ -9,6 +9,7 @@
 			<UPageFeature
 				icon="i-heroicons-map-pin"
 				:description="academic.location"
+				:ui="{ description: 'text-sm' }"
 			/>
 		</UPageList>
 	</UPageCard>
