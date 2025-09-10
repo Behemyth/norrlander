@@ -1,6 +1,7 @@
 <template>
 	<UPageHero
 		title="The Norrlander"
+		headline="Asher Norland"
 		:links="links"
 	/>
 </template>
@@ -10,14 +11,26 @@ import type { ButtonProps } from '@nuxt/ui';
 
 const links: ButtonProps[] = [
 	{
+		label: 'Read Blog',
+		to: '/blog',
+		size: 'lg',
+		variant: 'ghost',
+	},
+	{
+		label: 'View Photography',
+		to: '/photography',
+		size: 'lg',
+		variant: 'ghost',
+	},
+	{
 		label: 'View Portfolio',
 		to: '/portfolio',
 		size: 'lg',
 		variant: 'ghost',
 	},
 	{
-		label: 'Read Blog',
-		to: '/blog',
+		label: 'Read Reviews',
+		to: '/reviews',
 		size: 'lg',
 		variant: 'ghost',
 	},
@@ -25,7 +38,7 @@ const links: ButtonProps[] = [
 
 useSeoMeta({
 	title: 'The Norrlander',
-	description: 'Personal website of Asher Norland - Graphics Engineer showcasing portfolio, blog, and reviews',
+	description: 'Personal website of Asher Norland - Blog, Portfolio, Photography, and Reviews',
 
 });
 </script>
