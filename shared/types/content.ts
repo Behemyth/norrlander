@@ -25,7 +25,7 @@ export const ReviewMetadataSchema = PageSchema.extend({
 });
 
 /**
- * @brief Base schema for data collections with name, icon, link, and description
+ * @brief Base schema for data collections
  */
 export const BaseDataSchema = z.object({
 	name: z.string(),
