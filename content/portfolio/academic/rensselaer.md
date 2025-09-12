@@ -43,13 +43,13 @@ Nov. 2016 – Dec. 2016
 Populated an atmosphere with NASA’s Earth data and visualized it with Rayleigh and Mie light scattering.
 Implemented heterogenous volume sampling with variable length ray marching for real-time rendering on the GPU.
 
-### Vocal Intonation
+### Vocal Simulation
 
 via Fluid Simulation
 
 Computer Graphics Project
 Nov. 2016 – Dec. 2016
-Generated artificial voice in the form of audio output based on artificial breaths and simulated vocal cord vibration.
+Generated artificial voice in the form of audio output based on artificial pressure changes in a fluid simulation and vocal cord vibration.
 Simulated a two-dimensional GPU fluid with an integrated dynamic vocal tract, modifiable by an emotion target.
 
 ## Classes
