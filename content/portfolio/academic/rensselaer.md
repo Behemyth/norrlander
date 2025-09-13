@@ -28,10 +28,15 @@ Presented the paper at a poster session to RPI peers and professors.
 
 ***Heterogeneous Atmosphere Volume Rendering***
 
-Computer Graphics Project
-Nov. 2016 – Dec. 2016
-Populated an atmosphere with NASA’s Earth data and visualized it with Rayleigh and Mie light scattering.
-Implemented heterogenous volume sampling with variable length ray marching for real-time rendering on the GPU.
+When taking the astronomy elective Earth and Sky I took another gander at fitting my interests to the project requirements. The class was focused on observational astronomy and the various phenomena and behaviors through telescopes and the naked eye. For the final project I decided to explore the rendering of Earth's atmosphere as seen from the ground.
+
+To better fit the requirements of an astronomy project I provided a data-oriented approach to the atmosphere definition. Using NASA's data of our atmosphere's chemical composition at difference altitudes, I created a multi-layered atmosphere model that accurately represented the varying densities and compositions of gases. Also, the size of the sphere the atmosphere surrounded was exposed as a modifiable parameter. My goal was to run this visualization in real-time.
+
+As with classic Rayleigh and Mie scattering and its ray marching, for each pixel a ray would be cast from the camera into the scene for a given distance, a step. At each step the density of each gas would be sampled and used to compute the scattering coefficients for that step. The scattering coefficients would then be used to compute the in-scattering and out-scattering of light at that step. The final color of the pixel would be computed by accumulating the scattering results.
+
+Alongside this process I was sampling varying densities of the gases which would affect the scattering coefficients at each step of the ray march. If I were to naively sample the volume at the fixed intervals I could easily run into a performance issues if the sample rate was too high. If the sample rate was too low, I would miss important contributes of a gas to the overall scattering by under-sampling its presence.
+
+Unlike a truly heterogenous volume renderer, I was able to make use of the layered atmosphere structure to precompute best steps for each marching step of the ray. For each layer I made sure to sample the data boundaries and each next step thereafter would geometrically increase within its layer according to the composition of the gases. Generally, this meant that the ray march would take more samples in the denser lower atmosphere and fewer samples in the thinner upper atmosphere while also being biased towards denser samples at recent layers to accommodate for composition changes.
 
 ### Vocal Simulation
 
