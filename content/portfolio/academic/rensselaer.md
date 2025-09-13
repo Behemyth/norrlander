@@ -14,7 +14,7 @@ My time at Rensselaer was spent trying to shove a project into every class I too
 
 ### Soul Engine
 
-Soul Engine had some of its first work done as a [RCOS](#rensselaer-center-for-open-source-rcos) project with the help, contributions, and support of that community.
+Soul Engine had some of its first work done as a [RCOS](#rcos) project with the help, contributions, and support of that community.
 
 You can view [project details](/portfolio/project/soul-engine) in my portfolio.
 
@@ -32,7 +32,7 @@ Presented the paper at a poster session to RPI peers and professors.
 
 ### LifeSim
 
-My first [RCOS](#rensselaer-center-for-open-source-rcos) project, LifeSim, was developed between Aug. 2016 – Jan. 2017. It is a three-dimensional world with physics for genetically generated skeletal and muscle armatures. The armatures were trained for genetically learned movement across a procedurally generated terrain.
+My first [RCOS](#rcos) project, LifeSim, was developed between Aug. 2016 – Jan. 2017. It is a three-dimensional world with physics for genetically generated skeletal and muscle armatures. The armatures were trained for genetically learned movement across a procedurally generated terrain.
 
 ### Atmosphere Rendering
 
@@ -66,7 +66,11 @@ There were a few gems in the curriculum that I really enjoyed.
 
 ## Clubs
 
-### Rensselaer Center for Open Source (RCOS)
+I took part is various intramural sports and events, but two clubs were the pillars of my extracurricular fun at good-old RPI.
+
+### RCOS
+
+***Rensselaer Center for Open Source***
 
 ![RCOS Logo](/images/rcos-red.png){width="300"}
 
@@ -75,10 +79,13 @@ There were a few gems in the curriculum that I really enjoyed.
 ::UButton{label="Visit RCOS Organization" to="https://github.com/rcos" target="_blank" variant="ghost" size="xs" trailing-icon="i-heroicons-arrow-top-right-on-square"}
 ::
 
-### Outing Club
+### ROC
 
-  TODO
+***Rensselaer Outing Club***
 
-### Intramural Soccer
+![ROC Logo](/images/roc-logo.png){width="300"}
 
-I was a mediocre goalkeeper at best.
+It took me years to warm up to hiking for fun, but once I dipped my toes into the Outing Club, I was yanked into the scene. ROC organizes trips nearly every weekend and I will always remember my first hikes into the Adirondacks and the local Taconic Range. Having those nearby outdoor experiences to grow and make mistakes in a safe and supportive way led to me spending extensive time in nature in my twenties. That time truly ended up being a highlight.
+
+::UButton{label="Visit ROC Website" to="https://outing.org/" target="_blank" variant="ghost" size="xs" trailing-icon="i-heroicons-arrow-top-right-on-square"}
+::
