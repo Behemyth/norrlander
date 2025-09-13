@@ -127,7 +127,6 @@ export default defineNuxtConfig({
 			tmdb: 'https://image.tmdb.org/t/p/original',
 			gravatar: 'https://www.gravatar.com/avatar',
 		},
-		dir: 'public/images',
 	},
 
 	robots: {

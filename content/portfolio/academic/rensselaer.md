@@ -14,7 +14,7 @@ My time at Rensselaer was spent trying to shove a project into every class I too
 
 ### Soul Engine
 
-Soul Engine had humble beginnings as a RCOS project with the help, contributions, and support of that community.
+Soul Engine had some of its first work done as a [RCOS](#rensselaer-center-for-open-source-rcos) project with the help, contributions, and support of that community.
 
 You can view [project details](/portfolio/project/soul-engine) in my portfolio.
 
@@ -32,7 +32,7 @@ Presented the paper at a poster session to RPI peers and professors.
 
 ### LifeSim
 
-My first RCOS project, LifeSim, was developed between Aug. 2016 – Jan. 2017. It is a three-dimensional world with physics for genetically generated skeletal and muscle armatures. The armatures were trained for genetically learned movement across a procedurally generated terrain.
+My first [RCOS](#rensselaer-center-for-open-source-rcos) project, LifeSim, was developed between Aug. 2016 – Jan. 2017. It is a three-dimensional world with physics for genetically generated skeletal and muscle armatures. The armatures were trained for genetically learned movement across a procedurally generated terrain.
 
 ### Atmosphere Rendering
 
@@ -68,7 +68,16 @@ There were a few gems in the curriculum that I really enjoyed.
 
 ### Rensselaer Center for Open Source (RCOS)
 
+![RCOS Logo](/images/rcos-red.png){width="300"}
+
+  Half credited class, half club, RCOS brought together a community of students interested in open source software development. The class not only provided the knowledge and resources to understand the how and why of open source, but also the mentorship and external connections to get involved in real world projects. I created and worked on two new projects during my time in RCOS, [LifeSim](#lifesim) and [Soul Engine](#soul-engine).
+
+::UButton{label="Visit RCOS Organization" to="https://github.com/rcos" target="_blank" variant="ghost" size="xs" trailing-icon="i-heroicons-arrow-top-right-on-square"}
+::
+
 ### Outing Club
+
+  TODO
 
 ### Intramural Soccer
 
