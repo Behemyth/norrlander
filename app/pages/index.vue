@@ -30,7 +30,7 @@ const links: ButtonProps[] = [
 	},
 	{
 		label: 'Read Reviews',
-		to: '/reviews',
+		to: '/review',
 		size: 'lg',
 		variant: 'ghost',
 	},
