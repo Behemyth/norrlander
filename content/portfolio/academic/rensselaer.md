@@ -9,7 +9,7 @@ link: https://www.rpi.edu/
 
 ## Academic Projects
 
-My time at Rensselaer was spent trying to shove a project into every class I took.
+I spent my time at Rensselaer squeezing a project into just about every class I could.
 
 ### Bachelors Thesis
 
