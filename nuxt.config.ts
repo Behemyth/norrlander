@@ -24,6 +24,7 @@ export default defineNuxtConfig({
 
 	site: {
 		url: 'https://norrlander.com',
+		name: 'Norrlander',
 	},
 
 	// https://content.nuxtjs.org
