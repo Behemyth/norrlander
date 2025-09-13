@@ -78,24 +78,6 @@ In the end this project created an inferior and immensely inefficient way of gen
 
 ---
 
-## Courses
-
-There were a few gems in the curriculum that I really enjoyed. The time I spent in them assured me that I choose the right specialty when I first start pursuing the subfield of computer graphics in high school.
-
-### Graphics
-
-***Advanced Computer Graphics - CSCI 4530***
-
-Taught by Dr. Barb Cutler, this class was a deep dive into the theory and practice of computer graphics. We covered a smattering of topics from the physics simulation to ray tracing and global illumination. Her teaching was legendary.
-
-### Geometry
-
-***Fundamentals of Geometry - MATH 4120***
-
-This class was a Math department offering and required mathematical rigor that I didn't have and still don't have. However, I managed to sneak into the class and learn a lot about the underlying principles of differential geometry that I found elsewhere in my own field.
-
----
-
 ## Clubs
 
 I took part is various intramural sports and events, but two clubs were the pillars of my extracurricular fun at good-old RPI.
