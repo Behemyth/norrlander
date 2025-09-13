@@ -72,6 +72,7 @@ export default defineNuxtConfig({
 		// static: true, // Not set, to support 'dev' server. Default is `static: true` for 'start' and 'generate' commands
 		prerender: {
 			crawlLinks: true,
+			autoSubfolderIndex: false,
 			interval: 50, // To avoid rate limiting of the TMDB API
 			routes: ['/sitemap.xml', '/robots.txt'],
 		},
