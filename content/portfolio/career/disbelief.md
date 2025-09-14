@@ -17,3 +17,9 @@ achievements:
   - Contributed to major AR, VR, and console platforms, including their SDK and subsequent Unreal Engine integrations.
   - Optimized, debugged, and created features for the Unreal Engine, including audio, graphical post processing, and the engine’s use of the Android platform.
 ---
+
+## Projects
+
+Its always difficult to talk around NDA-bound work. Regardless, I was proud of my singular public attribution, [Wolves in the Walls](#wolves-in-the-walls).
+
+### Wolves in the Walls
