@@ -20,6 +20,8 @@ achievements:
 
 ## Projects
 
-Its always difficult to talk around NDA-bound work. Regardless, I was proud of my singular public attribution, [Wolves in the Walls](#wolves-in-the-walls).
+Its always difficult to talk around NDA-bound work. Regardless, I was proud of my singular public attribution, [Wolves in the Walls](#wolves).
 
-### Wolves in the Walls
+### Wolves
+
+***Wolves in the Walls***
