@@ -19,13 +19,17 @@ achievements:
 
 I was an undergraduate research assistant at [CASE](https://www.case.rpi.edu/) in support of the Bill and Melinda Gates Foundation's [Healthy Birth, Growth, and Development Knowledge Integration (HBGDki)](https://news.rpi.edu/content/2016/12/06/data-project-addresses-childhood-stunting-developing-nations) initiative. I had a brief year of work under graduate student direction.
 
-### Data Journey
+### DJ
 
-I contributed to the development of the Data Journey (DJ) platform, a web-based application funded by the Gates Foundation’s HBGDki initiative. My work included integrating map APIs to overlay geographical health and environmental data, enabling users to explore regional variations in nutrition, sanitation, and child growth outcomes. I supported the design and testing of data exploration features that allowed users to filter, compare, and visualize multiple studies simultaneously.[^keena2017]
+***Data Journey***
+
+I contributed to the development of the DJ platform, a web-based application funded by the Gates Foundation’s HBGDki initiative. My work included integrating map APIs to overlay geographical health and environmental data, enabling users to explore regional variations in nutrition, sanitation, and child growth outcomes. I supported the design and testing of data exploration features that allowed users to filter, compare, and visualize multiple studies simultaneously.[^keena2017]
 
 ### SEVA
 
-Building on that foundation, I also contributed to early work on the Socio-Ecological Visual Analytics (SEVA) framework, which applies visual analytics to the evaluation of architectural design options. My work focused on prototyping 3D architectural model visualizations using three.js, including representations of building geometry and their material properties.[^etman2020]
+***Socio-Ecological Visual Analytics***
+
+Building on that foundation, I also contributed to early work on the SEVA framework, which applies visual analytics to the evaluation of architectural design options. My work focused on prototyping 3D architectural model visualizations using three.js, including representations of building geometry and their material properties.[^etman2020]
 
 ---
 
