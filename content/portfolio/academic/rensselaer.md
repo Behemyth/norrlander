@@ -87,7 +87,7 @@ I took part is various intramural sports and events, but two clubs were the pill
 
   Half credited class, half club, RCOS brought together a community of students interested in open source software development. The class not only provided the knowledge and resources to understand the how and why of open source, but also the mentorship and external connections to get involved in real world projects. [Soul Engine](/portfolio/project/soul-engine) had some of its first work done as a RCOS project with the help, contributions, and support of that community.
 
-::UButton{label="Visit RCOS Organization" to="https://github.com/rcos" target="_blank" variant="ghost" size="xs" trailing-icon="i-heroicons-arrow-top-right-on-square"}
+::UButton{label="Visit RCOS Organization" to="https://github.com/rcos" target="_blank" variant="ghost" size="xs" trailing-icon="i-mdi-arrow-top-right-bold-box-outline"}
 ::
 
 ### ROC
@@ -98,7 +98,7 @@ I took part is various intramural sports and events, but two clubs were the pill
 
 It took me years to warm up to hiking for fun, but once I dipped my toes into the Outing Club, I was yanked into the scene. ROC organizes trips nearly every weekend and I will always remember my first hikes into the Adirondacks and the local Taconic Range. Having those nearby outdoor experiences to grow and make mistakes in a safe and supportive way led to me spending extensive time in nature in my twenties. That time truly ended up being a highlight.
 
-::UButton{label="Visit ROC Website" to="https://outing.org/" target="_blank" variant="ghost" size="xs" trailing-icon="i-heroicons-arrow-top-right-on-square"}
+::UButton{label="Visit ROC Website" to="https://outing.org/" target="_blank" variant="ghost" size="xs" trailing-icon="i-mdi-arrow-top-right-bold-box-outline"}
 ::
 
 ## References

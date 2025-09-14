@@ -5,8 +5,8 @@ export default defineAppConfig({
 			secondary: 'stone',
 		},
 		icons: {
-			light: 'i-heroicons-sun',
-			dark: 'i-heroicons-moon',
+			light: 'i-mdi-weather-sunny',
+			dark: 'i-mdi-moon-and-stars',
 		},
 	},
 });
