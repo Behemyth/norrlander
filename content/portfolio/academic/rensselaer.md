@@ -1,6 +1,7 @@
 ---
 title: Rensselaer Polytechnic Institute (RPI)
-description: B.S in Computer Science
+degree: B.S in Computer Science
+description: TODO
 start_date: 2014-08-01
 end_date: 2018-05-01
 location: Troy, NY
@@ -101,7 +102,7 @@ It took me years to warm up to hiking for fun, but once I dipped my toes into th
 ::UButton{label="Visit ROC Website" to="https://outing.org/" target="_blank" variant="ghost" size="xs" trailing-icon="i-mdi-arrow-top-right-bold-box-outline"}
 ::
 
-## References
+---
 
 [^apetrei2014]: Apetrei, C. (2014). *Fast and Simple Agglomerative LBVH Construction*. In Borgo, R. and Tang, W. (eds.), Computer Graphics and Visual Computing (CGVC). The Eurographics Association.
 

@@ -52,7 +52,7 @@ export default defineEventHandler(async (event) => {
 	const author: JSONFeedAuthor = {
 		name: 'Asher Norland',
 		url: new URL('/contact', 'https://norrlander.com').toString(),
-		avatar: new URL('/avatar/293a56bef971ab4999d6230491957d33', 'https://www.gravatar.com').toString(),
+		avatar: new URL('/images/asher-face.jpg', 'https://norrlander.com').toString(),
 	};
 
 	const feed: JSONFeed = {

@@ -118,10 +118,9 @@ export default defineNuxtConfig({
 	image: {
 		provider: 'ipx',
 		format: ['webp'],
-		domains: ['www.gravatar.com', 'image.tmdb.org'],
+		domains: ['image.tmdb.org'],
 		alias: {
 			tmdb: 'https://image.tmdb.org/t/p/original',
-			gravatar: 'https://www.gravatar.com/avatar',
 		},
 	},
 

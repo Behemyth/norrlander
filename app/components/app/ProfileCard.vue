@@ -9,7 +9,7 @@
 			description="Graphics Engineer"
 			size="3xl"
 			:avatar="{
-				src: '/gravatar/293a56bef971ab4999d6230491957d33',
+				src: '/images/asher-face.jpg',
 			}"
 			to="/contact"
 			:orientation="orientation"

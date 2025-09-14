@@ -3,11 +3,29 @@
 		v-if="page"
 		class="max-w-4xl mx-auto w-full"
 	>
+		<UPageHeader
+			:title="page.title"
+			:description="page.description"
+		/>
 		<UPageBody>
 			<ContentRenderer
 				:value="page"
 			/>
 		</UPageBody>
+		<template
+			v-if="page.body.toc && page.body.toc.links.length"
+			#left
+		>
+			<UPageAside>
+				<UContentToc
+					title="Contents"
+					highlight
+					highlight-color="neutral"
+					color="neutral"
+					:links="page.body.toc.links"
+				/>
+			</UPageAside>
+		</template>
 	</UPage>
 </template>
 

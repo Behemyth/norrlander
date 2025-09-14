@@ -1,7 +1,7 @@
 <template>
 	<UPageCard
 		:title="academic.title"
-		:description="academic.description"
+		:description="academic.degree"
 		:to="academic.path"
 		variant="ghost"
 	>
