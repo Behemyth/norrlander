@@ -11,8 +11,6 @@
 		"lint:fix": "eslint . --fix"
 	},
 	"devDependencies": {
-		"@iconify-json/heroicons": "^1.2.2",
-		"@iconify-json/lucide": "^1.2.67",
 		"@iconify-json/mdi": "^1.2.3",
 		"@nuxt/content": "^3.7.0",
 		"@nuxt/eslint": "^1.9.0",

@@ -8,7 +8,7 @@
 		<UPageList>
 			<UPageFeature
 				v-if="project.link"
-				icon="i-heroicons-link"
+				icon="i-mdi-link-variant"
 				:description="project.link"
 				:ui="{ description: 'text-sm' }"
 			/>

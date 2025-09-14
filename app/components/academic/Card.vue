@@ -7,7 +7,7 @@
 	>
 		<UPageList>
 			<UPageFeature
-				icon="i-heroicons-map-pin"
+				icon="i-mdi-map-marker"
 				:description="academic.location"
 				:ui="{ description: 'text-sm' }"
 			/>

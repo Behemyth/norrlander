@@ -9,20 +9,20 @@
 			<UPageFeature
 				v-for="achievement in career.achievements"
 				:key="achievement"
-				icon="i-heroicons-check-circle"
+				icon="i-mdi-check-circle-outline"
 				:description="achievement"
 				:ui="{ leadingIcon: 'text-green-500', description: 'text-sm' }"
 			/>
 
 			<UPageFeature
 				v-if="career.location"
-				icon="i-heroicons-map-pin"
+				icon="i-mdi-map-marker"
 				:description="career.location"
 				:ui="{ description: 'text-sm' }"
 			/>
 			<UPageFeature
 				v-if="career.tags && career.tags.length"
-				icon="i-heroicons-code-bracket"
+				icon="i-mdi-code"
 			>
 				<template #description>
 					<div class="flex flex-wrap gap-2">

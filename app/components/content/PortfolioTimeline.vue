@@ -14,7 +14,7 @@
 					color="primary"
 					variant="ghost"
 					size="xs"
-					trailing-icon="i-heroicons-arrow-top-right-on-square"
+					trailing-icon="i-mdi-arrow-top-right-bold-box-outline"
 				>
 					View Company
 				</UButton>
@@ -30,7 +30,7 @@
 					color="primary"
 					variant="ghost"
 					size="xs"
-					trailing-icon="i-heroicons-arrow-top-right-on-square"
+					trailing-icon="i-mdi-arrow-top-right-bold-box-outline"
 				>
 					View Institution
 				</UButton>

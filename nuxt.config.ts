@@ -48,12 +48,6 @@ export default defineNuxtConfig({
 			sqliteConnector: 'native',
 		},
 	},
-	// https://ui.nuxt.com/getting-started/theming
-	ui: {
-		theme: {
-			colors: ['primary', 'secondary', 'neutral'],
-		},
-	},
 
 	runtimeConfig: {
 		apiSecret: '', // can be overridden by NUXT_API_SECRET environment variable
@@ -72,7 +66,7 @@ export default defineNuxtConfig({
 		// static: true, // Not set, to support 'dev' server. Default is `static: true` for 'start' and 'generate' commands
 		prerender: {
 			crawlLinks: true,
-			autoSubfolderIndex: false,
+			autoSubfolderIndex: false, // Prevents a 404 with trailing slashes catch-alls for nuxt/content
 			interval: 50, // To avoid rate limiting of the TMDB API
 			routes: ['/sitemap.xml', '/robots.txt'],
 		},
