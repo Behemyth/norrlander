@@ -29,6 +29,8 @@ The construction and traversal timings were both nearly double that of the basel
 
 Additionally, there were implementation bugs that I was unable to fully address. There were edge cases where geometry would incorrectly be excluded from the hierarchy. I wasn't properly able to debug this issue but it stemmed from my mapping scheme not being truly bijective due to my incorrect choice of floating-point quantization.
 
+![Large Scene](/images/thesis-satellite.png){width="500" class="mx-auto block"}
+
 I presented the paper at a poster session to RPI peers and professors and spent a good deal of time talking about the failures of the project. While I was proud of the work I had done, I was also acutely aware of its shortcomings. The experience taught me a lot about the research process and how to manage expectations when working on open-ended problems.
 
 There was still a lot of joy found working and conversing about the project with others despite its eventual shortcomings. I am so grateful to Dr. Cutler for engaging in that conversation and teaching me so much about the research process.
