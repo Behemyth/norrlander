@@ -47,6 +47,6 @@ I use a 0-to-4 scale with half-point increments. This limited scale encourages d
 
 A more granular rating system often invites arbitrary comparisons. I may be tempted to rate one film higher than another simply because it was more enjoyable and I'm still feeling the joy immediately after experiencing it rather than evaluating the films merits with thoughtfulness. By narrowing the scale, I force myself to engage more deeply with the meaning behind the rating, rather than the number itself.
 
-## My Purpose
+## Purpose
 
 Ultimately, reviews are my way of processing and engaging with art. They are as much about understanding myself as they are about critiquing the media. If my reviews spark thought, inspire discussion, or help guide your own exploration of art, then they've served a greater purpose than I intended. For that, I'm grateful. Cheers.
