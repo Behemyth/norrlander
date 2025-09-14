@@ -1,7 +1,8 @@
 export default defineAppConfig({
 	ui: {
 		colors: {
-			primary: 'cool',
+			primary: 'stone',
+			secondary: 'gray',
 		},
 		icons: {
 			light: 'i-heroicons-sun',
