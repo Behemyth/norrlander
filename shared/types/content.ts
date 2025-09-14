@@ -51,6 +51,7 @@ export const PhotographySchema = PageSchema;
 export const BlogSchema = PageSchema;
 
 export const AcademicSchema = PageSchema.extend({
+	degree: z.string(),
 	location: z.string(),
 	start_date: z.coerce.date(),
 	end_date: z.coerce.date().optional(),

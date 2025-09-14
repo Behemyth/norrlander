@@ -4,7 +4,7 @@
 	>
 		<UPageHeader
 			:title="page.title"
-			:description="page.description"
+			:description="page.degree"
 		/>
 		<UPageBody>
 			<article>
