@@ -102,7 +102,7 @@ It took me years to warm up to hiking for fun, but once I dipped my toes into th
 ::UButton{label="Visit ROC Website" to="https://outing.org/" target="_blank" variant="ghost" size="xs" trailing-icon="i-mdi-arrow-top-right-bold-box-outline"}
 ::
 
-## References
+---
 
 [^apetrei2014]: Apetrei, C. (2014). *Fast and Simple Agglomerative LBVH Construction*. In Borgo, R. and Tang, W. (eds.), Computer Graphics and Visual Computing (CGVC). The Eurographics Association.
 
