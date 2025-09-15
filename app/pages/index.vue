@@ -10,6 +10,7 @@
 			<NuxtImg
 				src="/images/asher-think.png"
 				alt="Asher Norland"
+				preload
 				class="rounded-lg shadow-lg"
 			/>
 		</UPageHero>
@@ -33,7 +34,7 @@
 		<UPageSection
 			:links="sectionLinks"
 			title="About Asher Norland"
-			description="Minnesotan by heart."
+			description="I'm Minnesotan by spirit and family. My grandfather was an orchardist and as a result I'm contractually obligated to love all things apple. To steal my heart, take me out for a strong cider."
 			class="bg-gray-50 dark:bg-gray-800/50"
 		/>
 	</div>
