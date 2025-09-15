@@ -10,6 +10,7 @@
 			<NuxtImg
 				src="/images/asher-think.png"
 				alt="Asher Norland"
+				preload
 				class="rounded-lg shadow-lg"
 			/>
 		</UPageHero>
