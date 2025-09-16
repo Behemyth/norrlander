@@ -1,5 +1,5 @@
 ---
-title: Rensselaer Polytechnic Institute (RPI)
+title: Rensselaer Polytechnic Institute
 degree: B.S in Computer Science
 description: TODO
 start_date: 2014-08-01
