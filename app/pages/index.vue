@@ -34,7 +34,7 @@
 		<UPageSection
 			:links="sectionLinks"
 			title="About Asher Norland"
-			description="I'm Minnesotan by spirit and family. My grandfather was an orchardist and as a result I'm contractually obligated to love all things apple. To steal my heart, take me out for a strong cider."
+			description="I'm Minnesotan by family and spirit. My grandfather was an orchardist and as a result I'm contractually obligated to love all things apple. To steal my heart, take me out for a strong cider."
 			class="bg-gray-50 dark:bg-gray-800/50"
 		/>
 	</div>
@@ -84,10 +84,12 @@ const features = [
 	},
 ];
 
+defineOgImage({ url: '/images/asher-think.png' });
+
 useSeoMeta({
-	title: 'Asher Norland | Home',
-	description: 'Personal website of Asher Norland featuring blog posts, photography, portfolio projects, and reviews. Welcome to The Norrlander.',
+	title: 'Asher Norland',
+	description: 'Asher Norland\'s blog, photography, projects, and film reviews.',
 	ogTitle: 'The Norrlander',
-	ogDescription: 'Personal website of Asher Norland featuring blog posts, photography, portfolio projects, and reviews.',
+	ogDescription: 'Asher Norland\'s personal space with fresh air. You\'ll find a blog, some photography, portfolio, and film reviews.',
 });
 </script>

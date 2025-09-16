@@ -1,6 +1,6 @@
 import { defineContentConfig, defineCollection } from '@nuxt/content';
 
-import { asSitemapCollection } from '@nuxtjs/sitemap/content';
+import { asSeoCollection } from '@nuxtjs/seo/content';
 import {
 	ReviewMovieSchema,
 	ReviewShowSchema,
@@ -76,7 +76,7 @@ export default defineContentConfig({
 			schema: ReviewShowSchema,
 		}),
 		content: defineCollection(
-			asSitemapCollection({
+			asSeoCollection({
 				type: 'page',
 				source:
 				{

@@ -12,12 +12,16 @@
 </template>
 
 <script setup lang="ts">
-const route = useRoute();
+import { findPageBreadcrumb } from '@nuxt/content/utils';
+import { mapContentNavigation } from '@nuxt/ui/utils/content';
 
-// Don't await in wrapper/layout
+const route = useRoute();
 const { data: navigation } = useContentNavigation();
 
-// The content sub-category is not a part of the page navigation query. As a result we only add the navigational
-//	breadcrumbs. For example '/review/movie' instead of '/review/movie/<movie>'.
-const breadcrumb = computed(() => mapContentBreadcrumbs(navigation?.value, route.path));
+const breadcrumb = computed(() => {
+	const chain = findPageBreadcrumb(navigation?.value, route.path, { indexAsChild: true });
+	const items = mapContentNavigation(chain).map(({ icon, ...link }: any) => link);
+	items.unshift({ label: 'Home', to: '/' });
+	return items;
+});
 </script>
