@@ -37,6 +37,8 @@
 </template>
 
 <script setup lang="ts">
+import { mapContentNavigation } from '@nuxt/ui/utils/content';
+
 const { data: navigation } = await useContentNavigation();
 
 const items = computed(() => mapContentNavigation(navigation?.value));
