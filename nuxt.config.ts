@@ -3,8 +3,7 @@ export default defineNuxtConfig({
 	// nuxtjs/content should be loaded after 'nuxt/ui'
 	// nuxtjs/sitemap and robots should be loaded before 'nuxt/content'
 	modules: [
-		'@nuxtjs/sitemap',
-		'@nuxtjs/robots',
+		'@nuxtjs/seo',
 		'@nuxt/ui',
 		'@nuxt/content',
 		'@nuxt/image',
