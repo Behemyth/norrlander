@@ -84,10 +84,12 @@ const features = [
 	},
 ];
 
+defineOgImage({ url: '/images/asher-think.png' });
+
 useSeoMeta({
-	title: 'Asher Norland | Home',
-	description: 'Personal website of Asher Norland featuring blog posts, photography, portfolio projects, and reviews. Welcome to The Norrlander.',
+	title: 'Asher Norland',
+	description: 'Asher Norland\'s blog, photography, projects, and film reviews.',
 	ogTitle: 'The Norrlander',
-	ogDescription: 'Personal website of Asher Norland featuring blog posts, photography, portfolio projects, and reviews.',
+	ogDescription: 'Asher Norland\'s personal space with fresh air. You\'ll find a blog, some photography, portfolio, and film reviews.',
 });
 </script>
