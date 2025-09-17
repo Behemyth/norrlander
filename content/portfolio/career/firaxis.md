@@ -22,10 +22,20 @@ achievements:
 
 ## Projects
 
+Firaxis is the most lively studio I've had the chance of seeing the lifestyle of. Every day of the week there were multiple events and activities to participate in. That community brought that same energy into the workplace, making it a joy to come in every day. The people are what make Firaxis special, and the little graphics team I was part of was no exception.
+
 ### Civilization VII
 
-I joined Firaxis to work on [Civilization VII](https://civilization.2k.com/civ-vii/)
+I joined Firaxis to work on [Civilization VII](https://civilization.2k.com/civ-vii/) and boy did I work on it. One of the largest impacts I had on the project was bringing the disparate pieces and unfinished procedural systems together into a cohesive whole. While I started on the project a bit too late to influence their core designs, I was able to introduce a few key components within vegetation placement, building distribution, and river construction that integrated their behaviors with each other.
+
+Alongside those systems, I worked on the random expression of an asset within the asset hierarchy. To give artists more control over how that selection behaved, I integrated a lightweight scripting grammar into the engine. This gave key controls in how a procedural asset was expressed according to game state without needing a programmer in the loop, and made iteration much faster.
+
+On the technical side, I implemented a CPU-based ray tracing library to handle both single and batched intersection queries while letting the implementation usage select the acceleration structure suitable for the job. The single queries are used every frame for mouse picking. Batch queries were used by vegetation and other clutter when those needed to be selectively placed. The generic structure of choice for a majority of the terrain work was, of course, the classic LBVH which [I may have made before](/portfolio/academic/rensselaer#bachelors-thesis). The fast construction time made it possible to update scenes quickly which was crucial for immediate visual feedback. The work done here was so successful and performant across the board I never had to replace the generic 3D BVH with a more specialized 2D structure.
+
+Performance was always a priority which is a proud keystone of the Civ graphics team. I built benchmarking systems that ran automatically and provided immediate, quantitative feedback to artists about their assets. The game has tons of assets which were constantly growing in number and significant engineering time is spent optimizing the performance of the systems managing them. With the automated feedback, artists could tune their work for the budgets we had set before it became a problem. I also designed the user-facing graphics and AI benchmarks for the product which worked in tandem with asset performance testing.
+
+I love the problems the game's engineering efforts attempt to solve. The mixture of performance, scale, and procedural expression is a space I intend to continue working in.
 
 ### Marvel's Midnight Suns
 
-Near the launch of [Marvel's Midnight Suns](https://midnightsuns.2k.com/) I was pulled to help the project over the finish line.
+Near the end of [Marvel's Midnight Suns](https://midnightsuns.2k.com/) development I was pulled to help the project over the finish line. I mainly worked on HDR bugs and other related user-facing issues. At this point I had been a few years removed from any Unreal Engine work, so it was a chance to wipe a bit of rust off, and what better way than revisiting the HDR compositing pipeline. The project was using an older, frozen version of UE4 so some of the HDR work in the product was cherry-picked from later engine versions where the HDR pipeline had been improved. I worked to identify and fix issues that had been introduced in the backporting process, as well as some other general bugs that had cropped up over the course of development.
