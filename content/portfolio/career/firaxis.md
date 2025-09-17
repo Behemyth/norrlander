@@ -19,3 +19,15 @@ achievements:
   - Implemented efficient CPU ray tracing algorithms for both single and batched intersection queries.
   - Managed asset performance via extensive and automated performance testing.
 ---
+
+## Projects
+
+
+
+### Civ VII
+
+***Civilization VII***
+
+### Midnight Suns
+
+***Marvel's Midnight Suns***
