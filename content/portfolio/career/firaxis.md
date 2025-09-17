@@ -10,9 +10,9 @@ description: TODO
 tags:
   - C++
   - Typescript
-  - Unreal Engine
-  - Python
   - Vulkan
+  - DirectX 12
+  - Unreal Engine
 achievements:
   - Created core procedural systems for in-game environments, including vegetation placement, buildings distribution, and river construction.
   - Worked in close collaboration with multidisciplinary teams of artists and programmers, ensuring alignment and integration of product features across the product’s lifecycle.
@@ -24,4 +24,8 @@ achievements:
 
 ### Civilization VII
 
+I joined Firaxis to work on [Civilization VII](https://civilization.2k.com/civ-vii/)
+
 ### Marvel's Midnight Suns
+
+Near the launch of [Marvel's Midnight Suns](https://midnightsuns.2k.com/) I was pulled to help the project over the finish line.
