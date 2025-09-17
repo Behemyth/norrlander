@@ -24,8 +24,6 @@ If you ever need engineering services in the games industry, I highly recommend 
 
 I worked there for a little over two years as a programmer, contributing to various projects for clients in the games and hardware industry. One of the big draws of having a consulting role is the variety of work you get to do, but also the variety of hardware and their unique challenges you get to tackle. Some of my direct work was with AR and VR platforms in addition to consoles. While I didn't have a hands-on experience with the breadth of platforms that Disbelief works with, the amount of information that was shared and curated within their team was both impressive and integral to my own understanding of those platforms generally.
 
-### Wolves
-
-***Wolves in the Walls***
+### Wolves in the Walls
 
 Although brief compared to my other projects, my time working on [Wolves in the Walls](https://www.fable-studio.com/wolves-in-the-walls) was memorable. While there were various ways I supported their work, I worked with Fable Studio primarily to ensure that the game's stylized water colour rendering was performant on the Oculus Quest. To that end, there were some additional pipeline changes I made to UE4 to support the artist workflow required to create the effect.

@@ -22,12 +22,6 @@ achievements:
 
 ## Projects
 
+### Civilization VII
 
-
-### Civ VII
-
-***Civilization VII***
-
-### Midnight Suns
-
-***Marvel's Midnight Suns***
+### Marvel's Midnight Suns
