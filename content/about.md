@@ -1,7 +1,7 @@
 ---
 title: "About"
+description: "Information about The Norrlander website."
 navigation: false
-robots: false
 ---
 
 ## Film Data

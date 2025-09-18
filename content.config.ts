@@ -40,41 +40,48 @@ export default defineContentConfig({
 			source: 'data/community/*.json',
 			schema: CommunitySchema,
 		}),
-		blog: defineCollection({
-			type: 'page',
-			source: 'blog/*.md',
-			schema: BlogSchema,
-		}),
-		photography: defineCollection({
-			type: 'page',
-			source: 'photography/*.md',
-			schema: PhotographySchema,
-		}),
-		academic: defineCollection({
-			type: 'page',
-			source: 'portfolio/academic/*.md',
-			schema: AcademicSchema,
-		}),
-		career: defineCollection({
-			type: 'page',
-			source: 'portfolio/career/*.md',
-			schema: JobSchema,
-		}),
-		project: defineCollection({
-			type: 'page',
-			source: 'portfolio/project/*.md',
-			schema: ProjectSchema,
-		}),
-		movie: defineCollection({
-			type: 'page',
-			source: 'review/movie/*.md',
-			schema: ReviewMovieSchema,
-		}),
-		show: defineCollection({
-			type: 'page',
-			source: 'review/show/*.md',
-			schema: ReviewShowSchema,
-		}),
+		blog: defineCollection(
+			asSeoCollection({
+				type: 'page',
+				source: 'blog/*.md',
+				schema: BlogSchema,
+			})),
+		photography: defineCollection(
+			asSeoCollection({
+				type: 'page',
+				source: 'photography/*.md',
+				schema: PhotographySchema,
+			})),
+		academic: defineCollection(
+			asSeoCollection({
+				type: 'page',
+				source: 'portfolio/academic/*.md',
+				schema: AcademicSchema,
+			})),
+		career: defineCollection(
+			asSeoCollection({
+				type: 'page',
+				source: 'portfolio/career/*.md',
+				schema: JobSchema,
+			})),
+		project: defineCollection(
+			asSeoCollection({
+				type: 'page',
+				source: 'portfolio/project/*.md',
+				schema: ProjectSchema,
+			})),
+		movie: defineCollection(
+			asSeoCollection({
+				type: 'page',
+				source: 'review/movie/*.md',
+				schema: ReviewMovieSchema,
+			})),
+		show: defineCollection(
+			asSeoCollection({
+				type: 'page',
+				source: 'review/show/*.md',
+				schema: ReviewShowSchema,
+			})),
 		content: defineCollection(
 			asSeoCollection({
 				type: 'page',
