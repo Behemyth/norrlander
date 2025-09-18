@@ -1,29 +1,34 @@
 <template>
-	<UPage
-		v-if="page"
-	>
-		<UPageHeader class="max-w-4xl mx-auto w-full">
-			<ReviewHeader
-				:content="page"
-			/>
-		</UPageHeader>
-		<UPageBody>
-			<article class="max-w-4xl mx-auto w-full">
-				<ContentRenderer
-					:value="page"
-				/>
-			</article>
-			<ReviewFooter
-				:content="page"
-			/>
-			<USeparator class="my-8" />
-			<div class="max-w-4xl mx-auto w-full">
-				<ReviewDiscussion
-					:category="capitalizedCategory"
-				/>
-			</div>
-		</UPageBody>
-	</UPage>
+	<div>
+		<NuxtLayout
+			name="content"
+			:toc-links="page?.body.toc?.links"
+		>
+			<UPage
+				v-if="page"
+			>
+				<UPageHeader class="max-w-4xl mx-auto w-full">
+					<ReviewHeader
+						:content="page"
+					/>
+				</UPageHeader>
+				<UPageBody class="max-w-4xl mx-auto w-full">
+					<ContentRenderer
+						:value="page"
+					/>
+					<ReviewFooter
+						:content="page"
+					/>
+					<USeparator class="my-8" />
+					<UContainer class="max-w-4xl mx-auto w-full">
+						<ReviewDiscussion
+							:category="capitalizedCategory"
+						/>
+					</UContainer>
+				</UPageBody>
+			</UPage>
+		</NuxtLayout>
+	</div>
 </template>
 
 <script lang="ts" setup>
@@ -50,7 +55,7 @@ if (!page.value) {
 }
 
 definePageMeta({
-	layout: 'content',
+	layout: false,
 });
 
 useSeoMeta(page.value?.seo || {});

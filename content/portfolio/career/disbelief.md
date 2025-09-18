@@ -6,7 +6,7 @@ end_date: 2020-09-22
 location: Cambridge, MA
 link: https://www.disbelief.com/
 robots: false
-description: TODO
+description: Specialist engineering services for the games and hardware industry.
 tags:
   - C++
   - Unreal Engine

@@ -1,7 +1,7 @@
 ---
 title: Rensselaer Polytechnic Institute
 degree: B.S in Computer Science
-description: TODO
+description: My alma mater where I studied computer science with a focus on graphics, simulation, and machine learning.
 start_date: 2014-08-01
 end_date: 2018-05-01
 location: Troy, NY
