@@ -44,7 +44,10 @@ const capitalizedCategory = computed(() => {
 });
 
 const { data: page } = await useAsyncData(route.path, () => {
-	return queryCollection(category.value).path(route.path).first();
+	return queryCollection(category.value)
+		.where('published', '=', true)
+		.path(route.path)
+		.first();
 });
 
 if (!page.value) {
