@@ -29,6 +29,9 @@ export default defineNuxtConfig({
 	// https://content.nuxtjs.org
 	content: {
 		build: {
+			transformers: [
+				'~/transformers/seo-published',
+			],
 			markdown: {
 				toc: {
 					depth: 3,
