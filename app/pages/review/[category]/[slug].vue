@@ -8,11 +8,9 @@
 			/>
 		</UPageHeader>
 		<UPageBody>
-			<article class="max-w-4xl mx-auto w-full">
-				<ContentRenderer
-					:value="page"
-				/>
-			</article>
+			<ContentRenderer
+				:value="page"
+			/>
 			<ReviewFooter
 				:content="page"
 			/>

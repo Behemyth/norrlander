@@ -3,11 +3,9 @@
 		v-if="page"
 	>
 		<UPageBody>
-			<article>
-				<ContentRenderer
-					:value="page"
-				/>
-			</article>
+			<ContentRenderer
+				:value="page"
+			/>
 		</UPageBody>
 		<template
 			v-if="page.body.toc && page.body.toc.links.length"
