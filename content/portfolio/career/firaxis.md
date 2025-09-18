@@ -6,7 +6,7 @@ end_date: 2025-09-05
 location: Sparks-Glencoe, MD
 link: https://firaxis.com/
 robots: false
-description: TODO
+description: Leading developer of strategy games including the Civilization and XCOM series.
 tags:
   - C++
   - Typescript
