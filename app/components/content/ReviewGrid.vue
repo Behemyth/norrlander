@@ -19,7 +19,7 @@ const props = defineProps<{
 
 async function getReviewsFromCollection(collection: 'movie' | 'show') {
 	return queryCollection(collection)
-		.where('published', '=', true)
+		.where('draft', '=', false)
 		.order('date_published', 'DESC')
 		.limit(props.count)
 		.all();
@@ -27,8 +27,8 @@ async function getReviewsFromCollection(collection: 'movie' | 'show') {
 
 async function getAllReviews() {
 	const [movies, shows] = await Promise.all([
-		queryCollection('movie').where('published', '=', true).all(),
-		queryCollection('show').where('published', '=', true).all(),
+		queryCollection('movie').where('draft', '=', false).all(),
+		queryCollection('show').where('draft', '=', false).all(),
 	]);
 
 	return [...movies, ...shows]

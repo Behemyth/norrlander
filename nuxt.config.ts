@@ -30,7 +30,7 @@ export default defineNuxtConfig({
 	content: {
 		build: {
 			transformers: [
-				'~/transformers/seo-published',
+				'~/transformers/seo-draft',
 			],
 			markdown: {
 				toc: {

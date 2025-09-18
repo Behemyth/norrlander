@@ -10,7 +10,7 @@
 
 <script setup lang="ts">
 const photos = await queryCollection('photography')
-	.where('published', '=', true)
+	.where('draft', '=', false)
 	.order('date_published', 'DESC')
 	.all();
 </script>

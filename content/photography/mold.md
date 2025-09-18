@@ -1,7 +1,7 @@
 ---
 title: Mold I
 description: A collection of photographs exploring the textures and patterns of mold growth
-published: false
+draft: true
 date_published: 2025-01-15
 date_modified: 2025-01-15
 images:

@@ -48,7 +48,7 @@ const route = useRoute();
 
 const { data: page } = await useAsyncData(route.path, () => {
 	return queryCollection('photography')
-		.where('published', '=', true)
+		.where('draft', '=', false)
 		.path(route.path)
 		.first();
 });

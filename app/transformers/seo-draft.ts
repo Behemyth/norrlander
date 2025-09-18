@@ -1,10 +1,10 @@
 import { defineTransformer, type ParsedContentFile } from '@nuxt/content';
 
 export default defineTransformer({
-	name: 'seo-published',
+	name: 'seo-draft',
 	extensions: ['.md'],
 	transform(file: ParsedContentFile) {
-		if (file.draft === true || file.draft === undefined) {
+		if (file.draft === true) {
 			const result = {
 				...file,
 				robots: false,

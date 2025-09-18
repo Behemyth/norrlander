@@ -11,7 +11,7 @@
 <script setup lang="ts">
 async function getProjectsFromCollection() {
 	return queryCollection('project')
-		.where('published', '=', true)
+		.where('draft', '=', false)
 		.all();
 }
 

@@ -45,7 +45,7 @@ const capitalizedCategory = computed(() => {
 
 const { data: page } = await useAsyncData(route.path, () => {
 	return queryCollection(category.value)
-		.where('published', '=', true)
+		.where('draft', '=', false)
 		.path(route.path)
 		.first();
 });
