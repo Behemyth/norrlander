@@ -1,33 +1,24 @@
 <template>
-	<ContentLayout>
-		<UPage
-			v-if="page"
+	<div>
+		<NuxtLayout
+			name="content"
+			:toc-links="page?.body.toc?.links"
 		>
-			<UPageHeader
-				:title="page.title"
-				:description="page.degree"
-			/>
-			<UPageBody>
-				<ContentRenderer
-					:value="page"
-				/>
-			</UPageBody>
-			<template
-				v-if="page.body.toc && page.body.toc.links.length"
-				#left
+			<UPage
+				v-if="page"
 			>
-				<UPageAside>
-					<UContentToc
-						title="Contents"
-						highlight
-						highlight-color="neutral"
-						color="neutral"
-						:links="page.body.toc.links"
+				<UPageHeader
+					:title="page.title"
+					:description="page.degree"
+				/>
+				<UPageBody>
+					<ContentRenderer
+						:value="page"
 					/>
-				</UPageAside>
-			</template>
-		</UPage>
-	</ContentLayout>
+				</UPageBody>
+			</UPage>
+		</NuxtLayout>
+	</div>
 </template>
 
 <script lang="ts" setup>
@@ -43,6 +34,10 @@ if (!page.value) {
 		message: 'Page not found',
 	});
 }
+
+definePageMeta({
+	layout: false,
+});
 
 useSeoMeta(page.value?.seo || {});
 </script>
