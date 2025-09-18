@@ -22,13 +22,13 @@ const { data: files } = useLazyAsyncData(
 	'search-data',
 	async () => {
 		const results = await Promise.all([
-			queryCollectionSearchSections('blog').where('published', '=', true),
-			queryCollectionSearchSections('photography').where('published', '=', true),
-			queryCollectionSearchSections('career'),
-			queryCollectionSearchSections('academic'),
-			queryCollectionSearchSections('project').where('published', '=', true),
-			queryCollectionSearchSections('movie').where('published', '=', true),
-			queryCollectionSearchSections('show').where('published', '=', true),
+			queryCollectionSearchSections('blog').where('draft', '=', false),
+			queryCollectionSearchSections('photography').where('draft', '=', false),
+			queryCollectionSearchSections('career').where('draft', '=', false),
+			queryCollectionSearchSections('academic').where('draft', '=', false),
+			queryCollectionSearchSections('project').where('draft', '=', false),
+			queryCollectionSearchSections('movie').where('draft', '=', false),
+			queryCollectionSearchSections('show').where('draft', '=', false),
 		]);
 
 		return results.flat();

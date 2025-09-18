@@ -14,7 +14,7 @@ const props = defineProps<{
 const { data: metadata } = await useAsyncData(`review-header-${props.collection}`, async () => {
 	const [published, drafts] = await Promise.all([
 		queryCollection(props.collection)
-			.where('published', '=', true)
+			.where('draft', '=', false)
 			.count(),
 		queryCollection(props.collection)
 			.where('published', '=', false)

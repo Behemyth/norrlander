@@ -10,7 +10,7 @@
 
 <script setup lang="ts">
 const posts = await queryCollection('blog')
-	.where('published', '=', true)
+	.where('draft', '=', false)
 	.order('date_published', 'DESC')
 	.all();
 </script>

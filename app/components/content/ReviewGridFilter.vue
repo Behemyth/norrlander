@@ -17,7 +17,7 @@ const props = defineProps<{
 }>();
 
 const items = await queryCollection(props.collection)
-	.where('published', '=', true)
+	.where('draft', '=', false)
 	.order('date_published', 'DESC')
 	.all();
 </script>

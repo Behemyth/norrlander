@@ -71,7 +71,7 @@ export default defineEventHandler(async (event) => {
 	};
 
 	const data = await queryCollection(event, category)
-		.where('published', '=', true)
+		.where('draft', '=', false)
 		.order('date_published', 'DESC')
 		.all();
 
