@@ -44,12 +44,14 @@ import type { CareerCollectionItem, AcademicCollectionItem } from '@nuxt/content
 
 async function getCareersFromCollection() {
 	return queryCollection('career')
+		.where('draft', '=', false)
 		.order('start_date', 'DESC')
 		.all();
 }
 
 async function getAcademicsFromCollection() {
 	return queryCollection('academic')
+		.where('draft', '=', false)
 		.order('start_date', 'DESC')
 		.all();
 }
