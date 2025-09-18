@@ -1,26 +1,18 @@
 <template>
-	<UPage v-if="page">
-		<UPageBody>
-			<ContentRenderer
-				:value="page.body"
-			/>
-		</UPageBody>
-
-		<template
-			v-if="page.body.toc && page.body.toc.links.length"
-			#left
+	<div>
+		<NuxtLayout
+			name="content"
+			:toc-links="page?.body.toc?.links"
 		>
-			<UPageAside>
-				<UContentToc
-					title="Contents"
-					highlight
-					highlight-color="neutral"
-					color="neutral"
-					:links="page.body.toc.links"
-				/>
-			</UPageAside>
-		</template>
-	</UPage>
+			<UPage v-if="page">
+				<UPageBody>
+					<ContentRenderer
+						:value="page.body"
+					/>
+				</UPageBody>
+			</UPage>
+		</NuxtLayout>
+	</div>
 </template>
 
 <script lang="ts" setup>
@@ -40,7 +32,7 @@ if (!page.value) {
 }
 
 definePageMeta({
-	layout: 'content',
+	layout: false,
 });
 
 const links = computed(() => {

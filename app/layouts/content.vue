@@ -6,7 +6,9 @@
 					<UBreadcrumb :items="breadcrumb" />
 				</template>
 			</UPageHeader>
-			<slot />
+			<div :class="{ 'max-w-4xl mx-auto w-full': !tocLinks || !tocLinks.length }">
+				<slot />
+			</div>
 			<template
 				v-if="tocLinks && tocLinks.length"
 				#left
