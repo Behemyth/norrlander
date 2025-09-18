@@ -9,7 +9,7 @@ import { TMDBMovieSchema, TMDBShowSchema } from './tmdb';
 export const PageSchema = z.object({
 	title: z.string(),
 	description: z.string(),
-	published: z.boolean().optional().default(false),
+	published: z.boolean().default(false),
 	date_published: z.coerce.date(),
 	date_modified: z.coerce.date(),
 });
@@ -54,7 +54,7 @@ export const PhotographySchema = PageSchema.extend({
 		height: z.number().optional(),
 		sizes: z.string().optional(),
 		densities: z.string().optional(),
-	})).optional().default([]),
+	})).default([]),
 });
 
 export const BlogSchema = PageSchema;
@@ -75,8 +75,8 @@ export const JobSchema = PageSchema.extend({
 	position: z.string(),
 	location: z.string(),
 	description: z.string(),
-	tags: z.array(z.string()).optional().default([]),
-	achievements: z.array(z.string()).optional().default([]),
+	tags: z.array(z.string()).default([]),
+	achievements: z.array(z.string()).default([]),
 	start_date: z.coerce.date(),
 	end_date: z.coerce.date().optional(),
 	link: z.string().url(),
