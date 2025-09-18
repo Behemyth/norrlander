@@ -5,7 +5,7 @@
 			:key="review.id"
 			:title="review.title"
 			:path="review.path"
-			:rating="review.rating"
+			:rating="Number(review.rating)"
 			:poster-path="`tmdb${review.tmdbData.poster_path}`"
 		/>
 	</div>

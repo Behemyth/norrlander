@@ -11,7 +11,7 @@
 					</ProseH1>
 					<div class="flex flex-row items-center mt-1 flex-wrap">
 						<ReviewStarRating
-							:value="content.rating"
+							:value="Number(content.rating)"
 							:size="24"
 							class="mr-4"
 						/>
