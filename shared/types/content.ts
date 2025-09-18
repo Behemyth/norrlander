@@ -46,8 +46,17 @@ export const ReviewShowSchema = ReviewMetadataSchema.extend({
 	tmdbData: TMDBShowSchema,
 });
 
-// Simple page schemas that only need the base PageSchema (title is already included)
-export const PhotographySchema = PageSchema;
+export const PhotographySchema = PageSchema.extend({
+	images: z.array(z.object({
+		src: z.string(),
+		alt: z.string().optional(),
+		width: z.number().optional(),
+		height: z.number().optional(),
+		sizes: z.string().optional(),
+		densities: z.string().optional(),
+	})).optional().default([]),
+});
+
 export const BlogSchema = PageSchema;
 
 export const AcademicSchema = PageSchema.extend({
