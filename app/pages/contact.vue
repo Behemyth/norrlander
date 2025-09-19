@@ -11,6 +11,10 @@
 						/>
 					</UPageAside>
 				</template>
+				<UPageHeader
+					title="Get in Touch"
+					description="Feel free to reach out via any of the methods below."
+				/>
 				<UPageBody>
 					<UPageColumns>
 						<AppProfileCard
@@ -67,5 +71,12 @@ const { data: socials } = await useSocialsData();
 
 definePageMeta({
 	layout: false,
+});
+
+useSeoMeta({
+	title: 'Contact',
+	description: 'Asher Norland\'s contact information.',
+	ogTitle: 'Asher Norland - Contact Information',
+	ogDescription: 'Say hello, and I might just say hello back.',
 });
 </script>
