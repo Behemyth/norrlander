@@ -1,6 +1,7 @@
 ---
 title: "Portfolio"
-description: "Asher Norland - Graphics Engineer"
+description: "Graphics Engineer with a hankering for acceleration structures, procedural generation, and GPU computation"
+headline: "Asher Norland"
 links:
 - label: Resume
   icon: mdi:file-document

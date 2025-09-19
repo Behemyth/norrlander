@@ -93,6 +93,7 @@ export const LinkSchema = z.object({
 export const ContentSchema = z.object({
 	title: z.string(),
 	description: z.string().optional(),
+	headline: z.string().optional(),
 	links: z.array(LinkSchema).default([]),
 	feed: z.string().optional(),
 });

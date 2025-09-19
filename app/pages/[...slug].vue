@@ -8,6 +8,7 @@
 				<UPageHeader
 					:title="page.title"
 					:description="page.description"
+					:headline="page.headline"
 					:links="page.links"
 				/>
 				<UPageBody>
