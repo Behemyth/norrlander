@@ -12,7 +12,6 @@
 			:files="files"
 			:navigation="navigation"
 			:color-mode="false"
-			:fuse="{ resultLimit: 40 }"
 		/>
 	</ClientOnly>
 </template>
@@ -36,7 +35,23 @@ const { data: files } = useLazyAsyncData(
 	{ server: false },
 );
 
-const { data: navigation } = useContentNavigation();
+const { data: navigation } = useLazyAsyncData(
+	'search-navigation',
+	async () => {
+		const results = await Promise.all([
+			queryCollectionNavigation('blog'),
+			queryCollectionNavigation('photography'),
+			queryCollectionNavigation('career'),
+			queryCollectionNavigation('academic'),
+			queryCollectionNavigation('project'),
+			queryCollectionNavigation('movie'),
+			queryCollectionNavigation('show'),
+		]);
+
+		return results.flat();
+	},
+	{ server: false },
+);
 
 const searchTerm = ref('');
 </script>
