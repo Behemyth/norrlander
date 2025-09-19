@@ -1,20 +1,12 @@
 ---
 title: "Reviews"
----
-
-::UPageHeader
----
-title: Reviews
 description: A collection of my reviews for movies and shows.
 links:
-
 - label: "All Movies"
   to: "/review/movie"
 - label: "All Shows"
   to: "/review/show"
-
 ---
-::
 
 ## Recent Reviews
 

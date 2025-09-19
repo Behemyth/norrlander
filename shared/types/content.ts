@@ -82,8 +82,18 @@ export const JobSchema = PageSchema.extend({
 	link: z.string().url(),
 });
 
+export const LinkSchema = z.object({
+	label: z.string(),
+	icon: z.string().optional(),
+	to: z.string().optional(),
+	target: z.enum(['_self', '_blank', '_parent', '_top']).optional(),
+	external: z.boolean().default(false),
+});
+
 export const ContentSchema = z.object({
 	title: z.string(),
+	description: z.string().optional(),
+	links: z.array(LinkSchema).default([]),
 	feed: z.string().optional(),
 });
 
