@@ -5,7 +5,7 @@
 				{{ content.title }}
 			</h1>
 		</div>
-		<NuxtPicture
+		<NuxtImg
 			:src="`tmdb/${content.tmdbData.poster_path}`"
 			:alt="content.title"
 			:img-attrs="{

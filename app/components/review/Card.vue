@@ -8,7 +8,7 @@
 			header: 'p-2',
 		}"
 	>
-		<NuxtPicture
+		<NuxtImg
 			:src="posterPath"
 			loading="lazy"
 			:placeholder="img(posterPath, { h: 10, blur: 2, q: 50 })"

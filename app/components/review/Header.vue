@@ -43,7 +43,7 @@
 			</template>
 		</UPageHeader>
 
-		<NuxtPicture
+		<NuxtImg
 			:src="`tmdb/${content.tmdbData.backdrop_path}`"
 			:alt="content.title"
 			:img-attrs="{ class: 'object-cover w-full aspect-[12/5]' }"
