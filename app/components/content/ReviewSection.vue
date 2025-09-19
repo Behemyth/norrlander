@@ -17,7 +17,7 @@ const { data: metadata } = await useAsyncData(`review-header-${props.collection}
 			.where('draft', '=', false)
 			.count(),
 		queryCollection(props.collection)
-			.where('published', '=', false)
+			.where('draft', '=', true)
 			.count(),
 	]);
 

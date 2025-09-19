@@ -25,7 +25,10 @@
 const route = useRoute();
 
 const { data: page } = await useAsyncData(route.path, () => {
-	return queryCollection('career').path(route.path).first();
+	return queryCollection('career')
+		.where('draft', '=', false)
+		.path(route.path)
+		.first();
 });
 
 if (!page.value) {

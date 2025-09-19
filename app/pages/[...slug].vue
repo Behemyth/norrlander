@@ -5,6 +5,11 @@
 			:toc-links="page?.body.toc?.links"
 		>
 			<UPage v-if="page">
+				<UPageHeader
+					:title="page.title"
+					:description="page.description"
+					:links="page.links"
+				/>
 				<UPageBody>
 					<ContentRenderer
 						:value="page.body"
