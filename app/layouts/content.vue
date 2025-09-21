@@ -28,9 +28,6 @@
 </template>
 
 <script setup lang="ts">
-import { findPageBreadcrumb } from '@nuxt/content/utils';
-import { mapContentNavigation } from '@nuxt/ui/utils/content';
-
 interface Props {
 	tocLinks?: Array<any>;
 }
@@ -40,10 +37,5 @@ defineProps<Props>();
 const route = useRoute();
 const { data: navigation } = useContentNavigation();
 
-const breadcrumb = computed(() => {
-	const chain = findPageBreadcrumb(navigation?.value, route.path, { indexAsChild: true });
-	const items = mapContentNavigation(chain).map(({ icon, ...link }: any) => link);
-	items.unshift({ label: 'Home', to: '/' });
-	return items;
-});
+const breadcrumb = computed(() => findBreadcrumb(navigation?.value, route.path));
 </script>
