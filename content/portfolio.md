@@ -15,7 +15,7 @@ links:
 
 ## Projects
 
-::ProjectGrid
+::ProjectDisplay
 ::
 
 ## Career

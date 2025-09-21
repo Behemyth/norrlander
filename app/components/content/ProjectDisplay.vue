@@ -1,11 +1,13 @@
 <template>
-	<UPageGrid>
-		<ProjectCard
-			v-for="project in projects"
-			:key="project.path"
-			:project="project"
-		/>
-	</UPageGrid>
+	<UCarousel
+		v-slot="{ item: project }"
+		:items="projects"
+		arrows
+		dots
+		:ui="{ item: 'basis-1/2 lg:basis-1/3' }"
+	>
+		<ProjectCard :project="project" />
+	</UCarousel>
 </template>
 
 <script setup lang="ts">
