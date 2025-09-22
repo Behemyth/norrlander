@@ -93,7 +93,7 @@ definePageMeta({
 });
 
 const img = useImage();
-const imgUrl = img('/images/asher-think.png', { width: 1600, height: 1067 });
+const imgUrl = img('/images/asher-og-cover.png', { width: 1200, height: 600 });
 
 defineOgImage({ url: imgUrl });
 
