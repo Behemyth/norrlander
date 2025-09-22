@@ -92,7 +92,10 @@ definePageMeta({
 	layout: false,
 });
 
-defineOgImage({ url: '/images/asher-think.png' });
+const img = useImage();
+const imgUrl = img('/images/asher-think.png', { width: 1600, height: 1067 });
+
+defineOgImage({ url: imgUrl });
 
 useSeoMeta({
 	title: 'Asher Norland',
