@@ -4,7 +4,7 @@ export default defineTransformer({
 	name: 'seo-draft',
 	extensions: ['.md'],
 	transform(file: ParsedContentFile) {
-		if (file.draft === true) {
+		if (file.draft === true || file.draft === undefined) {
 			const result = {
 				...file,
 				robots: false,
