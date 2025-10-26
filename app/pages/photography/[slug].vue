@@ -39,6 +39,23 @@
 					/>
 				</UCarousel>
 			</UPage>
+			<UPage
+				v-else
+				class="max-w-4xl mx-auto w-full"
+			>
+				<UPageBody>
+					<UEmpty
+						icon="i-lucide-camera"
+						title="Photo not found"
+						description="The photo series you're looking for doesn't exist or has been removed."
+						:actions="[{
+							label: 'Back to photography',
+							to: '/photography',
+							icon: 'i-lucide-arrow-left',
+						}]"
+					/>
+				</UPageBody>
+			</UPage>
 		</NuxtLayout>
 	</div>
 </template>
@@ -52,13 +69,6 @@ const { data: page } = await useAsyncData(route.path, () => {
 		.path(route.path)
 		.first();
 });
-
-if (!page.value) {
-	throw createError({
-		statusCode: 404,
-		message: 'Page not found',
-	});
-}
 
 definePageMeta({
 	layout: false,

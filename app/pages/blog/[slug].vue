@@ -13,6 +13,20 @@
 					/>
 				</UPageBody>
 			</UPage>
+			<UPage v-else>
+				<UPageBody>
+					<UEmpty
+						icon="i-lucide-file-text"
+						title="Blog post not found"
+						description="The blog post you're looking for doesn't exist or has been removed."
+						:actions="[{
+							label: 'Back to blog',
+							to: '/blog',
+							icon: 'i-lucide-arrow-left',
+						}]"
+					/>
+				</UPageBody>
+			</UPage>
 		</NuxtLayout>
 	</div>
 </template>
@@ -26,13 +40,6 @@ const { data: page } = await useAsyncData(route.path, () => {
 		.path(route.path)
 		.first();
 });
-
-if (!page.value) {
-	throw createError({
-		statusCode: 404,
-		message: 'Page not found',
-	});
-}
 
 definePageMeta({
 	layout: false,
