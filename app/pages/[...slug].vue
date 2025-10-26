@@ -17,6 +17,20 @@
 					/>
 				</UPageBody>
 			</UPage>
+			<UPage v-else>
+				<UPageBody>
+					<UEmpty
+						icon="i-lucide-file-search"
+						title="Page not found"
+						description="The page you're looking for doesn't exist or has been moved."
+						:actions="[{
+							label: 'Back to home',
+							to: '/',
+							icon: 'i-lucide-home',
+						}]"
+					/>
+				</UPageBody>
+			</UPage>
 		</NuxtLayout>
 	</div>
 </template>
@@ -29,13 +43,6 @@ const { data: page } = await useAsyncData(route.path, () => {
 		.path(route.path)
 		.first();
 });
-
-if (!page.value) {
-	throw createError({
-		statusCode: 404,
-		message: 'Page not found',
-	});
-}
 
 definePageMeta({
 	layout: false,

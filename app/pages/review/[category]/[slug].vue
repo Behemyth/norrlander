@@ -27,6 +27,20 @@
 					</UContainer>
 				</UPageBody>
 			</UPage>
+			<UPage v-else>
+				<UPageBody class="max-w-4xl mx-auto w-full">
+					<UEmpty
+						icon="i-lucide-film"
+						title="Review not found"
+						description="The review you're looking for doesn't exist or has been removed."
+						:actions="[{
+							label: 'Back to reviews',
+							to: '/review',
+							icon: 'i-lucide-arrow-left',
+						}]"
+					/>
+				</UPageBody>
+			</UPage>
 		</NuxtLayout>
 	</div>
 </template>
@@ -49,13 +63,6 @@ const { data: page } = await useAsyncData(route.path, () => {
 		.path(route.path)
 		.first();
 });
-
-if (!page.value) {
-	throw createError({
-		statusCode: 404,
-		message: 'Review not found',
-	});
-}
 
 definePageMeta({
 	layout: false,

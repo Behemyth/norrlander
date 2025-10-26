@@ -17,6 +17,20 @@
 					/>
 				</UPageBody>
 			</UPage>
+			<UPage v-else>
+				<UPageBody>
+					<UEmpty
+						icon="i-lucide-graduation-cap"
+						title="Academic entry not found"
+						description="The academic entry you're looking for doesn't exist or has been removed."
+						:actions="[{
+							label: 'Back to portfolio',
+							to: '/portfolio',
+							icon: 'i-lucide-arrow-left',
+						}]"
+					/>
+				</UPageBody>
+			</UPage>
 		</NuxtLayout>
 	</div>
 </template>
@@ -30,13 +44,6 @@ const { data: page } = await useAsyncData(route.path, () => {
 		.path(route.path)
 		.first();
 });
-
-if (!page.value) {
-	throw createError({
-		statusCode: 404,
-		message: 'Page not found',
-	});
-}
 
 definePageMeta({
 	layout: false,
