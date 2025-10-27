@@ -11,10 +11,10 @@
 				<NuxtImg
 					src="/images/asher-think.png"
 					alt="Asher Norland"
-					width="1024"
+					width="512"
 					preload
 					placeholder
-					class="rounded-lg shadow-lg aspect-[3/2]"
+					class="rounded-lg shadow-lg aspect-3/2"
 				/>
 			</UPageHero>
 			<USeparator />
