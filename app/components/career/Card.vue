@@ -11,18 +11,19 @@
 				:key="achievement"
 				icon="i-mdi-check-circle-outline"
 				:description="achievement"
-				:ui="{ leadingIcon: 'text-green-500', description: 'text-sm' }"
+				:ui="{ root: 'flex items-center gap-2.5', leadingIcon: 'text-green-500', description: 'text-sm' }"
 			/>
 
 			<UPageFeature
 				v-if="career.location"
 				icon="i-mdi-map-marker"
 				:description="career.location"
-				:ui="{ description: 'text-sm' }"
+				:ui="{ root: 'flex items-center gap-2.5', description: 'text-sm' }"
 			/>
 			<UPageFeature
 				v-if="career.tags && career.tags.length"
 				icon="i-mdi-code"
+				:ui="{ root: 'flex items-center gap-2.5' }"
 			>
 				<template #description>
 					<div class="flex flex-wrap gap-2">
