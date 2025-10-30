@@ -9,7 +9,7 @@
 			<UPageFeature
 				icon="i-mdi-map-marker"
 				:description="academic.location"
-				:ui="{ description: 'text-sm' }"
+				:ui="{ root: 'flex items-center gap-2.5', description: 'text-sm' }"
 			/>
 		</UPageList>
 	</UPageCard>
