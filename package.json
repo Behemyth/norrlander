@@ -12,11 +12,11 @@
 	},
 	"devDependencies": {
 		"@iconify-json/mdi": "^1.2.3",
-		"@nuxt/content": "^3.8.2",
-		"@nuxt/eslint": "^1.10.0",
+		"@nuxt/content": "^3.9.0",
+		"@nuxt/eslint": "^1.11.0",
 		"@nuxt/image": "^2.0.0",
-		"@nuxt/ui": "^4.1.0",
-		"@nuxtjs/i18n": "^10.2.0",
+		"@nuxt/ui": "^4.2.1",
+		"@nuxtjs/i18n": "^10.2.1",
 		"@nuxtjs/seo": "^3.2.2",
 		"nuxt": "^4.2.1",
 		"typescript": "^5.9.3"
