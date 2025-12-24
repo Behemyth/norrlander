@@ -5,7 +5,9 @@
 	>
 		<AppHeader />
 		<UMain class="grow min-h-0">
-			<NuxtPage />
+			<NuxtLayout>
+				<NuxtPage />
+			</NuxtLayout>
 		</UMain>
 		<AppFooter />
 	</UApp>

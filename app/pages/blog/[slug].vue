@@ -1,49 +1,43 @@
 <template>
-	<div>
-		<NuxtLayout
-			name="content"
-			:toc-links="page?.body.toc?.links"
+	<UPage
+		v-if="page"
+		:class="{ 'max-w-4xl mx-auto w-full': !page.body?.toc?.links?.length }"
+	>
+		<template
+			v-if="page.body?.toc?.links?.length"
+			#left
 		>
-			<UPage
-				v-if="page"
-			>
-				<UPageBody>
-					<ContentRenderer
-						:value="page"
-					/>
-				</UPageBody>
-			</UPage>
-			<UPage v-else>
-				<UPageBody>
-					<UEmpty
-						icon="i-lucide-file-text"
-						title="Blog post not found"
-						description="The blog post you're looking for doesn't exist or has been removed."
-						:actions="[{
-							label: 'Back to blog',
-							to: '/blog',
-							icon: 'i-lucide-arrow-left',
-						}]"
-					/>
-				</UPageBody>
-			</UPage>
-		</NuxtLayout>
-	</div>
+			<UPageAside>
+				<UContentToc
+					title="Contents"
+					highlight
+					:links="page.body.toc.links"
+				/>
+			</UPageAside>
+		</template>
+		<UPageHeader
+			:title="page.title"
+			:description="page.description"
+		/>
+		<UPageBody>
+			<ContentRenderer :value="page" />
+		</UPageBody>
+	</UPage>
+	<PageNotFound
+		v-else
+		icon="i-lucide-file-text"
+		title="Blog post not found"
+		description="The blog post you're looking for doesn't exist or has been removed."
+		back-label="Back to blog"
+		back-to="/blog"
+	/>
 </template>
 
 <script lang="ts" setup>
-const route = useRoute();
-
-const { data: page } = await useAsyncData(route.path, () => {
-	return queryCollection('blog')
-		.where('draft', '=', false)
-		.path(route.path)
-		.first();
-});
+const { page } = await useContentPage('blog');
+useSeoMeta(page.value?.seo || {});
 
 definePageMeta({
-	layout: false,
+	layout: 'content',
 });
-
-useSeoMeta(page.value?.seo || {});
 </script>

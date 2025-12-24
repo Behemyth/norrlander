@@ -1,71 +1,52 @@
 <template>
-	<div>
-		<NuxtLayout
-			name="content"
-			:toc-links="page?.body.toc?.links"
+	<UPage
+		v-if="page"
+		:class="{ 'max-w-4xl mx-auto w-full': !page.body?.toc?.links?.length }"
+	>
+		<template
+			v-if="page.body?.toc?.links?.length"
+			#left
 		>
-			<UPage v-if="page">
-				<UPageHeader
-					:title="page.title"
-					:description="page.description"
-					:headline="page.headline"
-					:links="page.links"
+			<UPageAside>
+				<UContentToc
+					title="Contents"
+					highlight
+					:links="page.body.toc.links"
 				/>
-				<UPageBody>
-					<ContentRenderer
-						:value="page.body"
-					/>
-				</UPageBody>
-			</UPage>
-			<UPage v-else>
-				<UPageBody>
-					<UEmpty
-						icon="i-lucide-file-search"
-						title="Page not found"
-						description="The page you're looking for doesn't exist or has been moved."
-						:actions="[{
-							label: 'Back to home',
-							to: '/',
-							icon: 'i-lucide-home',
-						}]"
-					/>
-				</UPageBody>
-			</UPage>
-		</NuxtLayout>
-	</div>
+			</UPageAside>
+		</template>
+		<UPageHeader
+			:title="page.title"
+			:description="page.description"
+			:links="page.links"
+		/>
+		<UPageBody>
+			<ContentRenderer :value="page.body" />
+		</UPageBody>
+	</UPage>
+	<PageNotFound v-else />
 </template>
 
 <script lang="ts" setup>
-const route = useRoute();
-
-const { data: page } = await useAsyncData(route.path, () => {
-	return queryCollection('content')
-		.path(route.path)
-		.first();
-});
+const { page } = await useContentPage('content');
+useSeoMeta(page.value?.seo || {});
 
 definePageMeta({
-	layout: false,
+	layout: 'content',
 });
 
+// Feed link for RSS-enabled pages
+const route = useRoute();
 const links = computed(() => {
 	if (!page.value?.feed) {
 		return [];
 	}
-	return [
-		{
-			rel: 'alternate',
-			title: page.value?.title,
-			type: 'application/json',
-			href: '/feed' + route.path + '.json',
-		},
-	];
+	return [{
+		rel: 'alternate',
+		title: page.value?.title,
+		type: 'application/json',
+		href: '/feed' + route.path + '.json',
+	}];
 });
-
-// These links will be picked up by the pre-renderer as they are relative
-useHead({
-	link: links,
-});
-
-useSeoMeta(page.value?.seo || {});
+useHead({ link: links });
 </script>
