@@ -10,8 +10,12 @@
 			src="/images/asher-think.png"
 			alt="Asher Norland"
 			width="512"
+			height="341"
 			preload
+			loading="eager"
+			fetchpriority="high"
 			placeholder
+			sizes="sm:100vw md:512px"
 			class="rounded-lg shadow-lg aspect-3/2"
 		/>
 	</UPageHero>
