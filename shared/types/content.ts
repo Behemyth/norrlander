@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { TMDBMovieSchema, TMDBShowSchema } from './tmdb';
+import { TMDBMovieSchema, TMDBShowSchema, TMDBSeasonSchema } from './tmdb';
 
 /**
  * @brief A schema that should be applied to all pages. When using `queryCollection`
@@ -44,6 +44,8 @@ export const ReviewMovieSchema = ReviewMetadataSchema.extend({
 
 export const ReviewShowSchema = ReviewMetadataSchema.extend({
 	tmdbData: TMDBShowSchema,
+	season_number: z.number().int().optional(),
+	seasonTmdbData: TMDBSeasonSchema.optional(),
 });
 
 export const PhotographySchema = PageSchema.extend({

@@ -4,6 +4,8 @@ import { defineNuxtModule, useRuntimeConfig } from '@nuxt/kit';
 
 import { $fetch } from 'ofetch';
 
+import type { TMDBMovie, TMDBShow, TMDBSeason } from '~~/shared/types/tmdb';
+
 export default defineNuxtModule({
 	setup(resolvedOptions, nuxt) {
 		const config = useRuntimeConfig();
@@ -16,6 +18,7 @@ export default defineNuxtModule({
 						baseURL: `${config.public.apiBase}`,
 						params: {
 							language: 'en-US',
+							append_to_response: 'credits',
 						},
 						headers: {
 							Authorization: `Bearer ${config.apiSecret}`,
@@ -33,6 +36,7 @@ export default defineNuxtModule({
 						baseURL: `${config.public.apiBase}`,
 						params: {
 							language: 'en-US',
+							append_to_response: 'credits',
 						},
 						headers: {
 							Authorization: `Bearer ${config.apiSecret}`,
@@ -41,6 +45,26 @@ export default defineNuxtModule({
 
 					ctx.content.title = tmdbData.name;
 					ctx.content.tmdbData = tmdbData;
+
+					// Fetch season-specific data if this is a seasonal review
+					if (ctx.content.season_number !== undefined) {
+						const seasonTmdbData = await $fetch<TMDBSeason>(
+							`/tv/${ctx.content.TMDB_ID}/season/${ctx.content.season_number}`,
+							{
+								baseURL: `${config.public.apiBase}`,
+								params: {
+									language: 'en-US',
+								},
+								headers: {
+									Authorization: `Bearer ${config.apiSecret}`,
+								},
+							},
+						);
+
+						ctx.content.seasonTmdbData = seasonTmdbData;
+						// Append season number to title for clarity
+						ctx.content.title = `${tmdbData.name}: Season ${ctx.content.season_number}`;
+					}
 					break;
 				}
 				default:

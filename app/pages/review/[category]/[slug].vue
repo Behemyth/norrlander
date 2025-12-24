@@ -9,7 +9,11 @@
 		</UPageBody>
 		<ReviewFooter :content="page" />
 		<USeparator class="my-8" />
-		<ReviewDiscussion :category="capitalizedCategory" />
+		<ReviewDiscussion
+			:category="capitalizedCategory"
+			:title="page.title"
+			:season-number="'season_number' in page ? page.season_number : null"
+		/>
 	</UPage>
 	<PageNotFound
 		v-else

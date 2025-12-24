@@ -6,16 +6,30 @@
 			:title="review.title"
 			:path="review.path"
 			:rating="Number(review.rating)"
-			:poster-path="`tmdb${review.tmdbData.poster_path}`"
+			:poster-path="getReviewPosterPath(review)"
+			:season-number="'season_number' in review ? review.season_number : null"
 		/>
 	</div>
 </template>
 
 <script setup lang="ts">
+import type { MovieCollectionItem, ShowCollectionItem } from '@nuxt/content';
+
 const props = defineProps<{
 	collection?: 'movie' | 'show';
 	count: number;
 }>();
+
+/**
+ * Get the poster path for a review, using season poster if available
+ */
+function getReviewPosterPath(review: MovieCollectionItem | ShowCollectionItem): string {
+	// For show reviews with season data, use the season poster
+	if ('seasonTmdbData' in review && review.seasonTmdbData?.poster_path) {
+		return `tmdb${review.seasonTmdbData.poster_path}`;
+	}
+	return `tmdb${review.tmdbData.poster_path}`;
+}
 
 async function getReviewsFromCollection(collection: 'movie' | 'show') {
 	return queryCollection(collection)

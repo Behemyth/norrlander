@@ -1,10 +1,37 @@
 <template>
-	<div class="grid grid-flow-row gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
+	<div class="grid grid-flow-row gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
+		<!-- Left: Title and metadata -->
 		<div class="my-auto">
-			<h1 class="text-2xl">
+			<ProseH2 class="!my-0 !mb-2">
 				{{ content.title }}
-			</h1>
+			</ProseH2>
+			<div class="flex flex-wrap items-center gap-x-2 text-sm text-muted mb-2">
+				<span v-if="releaseYear">{{ releaseYear }}</span>
+				<template v-if="isMovie && formattedRuntime">
+					<span class="text-xs">•</span>
+					<span>{{ formattedRuntime }}</span>
+				</template>
+				<template v-if="isShow && numberOfSeasons">
+					<span class="text-xs">•</span>
+					<span>{{ numberOfSeasons }} {{ numberOfSeasons === 1 ? 'Season' : 'Seasons' }}</span>
+				</template>
+			</div>
+			<div
+				v-if="genres.length > 0"
+				class="flex flex-wrap gap-1"
+			>
+				<UBadge
+					v-for="genre in genres"
+					:key="genre.id"
+					variant="subtle"
+					size="xs"
+				>
+					{{ genre.name }}
+				</UBadge>
+			</div>
 		</div>
+
+		<!-- Poster -->
 		<NuxtImg
 			:src="`tmdb/${content.tmdbData.poster_path}`"
 			:alt="content.title"
@@ -13,19 +40,109 @@
 			}"
 			loading="lazy"
 		/>
+
+		<!-- Cast -->
 		<div class="my-auto">
-			Cast
+			<ProseH3 class="!mt-0 !mb-2">
+				Cast
+			</ProseH3>
+			<ul
+				v-if="topCast.length > 0"
+				class="space-y-0.5"
+			>
+				<li
+					v-for="member in topCast"
+					:key="member.id"
+					class="text-xs"
+				>
+					<span class="font-medium">{{ member.name }}</span>
+					<span class="text-muted"> as {{ member.character }}</span>
+				</li>
+			</ul>
+			<p
+				v-else
+				class="text-xs text-muted"
+			>
+				No cast information available
+			</p>
 		</div>
+
+		<!-- Director/Creators -->
 		<div class="my-auto">
-			Director/Screenplay
+			<!-- Movie: Director/Screenplay -->
+			<template v-if="isMovie">
+				<div
+					v-if="directors.length > 0"
+					class="mb-3"
+				>
+					<ProseH3 class="!mt-0 !mb-1">
+						{{ directors.length === 1 ? 'Director' : 'Directors' }}
+					</ProseH3>
+					<ProseP class="!my-0">
+						{{ directors.map(d => d.name).join(', ') }}
+					</ProseP>
+				</div>
+				<div v-if="uniqueWriterNames.length > 0">
+					<ProseH3 class="!mt-0 !mb-1">
+						Screenplay
+					</ProseH3>
+					<ProseP class="!my-0">
+						{{ uniqueWriterNames.join(', ') }}
+					</ProseP>
+				</div>
+			</template>
+			<!-- Show: Creators -->
+			<template v-else>
+				<div v-if="creators.length > 0">
+					<ProseH3 class="!mt-0 !mb-1">
+						{{ creators.length === 1 ? 'Creator' : 'Created By' }}
+					</ProseH3>
+					<ProseP class="!my-0">
+						{{ creators.map(c => c.name).join(', ') }}
+					</ProseP>
+				</div>
+				<div
+					v-else-if="directors.length > 0"
+					class="mb-3"
+				>
+					<ProseH3 class="!mt-0 !mb-1">
+						{{ directors.length === 1 ? 'Director' : 'Directors' }}
+					</ProseH3>
+					<ProseP class="!my-0">
+						{{ directors.map(d => d.name).join(', ') }}
+					</ProseP>
+				</div>
+				<ProseP
+					v-else
+					class="!my-0 text-gray-500"
+				>
+					No creator information available
+				</ProseP>
+			</template>
 		</div>
 	</div>
 </template>
 
 <script setup lang="ts">
 import type { MovieCollectionItem, ShowCollectionItem } from '@nuxt/content';
+import { useReviewMetadata } from '~/composables/useReviewMetadata';
 
-defineProps<{
+const props = defineProps<{
 	content: MovieCollectionItem | ShowCollectionItem;
 }>();
+
+const {
+	isMovie,
+	isShow,
+	releaseYear,
+	formattedRuntime,
+	numberOfSeasons,
+	genres,
+	getTopCast,
+	directors,
+	creators,
+	uniqueWriterNames,
+} = useReviewMetadata(props.content);
+
+const topCast = getTopCast(5);
 </script>
