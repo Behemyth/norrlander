@@ -1,29 +1,28 @@
 <template>
-	<UPageCard
-		:title="title"
-		reverse
+	<NuxtLink
 		:to="path"
-		class="flex grow"
-		:ui="{
-			header: 'p-2',
-		}"
+		class="group flex flex-col gap-2"
 	>
-		<NuxtImg
-			:src="posterPath"
-			loading="lazy"
-			:placeholder="img(posterPath, { h: 10, blur: 2, q: 50 })"
-			:img-attrs="{ class: 'aspect-[2/3] w-full h-full' }"
-			class="flex grow"
-		/>
+		<div class="relative aspect-[2/3] overflow-hidden rounded-sm">
+			<NuxtImg
+				:src="posterPath"
+				loading="lazy"
+				:placeholder="img(posterPath, { h: 10, blur: 2, q: 50 })"
+				class="h-full w-full object-cover"
+			/>
+			<div class="absolute inset-0 bg-white/0 transition-colors duration-300 group-hover:bg-white/10" />
+		</div>
 
-		<template #description>
-			<USeparator class="my-2" />
+		<div class="flex flex-col gap-1">
+			<p class="line-clamp-2 text-sm font-semibold text-highlighted">
+				{{ title }}
+			</p>
 			<ReviewStarRating
 				:value="rating"
-				:size="18"
+				:size="14"
 			/>
-		</template>
-	</UPageCard>
+		</div>
+	</NuxtLink>
 </template>
 
 <script setup lang="ts">
