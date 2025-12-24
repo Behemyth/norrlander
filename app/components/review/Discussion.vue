@@ -12,6 +12,7 @@
 		input-position="top"
 		:theme="theme"
 		lang="en"
+		:term="discussionTerm"
 	/>
 </template>
 
@@ -27,5 +28,21 @@ const props = defineProps({
 		type: String,
 		required: true,
 	},
+	title: {
+		type: String,
+		default: '',
+	},
+	seasonNumber: {
+		type: Number,
+		default: null,
+	},
+});
+
+// Generate unique discussion term for seasonal reviews
+const discussionTerm = computed(() => {
+	if (props.title && props.seasonNumber) {
+		return `${props.title} - Season ${props.seasonNumber}`;
+	}
+	return props.title || undefined;
 });
 </script>

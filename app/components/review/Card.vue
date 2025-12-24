@@ -11,6 +11,15 @@
 				class="h-full w-full object-cover"
 			/>
 			<div class="absolute inset-0 bg-white/0 transition-colors duration-300 group-hover:bg-white/10" />
+			<!-- Season badge for seasonal reviews -->
+			<UBadge
+				v-if="seasonNumber"
+				variant="solid"
+				size="xs"
+				class="absolute top-2 right-2"
+			>
+				S{{ seasonNumber }}
+			</UBadge>
 		</div>
 
 		<div class="flex flex-col gap-1">
@@ -44,6 +53,10 @@ defineProps({
 	posterPath: {
 		type: String,
 		required: true,
+	},
+	seasonNumber: {
+		type: Number,
+		default: null,
 	},
 });
 </script>
