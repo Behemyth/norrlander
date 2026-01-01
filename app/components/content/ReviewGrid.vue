@@ -7,7 +7,7 @@
 			:path="review.path"
 			:rating="Number(review.rating)"
 			:poster-path="getReviewPosterPath(review)"
-			:season-number="'season_number' in review ? review.season_number : null"
+			:season-number="'season_number' in review ? review.season_number : undefined"
 		/>
 	</div>
 </template>

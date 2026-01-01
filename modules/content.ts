@@ -10,6 +10,14 @@ export default defineNuxtModule({
 	setup(resolvedOptions, nuxt) {
 		const config = useRuntimeConfig();
 
+		// Skip TMDB fetching in test environment or when API credentials are not configured
+		const isTestEnv = process.env.NODE_ENV === 'test' || process.env.VITEST === 'true';
+		const hasApiCredentials = Boolean(config.apiSecret && config.public.apiBase);
+
+		if (isTestEnv || !hasApiCredentials) {
+			return;
+		}
+
 		nuxt.addHooks({ async 'content:file:afterParse'(ctx: FileAfterParseHook) {
 			switch (ctx.collection.name) {
 				case 'movie':
