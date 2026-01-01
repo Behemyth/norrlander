@@ -1,4 +1,4 @@
-import type { CollectionNames } from '@@/content.config';
+import type { PageCollections } from '@nuxt/content';
 
 interface ContentPageOptions {
 	/** Filter out drafts (default: true for non-content collections) */
@@ -17,10 +17,10 @@ interface ContentPageOptions {
  * const { page } = await useContentPage('blog');
  * useSeoMeta(page.value?.seo || {});
  */
-export const useContentPage = async <T extends CollectionNames>(
+export const useContentPage = async <T extends keyof PageCollections>(
 	collection: T,
 	options: ContentPageOptions = {},
-) => {
+): Promise<{ page: Ref<PageCollections[T] | null> }> => {
 	const route = useRoute();
 	const { filterDrafts = collection !== 'content' } = options;
 
@@ -32,5 +32,5 @@ export const useContentPage = async <T extends CollectionNames>(
 		return query.first();
 	});
 
-	return { page };
+	return { page: page as Ref<PageCollections[T] | null> };
 };

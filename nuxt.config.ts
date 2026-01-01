@@ -9,6 +9,7 @@ export default defineNuxtConfig({
 		'@nuxt/image',
 		'@nuxtjs/i18n',
 		'@nuxt/eslint',
+		'@nuxt/test-utils/module',
 	],
 
 	ssr: true,
@@ -55,6 +56,7 @@ export default defineNuxtConfig({
 		apiSecret: '', // can be overridden by NUXT_API_SECRET environment variable
 		public: {
 			apiBase: '', // can be overridden by NUXT_PUBLIC_API_BASE environment variable
+			siteUrl: 'https://norrlander.com', // can be overridden by NUXT_PUBLIC_SITE_URL environment variable
 		},
 	},
 
@@ -70,7 +72,23 @@ export default defineNuxtConfig({
 			crawlLinks: true,
 			autoSubfolderIndex: false, // Prevents a 404 with trailing slashes catch-alls for nuxt/content
 			interval: 50, // To avoid rate limiting of the TMDB API
-			routes: ['/sitemap.xml', '/robots.txt'],
+			routes: [
+				'/sitemap.xml',
+				'/robots.txt',
+				// Feed routes
+				'/feed/blog.json',
+				'/feed/blog.xml',
+				'/feed/blog.atom',
+				'/feed/photography.json',
+				'/feed/photography.xml',
+				'/feed/photography.atom',
+				'/feed/review/movie.json',
+				'/feed/review/movie.xml',
+				'/feed/review/movie.atom',
+				'/feed/review/show.json',
+				'/feed/review/show.xml',
+				'/feed/review/show.atom',
+			],
 		},
 	},
 
@@ -126,7 +144,18 @@ export default defineNuxtConfig({
 		},
 	},
 
+	// Disable og-image in test environment to avoid SSR warnings
+	ogImage: {
+		enabled: process.env.NODE_ENV !== 'test' && process.env.VITEST !== 'true',
+	},
+
 	robots: {
 		autoI18n: false,
+	},
+
+	// Enable zeroRuntime since we don't have dynamic sitemap sources
+	// This also silences the informational message during tests
+	sitemap: {
+		cacheMaxAgeSeconds: 3600,
 	},
 });

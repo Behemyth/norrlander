@@ -12,7 +12,7 @@
 		<ReviewDiscussion
 			:category="capitalizedCategory"
 			:title="page.title"
-			:season-number="'season_number' in page ? page.season_number : null"
+			:season-number="'season_number' in page ? page.season_number : undefined"
 		/>
 	</UPage>
 	<PageNotFound

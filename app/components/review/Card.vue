@@ -7,7 +7,7 @@
 			<NuxtImg
 				:src="posterPath"
 				loading="lazy"
-				:placeholder="img(posterPath, { h: 10, blur: 2, q: 50 })"
+				:placeholder="img(posterPath, { height: 10, blur: 2, quality: 50 })"
 				class="h-full w-full object-cover"
 			/>
 			<div class="absolute inset-0 bg-white/0 transition-colors duration-300 group-hover:bg-white/10" />
@@ -56,7 +56,7 @@ defineProps({
 	},
 	seasonNumber: {
 		type: Number,
-		default: null,
+		default: undefined,
 	},
 });
 </script>
