@@ -1,5 +1,3 @@
-import { createFeedHandler } from '../../_handler';
-
 export default createFeedHandler({
 	collection: 'show',
 	config: {
