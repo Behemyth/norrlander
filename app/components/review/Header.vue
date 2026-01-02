@@ -100,10 +100,11 @@
 </template>
 
 <script setup lang="ts">
-const img = useImage();
 import type { MovieCollectionItem, ShowCollectionItem } from '@nuxt/content';
 import { useReviewMetadata, isShowReview } from '~/composables/useReviewMetadata';
 import { useRelatedSeasons } from '~/composables/useRelatedSeasons';
+
+const img = useImage();
 
 const props = defineProps<{
 	content: MovieCollectionItem | ShowCollectionItem;
