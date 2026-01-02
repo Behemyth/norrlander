@@ -93,12 +93,14 @@
 		<NuxtImg
 			:src="`tmdb/${content.tmdbData.backdrop_path}`"
 			:alt="content.title"
+			:placeholder="img(`tmdb/${content.tmdbData.backdrop_path}`, { height: 10, blur: 2, quality: 50 })"
 			:img-attrs="{ class: 'object-cover w-full aspect-[12/5]' }"
 		/>
 	</div>
 </template>
 
 <script setup lang="ts">
+const img = useImage();
 import type { MovieCollectionItem, ShowCollectionItem } from '@nuxt/content';
 import { useReviewMetadata, isShowReview } from '~/composables/useReviewMetadata';
 import { useRelatedSeasons } from '~/composables/useRelatedSeasons';

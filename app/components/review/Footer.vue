@@ -35,6 +35,7 @@
 		<NuxtImg
 			:src="`tmdb/${content.tmdbData.poster_path}`"
 			:alt="content.title"
+			:placeholder="img(`tmdb/${content.tmdbData.poster_path}`, { height: 10, blur: 2, quality: 50 })"
 			:img-attrs="{
 				class: 'aspect-[2/3]',
 			}"
@@ -126,6 +127,8 @@
 <script setup lang="ts">
 import type { MovieCollectionItem, ShowCollectionItem } from '@nuxt/content';
 import { useReviewMetadata } from '~/composables/useReviewMetadata';
+
+const img = useImage();
 
 const props = defineProps<{
 	content: MovieCollectionItem | ShowCollectionItem;
