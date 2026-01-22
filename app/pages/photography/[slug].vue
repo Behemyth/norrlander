@@ -48,8 +48,4 @@
 <script lang="ts" setup>
 const { page } = await useContentPage('photography');
 useSeoMeta(page.value?.seo || {});
-
-definePageMeta({
-	layout: 'content',
-});
 </script>

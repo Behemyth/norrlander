@@ -39,8 +39,4 @@ const capitalizedCategory = computed(() => {
 
 const { page } = await useContentPage(category);
 useSeoMeta(page.value?.seo || {});
-
-definePageMeta({
-	layout: 'content',
-});
 </script>

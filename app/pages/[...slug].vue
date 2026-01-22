@@ -31,10 +31,6 @@
 const { page } = await useContentPage('content');
 useSeoMeta(page.value?.seo || {});
 
-definePageMeta({
-	layout: 'content',
-});
-
 // Feed link for RSS-enabled pages
 const route = useRoute();
 const links = computed(() => {

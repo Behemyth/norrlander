@@ -23,8 +23,8 @@
 		"@nuxt/ui": "^4.4.0",
 		"@nuxtjs/i18n": "^10.2.1",
 		"@nuxtjs/seo": "^3.3.0",
-		"happy-dom": "^20.3.4",
-		"nuxt": "^4.2.2",
+		"happy-dom": "^20.3.5",
+		"nuxt": "^4.3.0",
 		"typescript": "^5.9.3",
 		"vitest": "^3.2.4",
 		"vue-tsc": "^3.2.2"
