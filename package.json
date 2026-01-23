@@ -17,17 +17,17 @@
 	"devDependencies": {
 		"@iconify-json/mdi": "^1.2.3",
 		"@nuxt/content": "^3.11.0",
-		"@nuxt/eslint": "^1.12.1",
+		"@nuxt/eslint": "^1.13.0",
 		"@nuxt/image": "^2.0.0",
 		"@nuxt/test-utils": "^3.23.0",
 		"@nuxt/ui": "^4.4.0",
 		"@nuxtjs/i18n": "^10.2.1",
 		"@nuxtjs/seo": "^3.3.0",
-		"happy-dom": "^20.3.5",
+		"happy-dom": "^20.3.7",
 		"nuxt": "^4.3.0",
 		"typescript": "^5.9.3",
 		"vitest": "^3.2.4",
-		"vue-tsc": "^3.2.2"
+		"vue-tsc": "^3.2.3"
 	},
 	"dependencies": {
 		"@giscus/vue": "^3.1.1",
