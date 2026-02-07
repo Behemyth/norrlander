@@ -36,8 +36,4 @@
 <script lang="ts" setup>
 const { page } = await useContentPage('academic');
 useSeoMeta(page.value?.seo || {});
-
-definePageMeta({
-	layout: 'content',
-});
 </script>

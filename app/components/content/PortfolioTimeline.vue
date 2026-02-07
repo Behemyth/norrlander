@@ -42,42 +42,30 @@
 <script setup lang="ts">
 import type { CareerCollectionItem, AcademicCollectionItem } from '@nuxt/content';
 
-async function getCareersFromCollection() {
-	return queryCollection('career')
-		.where('draft', '=', false)
-		.order('start_date', 'DESC')
-		.all();
-}
-
-async function getAcademicsFromCollection() {
-	return queryCollection('academic')
-		.where('draft', '=', false)
-		.order('start_date', 'DESC')
-		.all();
-}
-
-async function getAllPortfolioItems() {
+const { data: portfolioItems } = await useAsyncData('portfolio-timeline', async () => {
 	const [careers, academics] = await Promise.all([
-		getCareersFromCollection(),
-		getAcademicsFromCollection(),
+		queryCollection('career')
+			.where('draft', '=', false)
+			.order('start_date', 'DESC')
+			.all(),
+		queryCollection('academic')
+			.where('draft', '=', false)
+			.order('start_date', 'DESC')
+			.all(),
 	]);
 
 	return [...careers, ...academics]
 		.sort((a, b) => new Date(b.start_date).getTime() - new Date(a.start_date).getTime());
-}
-
-const items = await getAllPortfolioItems();
+});
 
 // Transform items into timeline format
-const timelineItems = computed(() => {
-	return items.map(item => ({
-		data: item,
-		date: item.end_date
-			? `${new Date(item.start_date).getFullYear()} - ${new Date(item.end_date).getFullYear()}`
-			: `${new Date(item.start_date).getFullYear()} - Present`,
-		icon: isAcademicItem(item) ? 'i-mdi-school' : 'i-mdi-work',
-	}));
-});
+const timelineItems = (portfolioItems.value ?? []).map(item => ({
+	data: item,
+	date: item.end_date
+		? `${new Date(item.start_date).getFullYear()} - ${new Date(item.end_date).getFullYear()}`
+		: `${new Date(item.start_date).getFullYear()} - Present`,
+	icon: isAcademicItem(item) ? 'i-mdi-school' : 'i-mdi-work',
+}));
 
 // Type guard to determine item type
 function isCareerItem(item: CareerCollectionItem | AcademicCollectionItem): item is CareerCollectionItem {

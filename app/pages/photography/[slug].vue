@@ -31,6 +31,7 @@
 				:height="item.height"
 				:sizes="item.sizes"
 				:densities="item.densities"
+				loading="lazy"
 				class="mx-auto"
 			/>
 		</UCarousel>
@@ -48,8 +49,4 @@
 <script lang="ts" setup>
 const { page } = await useContentPage('photography');
 useSeoMeta(page.value?.seo || {});
-
-definePageMeta({
-	layout: 'content',
-});
 </script>

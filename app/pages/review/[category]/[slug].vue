@@ -33,14 +33,8 @@ if (route.params.category !== 'movie' && route.params.category !== 'show') {
 }
 const category = route.params.category as 'movie' | 'show';
 
-const capitalizedCategory = computed(() => {
-	return category.charAt(0).toUpperCase() + category.slice(1);
-});
+const capitalizedCategory = category.charAt(0).toUpperCase() + category.slice(1);
 
 const { page } = await useContentPage(category);
 useSeoMeta(page.value?.seo || {});
-
-definePageMeta({
-	layout: 'content',
-});
 </script>

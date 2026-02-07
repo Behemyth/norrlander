@@ -32,15 +32,15 @@
 		</div>
 
 		<!-- Poster -->
-		<NuxtImg
-			:src="`tmdb/${content.tmdbData.poster_path}`"
-			:alt="content.title"
-			:placeholder="img(`tmdb/${content.tmdbData.poster_path}`, { height: 10, blur: 2, quality: 50 })"
-			:img-attrs="{
-				class: 'aspect-[2/3]',
-			}"
-			loading="lazy"
-		/>
+		<div class="aspect-[2/3] overflow-hidden">
+			<NuxtImg
+				:src="`tmdb/${content.tmdbData.poster_path}`"
+				:alt="content.title"
+				:placeholder="img(`tmdb/${content.tmdbData.poster_path}`, { height: 10, blur: 2, quality: 50 })"
+				class="object-cover w-full h-full"
+				loading="lazy"
+			/>
+		</div>
 
 		<!-- Cast -->
 		<div class="my-auto">

@@ -66,6 +66,12 @@ export default defineNuxtConfig({
 
 	compatibilityDate: '2025-04-28',
 
+	routeRules: {
+		'/': { appLayout: 'default' },
+		'/contact': { appLayout: 'default' },
+		'/**': { appLayout: 'content' },
+	},
+
 	nitro: {
 		// static: true, // Not set, to support 'dev' server. Default is `static: true` for 'start' and 'generate' commands
 		prerender: {

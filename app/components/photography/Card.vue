@@ -13,6 +13,7 @@
 			:height="photo.images[0].height"
 			:sizes="photo.images[0].sizes"
 			:densities="photo.images[0].densities"
+			loading="lazy"
 			class="w-full h-auto object-cover"
 		/>
 	</UPageCard>

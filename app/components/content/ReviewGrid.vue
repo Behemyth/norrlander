@@ -31,26 +31,24 @@ function getReviewPosterPath(review: MovieCollectionItem | ShowCollectionItem): 
 	return `tmdb${review.tmdbData.poster_path}`;
 }
 
-async function getReviewsFromCollection(collection: 'movie' | 'show') {
-	return queryCollection(collection)
-		.where('draft', '=', false)
-		.order('date_published', 'DESC')
-		.limit(props.count)
-		.all();
-}
+const cacheKey = props.collection ? `review-grid-${props.collection}` : 'review-grid-all';
 
-async function getAllReviews() {
+const { data: items } = await useAsyncData(cacheKey, async () => {
+	if (props.collection) {
+		return queryCollection(props.collection)
+			.where('draft', '=', false)
+			.order('date_published', 'DESC')
+			.limit(props.count)
+			.all();
+	}
+
 	const [movies, shows] = await Promise.all([
-		queryCollection('movie').where('draft', '=', false).all(),
-		queryCollection('show').where('draft', '=', false).all(),
+		queryCollection('movie').where('draft', '=', false).order('date_published', 'DESC').limit(props.count).all(),
+		queryCollection('show').where('draft', '=', false).order('date_published', 'DESC').limit(props.count).all(),
 	]);
 
 	return [...movies, ...shows]
 		.sort((a, b) => new Date(b.date_published).getTime() - new Date(a.date_published).getTime())
 		.slice(0, props.count);
-}
-
-const items = props.collection
-	? await getReviewsFromCollection(props.collection)
-	: await getAllReviews();
+});
 </script>

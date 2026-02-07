@@ -36,8 +36,4 @@
 <script lang="ts" setup>
 const { page } = await useContentPage('blog');
 useSeoMeta(page.value?.seo || {});
-
-definePageMeta({
-	layout: 'content',
-});
 </script>

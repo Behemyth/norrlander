@@ -90,12 +90,14 @@
 			</template>
 		</UPageHeader>
 
-		<NuxtImg
-			:src="`tmdb/${content.tmdbData.backdrop_path}`"
-			:alt="content.title"
-			:placeholder="img(`tmdb/${content.tmdbData.backdrop_path}`, { height: 10, blur: 2, quality: 50 })"
-			:img-attrs="{ class: 'object-cover w-full aspect-[12/5]' }"
-		/>
+		<div class="aspect-[12/5] w-full overflow-hidden">
+			<NuxtImg
+				:src="`tmdb/${content.tmdbData.backdrop_path}`"
+				:alt="content.title"
+				:placeholder="img(`tmdb/${content.tmdbData.backdrop_path}`, { height: 10, blur: 2, quality: 50 })"
+				class="object-cover w-full h-full"
+			/>
+		</div>
 	</div>
 </template>
 

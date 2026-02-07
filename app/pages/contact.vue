@@ -62,8 +62,10 @@
 </template>
 
 <script lang="ts" setup>
-const { data: contact } = await useContactData();
-const { data: socials } = await useSocialsData();
+const [{ data: contact }, { data: socials }] = await Promise.all([
+	useContactData(),
+	useSocialsData(),
+]);
 
 definePageMeta({
 	layout: 'default',
