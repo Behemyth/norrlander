@@ -2,7 +2,7 @@
 @import "@nuxt/ui";
 
 /* Used to apply tailwind classes to content files */
-@source "../../../content";
+@source "../../../content/**/*.md";
 
 @theme static {
 	--font-sans: Lato, sans-serif;

@@ -195,6 +195,7 @@ export function createFeedHandler<T extends FeedableCollections>(options: FeedRo
 
 		const response = getFeedResponse(feed, format);
 		setResponseHeader(event, 'content-type', response.contentType);
+		setResponseHeader(event, 'cache-control', 'public, max-age=3600, s-maxage=3600');
 
 		return response.content;
 	});

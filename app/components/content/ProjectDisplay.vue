@@ -1,7 +1,7 @@
 <template>
 	<UCarousel
 		v-slot="{ item: project }"
-		:items="projects"
+		:items="projects ?? []"
 		arrows
 		dots
 		:ui="{ item: 'basis-1/2 lg:basis-1/3' }"
@@ -11,11 +11,9 @@
 </template>
 
 <script setup lang="ts">
-async function getProjectsFromCollection() {
-	return queryCollection('project')
+const { data: projects } = await useAsyncData('project-display', () =>
+	queryCollection('project')
 		.where('draft', '=', false)
-		.all();
-}
-
-const projects = await getProjectsFromCollection();
+		.all(),
+);
 </script>

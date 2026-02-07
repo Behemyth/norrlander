@@ -18,20 +18,21 @@ import * as locales from '@nuxt/ui/locale';
 
 const { locale } = useI18n();
 
-const links
-	= await queryCollection('content')
+const { data: feedPages } = await useAsyncData('feed-links', () =>
+	queryCollection('content')
+		.select('path', 'title', 'feed')
 		.where('feed', 'IS NOT NULL')
-		.all()
-		.then((value) => {
-			return value.map((page) => {
-				return {
-					rel: 'alternate',
-					title: page.title,
-					type: 'application/json',
-					href: 'https://norrlander.com/feed' + page.path + '.json',
-				};
-			});
-		});
+		.all(),
+);
+
+const links = computed(() =>
+	(feedPages.value ?? []).map(page => ({
+		rel: 'alternate',
+		title: page.title,
+		type: 'application/json',
+		href: 'https://norrlander.com/feed' + page.path + '.json',
+	})),
+);
 
 // These links are for external services, and will not be picked up by the prerender (not relative)
 useHead({

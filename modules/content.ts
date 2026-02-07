@@ -18,7 +18,8 @@ export default defineNuxtModule({
 			return;
 		}
 
-		nuxt.addHooks({ async 'content:file:afterParse'(ctx: FileAfterParseHook) {
+		// @ts-expect-error -- content:file:afterParse is augmented by @nuxt/content but not picked up by nuxi typecheck
+		nuxt.hook('content:file:afterParse', async (ctx: FileAfterParseHook) => {
 			switch (ctx.collection.name) {
 				case 'movie':
 				{
@@ -40,44 +41,44 @@ export default defineNuxtModule({
 				}
 				case 'show':
 				{
-					const tmdbData = await $fetch<TMDBShow>(`/tv/${ctx.content.TMDB_ID}`, {
-						baseURL: `${config.public.apiBase}`,
-						params: {
-							language: 'en-US',
-							append_to_response: 'credits',
-						},
-						headers: {
-							Authorization: `Bearer ${config.apiSecret}`,
-						},
-					});
+					const [tmdbData, seasonTmdbData] = await Promise.all([
+						$fetch<TMDBShow>(`/tv/${ctx.content.TMDB_ID}`, {
+							baseURL: `${config.public.apiBase}`,
+							params: {
+								language: 'en-US',
+								append_to_response: 'credits',
+							},
+							headers: {
+								Authorization: `Bearer ${config.apiSecret}`,
+							},
+						}),
+						ctx.content.season_number !== undefined
+							? $fetch<TMDBSeason>(
+									`/tv/${ctx.content.TMDB_ID}/season/${ctx.content.season_number}`,
+									{
+										baseURL: `${config.public.apiBase}`,
+										params: {
+											language: 'en-US',
+										},
+										headers: {
+											Authorization: `Bearer ${config.apiSecret}`,
+										},
+									},
+								)
+							: Promise.resolve(undefined),
+					]);
 
 					ctx.content.title = tmdbData.name;
 					ctx.content.tmdbData = tmdbData;
 
-					// Fetch season-specific data if this is a seasonal review
-					if (ctx.content.season_number !== undefined) {
-						const seasonTmdbData = await $fetch<TMDBSeason>(
-							`/tv/${ctx.content.TMDB_ID}/season/${ctx.content.season_number}`,
-							{
-								baseURL: `${config.public.apiBase}`,
-								params: {
-									language: 'en-US',
-								},
-								headers: {
-									Authorization: `Bearer ${config.apiSecret}`,
-								},
-							},
-						);
-
+					if (seasonTmdbData) {
 						ctx.content.seasonTmdbData = seasonTmdbData;
-						// Append season number to title for clarity
 						ctx.content.title = `${tmdbData.name}: Season ${ctx.content.season_number}`;
 					}
 					break;
 				}
 				default:
 			}
-		},
 		});
 	},
 });

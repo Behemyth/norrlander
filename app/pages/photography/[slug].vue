@@ -31,6 +31,7 @@
 				:height="item.height"
 				:sizes="item.sizes"
 				:densities="item.densities"
+				loading="lazy"
 				class="mx-auto"
 			/>
 		</UCarousel>

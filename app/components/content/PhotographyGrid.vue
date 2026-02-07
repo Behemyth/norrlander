@@ -9,8 +9,10 @@
 </template>
 
 <script setup lang="ts">
-const photos = await queryCollection('photography')
-	.where('draft', '=', false)
-	.order('date_published', 'DESC')
-	.all();
+const { data: photos } = await useAsyncData('photography-grid', () =>
+	queryCollection('photography')
+		.where('draft', '=', false)
+		.order('date_published', 'DESC')
+		.all(),
+);
 </script>

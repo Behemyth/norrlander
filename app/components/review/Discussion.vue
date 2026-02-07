@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import Giscus from '@giscus/vue';
+const Giscus = defineAsyncComponent(() => import('@giscus/vue'));
 
 const colorMode = useColorMode();
 

@@ -30,8 +30,10 @@ function getReviewPosterPath(review: MovieCollectionItem | ShowCollectionItem): 
 	return `tmdb${review.tmdbData.poster_path}`;
 }
 
-const items = await queryCollection(props.collection)
-	.where('draft', '=', false)
-	.order('date_published', 'DESC')
-	.all();
+const { data: items } = await useAsyncData(`review-grid-filter-${props.collection}`, () =>
+	queryCollection(props.collection)
+		.where('draft', '=', false)
+		.order('date_published', 'DESC')
+		.all(),
+);
 </script>
