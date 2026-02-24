@@ -5,13 +5,21 @@
 		:to="academic.path"
 		variant="ghost"
 	>
-		<UPageList>
-			<UPageFeature
-				icon="i-mdi-map-marker"
-				:description="academic.location"
-				:ui="{ root: 'flex items-center gap-2.5', description: 'text-sm' }"
-			/>
-		</UPageList>
+		<UTheme
+			:ui="{
+				pageFeature: {
+					root: 'flex items-center gap-2.5',
+					description: 'text-sm',
+				},
+			}"
+		>
+			<UPageList>
+				<UPageFeature
+					icon="i-mdi-map-marker"
+					:description="academic.location"
+				/>
+			</UPageList>
+		</UTheme>
 	</UPageCard>
 </template>
 
