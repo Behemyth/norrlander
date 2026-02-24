@@ -60,17 +60,17 @@ export default defineNuxtConfig({
 		},
 	},
 
-	future: {
-		compatibilityVersion: 4,
-	},
-
-	compatibilityDate: '2025-04-28',
-
 	routeRules: {
 		'/': { appLayout: 'default' },
 		'/contact': { appLayout: 'default' },
 		'/**': { appLayout: 'content' },
 	},
+
+	future: {
+		compatibilityVersion: 4,
+	},
+
+	compatibilityDate: '2025-04-28',
 
 	nitro: {
 		// static: true, // Not set, to support 'dev' server. Default is `static: true` for 'start' and 'generate' commands
