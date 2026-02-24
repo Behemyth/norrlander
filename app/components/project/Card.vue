@@ -5,14 +5,21 @@
 		:to="project.path"
 		variant="ghost"
 	>
-		<UPageList>
-			<UPageFeature
-				v-if="project.link"
-				icon="i-mdi-link-variant"
-				:description="project.link"
-				:ui="{ description: 'text-sm' }"
-			/>
-		</UPageList>
+		<UTheme
+			:ui="{
+				pageFeature: {
+					description: 'text-sm',
+				},
+			}"
+		>
+			<UPageList>
+				<UPageFeature
+					v-if="project.link"
+					icon="i-mdi-link-variant"
+					:description="project.link"
+				/>
+			</UPageList>
+		</UTheme>
 	</UPageCard>
 </template>
 
