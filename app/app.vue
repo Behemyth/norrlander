@@ -3,6 +3,7 @@
 		:scroll-body="false"
 		:locale="locales[locale]"
 	>
+		<NuxtAnnouncer />
 		<AppHeader />
 		<UMain class="grow min-h-0">
 			<NuxtLayout>

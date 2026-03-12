@@ -30,10 +30,18 @@ function getReviewPosterPath(review: MovieCollectionItem | ShowCollectionItem): 
 	return `tmdb${review.tmdbData.poster_path}`;
 }
 
+const { announce } = useAnnouncer();
+
 const { data: items } = await useAsyncData(`review-grid-filter-${props.collection}`, () =>
 	queryCollection(props.collection)
 		.where('draft', '=', false)
 		.order('date_published', 'DESC')
 		.all(),
 );
+
+watch(items, (reviews) => {
+	if (reviews) {
+		announce(`Showing ${reviews.length} reviews`);
+	}
+});
 </script>

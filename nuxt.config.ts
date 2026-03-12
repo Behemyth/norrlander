@@ -1,4 +1,4 @@
-// https://v3.nuxtjs.org/docs/directory-structure/nuxt.config
+// https://nuxt.com/docs/api/nuxt-config
 export default defineNuxtConfig({
 	// nuxtjs/content should be loaded after 'nuxt/ui'
 	// nuxtjs/sitemap and robots should be loaded before 'nuxt/content'
@@ -64,6 +64,11 @@ export default defineNuxtConfig({
 		'/': { appLayout: 'default' },
 		'/contact': { appLayout: 'default' },
 		'/**': { appLayout: 'content' },
+	},
+
+	experimental: {
+		payloadExtraction: 'client',
+		normalizeComponentNames: true,
 	},
 
 	future: {
