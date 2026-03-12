@@ -14,17 +14,6 @@ export default defineNuxtConfig({
 
 	ssr: true,
 
-	vite: {
-		optimizeDeps: {
-			include: [
-				'@vue/devtools-core',
-				'@vue/devtools-kit',
-				'@unhead/schema-org/vue',
-				'@giscus/vue',
-			],
-		},
-	},
-
 	app: {
 		rootAttrs: {
 			class: 'min-h-svh flex flex-col',
@@ -77,13 +66,13 @@ export default defineNuxtConfig({
 		'/**': { appLayout: 'content' },
 	},
 
+	future: {
+		compatibilityVersion: 4,
+	},
+
 	experimental: {
 		payloadExtraction: 'client',
 		normalizeComponentNames: true,
-	},
-
-	future: {
-		compatibilityVersion: 4,
 	},
 
 	compatibilityDate: '2025-04-28',
@@ -110,6 +99,17 @@ export default defineNuxtConfig({
 				'/feed/review/show.json',
 				'/feed/review/show.xml',
 				'/feed/review/show.atom',
+			],
+		},
+	},
+
+	vite: {
+		optimizeDeps: {
+			include: [
+				'@vue/devtools-core',
+				'@vue/devtools-kit',
+				'@unhead/schema-org/vue',
+				'@giscus/vue',
 			],
 		},
 	},
