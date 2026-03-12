@@ -14,6 +14,17 @@ export default defineNuxtConfig({
 
 	ssr: true,
 
+	vite: {
+		optimizeDeps: {
+			include: [
+				'@vue/devtools-core',
+				'@vue/devtools-kit',
+				'@unhead/schema-org/vue',
+				'@giscus/vue',
+			],
+		},
+	},
+
 	app: {
 		rootAttrs: {
 			class: 'min-h-svh flex flex-col',
