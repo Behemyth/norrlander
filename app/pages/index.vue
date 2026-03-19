@@ -97,11 +97,10 @@ definePageMeta({
 const img = useImage();
 const imgUrl = img('/images/asher-og-cover.png', { width: 1200, height: 600 });
 
-defineOgImage({ url: imgUrl });
-
 useSeoMeta({
 	title: 'Asher Norland',
 	description: 'Asher Norland\'s blog, photography, projects, and film reviews.',
+	ogImage: imgUrl,
 	ogTitle: 'The Norrlander',
 	ogDescription: 'Asher Norland\'s personal space with fresh air. You\'ll find a blog, some photography, portfolio, and film reviews.',
 });
