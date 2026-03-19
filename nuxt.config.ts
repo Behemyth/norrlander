@@ -10,6 +10,7 @@ export default defineNuxtConfig({
 		'@nuxtjs/i18n',
 		'@nuxt/eslint',
 		'@nuxt/test-utils/module',
+		'@nuxt/fonts',
 	],
 
 	ssr: true,
