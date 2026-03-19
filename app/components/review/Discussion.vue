@@ -21,7 +21,7 @@ const Giscus = defineAsyncComponent(() => import('@giscus/vue'));
 
 const colorMode = useColorMode();
 
-const theme = computed(() => colorMode.preference === 'dark' ? 'dark' : 'light');
+const theme = computed(() => colorMode.value === 'dark' ? 'dark' : 'light');
 
 const props = defineProps({
 	category: {

@@ -1,4 +1,4 @@
-// https://v3.nuxtjs.org/docs/directory-structure/nuxt.config
+// https://nuxt.com/docs/api/nuxt-config
 export default defineNuxtConfig({
 	// nuxtjs/content should be loaded after 'nuxt/ui'
 	// nuxtjs/sitemap and robots should be loaded before 'nuxt/content'
@@ -10,6 +10,7 @@ export default defineNuxtConfig({
 		'@nuxtjs/i18n',
 		'@nuxt/eslint',
 		'@nuxt/test-utils/module',
+		'@nuxt/fonts',
 	],
 
 	ssr: true,
@@ -60,17 +61,22 @@ export default defineNuxtConfig({
 		},
 	},
 
-	future: {
-		compatibilityVersion: 4,
-	},
-
-	compatibilityDate: '2025-04-28',
-
 	routeRules: {
 		'/': { appLayout: 'default' },
 		'/contact': { appLayout: 'default' },
 		'/**': { appLayout: 'content' },
 	},
+
+	future: {
+		compatibilityVersion: 4,
+	},
+
+	experimental: {
+		payloadExtraction: 'client',
+		normalizeComponentNames: true,
+	},
+
+	compatibilityDate: '2025-04-28',
 
 	nitro: {
 		// static: true, // Not set, to support 'dev' server. Default is `static: true` for 'start' and 'generate' commands
@@ -94,6 +100,17 @@ export default defineNuxtConfig({
 				'/feed/review/show.json',
 				'/feed/review/show.xml',
 				'/feed/review/show.atom',
+			],
+		},
+	},
+
+	vite: {
+		optimizeDeps: {
+			include: [
+				'@vue/devtools-core',
+				'@vue/devtools-kit',
+				'@unhead/schema-org/vue',
+				'@giscus/vue',
 			],
 		},
 	},
