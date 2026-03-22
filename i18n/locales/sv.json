@@ -1,0 +1,94 @@
+{
+	"header": {
+		"title": "The Norrlander"
+	},
+	"footer": {
+		"home": "Hem",
+		"about": "Om mig",
+		"filmData": "Filmdata",
+		"madeWith": "Gjord med ❤️ av Asher och Ola"
+	},
+	"index": {
+		"heroDescription": "En personlig plats med frisk luft",
+		"viewPortfolio": "Se portfolio",
+		"readBlog": "Läs bloggen",
+		"trailMarkers": "Vägvisare",
+		"trailMarkersDescription": "Utforska de olika delarna av denna webbplats. Jag guidar dig.",
+		"aboutTitle": "Om Asher Norland",
+		"aboutDescription": "Jag är Minnesotabo till familj och själ. Min farfar var fruktodlare och därför är jag avtalsenligt skyldig att älska allt som har med äpplen att göra. Vill du stjäla mitt hjärta, bjud mig på en stark cider.",
+		"contactMe": "Kontakta mig",
+		"blog": "Blogg",
+		"blogDescription": "Idéer, insikter och handledningar om olika tekniska ämnen.",
+		"photography": "Fotografi",
+		"photographyDescription": "Visuella berättelser och fångade ögonblick från mina äventyr och vardag.",
+		"portfolio": "Portfolio",
+		"portfolioDescription": "En presentation av mitt professionella arbete och mina projekt.",
+		"reviews": "Recensioner",
+		"reviewsDescription": "Mina tankar och åsikter om film."
+	},
+	"contact": "Kontakt",
+	"contactPage": {
+		"title": "Hör av dig",
+		"description": "Tveka inte att höra av dig via någon av metoderna nedan.",
+		"useResponsibly": "Använd ansvarsfullt",
+		"socials": "Sociala medier",
+		"socialsDescription": "Här syns jag"
+	},
+	"common": {
+		"contents": "Innehåll",
+		"pageNotFound": "Sidan hittades inte",
+		"pageNotFoundDescription": "Sidan du letar efter finns inte eller har flyttats.",
+		"backToHome": "Tillbaka till startsidan"
+	},
+	"blog": {
+		"notFound": "Blogginlägget hittades inte",
+		"notFoundDescription": "Blogginlägget du letar efter finns inte eller har tagits bort.",
+		"backToBlog": "Tillbaka till bloggen"
+	},
+	"photography": {
+		"notFound": "Fotot hittades inte",
+		"notFoundDescription": "Fotoserien du letar efter finns inte eller har tagits bort.",
+		"backToPhotography": "Tillbaka till fotografi"
+	},
+	"portfolio": {
+		"viewCompany": "Visa företag",
+		"viewInstitution": "Visa lärosäte",
+		"present": "Nuvarande"
+	},
+	"profile": {
+		"location": "Plats",
+		"languages": "Språk"
+	},
+	"review": {
+		"allReviews": "Alla {type}-recensioner",
+		"publishedReview": "1 publicerad recension | {n} publicerade recensioner",
+		"draftedReview": "1 utkast till recension | {n} utkast till recensioner",
+		"season": "Säsong | Säsonger",
+		"episodes": "Avsnitt",
+		"cast": "Skådespelare",
+		"noCast": "Ingen information om skådespelare tillgänglig",
+		"director": "Regissör | Regissörer",
+		"screenplay": "Manus",
+		"creator": "Skapare",
+		"createdBy": "Skapad av",
+		"noCreator": "Ingen information om skapare tillgänglig",
+		"as": " som "
+	},
+	"filter": {
+		"allGenres": "Alla genrer",
+		"allYears": "Alla år",
+		"any": "Alla",
+		"sortBy": "Sortera efter",
+		"genre": "Genre",
+		"year": "År",
+		"minRating": "Lägsta betyg",
+		"clearFilters": "Rensa filter",
+		"showing": "Visar {filtered} av {total} recensioner",
+		"noMatch": "Inga recensioner matchar dina filter.",
+		"dateReviewed": "Recensionsdatum",
+		"rating": "Betyg",
+		"title": "Titel",
+		"releaseYear": "Premiärår",
+		"announcerShowing": "Visar {count} recensioner"
+	}
+}
