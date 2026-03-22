@@ -6,6 +6,7 @@
 			headline="The Norrlander"
 			description="A personal space with fresh air"
 			:links="heroLinks"
+			:ui="{ container: 'flex flex-col lg:grid py-16 sm:py-24 lg:py-28 gap-16 sm:gap-y-24' }"
 		>
 			<NuxtImg
 				src="/images/asher-think.png"
@@ -25,6 +26,7 @@
 			icon="i-mdi-map"
 			title="Trail Markers"
 			description="Explore the different sections of this website. I'll be your trail guide."
+			:ui="{ container: 'flex flex-col lg:grid py-12 sm:py-16 lg:py-20 gap-8 sm:gap-16' }"
 		>
 			<UPageGrid>
 				<UPageCard
@@ -42,6 +44,7 @@
 			title="About Asher Norland"
 			description="I'm Minnesotan by family and spirit. My grandfather was an orchardist and as a result I'm contractually obligated to love all things apple. To steal my heart, take me out for a strong cider."
 			class="bg-gray-50 dark:bg-gray-800/50"
+			:ui="{ container: 'flex flex-col lg:grid py-12 sm:py-16 lg:py-20 gap-8 sm:gap-16' }"
 		/>
 	</div>
 </template>
