@@ -34,12 +34,12 @@
 				</span>
 
 				<span>
-					<ULink to="/about#film-data">Film data</ULink>
+					<ULink to="/about#film-data">{{ $t('footer.filmData') }}</ULink>
 					<div class="inline" /> from
 					<ULink to="https://www.themoviedb.org/">TMDb</ULink>
 				</span>
 				<AppLanguageSwitch />
-				<span>Made with ❤️ by Asher and Ola</span>
+				<span>{{ $t('footer.madeWith') }}</span>
 			</span>
 		</template>
 	</UFooter>
@@ -50,11 +50,11 @@ const { t } = useI18n();
 
 const items = computed(() => [
 	{
-		label: 'Home',
+		label: t('footer.home'),
 		to: '/',
 	},
 	{
-		label: 'About',
+		label: t('footer.about'),
 		to: '/about',
 	},
 	{

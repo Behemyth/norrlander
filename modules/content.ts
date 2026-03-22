@@ -18,8 +18,7 @@ export default defineNuxtModule({
 			return;
 		}
 
-		// @ts-expect-error -- content:file:afterParse is augmented by @nuxt/content but not picked up by nuxi typecheck
-		nuxt.hook('content:file:afterParse', async (ctx: FileAfterParseHook) => {
+		nuxt.hook('content:file:afterParse' as any, async (ctx: FileAfterParseHook) => {
 			switch (ctx.collection.name) {
 				case 'movie':
 				{

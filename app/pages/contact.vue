@@ -10,8 +10,8 @@
 			</UPageAside>
 		</template>
 		<UPageHeader
-			title="Get in Touch"
-			description="Feel free to reach out via any of the methods below."
+			:title="$t('contactPage.title')"
+			:description="$t('contactPage.description')"
 		/>
 		<UPageBody>
 			<UPageColumns>
@@ -22,7 +22,7 @@
 				/>
 				<UPageCard
 					:title="$t('contact')"
-					description="Use responsibly"
+					:description="$t('contactPage.useResponsibly')"
 				>
 					<UPageList divide>
 						<UPageFeature
@@ -39,8 +39,8 @@
 					</UPageList>
 				</UPageCard>
 				<UPageCard
-					title="Socials"
-					description="Here I dabble"
+					:title="$t('contactPage.socials')"
+					:description="$t('contactPage.socialsDescription')"
 				>
 					<UPageList divide>
 						<UPageFeature

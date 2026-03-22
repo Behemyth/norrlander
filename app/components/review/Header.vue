@@ -44,7 +44,7 @@
 						<template v-if="isSeason && seasonEpisodeCount">
 							<span class="text-muted text-xs">•</span>
 							<span class="text-lg text-muted">
-								{{ seasonEpisodeCount }} Episodes
+								{{ seasonEpisodeCount }} {{ $t('review.episodes') }}
 							</span>
 						</template>
 					</div>

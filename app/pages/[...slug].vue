@@ -9,7 +9,7 @@
 		>
 			<UPageAside>
 				<UContentToc
-					title="Contents"
+					:title="$t('common.contents')"
 					highlight
 					:links="page.body.toc.links"
 				/>

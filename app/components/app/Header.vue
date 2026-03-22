@@ -1,6 +1,6 @@
 <template>
 	<UHeader
-		title="The Norrlander"
+		:title="$t('header.title')"
 		:ui="{
 			title: 'text-nowrap font-mono text-2xl md:text-3xl',
 		}"

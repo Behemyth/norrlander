@@ -16,7 +16,7 @@
 					size="xs"
 					trailing-icon="i-mdi-arrow-top-right-bold-box-outline"
 				>
-					View Company
+					{{ t('portfolio.viewCompany') }}
 				</UButton>
 			</div>
 			<div v-else-if="isAcademicItem(item.data)">
@@ -32,7 +32,7 @@
 					size="xs"
 					trailing-icon="i-mdi-arrow-top-right-bold-box-outline"
 				>
-					View Institution
+					{{ t('portfolio.viewInstitution') }}
 				</UButton>
 			</div>
 		</template>
@@ -41,6 +41,8 @@
 
 <script setup lang="ts">
 import type { CareerCollectionItem, AcademicCollectionItem } from '@nuxt/content';
+
+const { t } = useI18n();
 
 const { data: portfolioItems } = await useAsyncData('portfolio-timeline', async () => {
 	const [careers, academics] = await Promise.all([
@@ -59,13 +61,13 @@ const { data: portfolioItems } = await useAsyncData('portfolio-timeline', async 
 });
 
 // Transform items into timeline format
-const timelineItems = (portfolioItems.value ?? []).map(item => ({
+const timelineItems = computed(() => (portfolioItems.value ?? []).map(item => ({
 	data: item,
 	date: item.end_date
 		? `${new Date(item.start_date).getFullYear()} - ${new Date(item.end_date).getFullYear()}`
-		: `${new Date(item.start_date).getFullYear()} - Present`,
+		: `${new Date(item.start_date).getFullYear()} - ${t('portfolio.present')}`,
 	icon: isAcademicItem(item) ? 'i-mdi-school' : 'i-mdi-work',
-}));
+})));
 
 // Type guard to determine item type
 function isCareerItem(item: CareerCollectionItem | AcademicCollectionItem): item is CareerCollectionItem {

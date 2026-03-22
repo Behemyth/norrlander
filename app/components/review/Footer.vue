@@ -13,7 +13,7 @@
 				</template>
 				<template v-if="isShow && numberOfSeasons">
 					<span class="text-xs">•</span>
-					<span>{{ numberOfSeasons }} {{ numberOfSeasons === 1 ? 'Season' : 'Seasons' }}</span>
+					<span>{{ numberOfSeasons }} {{ $t('review.season', numberOfSeasons) }}</span>
 				</template>
 			</div>
 			<div
@@ -32,20 +32,20 @@
 		</div>
 
 		<!-- Poster -->
-		<div class="aspect-[2/3] overflow-hidden">
-			<NuxtImg
-				:src="`tmdb/${content.tmdbData.poster_path}`"
-				:alt="content.title"
-				:placeholder="img(`tmdb/${content.tmdbData.poster_path}`, { height: 10, blur: 2, quality: 50 })"
-				class="object-cover w-full h-full"
-				loading="lazy"
-			/>
-		</div>
+		<NuxtImg
+			:src="`tmdb/${content.tmdbData.poster_path}`"
+			:alt="content.title"
+			:placeholder="img(`tmdb/${content.tmdbData.poster_path}`, { height: 10, blur: 2, quality: 50 })"
+			:img-attrs="{
+				class: 'aspect-[2/3]',
+			}"
+			loading="lazy"
+		/>
 
 		<!-- Cast -->
 		<div class="my-auto">
 			<ProseH3 class="!mt-0 !mb-2">
-				Cast
+				{{ $t('review.cast') }}
 			</ProseH3>
 			<ul
 				v-if="topCast.length > 0"
@@ -57,14 +57,14 @@
 					class="text-xs"
 				>
 					<span class="font-medium">{{ member.name }}</span>
-					<span class="text-muted"> as {{ member.character }}</span>
+					<span class="text-muted">{{ $t('review.as') }}{{ member.character }}</span>
 				</li>
 			</ul>
 			<p
 				v-else
 				class="text-xs text-muted"
 			>
-				No cast information available
+				{{ $t('review.noCast') }}
 			</p>
 		</div>
 
@@ -77,7 +77,7 @@
 					class="mb-3"
 				>
 					<ProseH3 class="!mt-0 !mb-1">
-						{{ directors.length === 1 ? 'Director' : 'Directors' }}
+						{{ $t('review.director', directors.length) }}
 					</ProseH3>
 					<ProseP class="!my-0">
 						{{ directors.map(d => d.name).join(', ') }}
@@ -85,7 +85,7 @@
 				</div>
 				<div v-if="uniqueWriterNames.length > 0">
 					<ProseH3 class="!mt-0 !mb-1">
-						Screenplay
+						{{ $t('review.screenplay') }}
 					</ProseH3>
 					<ProseP class="!my-0">
 						{{ uniqueWriterNames.join(', ') }}
@@ -96,7 +96,7 @@
 			<template v-else>
 				<div v-if="creators.length > 0">
 					<ProseH3 class="!mt-0 !mb-1">
-						{{ creators.length === 1 ? 'Creator' : 'Created By' }}
+						{{ creators.length === 1 ? $t('review.creator') : $t('review.createdBy') }}
 					</ProseH3>
 					<ProseP class="!my-0">
 						{{ creators.map(c => c.name).join(', ') }}
@@ -107,7 +107,7 @@
 					class="mb-3"
 				>
 					<ProseH3 class="!mt-0 !mb-1">
-						{{ directors.length === 1 ? 'Director' : 'Directors' }}
+						{{ $t('review.director', directors.length) }}
 					</ProseH3>
 					<ProseP class="!my-0">
 						{{ directors.map(d => d.name).join(', ') }}
@@ -117,7 +117,7 @@
 					v-else
 					class="!my-0 text-gray-500"
 				>
-					No creator information available
+					{{ $t('review.noCreator') }}
 				</ProseP>
 			</template>
 		</div>

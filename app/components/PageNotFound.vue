@@ -2,10 +2,10 @@
 	<UPageBody>
 		<UEmpty
 			:icon="icon"
-			:title="title"
-			:description="description"
+			:title="title ?? $t('common.pageNotFound')"
+			:description="description ?? $t('common.pageNotFoundDescription')"
 			:actions="[{
-				label: backLabel,
+				label: backLabel ?? $t('common.backToHome'),
 				to: backTo,
 				icon: 'i-lucide-arrow-left',
 			}]"
@@ -22,9 +22,9 @@ withDefaults(defineProps<{
 	backTo?: string;
 }>(), {
 	icon: 'i-lucide-file-search',
-	title: 'Page not found',
-	description: 'The page you\'re looking for doesn\'t exist or has been moved.',
-	backLabel: 'Back to home',
+	title: undefined,
+	description: undefined,
+	backLabel: undefined,
 	backTo: '/',
 });
 </script>
