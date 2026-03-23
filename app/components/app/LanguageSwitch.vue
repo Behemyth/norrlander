@@ -1,8 +1,8 @@
 <template>
 	<ULocaleSelect
-		v-model="locale"
+		:model-value="locale"
 		:locales="Object.values(locales) as any"
-		@update:model-value="setLocale($event as 'en' | 'pl')"
+		@update:model-value="setLocale($event as string)"
 	/>
 </template>
 

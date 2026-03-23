@@ -2,6 +2,12 @@
 	"header": {
 		"title": "The Norrlander"
 	},
+	"nav": {
+		"blog": "Blog",
+		"photography": "Fotografia",
+		"portfolio": "Portfolio",
+		"reviews": "Recenzje"
+	},
 	"footer": {
 		"home": "Strona główna",
 		"about": "O mnie",

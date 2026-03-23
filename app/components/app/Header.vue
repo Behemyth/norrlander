@@ -39,7 +39,21 @@
 <script setup lang="ts">
 import { mapContentNavigation } from '@nuxt/ui/utils/content';
 
+const { t } = useI18n();
+
+const navLabelMap: Record<string, string> = {
+	Blog: 'nav.blog',
+	Photography: 'nav.photography',
+	Portfolio: 'nav.portfolio',
+	Reviews: 'nav.reviews',
+};
+
 const { data: navigation } = await useContentNavigation();
 
-const items = computed(() => mapContentNavigation(navigation?.value ?? []));
+const items = computed(() =>
+	mapContentNavigation(navigation?.value ?? []).map(item => ({
+		...item,
+		label: navLabelMap[item.label] ? t(navLabelMap[item.label]) : item.label,
+	})),
+);
 </script>
