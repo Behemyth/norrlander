@@ -6,7 +6,9 @@
 		"blog": "Blog",
 		"photography": "Fotografia",
 		"portfolio": "Portfolio",
-		"reviews": "Recenzje"
+		"reviews": "Recenzje",
+		"movieReviews": "Recenzje filmów",
+		"showReviews": "Recenzje seriali"
 	},
 	"footer": {
 		"home": "Strona główna",

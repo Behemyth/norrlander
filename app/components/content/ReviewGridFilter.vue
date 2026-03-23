@@ -176,12 +176,12 @@ const ratingOptions = [
 	{ label: '½', value: '1' },
 ];
 
-const sortOptions = [
+const sortOptions = computed(() => [
 	{ label: t('filter.dateReviewed'), value: 'date' },
 	{ label: t('filter.rating'), value: 'rating' },
 	{ label: t('filter.title'), value: 'title' },
 	{ label: t('filter.releaseYear'), value: 'year' },
-];
+]);
 
 // --- Filter state ---
 

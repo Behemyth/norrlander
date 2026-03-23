@@ -6,7 +6,9 @@
         "blog": "Blogg",
         "photography": "Fotografi",
         "portfolio": "Portfolio",
-        "reviews": "Recensioner"
+        "reviews": "Recensioner",
+        "movieReviews": "Filmrecensioner",
+        "showReviews": "Serierecensioner"
     },
     "footer": {
         "home": "Hem",
