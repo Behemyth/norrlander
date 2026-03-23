@@ -38,7 +38,8 @@
 		"contents": "Spis treści",
 		"pageNotFound": "Nie znaleziono strony",
 		"pageNotFoundDescription": "Strona, której szukasz, nie istnieje lub została przeniesiona.",
-		"backToHome": "Wróć na stronę główną"
+		"backToHome": "Wróć na stronę główną",
+		"englishOnly": "Treści na tej stronie są napisane po angielsku."
 	},
 	"blog": {
 		"notFound": "Nie znaleziono wpisu",

@@ -38,7 +38,8 @@
 		"contents": "Contents",
 		"pageNotFound": "Page not found",
 		"pageNotFoundDescription": "The page you're looking for doesn't exist or has been moved.",
-		"backToHome": "Back to home"
+		"backToHome": "Back to home",
+		"englishOnly": "Content on this site is written in English."
 	},
 	"blog": {
 		"notFound": "Blog post not found",

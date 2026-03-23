@@ -4,6 +4,7 @@
 		class="max-w-4xl mx-auto w-full"
 	>
 		<ReviewHeader :content="page" />
+		<AppContentLanguageAlert />
 		<UPageBody>
 			<ContentRenderer :value="page" />
 		</UPageBody>

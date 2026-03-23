@@ -1,94 +1,95 @@
 {
-	"header": {
-		"title": "The Norrlander"
-	},
-	"footer": {
-		"home": "Startseite",
-		"about": "Über mich",
-		"filmData": "Filmdaten",
-		"madeWith": "Gemacht mit ❤️ von Asher und Ola"
-	},
-	"index": {
-		"heroDescription": "Ein persönlicher Ort mit frischer Luft",
-		"viewPortfolio": "Portfolio ansehen",
-		"readBlog": "Blog lesen",
-		"trailMarkers": "Wegweiser",
-		"trailMarkersDescription": "Entdecke die verschiedenen Bereiche dieser Website. Ich bin dein Wegbegleiter.",
-		"aboutTitle": "Über Asher Norland",
-		"aboutDescription": "Ich bin Minnesotaner durch Familie und Geist. Mein Großvater war Obstbauer und deshalb bin ich vertraglich verpflichtet, alles rund um Äpfel zu lieben. Um mein Herz zu stehlen, nimm mich auf einen starken Cider mit.",
-		"contactMe": "Kontaktiere mich",
-		"blog": "Blog",
-		"blogDescription": "Ideen, Einblicke und Anleitungen zu verschiedenen technischen Themen.",
-		"photography": "Fotografie",
-		"photographyDescription": "Visuelle Geschichten und eingefangene Momente aus meinen Abenteuern und dem Alltag.",
-		"portfolio": "Portfolio",
-		"portfolioDescription": "Eine Präsentation meiner professionellen Arbeit und Projekte.",
-		"reviews": "Rezensionen",
-		"reviewsDescription": "Meine Gedanken und Meinungen zu Filmen."
-	},
-	"contact": "Kontakt",
-	"contactPage": {
-		"title": "Kontakt aufnehmen",
-		"description": "Schreib mir gerne über eine der folgenden Methoden.",
-		"useResponsibly": "Verantwortungsvoll nutzen",
-		"socials": "Soziale Medien",
-		"socialsDescription": "Hier bin ich aktiv"
-	},
-	"common": {
-		"contents": "Inhaltsverzeichnis",
-		"pageNotFound": "Seite nicht gefunden",
-		"pageNotFoundDescription": "Die Seite, die du suchst, existiert nicht oder wurde verschoben.",
-		"backToHome": "Zurück zur Startseite"
-	},
-	"blog": {
-		"notFound": "Blogbeitrag nicht gefunden",
-		"notFoundDescription": "Der Blogbeitrag, den du suchst, existiert nicht oder wurde entfernt.",
-		"backToBlog": "Zurück zum Blog"
-	},
-	"photography": {
-		"notFound": "Foto nicht gefunden",
-		"notFoundDescription": "Die Fotoserie, die du suchst, existiert nicht oder wurde entfernt.",
-		"backToPhotography": "Zurück zur Fotografie"
-	},
-	"portfolio": {
-		"viewCompany": "Unternehmen ansehen",
-		"viewInstitution": "Hochschule ansehen",
-		"present": "Aktuell"
-	},
-	"profile": {
-		"location": "Standort",
-		"languages": "Sprachen"
-	},
-	"review": {
-		"allReviews": "Alle {type}-Rezensionen",
-		"publishedReview": "1 veröffentlichte Rezension | {n} veröffentlichte Rezensionen",
-		"draftedReview": "1 Entwurf | {n} Entwürfe",
-		"season": "Staffel | Staffeln",
-		"episodes": "Folgen",
-		"cast": "Besetzung",
-		"noCast": "Keine Besetzungsinformationen verfügbar",
-		"director": "Regisseur | Regisseure",
-		"screenplay": "Drehbuch",
-		"creator": "Schöpfer",
-		"createdBy": "Erstellt von",
-		"noCreator": "Keine Informationen zum Schöpfer verfügbar",
-		"as": " als "
-	},
-	"filter": {
-		"allGenres": "Alle Genres",
-		"allYears": "Alle Jahre",
-		"any": "Beliebig",
-		"sortBy": "Sortieren nach",
-		"genre": "Genre",
-		"year": "Jahr",
-		"minRating": "Mindestbewertung",
-		"clearFilters": "Filter zurücksetzen",
-		"showing": "{filtered} von {total} Rezensionen",
-		"noMatch": "Keine Rezensionen entsprechen deinen Filtern.",
-		"dateReviewed": "Rezensionsdatum",
-		"rating": "Bewertung",
-		"title": "Titel",
-		"releaseYear": "Erscheinungsjahr",
-		"announcerShowing": "{count} Rezensionen werden angezeigt"
-	}
+    "header": {
+        "title": "The Norrlander"
+    },
+    "footer": {
+        "home": "Startseite",
+        "about": "Über mich",
+        "filmData": "Filmdaten",
+        "madeWith": "Gemacht mit ❤️ von Asher und Ola"
+    },
+    "index": {
+        "heroDescription": "Ein persönlicher Ort mit frischer Luft",
+        "viewPortfolio": "Portfolio ansehen",
+        "readBlog": "Blog lesen",
+        "trailMarkers": "Wegweiser",
+        "trailMarkersDescription": "Entdecke die verschiedenen Bereiche dieser Website. Ich bin dein Wegbegleiter.",
+        "aboutTitle": "Über Asher Norland",
+        "aboutDescription": "Ich bin Minnesotaner durch Familie und Geist. Mein Großvater war Obstbauer und deshalb bin ich vertraglich verpflichtet, alles rund um Äpfel zu lieben. Um mein Herz zu stehlen, nimm mich auf einen starken Cider mit.",
+        "contactMe": "Kontaktiere mich",
+        "blog": "Blog",
+        "blogDescription": "Ideen, Einblicke und Anleitungen zu verschiedenen technischen Themen.",
+        "photography": "Fotografie",
+        "photographyDescription": "Visuelle Geschichten und eingefangene Momente aus meinen Abenteuern und dem Alltag.",
+        "portfolio": "Portfolio",
+        "portfolioDescription": "Eine Präsentation meiner professionellen Arbeit und Projekte.",
+        "reviews": "Rezensionen",
+        "reviewsDescription": "Meine Gedanken und Meinungen zu Filmen."
+    },
+    "contact": "Kontakt",
+    "contactPage": {
+        "title": "Kontakt aufnehmen",
+        "description": "Schreib mir gerne über eine der folgenden Methoden.",
+        "useResponsibly": "Verantwortungsvoll nutzen",
+        "socials": "Soziale Medien",
+        "socialsDescription": "Hier bin ich aktiv"
+    },
+    "common": {
+        "contents": "Inhaltsverzeichnis",
+        "pageNotFound": "Seite nicht gefunden",
+        "pageNotFoundDescription": "Die Seite, die du suchst, existiert nicht oder wurde verschoben.",
+        "backToHome": "Zurück zur Startseite",
+        "englishOnly": "Die Inhalte dieser Seite sind auf Englisch verfasst."
+    },
+    "blog": {
+        "notFound": "Blogbeitrag nicht gefunden",
+        "notFoundDescription": "Der Blogbeitrag, den du suchst, existiert nicht oder wurde entfernt.",
+        "backToBlog": "Zurück zum Blog"
+    },
+    "photography": {
+        "notFound": "Foto nicht gefunden",
+        "notFoundDescription": "Die Fotoserie, die du suchst, existiert nicht oder wurde entfernt.",
+        "backToPhotography": "Zurück zur Fotografie"
+    },
+    "portfolio": {
+        "viewCompany": "Unternehmen ansehen",
+        "viewInstitution": "Hochschule ansehen",
+        "present": "Aktuell"
+    },
+    "profile": {
+        "location": "Standort",
+        "languages": "Sprachen"
+    },
+    "review": {
+        "allReviews": "Alle {type}-Rezensionen",
+        "publishedReview": "1 veröffentlichte Rezension | {n} veröffentlichte Rezensionen",
+        "draftedReview": "1 Entwurf | {n} Entwürfe",
+        "season": "Staffel | Staffeln",
+        "episodes": "Folgen",
+        "cast": "Besetzung",
+        "noCast": "Keine Besetzungsinformationen verfügbar",
+        "director": "Regisseur | Regisseure",
+        "screenplay": "Drehbuch",
+        "creator": "Schöpfer",
+        "createdBy": "Erstellt von",
+        "noCreator": "Keine Informationen zum Schöpfer verfügbar",
+        "as": " als "
+    },
+    "filter": {
+        "allGenres": "Alle Genres",
+        "allYears": "Alle Jahre",
+        "any": "Beliebig",
+        "sortBy": "Sortieren nach",
+        "genre": "Genre",
+        "year": "Jahr",
+        "minRating": "Mindestbewertung",
+        "clearFilters": "Filter zurücksetzen",
+        "showing": "{filtered} von {total} Rezensionen",
+        "noMatch": "Keine Rezensionen entsprechen deinen Filtern.",
+        "dateReviewed": "Rezensionsdatum",
+        "rating": "Bewertung",
+        "title": "Titel",
+        "releaseYear": "Erscheinungsjahr",
+        "announcerShowing": "{count} Rezensionen werden angezeigt"
+    }
 }
