@@ -42,18 +42,25 @@ import { mapContentNavigation } from '@nuxt/ui/utils/content';
 const { t } = useI18n();
 
 const navLabelMap: Record<string, string> = {
-	Blog: 'nav.blog',
-	Photography: 'nav.photography',
-	Portfolio: 'nav.portfolio',
-	Reviews: 'nav.reviews',
+	'Blog': 'nav.blog',
+	'Photography': 'nav.photography',
+	'Portfolio': 'nav.portfolio',
+	'Reviews': 'nav.reviews',
+	'Movie Reviews': 'nav.movieReviews',
+	'Show Reviews': 'nav.showReviews',
 };
+
+function translateNavItems(navItems: ReturnType<typeof mapContentNavigation>): ReturnType<typeof mapContentNavigation> {
+	return navItems.map(item => ({
+		...item,
+		label: navLabelMap[item.label] ? t(navLabelMap[item.label]) : item.label,
+		children: item.children?.length ? translateNavItems(item.children) : item.children,
+	}));
+}
 
 const { data: navigation } = await useContentNavigation();
 
 const items = computed(() =>
-	mapContentNavigation(navigation?.value ?? []).map(item => ({
-		...item,
-		label: navLabelMap[item.label] ? t(navLabelMap[item.label]) : item.label,
-	})),
+	translateNavItems(mapContentNavigation(navigation?.value ?? [])),
 );
 </script>

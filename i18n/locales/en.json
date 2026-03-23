@@ -6,7 +6,9 @@
 		"blog": "Blog",
 		"photography": "Photography",
 		"portfolio": "Portfolio",
-		"reviews": "Reviews"
+		"reviews": "Reviews",
+		"movieReviews": "Movie Reviews",
+		"showReviews": "Show Reviews"
 	},
 	"footer": {
 		"home": "Home",

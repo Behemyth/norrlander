@@ -54,7 +54,7 @@ import type { ButtonProps } from '@nuxt/ui';
 
 const { t } = useI18n();
 
-const heroLinks: ButtonProps[] = [
+const heroLinks = computed<ButtonProps[]>(() => [
 	{
 		label: t('index.viewPortfolio'),
 		to: '/portfolio',
@@ -68,9 +68,9 @@ const heroLinks: ButtonProps[] = [
 		variant: 'outline',
 		size: 'lg',
 	},
-];
+]);
 
-const sectionLinks: ButtonProps[] = [
+const sectionLinks = computed<ButtonProps[]>(() => [
 	{
 		label: t('index.contactMe'),
 		to: '/contact',
@@ -78,9 +78,9 @@ const sectionLinks: ButtonProps[] = [
 		variant: 'outline',
 		size: 'lg',
 	},
-];
+]);
 
-const features = [
+const features = computed(() => [
 	{
 		title: t('index.blog'),
 		description: t('index.blogDescription'),
@@ -105,7 +105,7 @@ const features = [
 		icon: 'i-mdi-star',
 		to: '/review',
 	},
-];
+]);
 
 definePageMeta({
 	layout: 'default',
