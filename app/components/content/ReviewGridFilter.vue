@@ -8,6 +8,7 @@
 					:items="availableGenres"
 					:placeholder="$t('filter.allGenres')"
 					multiple
+					:search-input="false"
 					class="w-44"
 				/>
 			</UFormField>
@@ -18,24 +19,23 @@
 					:items="availableYears"
 					:placeholder="$t('filter.allYears')"
 					multiple
+					:search-input="false"
 					class="w-36"
 				/>
 			</UFormField>
 
 			<UFormField :label="$t('filter.minRating')">
-				<USelectMenu
+				<USelect
 					v-model="selectedMinRating"
 					:items="ratingOptions"
-					:placeholder="$t('filter.any')"
 					class="w-32"
 				/>
 			</UFormField>
 
 			<UFormField :label="$t('filter.sortBy')">
-				<USelectMenu
+				<USelect
 					v-model="sortBy"
 					:items="sortOptions"
-					value-key="value"
 					class="w-40"
 				/>
 			</UFormField>
@@ -132,7 +132,7 @@ function getReleaseYear(review: ReviewItem): number | null {
 
 // --- Data ---
 
-const { announce } = useAnnouncer();
+const { polite: announce } = useAnnouncer();
 
 const { data: items } = await useAsyncData(`review-grid-filter-${props.collection}`, () =>
 	queryCollection(props.collection)
@@ -187,19 +187,19 @@ const sortOptions = [
 
 const selectedGenres = ref<string[]>([]);
 const selectedYears = ref<string[]>([]);
-const selectedMinRating = ref<{ label: string; value: string }>(ratingOptions[0]!);
-const sortBy = ref(sortOptions[0]!);
+const selectedMinRating = ref('');
+const sortBy = ref('date');
 
 const hasActiveFilters = computed(() =>
 	selectedGenres.value.length > 0
 	|| selectedYears.value.length > 0
-	|| selectedMinRating.value.value !== '',
+	|| selectedMinRating.value !== '',
 );
 
 function clearFilters() {
 	selectedGenres.value = [];
 	selectedYears.value = [];
-	selectedMinRating.value = ratingOptions[0]!;
+	selectedMinRating.value = '';
 }
 
 // --- Filtered + sorted items ---
@@ -221,14 +221,14 @@ const filteredItems = computed(() => {
 		}
 
 		// Min rating filter
-		const minRating = Number(selectedMinRating.value.value);
+		const minRating = Number(selectedMinRating.value) || 0;
 		if (minRating && item.rating < minRating) return false;
 
 		return true;
 	});
 
 	// Sort
-	const dir = sortBy.value.value;
+	const dir = sortBy.value;
 	result = [...result].sort((a, b) => {
 		switch (dir) {
 			case 'rating':
