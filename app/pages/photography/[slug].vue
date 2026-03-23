@@ -7,7 +7,6 @@
 			:title="page.title"
 			:description="page.description"
 		/>
-		<AppContentLanguageAlert />
 		<UPageBody>
 			<ContentRenderer :value="page" />
 		</UPageBody>

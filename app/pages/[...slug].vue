@@ -20,7 +20,6 @@
 			:description="page.description"
 			:links="page.links"
 		/>
-		<AppContentLanguageAlert />
 		<UPageBody>
 			<ContentRenderer :value="page.body" />
 		</UPageBody>

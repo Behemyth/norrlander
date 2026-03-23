@@ -3,6 +3,7 @@
 		"title": "The Norrlander"
 	},
 	"nav": {
+		"home": "Home",
 		"blog": "Blog",
 		"photography": "Photography",
 		"portfolio": "Portfolio",
