@@ -9,7 +9,7 @@
 		>
 			<UPageAside>
 				<UContentToc
-					title="Contents"
+					:title="$t('common.contents')"
 					highlight
 					:links="page.body.toc.links"
 				/>
@@ -19,6 +19,7 @@
 			:title="page.title"
 			:description="page.description"
 		/>
+		<AppContentLanguageAlert />
 		<UPageBody>
 			<ContentRenderer :value="page" />
 		</UPageBody>
@@ -26,9 +27,9 @@
 	<PageNotFound
 		v-else
 		icon="i-lucide-file-text"
-		title="Blog post not found"
-		description="The blog post you're looking for doesn't exist or has been removed."
-		back-label="Back to blog"
+		:title="$t('blog.notFound')"
+		:description="$t('blog.notFoundDescription')"
+		:back-label="$t('blog.backToBlog')"
 		back-to="/blog"
 	/>
 </template>

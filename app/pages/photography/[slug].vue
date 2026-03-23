@@ -7,6 +7,7 @@
 			:title="page.title"
 			:description="page.description"
 		/>
+		<AppContentLanguageAlert />
 		<UPageBody>
 			<ContentRenderer :value="page" />
 		</UPageBody>
@@ -39,9 +40,9 @@
 	<PageNotFound
 		v-else
 		icon="i-lucide-camera"
-		title="Photo not found"
-		description="The photo series you're looking for doesn't exist or has been removed."
-		back-label="Back to photography"
+		:title="$t('photography.notFound')"
+		:description="$t('photography.notFoundDescription')"
+		:back-label="$t('photography.backToPhotography')"
 		back-to="/photography"
 	/>
 </template>

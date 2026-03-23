@@ -7,7 +7,7 @@ export default defineConfig({
 		exclude: ['tests/**/*.e2e.test.ts'],
 		coverage: {
 			provider: 'v8',
-			include: ['server/**/*.ts'],
+			include: ['server/**/*.ts', 'app/composables/**/*.ts', 'modules/**/*.ts', 'app/transformers/**/*.ts'],
 			exclude: ['tests/**', '**/node_modules/**'],
 		},
 	},

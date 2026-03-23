@@ -1,3 +1,95 @@
 {
-	"contact": "Kontakt"
+	"header": {
+		"title": "The Norrlander"
+	},
+	"footer": {
+		"home": "Strona główna",
+		"about": "O mnie",
+		"filmData": "Dane filmowe",
+		"madeWith": "Stworzone z ❤️ przez Ashera i Olę"
+	},
+	"index": {
+		"heroDescription": "Osobista przestrzeń ze świeżym powietrzem",
+		"viewPortfolio": "Zobacz portfolio",
+		"readBlog": "Czytaj blog",
+		"trailMarkers": "Drogowskazy",
+		"trailMarkersDescription": "Odkryj różne sekcje tej strony. Będę Twoim przewodnikiem.",
+		"aboutTitle": "O Asherze Norlandzie",
+		"aboutDescription": "Jestem Minnesotańczykiem z rodziny i ducha. Mój dziadek był sadownikiem, więc jestem umownie zobowiązany kochać wszystko, co jabłkowe. Żeby skraść moje serce, zabierz mnie na mocny cydr.",
+		"contactMe": "Napisz do mnie",
+		"blog": "Blog",
+		"blogDescription": "Pomysły, spostrzeżenia i poradniki na różne tematy techniczne.",
+		"photography": "Fotografia",
+		"photographyDescription": "Wizualne historie i uchwycone chwile z moich przygód i codziennego życia.",
+		"portfolio": "Portfolio",
+		"portfolioDescription": "Prezentacja mojej pracy zawodowej i projektów.",
+		"reviews": "Recenzje",
+		"reviewsDescription": "Moje przemyślenia i opinie o filmach."
+	},
+	"contact": "Kontakt",
+	"contactPage": {
+		"title": "Skontaktuj się",
+		"description": "Napisz do mnie dowolną z poniższych metod.",
+		"useResponsibly": "Używaj odpowiedzialnie",
+		"socials": "Media społecznościowe",
+		"socialsDescription": "Tu się udzielam"
+	},
+	"common": {
+		"contents": "Spis treści",
+		"pageNotFound": "Nie znaleziono strony",
+		"pageNotFoundDescription": "Strona, której szukasz, nie istnieje lub została przeniesiona.",
+		"backToHome": "Wróć na stronę główną",
+		"englishOnly": "Treści na tej stronie są napisane po angielsku."
+	},
+	"blog": {
+		"notFound": "Nie znaleziono wpisu",
+		"notFoundDescription": "Wpis na blogu, którego szukasz, nie istnieje lub został usunięty.",
+		"backToBlog": "Wróć do bloga"
+	},
+	"photography": {
+		"notFound": "Nie znaleziono zdjęcia",
+		"notFoundDescription": "Seria zdjęć, której szukasz, nie istnieje lub została usunięta.",
+		"backToPhotography": "Wróć do fotografii"
+	},
+	"portfolio": {
+		"viewCompany": "Zobacz firmę",
+		"viewInstitution": "Zobacz uczelnię",
+		"present": "Obecnie"
+	},
+	"profile": {
+		"location": "Lokalizacja",
+		"languages": "Języki"
+	},
+	"review": {
+		"allReviews": "Wszystkie recenzje: {type}",
+		"publishedReview": "1 opublikowana recenzja | {n} opublikowanych recenzji",
+		"draftedReview": "1 szkic recenzji | {n} szkiców recenzji",
+		"season": "Sezon | Sezony",
+		"episodes": "Odcinki",
+		"cast": "Obsada",
+		"noCast": "Brak informacji o obsadzie",
+		"director": "Reżyser | Reżyserzy",
+		"screenplay": "Scenariusz",
+		"creator": "Twórca",
+		"createdBy": "Stworzone przez",
+		"noCreator": "Brak informacji o twórcy",
+		"as": " jako "
+	},
+	"filter": {
+		"allGenres": "Wszystkie gatunki",
+		"allYears": "Wszystkie lata",
+		"any": "Dowolna",
+		"sortBy": "Sortuj wg",
+		"genre": "Gatunek",
+		"year": "Rok",
+		"minRating": "Min. ocena",
+		"clearFilters": "Wyczyść filtry",
+		"showing": "Wyświetlanie {filtered} z {total} recenzji",
+		"noMatch": "Żadna recenzja nie pasuje do filtrów.",
+		"dateReviewed": "Data recenzji",
+		"rating": "Ocena",
+		"title": "Tytuł",
+		"releaseYear": "Rok premiery",
+		"announcerShowing": "Wyświetlanie {count} recenzji"
+	}
 }

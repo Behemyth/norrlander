@@ -1,3 +1,95 @@
 {
-	"contact": "Contact"
+	"header": {
+		"title": "The Norrlander"
+	},
+	"footer": {
+		"home": "Home",
+		"about": "About",
+		"filmData": "Film data",
+		"madeWith": "Made with ❤️ by Asher and Ola"
+	},
+	"index": {
+		"heroDescription": "A personal space with fresh air",
+		"viewPortfolio": "View Portfolio",
+		"readBlog": "Read Blog",
+		"trailMarkers": "Trail Markers",
+		"trailMarkersDescription": "Explore the different sections of this website. I'll be your trail guide.",
+		"aboutTitle": "About Asher Norland",
+		"aboutDescription": "I'm Minnesotan by family and spirit. My grandfather was an orchardist and as a result I'm contractually obligated to love all things apple. To steal my heart, take me out for a strong cider.",
+		"contactMe": "Contact Me",
+		"blog": "Blog",
+		"blogDescription": "Ideas, insights, and tutorials on various technical topics.",
+		"photography": "Photography",
+		"photographyDescription": "Visual stories and captured moments from my adventures and daily life.",
+		"portfolio": "Portfolio",
+		"portfolioDescription": "A showcase of my professional work and projects.",
+		"reviews": "Reviews",
+		"reviewsDescription": "My thoughts and opinions on film."
+	},
+	"contact": "Contact",
+	"contactPage": {
+		"title": "Get in Touch",
+		"description": "Feel free to reach out via any of the methods below.",
+		"useResponsibly": "Use responsibly",
+		"socials": "Socials",
+		"socialsDescription": "Here I dabble"
+	},
+	"common": {
+		"contents": "Contents",
+		"pageNotFound": "Page not found",
+		"pageNotFoundDescription": "The page you're looking for doesn't exist or has been moved.",
+		"backToHome": "Back to home",
+		"englishOnly": "Content on this site is written in English."
+	},
+	"blog": {
+		"notFound": "Blog post not found",
+		"notFoundDescription": "The blog post you're looking for doesn't exist or has been removed.",
+		"backToBlog": "Back to blog"
+	},
+	"photography": {
+		"notFound": "Photo not found",
+		"notFoundDescription": "The photo series you're looking for doesn't exist or has been removed.",
+		"backToPhotography": "Back to photography"
+	},
+	"portfolio": {
+		"viewCompany": "View Company",
+		"viewInstitution": "View Institution",
+		"present": "Present"
+	},
+	"profile": {
+		"location": "Location",
+		"languages": "Languages"
+	},
+	"review": {
+		"allReviews": "All {type} Reviews",
+		"publishedReview": "1 Published Review | {n} Published Reviews",
+		"draftedReview": "1 Drafted Review | {n} Drafted Reviews",
+		"season": "Season | Seasons",
+		"episodes": "Episodes",
+		"cast": "Cast",
+		"noCast": "No cast information available",
+		"director": "Director | Directors",
+		"screenplay": "Screenplay",
+		"creator": "Creator",
+		"createdBy": "Created By",
+		"noCreator": "No creator information available",
+		"as": " as "
+	},
+	"filter": {
+		"allGenres": "All genres",
+		"allYears": "All years",
+		"any": "Any",
+		"sortBy": "Sort by",
+		"genre": "Genre",
+		"year": "Year",
+		"minRating": "Min Rating",
+		"clearFilters": "Clear filters",
+		"showing": "Showing {filtered} of {total} reviews",
+		"noMatch": "No reviews match your filters.",
+		"dateReviewed": "Date reviewed",
+		"rating": "Rating",
+		"title": "Title",
+		"releaseYear": "Release year",
+		"announcerShowing": "Showing {count} reviews"
+	}
 }

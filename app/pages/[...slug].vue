@@ -9,7 +9,7 @@
 		>
 			<UPageAside>
 				<UContentToc
-					title="Contents"
+					:title="$t('common.contents')"
 					highlight
 					:links="page.body.toc.links"
 				/>
@@ -20,6 +20,7 @@
 			:description="page.description"
 			:links="page.links"
 		/>
+		<AppContentLanguageAlert />
 		<UPageBody>
 			<ContentRenderer :value="page.body" />
 		</UPageBody>

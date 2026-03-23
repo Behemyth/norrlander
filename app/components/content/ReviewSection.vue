@@ -1,11 +1,13 @@
 <template>
 	<UPageSection
-		:title="`All ${collectionTitle} Reviews`"
+		:title="t('review.allReviews', { type: collectionTitle })"
 		:description="sectionDescription"
 	/>
 </template>
 
 <script setup lang="ts">
+const { t } = useI18n();
+
 const props = defineProps<{
 	collection: 'movie' | 'show';
 }>();
@@ -38,8 +40,8 @@ const sectionDescription = computed(() => {
 	const publishedCount = metadata.value?.published_count || 0;
 	const draftCount = metadata.value?.drafted_count || 0;
 
-	const publishedText = publishedCount === 1 ? '1 Published Review' : `${publishedCount} Published Reviews`;
-	const draftText = draftCount === 1 ? '1 Drafted Review' : `${draftCount} Drafted Reviews`;
+	const publishedText = t('review.publishedReview', publishedCount);
+	const draftText = t('review.draftedReview', draftCount);
 
 	return `${publishedText}, ${draftText}`;
 });

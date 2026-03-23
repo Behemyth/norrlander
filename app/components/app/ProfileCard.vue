@@ -21,12 +21,12 @@
 			<UPageFeature
 				v-if="location"
 				icon="i-mdi-map-marker"
-				title="Location"
+				:title="$t('profile.location')"
 				:description="location.location"
 			/>
 			<UPageFeature
 				icon="i-mdi-translate"
-				title="Languages"
+				:title="$t('profile.languages')"
 				description="English"
 			/>
 		</template>
