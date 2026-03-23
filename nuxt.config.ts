@@ -157,7 +157,7 @@ export default defineNuxtConfig({
 		],
 		strategy: 'no_prefix',
 		defaultLocale: 'en',
-		vueI18n: './i18n/i18n.config.ts',
+		vueI18n: './i18n.config.ts',
 	},
 
 	icon: {

@@ -28,6 +28,7 @@
 				<USelect
 					v-model="selectedMinRating"
 					:items="ratingOptions"
+					:placeholder="$t('filter.any')"
 					class="w-32"
 				/>
 			</UFormField>
@@ -165,15 +166,14 @@ const availableYears = computed(() => {
 });
 
 const ratingOptions = [
-	{ label: t('filter.any'), value: '' },
-	{ label: '★★★★ (8)', value: '8' },
-	{ label: '★★★½ (7)', value: '7' },
-	{ label: '★★★ (6)', value: '6' },
-	{ label: '★★½ (5)', value: '5' },
-	{ label: '★★ (4)', value: '4' },
-	{ label: '★½ (3)', value: '3' },
-	{ label: '★ (2)', value: '2' },
-	{ label: '½ (1)', value: '1' },
+	{ label: '★★★★', value: '8' },
+	{ label: '★★★½', value: '7' },
+	{ label: '★★★', value: '6' },
+	{ label: '★★½', value: '5' },
+	{ label: '★★', value: '4' },
+	{ label: '★½', value: '3' },
+	{ label: '★', value: '2' },
+	{ label: '½', value: '1' },
 ];
 
 const sortOptions = [
