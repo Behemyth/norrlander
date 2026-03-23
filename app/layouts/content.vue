@@ -4,6 +4,7 @@
 			:items="breadcrumb"
 			class="mb-6"
 		/>
+		<AppContentLanguageAlert />
 		<slot />
 	</UContainer>
 </template>
