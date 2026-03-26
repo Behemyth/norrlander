@@ -32,7 +32,7 @@ export const findBreadcrumb = (navigation: ContentNavigationItem[] | undefined, 
 	const chain = findPageBreadcrumb(navigation, path, { current: true, indexAsChild: true });
 	const items = mapContentNavigation(chain).map(({ icon, ...link }: any) => ({
 		...link,
-		label: navLabelKeys[link.label] ? t(navLabelKeys[link.label]) : link.label,
+		label: navLabelKeys[link.label] ? t(navLabelKeys[link.label]!) : link.label,
 	}));
 
 	items.unshift({ label: t('nav.home'), to: '/' });
