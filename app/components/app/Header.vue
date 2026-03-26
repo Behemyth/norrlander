@@ -53,8 +53,8 @@ const navLabelMap: Record<string, string> = {
 function translateNavItems(navItems: ReturnType<typeof mapContentNavigation>): ReturnType<typeof mapContentNavigation> {
 	return navItems.map(item => ({
 		...item,
-		label: navLabelMap[item.label] ? t(navLabelMap[item.label]) : item.label,
-		children: item.children?.length ? translateNavItems(item.children) : item.children,
+		label: item.label && navLabelMap[item.label] ? t(navLabelMap[item.label]!) : item.label,
+		children: Array.isArray(item.children) && item.children.length ? translateNavItems(item.children) : item.children,
 	}));
 }
 

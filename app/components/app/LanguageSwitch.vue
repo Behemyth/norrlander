@@ -2,7 +2,7 @@
 	<ULocaleSelect
 		:model-value="locale"
 		:locales="Object.values(locales) as any"
-		@update:model-value="setLocale($event as string)"
+		@update:model-value="setLocale($event as typeof locale)"
 	/>
 </template>
 
