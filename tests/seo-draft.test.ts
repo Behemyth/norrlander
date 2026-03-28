@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 
 // The transformer logic is simple enough to test directly
 // by extracting the transform behavior
-function applySeoDraft(file: { draft?: boolean; robots?: boolean; sitemap?: boolean }) {
+function applySeoDraft(file: { draft?: boolean; robots?: boolean; sitemap?: boolean; [key: string]: unknown }) {
 	if (file.draft === true) {
 		return {
 			...file,
