@@ -29,7 +29,7 @@
 
 <script lang="ts" setup>
 const { page } = await useContentPage('content');
-useSeoMeta(page.value?.seo || {});
+useSeoMeta({ title: page.value?.title, description: page.value?.description });
 
 // Feed link for RSS-enabled pages
 const route = useRoute();

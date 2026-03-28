@@ -15,7 +15,7 @@ interface ContentPageOptions {
  *
  * @example
  * const { page } = await useContentPage('blog');
- * useSeoMeta(page.value?.seo || {});
+ * useSeoMeta({ title: page.value?.title, description: page.value?.description });
  */
 export const useContentPage = async <T extends keyof PageCollections>(
 	collection: T,
