@@ -159,7 +159,7 @@ export function createFeedHandler<T extends FeedableCollections>(options: FeedRo
 		}
 
 		const { format } = parsed;
-		const siteUrl = useRuntimeConfig().public.siteUrl;
+		const siteUrl = getSiteConfig(event).url;
 		const author = getDefaultAuthor(siteUrl);
 
 		const feed = createFeed(options.config, siteUrl, author);
@@ -204,7 +204,7 @@ export function createFeedHandler<T extends FeedableCollections>(options: FeedRo
 /**
  * Extract image from different content types
  */
-function getItemImage(page: unknown): string | undefined {
+export function getItemImage(page: unknown): string | undefined {
 	const p = page as Record<string, unknown>;
 
 	// Reviews have tmdbData with poster_path
@@ -229,7 +229,7 @@ function getItemImage(page: unknown): string | undefined {
 /**
  * Extract tags from different content types
  */
-function getItemTags(page: unknown): string[] | undefined {
+export function getItemTags(page: unknown): string[] | undefined {
 	const p = page as Record<string, unknown>;
 
 	// Reviews have genres in tmdbData
