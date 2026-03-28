@@ -48,5 +48,5 @@
 
 <script lang="ts" setup>
 const { page } = await useContentPage('photography');
-useSeoMeta(page.value?.seo || {});
+useSeoMeta({ title: page.value?.title, description: page.value?.description });
 </script>

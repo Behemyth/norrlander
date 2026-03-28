@@ -35,5 +35,5 @@
 
 <script lang="ts" setup>
 const { page } = await useContentPage('career');
-useSeoMeta(page.value?.seo || {});
+useSeoMeta({ title: page.value?.title, description: page.value?.description });
 </script>

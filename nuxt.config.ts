@@ -57,7 +57,6 @@ export default defineNuxtConfig({
 		apiSecret: '', // can be overridden by NUXT_API_SECRET environment variable
 		public: {
 			apiBase: '', // can be overridden by NUXT_PUBLIC_API_BASE environment variable
-			siteUrl: 'https://norrlander.com', // can be overridden by NUXT_PUBLIC_SITE_URL environment variable
 		},
 	},
 

@@ -36,5 +36,5 @@ const category = route.params.category as 'movie' | 'show';
 const capitalizedCategory = category.charAt(0).toUpperCase() + category.slice(1);
 
 const { page } = await useContentPage(category);
-useSeoMeta(page.value?.seo || {});
+useSeoMeta({ title: page.value?.title, description: page.value?.description });
 </script>
