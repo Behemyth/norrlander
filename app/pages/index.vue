@@ -9,7 +9,7 @@
 			:ui="{ container: 'flex flex-col lg:grid py-16 sm:py-24 lg:py-28 gap-16 sm:gap-y-24' }"
 		>
 			<NuxtImg
-				src="/images/asher-think.png"
+				src="/images/asher-breath.png"
 				alt="Asher Norland"
 				width="512"
 				height="341"
