@@ -181,6 +181,7 @@ export default defineNuxtConfig({
 	// Disable og-image in test environment to avoid SSR warnings
 	ogImage: {
 		enabled: process.env.NODE_ENV !== 'test' && process.env.VITEST !== 'true',
+		zeroRuntime: true,
 	},
 
 	robots: {
