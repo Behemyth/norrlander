@@ -70,6 +70,15 @@ export default defineNuxtConfig({
 		compatibilityVersion: 4,
 	},
 
+	ui: {
+		theme: {
+			colors: ['primary', 'secondary'],
+		},
+		experimental: {
+			componentDetection: true,
+		},
+	},
+
 	experimental: {
 		payloadExtraction: 'client',
 		normalizeComponentNames: true,
