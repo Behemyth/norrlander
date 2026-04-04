@@ -10,8 +10,9 @@
 </template>
 
 <script setup lang="ts">
+const { t } = useI18n();
 const route = useRoute();
 const { data: navigation } = useContentNavigation();
 
-const breadcrumb = computed(() => findBreadcrumb(navigation?.value, route.path));
+const breadcrumb = computed(() => findBreadcrumb(navigation?.value, route.path, t));
 </script>

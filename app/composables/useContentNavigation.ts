@@ -1,4 +1,4 @@
-import { useAsyncData, queryCollectionNavigation, useI18n } from '#imports';
+import { useAsyncData, queryCollectionNavigation } from '#imports';
 import { findPageBreadcrumb } from '@nuxt/content/utils';
 import { mapContentNavigation } from '@nuxt/ui/utils/content';
 import type { ContentNavigationItem } from '@nuxt/content';
@@ -24,8 +24,7 @@ export const useContentNavigation = () =>
 /**
  * Generate breadcrumb items for the current route
  */
-export const findBreadcrumb = (navigation: ContentNavigationItem[] | undefined, path: string) => {
-	const { t } = useI18n();
+export const findBreadcrumb = (navigation: ContentNavigationItem[] | undefined, path: string, t: (key: string) => string) => {
 
 	if (!navigation) return [{ label: t('nav.home'), to: '/' }];
 

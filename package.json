@@ -22,11 +22,11 @@
 		"@nuxt/fonts": "^0.14.0",
 		"@nuxt/image": "^2.0.0",
 		"@nuxt/test-utils": "^4.0.0",
-		"@nuxt/ui": "^4.6.0",
+		"@nuxt/ui": "^4.6.1",
 		"@nuxtjs/i18n": "^10.2.4",
 		"@nuxtjs/seo": "^5.1.0",
 		"nuxt": "^4.4.2",
-		"typescript": "^5.9.3",
+		"typescript": "^6.0.2",
 		"vitest": "^4.1.2",
 		"vue-tsc": "^3.2.6"
 	},

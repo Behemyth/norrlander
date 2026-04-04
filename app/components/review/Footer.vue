@@ -39,6 +39,8 @@
 			:img-attrs="{
 				class: 'aspect-[2/3]',
 			}"
+			:style="{ viewTransitionName: `review-poster${content.path.replaceAll('/', '-')}` }"
+			sizes="100vw sm:50vw md:25vw"
 			loading="lazy"
 		/>
 

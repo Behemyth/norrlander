@@ -11,7 +11,7 @@
 			<ContentRenderer :value="page" />
 		</UPageBody>
 		<UCarousel
-			v-slot="{ item }"
+			v-slot="{ item, index }"
 			auto-height
 			arrows
 			dots
@@ -32,6 +32,7 @@
 				:sizes="item.sizes"
 				:densities="item.densities"
 				loading="lazy"
+				:style="index === 0 ? { viewTransitionName: `photo${page.path.replaceAll('/', '-')}` } : undefined"
 				class="mx-auto"
 			/>
 		</UCarousel>
