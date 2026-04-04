@@ -14,6 +14,7 @@
 			:sizes="photo.images[0].sizes"
 			:densities="photo.images[0].densities"
 			loading="lazy"
+			:style="{ viewTransitionName: `photo${photo.path.replaceAll('/', '-')}` }"
 			class="w-full h-auto object-cover"
 		/>
 	</UPageCard>

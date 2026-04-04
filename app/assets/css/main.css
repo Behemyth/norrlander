@@ -40,3 +40,10 @@ footer.footnotes, section.footnotes, .footnotes {
 .footnotes a[href^="#fnref"]:hover {
 	opacity: 1;
 }
+
+/* View Transitions: global cross-fade */
+::view-transition-old(root),
+::view-transition-new(root) {
+	animation-duration: 100ms;
+	animation-timing-function: ease-out;
+}
