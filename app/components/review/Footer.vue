@@ -39,6 +39,7 @@
 			:img-attrs="{
 				class: 'aspect-[2/3]',
 			}"
+			sizes="100vw sm:50vw md:25vw"
 			loading="lazy"
 		/>
 
