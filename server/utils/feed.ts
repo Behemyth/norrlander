@@ -186,7 +186,7 @@ export function createFeedHandler<T extends FeedableCollections>(options: FeedRo
 				description: p.description ?? '',
 				date_published: new Date(p.date_published),
 				date_modified: new Date(p.date_modified),
-				image: getItemImage(page),
+				image: getItemImage(page, siteUrl),
 				tags: getItemTags(page),
 			};
 
@@ -204,7 +204,7 @@ export function createFeedHandler<T extends FeedableCollections>(options: FeedRo
 /**
  * Extract image from different content types
  */
-export function getItemImage(page: unknown): string | undefined {
+export function getItemImage(page: unknown, siteUrl?: string): string | undefined {
 	const p = page as Record<string, unknown>;
 
 	// Reviews have tmdbData with poster_path
@@ -219,7 +219,11 @@ export function getItemImage(page: unknown): string | undefined {
 	if (Array.isArray(p.images) && p.images.length > 0) {
 		const firstImage = p.images[0] as Record<string, unknown>;
 		if (firstImage.src) {
-			return String(firstImage.src);
+			const src = String(firstImage.src);
+			if (siteUrl && src.startsWith('/')) {
+				return new URL(src, siteUrl).toString();
+			}
+			return src;
 		}
 	}
 

@@ -90,7 +90,7 @@ export default defineEventHandler(async (event) => {
 			description: p.description ?? '',
 			date_published: new Date(p.date_published),
 			date_modified: new Date(p.date_modified),
-			image: getItemImage(page),
+			image: getItemImage(page, siteUrl),
 			tags: getItemTags(page),
 		};
 
