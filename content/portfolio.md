@@ -5,7 +5,7 @@ headline: "Asher Norland"
 links:
 - label: Resume
   icon: mdi:file-document
-  to: "Asher Norland Resume.pdf"
+  to: "/asher-norland-resume.pdf"
   target: _blank
   external: true
 - label: Contact

@@ -25,7 +25,6 @@ export const useContentNavigation = () =>
  * Generate breadcrumb items for the current route
  */
 export const findBreadcrumb = (navigation: ContentNavigationItem[] | undefined, path: string, t: (key: string) => string) => {
-
 	if (!navigation) return [{ label: t('nav.home'), to: '/' }];
 
 	const chain = findPageBreadcrumb(navigation, path, { current: true, indexAsChild: true });

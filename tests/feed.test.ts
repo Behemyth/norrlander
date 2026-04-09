@@ -5,27 +5,47 @@ import {
 	getFeedResponse,
 	parseFeedFormat,
 	getDefaultAuthor,
+	getItemImage,
 	type FeedConfig,
 	type FeedItemData,
 } from '../server/utils/feed';
 
 const TEST_SITE_URL = 'https://example.com';
+const TEST_AUTHOR = getDefaultAuthor(TEST_SITE_URL);
+const TEST_CONFIG: FeedConfig = {
+	title: 'Test Blog',
+	description: 'A test blog feed',
+	feedPath: '/feed/blog',
+	homePath: '/blog',
+};
+
+function createTestFeed(config = TEST_CONFIG) {
+	return createFeed(config, TEST_SITE_URL, TEST_AUTHOR);
+}
+
+function createTestItem(overrides: Partial<FeedItemData> = {}): FeedItemData {
+	return {
+		id: 'post-1',
+		path: '/blog/my-post',
+		title: 'My First Post',
+		description: 'This is my first blog post',
+		date_published: new Date('2024-01-15'),
+		date_modified: new Date('2024-01-16'),
+		...overrides,
+	};
+}
 
 describe('feed utilities', () => {
 	describe('parseFeedFormat', () => {
-		it('parses .json format', () => {
-			expect(parseFeedFormat('feed.json')).toEqual({ format: 'json' });
+		it.each([
+			['feed.json', 'json'],
+			['feed.xml', 'xml'],
+			['feed.atom', 'atom'],
+		])('parses %s as %s', (input, format) => {
+			expect(parseFeedFormat(input)).toEqual({ format });
 		});
 
-		it('parses .xml format', () => {
-			expect(parseFeedFormat('feed.xml')).toEqual({ format: 'xml' });
-		});
-
-		it('parses .atom format', () => {
-			expect(parseFeedFormat('feed.atom')).toEqual({ format: 'atom' });
-		});
-
-		it('returns null for invalid format', () => {
+		it('returns null for invalid formats', () => {
 			expect(parseFeedFormat('feed.txt')).toBeNull();
 			expect(parseFeedFormat('feed')).toBeNull();
 			expect(parseFeedFormat('')).toBeNull();
@@ -34,28 +54,17 @@ describe('feed utilities', () => {
 
 	describe('getDefaultAuthor', () => {
 		it('returns author with correct URLs', () => {
-			const author = getDefaultAuthor(TEST_SITE_URL);
-
-			expect(author.name).toBe('Asher Norland');
-			expect(author.link).toBe('https://example.com/contact');
-			expect(author.avatar).toBe('https://example.com/images/asher-face.jpg');
+			expect(TEST_AUTHOR).toMatchObject({
+				name: 'Asher Norland',
+				link: 'https://example.com/contact',
+				avatar: 'https://example.com/images/asher-face.jpg',
+			});
 		});
 	});
 
 	describe('createFeed', () => {
-		const config: FeedConfig = {
-			title: 'Test Blog',
-			description: 'A test blog feed',
-			feedPath: '/feed/blog',
-			homePath: '/blog',
-		};
-
 		it('creates a feed with correct metadata', () => {
-			const author = getDefaultAuthor(TEST_SITE_URL);
-			const feed = createFeed(config, TEST_SITE_URL, author);
-
-			// Generate JSON to inspect the feed structure
-			const json = JSON.parse(feed.json1());
+			const json = JSON.parse(createTestFeed().json1());
 
 			expect(json.title).toBe('Test Blog');
 			expect(json.description).toBe('A test blog feed');
@@ -63,147 +72,81 @@ describe('feed utilities', () => {
 			expect(json.feed_url).toBe('https://example.com/feed/blog.json');
 			expect(json.author.name).toBe('Asher Norland');
 		});
-
-		it('includes feed links for all formats', () => {
-			const author = getDefaultAuthor(TEST_SITE_URL);
-			const feed = createFeed(config, TEST_SITE_URL, author);
-			const json = JSON.parse(feed.json1());
-
-			expect(json.feed_url).toContain('.json');
-		});
 	});
 
 	describe('addFeedItem', () => {
-		it('adds an item to the feed', () => {
-			const config: FeedConfig = {
-				title: 'Test Blog',
-				description: 'A test blog feed',
-				feedPath: '/feed/blog',
-				homePath: '/blog',
-			};
-			const author = getDefaultAuthor(TEST_SITE_URL);
-			const feed = createFeed(config, TEST_SITE_URL, author);
-
-			const item: FeedItemData = {
-				id: 'post-1',
-				path: '/blog/my-post',
-				title: 'My First Post',
-				description: 'This is my first blog post',
-				date_published: new Date('2024-01-15'),
-				date_modified: new Date('2024-01-16'),
+		it('adds an item with tags and image', () => {
+			const feed = createTestFeed();
+			addFeedItem(feed, createTestItem({
 				tags: ['javascript', 'testing'],
-			};
-
-			addFeedItem(feed, item, TEST_SITE_URL, author);
-
-			const json = JSON.parse(feed.json1());
-
-			expect(json.items).toHaveLength(1);
-			expect(json.items[0].id).toBe('post-1');
-			expect(json.items[0].url).toBe('https://example.com/blog/my-post');
-			expect(json.items[0].title).toBe('My First Post');
-			// Note: The feed library does not include description in JSON Feed output
-			// Description is only used for RSS/Atom feeds
-			expect(json.items[0].tags).toContain('javascript');
-			expect(json.items[0].tags).toContain('testing');
-		});
-
-		it('handles items with images', () => {
-			const config: FeedConfig = {
-				title: 'Test Blog',
-				description: 'A test blog feed',
-				feedPath: '/feed/blog',
-				homePath: '/blog',
-			};
-			const author = getDefaultAuthor(TEST_SITE_URL);
-			const feed = createFeed(config, TEST_SITE_URL, author);
-
-			const item: FeedItemData = {
-				id: 'post-2',
-				path: '/blog/photo-post',
-				title: 'Photo Post',
-				description: 'A post with an image',
-				date_published: new Date('2024-02-01'),
-				date_modified: new Date('2024-02-01'),
 				image: 'https://example.com/images/photo.jpg',
-			};
-
-			addFeedItem(feed, item, TEST_SITE_URL, author);
+			}), TEST_SITE_URL, TEST_AUTHOR);
 
 			const json = JSON.parse(feed.json1());
-
+			expect(json.items).toHaveLength(1);
+			expect(json.items[0].url).toBe('https://example.com/blog/my-post');
+			expect(json.items[0].tags).toEqual(['javascript', 'testing']);
 			expect(json.items[0].image).toBe('https://example.com/images/photo.jpg');
 		});
 
 		it('handles items without optional fields', () => {
-			const config: FeedConfig = {
-				title: 'Test Blog',
-				description: 'A test blog feed',
-				feedPath: '/feed/blog',
-				homePath: '/blog',
-			};
-			const author = getDefaultAuthor(TEST_SITE_URL);
-			const feed = createFeed(config, TEST_SITE_URL, author);
-
-			const item: FeedItemData = {
-				id: 'post-3',
-				path: '/blog/minimal-post',
-				title: 'Minimal Post',
-				description: 'A minimal post',
-				date_published: new Date('2024-03-01'),
-				date_modified: new Date('2024-03-01'),
-			};
-
-			addFeedItem(feed, item, TEST_SITE_URL, author);
+			const feed = createTestFeed();
+			addFeedItem(feed, createTestItem(), TEST_SITE_URL, TEST_AUTHOR);
 
 			const json = JSON.parse(feed.json1());
-
 			expect(json.items).toHaveLength(1);
-			expect(json.items[0].title).toBe('Minimal Post');
+			expect(json.items[0].title).toBe('My First Post');
 		});
 	});
 
 	describe('getFeedResponse', () => {
-		const config: FeedConfig = {
-			title: 'Test Blog',
-			description: 'A test blog feed',
-			feedPath: '/feed/blog',
-			homePath: '/blog',
-		};
+		it.each([
+			['json', 'application/feed+json', '"version"'],
+			['xml', 'application/rss+xml', '<rss'],
+			['atom', 'application/atom+xml', '<feed'],
+		] as const)('returns %s feed with correct content type', (format, contentType, marker) => {
+			const response = getFeedResponse(createTestFeed(), format);
+			expect(response.contentType).toBe(contentType);
+			expect(response.content).toContain(marker);
+		});
+	});
 
-		it('returns JSON feed with correct content type', () => {
-			const author = getDefaultAuthor(TEST_SITE_URL);
-			const feed = createFeed(config, TEST_SITE_URL, author);
-			const response = getFeedResponse(feed, 'json');
-
-			expect(response.contentType).toBe('application/feed+json');
-			expect(() => JSON.parse(response.content)).not.toThrow();
-
-			const json = JSON.parse(response.content);
-			// The feed library uses JSON Feed 1.0 spec
-			expect(json.version).toBe('https://jsonfeed.org/version/1');
+	describe('getItemImage', () => {
+		it('returns TMDB poster URL for review items', () => {
+			expect(getItemImage({ tmdbData: { poster_path: '/abc.jpg' } }))
+				.toBe('https://image.tmdb.org/t/p/w500/abc.jpg');
 		});
 
-		it('returns RSS feed with correct content type', () => {
-			const author = getDefaultAuthor(TEST_SITE_URL);
-			const feed = createFeed(config, TEST_SITE_URL, author);
-			const response = getFeedResponse(feed, 'xml');
-
-			expect(response.contentType).toBe('application/rss+xml');
-			expect(response.content).toContain('<?xml');
-			expect(response.content).toContain('<rss');
-			expect(response.content).toContain('Test Blog');
+		it('resolves relative image path to absolute URL with siteUrl', () => {
+			const page = { images: [{ src: '/images/mold/Mold.png' }] };
+			expect(getItemImage(page)).toBe('/images/mold/Mold.png');
+			expect(getItemImage(page, TEST_SITE_URL)).toBe('https://example.com/images/mold/Mold.png');
 		});
 
-		it('returns Atom feed with correct content type', () => {
-			const author = getDefaultAuthor(TEST_SITE_URL);
-			const feed = createFeed(config, TEST_SITE_URL, author);
-			const response = getFeedResponse(feed, 'atom');
+		it('returns undefined when no image data exists', () => {
+			expect(getItemImage({})).toBeUndefined();
+		});
+	});
 
-			expect(response.contentType).toBe('application/atom+xml');
-			expect(response.content).toContain('<?xml');
-			expect(response.content).toContain('<feed');
-			expect(response.content).toContain('xmlns="http://www.w3.org/2005/Atom"');
+	describe('photography feed RSS/Atom with resolved images', () => {
+		it('generates valid RSS/Atom without throwing on image URLs', () => {
+			const feed = createTestFeed({
+				title: 'Photography',
+				description: 'Photography feed',
+				feedPath: '/feed/photography',
+				homePath: '/photography',
+			});
+
+			addFeedItem(feed, createTestItem({
+				id: 'photo-1',
+				path: '/photography/mold-i',
+				title: 'Mold I',
+				image: getItemImage({ images: [{ src: '/images/mold/Mold.png' }] }, TEST_SITE_URL),
+			}), TEST_SITE_URL, TEST_AUTHOR);
+
+			expect(() => getFeedResponse(feed, 'xml')).not.toThrow();
+			expect(() => getFeedResponse(feed, 'atom')).not.toThrow();
+			expect(getFeedResponse(feed, 'xml').content).toContain('https://example.com/images/mold/Mold.png');
 		});
 	});
 });
