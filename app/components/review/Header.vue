@@ -95,6 +95,9 @@
 				:src="`tmdb/${content.tmdbData.backdrop_path}`"
 				:alt="content.title"
 				:placeholder="img(`tmdb/${content.tmdbData.backdrop_path}`, { height: 10, blur: 2, quality: 50 })"
+				loading="eager"
+				fetchpriority="high"
+				preload
 				class="object-cover w-full h-full"
 			/>
 		</div>
