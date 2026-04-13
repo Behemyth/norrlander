@@ -2,7 +2,7 @@
 	<div class="grid grid-flow-row gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
 		<!-- Left: Title and metadata -->
 		<div class="my-auto">
-			<ProseH2 class="!my-0 !mb-2">
+			<ProseH2 class="my-0! mb-2!">
 				{{ content.title }}
 			</ProseH2>
 			<div class="flex flex-wrap items-center gap-x-2 text-sm text-muted mb-2">
@@ -34,9 +34,9 @@
 		<!-- Poster -->
 		<NuxtImg
 			v-if="content.tmdbData?.poster_path"
-			:src="`tmdb/${content.tmdbData.poster_path}`"
+			:src="content.tmdbData.poster_path"
 			:alt="content.title"
-			:placeholder="img(`tmdb/${content.tmdbData.poster_path}`, { height: 10, blur: 2, quality: 50 })"
+			:placeholder="img(content.tmdbData.poster_path, { height: 10, blur: 2, quality: 50 })"
 			:img-attrs="{
 				class: 'aspect-[2/3]',
 			}"
@@ -47,7 +47,7 @@
 
 		<!-- Cast -->
 		<div class="my-auto">
-			<ProseH3 class="!mt-0 !mb-2">
+			<ProseH3 class="mt-0! mb-2!">
 				{{ $t('review.cast') }}
 			</ProseH3>
 			<ul
@@ -79,18 +79,18 @@
 					v-if="directors.length > 0"
 					class="mb-3"
 				>
-					<ProseH3 class="!mt-0 !mb-1">
+					<ProseH3 class="mt-0! mb-1!">
 						{{ $t('review.director', directors.length) }}
 					</ProseH3>
-					<ProseP class="!my-0">
+					<ProseP class="my-0!">
 						{{ directors.map(d => d.name).join(', ') }}
 					</ProseP>
 				</div>
 				<div v-if="uniqueWriterNames.length > 0">
-					<ProseH3 class="!mt-0 !mb-1">
+					<ProseH3 class="mt-0! mb-1!">
 						{{ $t('review.screenplay') }}
 					</ProseH3>
-					<ProseP class="!my-0">
+					<ProseP class="my-0!">
 						{{ uniqueWriterNames.join(', ') }}
 					</ProseP>
 				</div>
@@ -98,10 +98,10 @@
 			<!-- Show: Creators -->
 			<template v-else>
 				<div v-if="creators.length > 0">
-					<ProseH3 class="!mt-0 !mb-1">
+					<ProseH3 class="mt-0! mb-1!">
 						{{ creators.length === 1 ? $t('review.creator') : $t('review.createdBy') }}
 					</ProseH3>
-					<ProseP class="!my-0">
+					<ProseP class="my-0!">
 						{{ creators.map(c => c.name).join(', ') }}
 					</ProseP>
 				</div>
@@ -109,16 +109,16 @@
 					v-else-if="directors.length > 0"
 					class="mb-3"
 				>
-					<ProseH3 class="!mt-0 !mb-1">
+					<ProseH3 class="mt-0! mb-1!">
 						{{ $t('review.director', directors.length) }}
 					</ProseH3>
-					<ProseP class="!my-0">
+					<ProseP class="my-0!">
 						{{ directors.map(d => d.name).join(', ') }}
 					</ProseP>
 				</div>
 				<ProseP
 					v-else
-					class="!my-0 text-gray-500"
+					class="my-0! text-gray-500"
 				>
 					{{ $t('review.noCreator') }}
 				</ProseP>

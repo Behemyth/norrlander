@@ -113,7 +113,7 @@ describe('feed utilities', () => {
 
 	describe('getItemImage', () => {
 		it('returns TMDB poster URL for review items', () => {
-			expect(getItemImage({ tmdbData: { poster_path: '/abc.jpg' } }))
+			expect(getItemImage({ poster_path: 'tmdb/abc.jpg' }))
 				.toBe('https://image.tmdb.org/t/p/w500/abc.jpg');
 		});
 

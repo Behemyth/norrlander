@@ -6,7 +6,7 @@
 		>
 			<template #title>
 				<div class="flex flex-col gap-2">
-					<ProseH1 class="!mb-0 text-3xl font-bold">
+					<ProseH1 class="mb-0! text-3xl font-bold">
 						{{ content.title }}
 					</ProseH1>
 					<div class="flex flex-row items-center flex-wrap gap-x-2">
@@ -92,12 +92,12 @@
 
 		<div
 			v-if="content.tmdbData?.backdrop_path"
-			class="aspect-[12/5] w-full overflow-hidden"
+			class="aspect-12/5 w-full overflow-hidden"
 		>
 			<NuxtImg
-				:src="`tmdb/${content.tmdbData.backdrop_path}`"
+				:src="content.tmdbData.backdrop_path"
 				:alt="content.title"
-				:placeholder="img(`tmdb/${content.tmdbData.backdrop_path}`, { height: 10, blur: 2, quality: 50 })"
+				:placeholder="img(content.tmdbData.backdrop_path, { height: 10, blur: 2, quality: 50 })"
 				loading="eager"
 				fetchpriority="high"
 				preload

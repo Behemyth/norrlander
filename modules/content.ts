@@ -25,6 +25,13 @@ function trimCredits(credits: TMDBCredits): TMDBCredits {
 	};
 }
 
+/**
+ * Prefix a TMDB image path so NuxtImg resolves it via the `tmdb` alias.
+ */
+function toImageSrc(path: string): string {
+	return `tmdb${path}`;
+}
+
 export default defineNuxtModule({
 	setup(resolvedOptions, nuxt) {
 		const config = useRuntimeConfig();
@@ -33,11 +40,39 @@ export default defineNuxtModule({
 		const isTestEnv = process.env.NODE_ENV === 'test' || process.env.VITEST === 'true';
 		const hasApiCredentials = Boolean(config.apiSecret && config.public.apiBase);
 
-		if (isTestEnv || !hasApiCredentials) {
+		if (isTestEnv) {
 			return;
 		}
 
 		nuxt.hook('content:file:afterParse' as any, async (ctx: FileAfterParseHook) => {
+			if (!hasApiCredentials) {
+				// Stub minimal data so the layout renders with placeholders
+				switch (ctx.collection.name) {
+					case 'movie':
+						ctx.content.tmdbData = {
+							backdrop_path: '/images/placeholder-backdrop.svg',
+							id: Number(ctx.content.TMDB_ID),
+							genres: [],
+							poster_path: '/images/placeholder-poster.svg',
+							title: String(ctx.content.title || `Movie ${ctx.content.TMDB_ID}`),
+						} satisfies TMDBMovie;
+						ctx.content.poster_path = '/images/placeholder-poster.svg';
+						break;
+					case 'show':
+						ctx.content.tmdbData = {
+							backdrop_path: '/images/placeholder-backdrop.svg',
+							id: Number(ctx.content.TMDB_ID),
+							genres: [],
+							poster_path: '/images/placeholder-poster.svg',
+							name: String(ctx.content.title || `Show ${ctx.content.TMDB_ID}`),
+						} satisfies TMDBShow;
+						ctx.content.poster_path = '/images/placeholder-poster.svg';
+						break;
+					default:
+				}
+				return;
+			}
+
 			switch (ctx.collection.name) {
 				case 'movie':
 				{
@@ -57,7 +92,10 @@ export default defineNuxtModule({
 					if (tmdbData.credits) {
 						tmdbData.credits = trimCredits(tmdbData.credits);
 					}
+					tmdbData.poster_path = toImageSrc(tmdbData.poster_path);
+					tmdbData.backdrop_path = toImageSrc(tmdbData.backdrop_path);
 					ctx.content.tmdbData = tmdbData;
+					ctx.content.poster_path = tmdbData.poster_path;
 					break;
 				}
 				case 'show':
@@ -93,11 +131,20 @@ export default defineNuxtModule({
 					if (tmdbData.credits) {
 						tmdbData.credits = trimCredits(tmdbData.credits);
 					}
+					tmdbData.poster_path = toImageSrc(tmdbData.poster_path);
+					tmdbData.backdrop_path = toImageSrc(tmdbData.backdrop_path);
 					ctx.content.tmdbData = tmdbData;
 
 					if (seasonTmdbData) {
+						if (seasonTmdbData.poster_path) {
+							seasonTmdbData.poster_path = toImageSrc(seasonTmdbData.poster_path);
+						}
 						ctx.content.seasonTmdbData = seasonTmdbData;
 						ctx.content.title = `${tmdbData.name}: Season ${ctx.content.season_number}`;
+						ctx.content.poster_path = seasonTmdbData.poster_path ?? tmdbData.poster_path;
+					}
+					else {
+						ctx.content.poster_path = tmdbData.poster_path;
 					}
 					break;
 				}

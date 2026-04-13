@@ -8,9 +8,11 @@
 </template>
 
 <script setup lang="ts">
-import type { BlogCollectionItem } from '@nuxt/content';
-
 defineProps<{
-	post: BlogCollectionItem;
+	post: {
+		title: string;
+		description: string;
+		path: string;
+	};
 }>();
 </script>

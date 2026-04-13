@@ -6,58 +6,45 @@
 			:title="review.title"
 			:path="review.path"
 			:rating="Number(review.rating)"
-			:poster-path="getReviewPosterPath(review)"
+			:poster-path="review.poster_path ?? ''"
 			:season-number="'season_number' in review ? review.season_number : undefined"
 		/>
 	</div>
 </template>
 
 <script setup lang="ts">
-import type { MovieCollectionItem, ShowCollectionItem } from '@nuxt/content';
-
 const props = defineProps<{
 	collection?: 'movie' | 'show';
 	count: number;
 }>();
 
-/**
- * Get the poster path for a review, using season poster if available
- */
-function getReviewPosterPath(review: MovieCollectionItem | ShowCollectionItem): string {
-	// For show reviews with season data, use the season poster
-	if ('seasonTmdbData' in review && review.seasonTmdbData?.poster_path) {
-		return `tmdb${review.seasonTmdbData.poster_path}`;
-	}
-	return review.tmdbData?.poster_path ? `tmdb${review.tmdbData.poster_path}` : '';
-}
-
 const cacheKey = props.collection ? `review-grid-${props.collection}` : 'review-grid-all';
 
+const movieQuery = (limit: number) =>
+	queryCollection('movie')
+		.select('id', 'title', 'path', 'rating', 'date_published', 'poster_path')
+		.where('draft', '=', false)
+		.order('date_published', 'DESC')
+		.limit(limit);
+
+const showQuery = (limit: number) =>
+	queryCollection('show')
+		.select('id', 'title', 'path', 'rating', 'date_published', 'poster_path', 'season_number')
+		.where('draft', '=', false)
+		.order('date_published', 'DESC')
+		.limit(limit);
+
 const { data: items } = await useAsyncData(cacheKey, async () => {
-	if (props.collection) {
-		return queryCollection(props.collection)
-			.select('id', 'title', 'path', 'rating', 'date_published', 'tmdbData')
-			.where('draft', '=', false)
-			.order('date_published', 'DESC')
-			.limit(props.count)
-			.all();
+	if (props.collection === 'movie') {
+		return movieQuery(props.count).all();
 	}
-
+	if (props.collection === 'show') {
+		return showQuery(props.count).all();
+	}
 	const [movies, shows] = await Promise.all([
-		queryCollection('movie')
-			.select('id', 'title', 'path', 'rating', 'date_published', 'tmdbData')
-			.where('draft', '=', false)
-			.order('date_published', 'DESC')
-			.limit(props.count)
-			.all(),
-		queryCollection('show')
-			.select('id', 'title', 'path', 'rating', 'date_published', 'tmdbData', 'season_number', 'seasonTmdbData')
-			.where('draft', '=', false)
-			.order('date_published', 'DESC')
-			.limit(props.count)
-			.all(),
+		movieQuery(props.count).all(),
+		showQuery(props.count).all(),
 	]);
-
 	return [...movies, ...shows]
 		.sort((a, b) => new Date(b.date_published).getTime() - new Date(a.date_published).getTime())
 		.slice(0, props.count);

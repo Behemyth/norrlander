@@ -72,7 +72,7 @@
 				:title="review.title"
 				:path="review.path"
 				:rating="Number(review.rating)"
-				:poster-path="getReviewPosterPath(review)"
+				:poster-path="review.poster_path ?? ''"
 				:season-number="'season_number' in review ? review.season_number : undefined"
 			/>
 		</div>
@@ -112,13 +112,6 @@ const { t } = useI18n();
 const props = defineProps<{
 	collection: 'movie' | 'show';
 }>();
-
-function getReviewPosterPath(review: ReviewItem): string {
-	if ('seasonTmdbData' in review && review.seasonTmdbData?.poster_path) {
-		return `tmdb${review.seasonTmdbData.poster_path}`;
-	}
-	return review.tmdbData?.poster_path ? `tmdb${review.tmdbData.poster_path}` : '';
-}
 
 function getReleaseYear(review: ReviewItem): number | null {
 	if ('seasonTmdbData' in review && review.seasonTmdbData?.air_date) {
