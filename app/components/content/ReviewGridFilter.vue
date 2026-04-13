@@ -117,13 +117,14 @@ function getReviewPosterPath(review: ReviewItem): string {
 	if ('seasonTmdbData' in review && review.seasonTmdbData?.poster_path) {
 		return `tmdb${review.seasonTmdbData.poster_path}`;
 	}
-	return `tmdb${review.tmdbData.poster_path}`;
+	return review.tmdbData?.poster_path ? `tmdb${review.tmdbData.poster_path}` : '';
 }
 
 function getReleaseYear(review: ReviewItem): number | null {
 	if ('seasonTmdbData' in review && review.seasonTmdbData?.air_date) {
 		return new Date(review.seasonTmdbData.air_date).getFullYear();
 	}
+	if (!review.tmdbData) return null;
 	const dateStr = 'title' in review.tmdbData
 		? (review.tmdbData as TMDBMovie).release_date
 		: (review.tmdbData as TMDBShow).first_air_date;
@@ -148,7 +149,7 @@ const availableGenres = computed(() => {
 	if (!items.value) return [];
 	const genres = new Set<string>();
 	for (const item of items.value) {
-		for (const genre of item.tmdbData.genres) {
+		for (const genre of item.tmdbData?.genres ?? []) {
 			genres.add(genre.name);
 		}
 	}

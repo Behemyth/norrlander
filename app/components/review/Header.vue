@@ -90,7 +90,10 @@
 			</template>
 		</UPageHeader>
 
-		<div class="aspect-[12/5] w-full overflow-hidden">
+		<div
+			v-if="content.tmdbData?.backdrop_path"
+			class="aspect-[12/5] w-full overflow-hidden"
+		>
 			<NuxtImg
 				:src="`tmdb/${content.tmdbData.backdrop_path}`"
 				:alt="content.title"
