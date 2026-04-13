@@ -36,6 +36,7 @@ const cacheKey = props.collection ? `review-grid-${props.collection}` : 'review-
 const { data: items } = await useAsyncData(cacheKey, async () => {
 	if (props.collection) {
 		return queryCollection(props.collection)
+			.select('id', 'title', 'path', 'rating', 'date_published', 'tmdbData')
 			.where('draft', '=', false)
 			.order('date_published', 'DESC')
 			.limit(props.count)
@@ -43,8 +44,18 @@ const { data: items } = await useAsyncData(cacheKey, async () => {
 	}
 
 	const [movies, shows] = await Promise.all([
-		queryCollection('movie').where('draft', '=', false).order('date_published', 'DESC').limit(props.count).all(),
-		queryCollection('show').where('draft', '=', false).order('date_published', 'DESC').limit(props.count).all(),
+		queryCollection('movie')
+			.select('id', 'title', 'path', 'rating', 'date_published', 'tmdbData')
+			.where('draft', '=', false)
+			.order('date_published', 'DESC')
+			.limit(props.count)
+			.all(),
+		queryCollection('show')
+			.select('id', 'title', 'path', 'rating', 'date_published', 'tmdbData', 'season_number', 'seasonTmdbData')
+			.where('draft', '=', false)
+			.order('date_published', 'DESC')
+			.limit(props.count)
+			.all(),
 	]);
 
 	return [...movies, ...shows]

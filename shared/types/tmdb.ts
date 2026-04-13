@@ -19,7 +19,7 @@ export const TMDBCastMemberSchema = z.object({
 	id: z.number().int(),
 	name: z.string(),
 	character: z.string(),
-	profile_path: z.string().nullable(),
+	profile_path: z.string().nullable().optional(),
 	order: z.number().int(),
 });
 
@@ -30,7 +30,7 @@ export const TMDBCrewMemberSchema = z.object({
 	name: z.string(),
 	job: z.string(),
 	department: z.string(),
-	profile_path: z.string().nullable(),
+	profile_path: z.string().nullable().optional(),
 });
 
 export type TMDBCrewMember = z.infer<typeof TMDBCrewMemberSchema>;
