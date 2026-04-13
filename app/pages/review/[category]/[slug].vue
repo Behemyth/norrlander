@@ -9,11 +9,13 @@
 		</UPageBody>
 		<ReviewFooter :content="page" />
 		<USeparator class="my-8" />
-		<LazyReviewDiscussion
-			:category="capitalizedCategory"
-			:title="page.title"
-			:season-number="'season_number' in page ? page.season_number : undefined"
-		/>
+		<ClientOnly>
+			<LazyReviewDiscussion
+				:category="capitalizedCategory"
+				:title="page.title"
+				:season-number="'season_number' in page ? page.season_number : undefined"
+			/>
+		</ClientOnly>
 	</UPage>
 	<PageNotFound
 		v-else

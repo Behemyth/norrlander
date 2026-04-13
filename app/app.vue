@@ -1,7 +1,7 @@
 <template>
 	<UApp
 		:scroll-body="false"
-		:locale="locales[locale]"
+		:locale="uiLocales[locale]"
 	>
 		<NuxtAnnouncer />
 		<AppHeader />
@@ -15,8 +15,9 @@
 </template>
 
 <script setup lang="ts">
-import * as locales from '@nuxt/ui/locale';
+import { en, de, pl, sv } from '@nuxt/ui/locale';
 
+const uiLocales: Record<string, any> = { en, de, pl, sv };
 const { locale } = useI18n();
 
 const { data: feedPages } = await useAsyncData('feed-links', () =>

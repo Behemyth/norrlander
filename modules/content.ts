@@ -4,7 +4,26 @@ import { defineNuxtModule, useRuntimeConfig } from '@nuxt/kit';
 
 import { $fetch } from 'ofetch';
 
-import type { TMDBMovie, TMDBShow, TMDBSeason } from '~~/shared/types/tmdb';
+import type { TMDBMovie, TMDBShow, TMDBSeason, TMDBCredits } from '~~/shared/types/tmdb';
+
+const KEPT_CREW_JOBS = ['Director', 'Screenplay', 'Writer', 'Story'];
+
+/**
+ * Trim credits to only the data the UI needs:
+ * - Top 10 cast by billing order, without profile_path
+ * - Only Director/Writer/Screenplay/Story crew, without profile_path
+ */
+function trimCredits(credits: TMDBCredits): TMDBCredits {
+	return {
+		cast: credits.cast
+			.sort((a, b) => a.order - b.order)
+			.slice(0, 10)
+			.map(({ profile_path: _, ...rest }) => rest),
+		crew: credits.crew
+			.filter(m => KEPT_CREW_JOBS.includes(m.job))
+			.map(({ profile_path: _, ...rest }) => rest),
+	};
+}
 
 export default defineNuxtModule({
 	setup(resolvedOptions, nuxt) {
@@ -35,10 +54,11 @@ export default defineNuxtModule({
 					});
 
 					ctx.content.title = tmdbData.title;
+					if (tmdbData.credits) {
+						tmdbData.credits = trimCredits(tmdbData.credits);
+					}
 					ctx.content.tmdbData = tmdbData;
 					break;
-				}
-				case 'show':
 				{
 					const [tmdbData, seasonTmdbData] = await Promise.all([
 						$fetch<TMDBShow>(`/tv/${ctx.content.TMDB_ID}`, {
@@ -68,6 +88,9 @@ export default defineNuxtModule({
 					]);
 
 					ctx.content.title = tmdbData.name;
+					if (tmdbData.credits) {
+						tmdbData.credits = trimCredits(tmdbData.credits);
+					}
 					ctx.content.tmdbData = tmdbData;
 
 					if (seasonTmdbData) {
