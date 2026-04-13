@@ -7,14 +7,14 @@ export type ReviewContent = MovieCollectionItem | ShowCollectionItem;
  * Type guard to check if the review content is for a movie
  */
 export function isMovieReview(content: ReviewContent): content is MovieCollectionItem {
-	return 'title' in content.tmdbData;
+	return content.tmdbData != null && 'title' in content.tmdbData;
 }
 
 /**
  * Type guard to check if the review content is for a show
  */
 export function isShowReview(content: ReviewContent): content is ShowCollectionItem {
-	return 'name' in content.tmdbData;
+	return content.tmdbData != null && 'name' in content.tmdbData;
 }
 
 /**
@@ -52,11 +52,12 @@ export function useReviewMetadata(content: ReviewContent) {
 	);
 
 	// Normalized display title
-	const displayTitle = computed(() =>
-		isMovie.value
+	const displayTitle = computed(() => {
+		if (!content.tmdbData) return content.title ?? '';
+		return isMovie.value
 			? (content.tmdbData as TMDBMovie).title
-			: (content.tmdbData as TMDBShow).name,
-	);
+			: (content.tmdbData as TMDBShow).name;
+	});
 
 	// Release year extracted from date string
 	// For seasonal reviews, use the season's air_date
@@ -66,6 +67,7 @@ export function useReviewMetadata(content: ReviewContent) {
 			return new Date(seasonData.value.air_date).getFullYear();
 		}
 
+		if (!content.tmdbData) return null;
 		const dateStr = isMovie.value
 			? (content.tmdbData as TMDBMovie).release_date
 			: (content.tmdbData as TMDBShow).first_air_date;
@@ -81,6 +83,7 @@ export function useReviewMetadata(content: ReviewContent) {
 			return new Date(seasonData.value.air_date);
 		}
 
+		if (!content.tmdbData) return null;
 		const dateStr = isMovie.value
 			? (content.tmdbData as TMDBMovie).release_date
 			: (content.tmdbData as TMDBShow).first_air_date;
@@ -91,17 +94,17 @@ export function useReviewMetadata(content: ReviewContent) {
 
 	// Genres as comma-separated string
 	const genresString = computed(() =>
-		content.tmdbData.genres.map(g => g.name).join(', '),
+		content.tmdbData?.genres?.map(g => g.name).join(', ') ?? '',
 	);
 
 	// Genres as array
 	const genres = computed(() =>
-		content.tmdbData.genres,
+		content.tmdbData?.genres ?? [],
 	);
 
 	// Runtime formatted as "Xh Ym" (movies only)
 	const formattedRuntime = computed(() => {
-		if (!isMovie.value) return null;
+		if (!isMovie.value || !content.tmdbData) return null;
 
 		const runtime = (content.tmdbData as TMDBMovie).runtime;
 		if (!runtime) return null;
@@ -120,12 +123,12 @@ export function useReviewMetadata(content: ReviewContent) {
 
 	// Raw runtime in minutes (movies only)
 	const runtimeMinutes = computed(() =>
-		isMovie.value ? (content.tmdbData as TMDBMovie).runtime : null,
+		isMovie.value && content.tmdbData ? (content.tmdbData as TMDBMovie).runtime : null,
 	);
 
 	// Show-specific: number of seasons
 	const numberOfSeasons = computed(() =>
-		isShow.value ? (content.tmdbData as TMDBShow).number_of_seasons : null,
+		isShow.value && content.tmdbData ? (content.tmdbData as TMDBShow).number_of_seasons : null,
 	);
 
 	// Show-specific: number of episodes
@@ -134,7 +137,7 @@ export function useReviewMetadata(content: ReviewContent) {
 		if (isSeason.value && seasonData.value?.episode_count) {
 			return seasonData.value.episode_count;
 		}
-		return isShow.value ? (content.tmdbData as TMDBShow).number_of_episodes : null;
+		return isShow.value && content.tmdbData ? (content.tmdbData as TMDBShow).number_of_episodes : null;
 	});
 
 	// Season-specific: episode count for this season only
@@ -147,7 +150,7 @@ export function useReviewMetadata(content: ReviewContent) {
 		if (isSeason.value && seasonData.value?.poster_path) {
 			return seasonData.value.poster_path;
 		}
-		return content.tmdbData.poster_path;
+		return content.tmdbData?.poster_path ?? '';
 	});
 
 	// Published date from the content (review publish date)
@@ -168,7 +171,7 @@ export function useReviewMetadata(content: ReviewContent) {
 	});
 
 	// Credits data - cast to proper type since @nuxt/content types may not have caught up
-	const credits = computed(() => (content.tmdbData as TMDBMovie & { credits?: TMDBCredits }).credits);
+	const credits = computed(() => content.tmdbData ? (content.tmdbData as TMDBMovie & { credits?: TMDBCredits }).credits : undefined);
 
 	// Get top cast members (sorted by order)
 	const getTopCast = (limit: number = 5): ComputedRef<TMDBCastMember[]> => {
@@ -201,7 +204,7 @@ export function useReviewMetadata(content: ReviewContent) {
 
 	// Show creators (for TV shows)
 	const creators = computed((): TMDBCreator[] => {
-		if (!isShow.value) return [];
+		if (!isShow.value || !content.tmdbData) return [];
 		return (content.tmdbData as TMDBShow).created_by ?? [];
 	});
 

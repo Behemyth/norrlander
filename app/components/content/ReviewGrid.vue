@@ -28,7 +28,7 @@ function getReviewPosterPath(review: MovieCollectionItem | ShowCollectionItem): 
 	if ('seasonTmdbData' in review && review.seasonTmdbData?.poster_path) {
 		return `tmdb${review.seasonTmdbData.poster_path}`;
 	}
-	return `tmdb${review.tmdbData.poster_path}`;
+	return review.tmdbData?.poster_path ? `tmdb${review.tmdbData.poster_path}` : '';
 }
 
 const cacheKey = props.collection ? `review-grid-${props.collection}` : 'review-grid-all';

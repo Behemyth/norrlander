@@ -59,6 +59,8 @@ export default defineNuxtModule({
 					}
 					ctx.content.tmdbData = tmdbData;
 					break;
+				}
+				case 'show':
 				{
 					const [tmdbData, seasonTmdbData] = await Promise.all([
 						$fetch<TMDBShow>(`/tv/${ctx.content.TMDB_ID}`, {

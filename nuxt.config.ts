@@ -92,6 +92,7 @@ export default defineNuxtConfig({
 		prerender: {
 			crawlLinks: true,
 			autoSubfolderIndex: false, // Prevents a 404 with trailing slashes catch-alls for nuxt/content
+			interval: 50, // To avoid rate limiting of the TMDB API
 			routes: [
 				'/sitemap.xml',
 				'/robots.txt',

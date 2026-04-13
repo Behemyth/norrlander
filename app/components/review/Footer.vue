@@ -33,6 +33,7 @@
 
 		<!-- Poster -->
 		<NuxtImg
+			v-if="content.tmdbData?.poster_path"
 			:src="`tmdb/${content.tmdbData.poster_path}`"
 			:alt="content.title"
 			:placeholder="img(`tmdb/${content.tmdbData.poster_path}`, { height: 10, blur: 2, quality: 50 })"
