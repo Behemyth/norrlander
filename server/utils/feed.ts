@@ -132,12 +132,9 @@ export function getDefaultAuthor(siteUrl: string): FeedAuthor {
 export function getItemImage(page: unknown, siteUrl?: string): string | undefined {
 	const p = page as Record<string, unknown>;
 
-	// Reviews have tmdbData with poster_path
-	if (p.tmdbData && typeof p.tmdbData === 'object') {
-		const tmdb = p.tmdbData as Record<string, unknown>;
-		if (tmdb.poster_path) {
-			return `https://image.tmdb.org/t/p/w500${tmdb.poster_path}`;
-		}
+	// Reviews have a top-level poster_path (prefixed with 'tmdb' at build time)
+	if (typeof p.poster_path === 'string' && p.poster_path.startsWith('tmdb')) {
+		return `https://image.tmdb.org/t/p/w500${p.poster_path.slice(4)}`;
 	}
 
 	// Photography has images array

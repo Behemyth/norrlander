@@ -72,7 +72,7 @@
 				:title="review.title"
 				:path="review.path"
 				:rating="Number(review.rating)"
-				:poster-path="getReviewPosterPath(review)"
+				:poster-path="review.poster_path ?? ''"
 				:season-number="'season_number' in review ? review.season_number : undefined"
 			/>
 		</div>
@@ -102,10 +102,23 @@
 </template>
 
 <script setup lang="ts">
-import type { MovieCollectionItem, ShowCollectionItem } from '@nuxt/content';
-import type { TMDBMovie, TMDBShow } from '~~/shared/types/tmdb';
-
-type ReviewItem = MovieCollectionItem | ShowCollectionItem;
+/**
+ * Structural type for a review row after `.select()` narrowing. Only the
+ * scalar fields used by the filter UI — `genres` and `release_year` are
+ * denormalized at build time in `modules/content.ts` so we never have to
+ * ship the full `tmdbData` / `seasonTmdbData` objects to the client.
+ */
+type FilterableReview = {
+	id: string;
+	title: string;
+	path: string;
+	rating: number;
+	poster_path?: string | null;
+	date_published: string | Date;
+	season_number?: number;
+	genres: string[];
+	release_year?: number;
+};
 
 const { t } = useI18n();
 
@@ -113,35 +126,47 @@ const props = defineProps<{
 	collection: 'movie' | 'show';
 }>();
 
-function getReviewPosterPath(review: ReviewItem): string {
-	if ('seasonTmdbData' in review && review.seasonTmdbData?.poster_path) {
-		return `tmdb${review.seasonTmdbData.poster_path}`;
-	}
-	return review.tmdbData?.poster_path ? `tmdb${review.tmdbData.poster_path}` : '';
-}
-
-function getReleaseYear(review: ReviewItem): number | null {
-	if ('seasonTmdbData' in review && review.seasonTmdbData?.air_date) {
-		return new Date(review.seasonTmdbData.air_date).getFullYear();
-	}
-	if (!review.tmdbData) return null;
-	const dateStr = 'title' in review.tmdbData
-		? (review.tmdbData as TMDBMovie).release_date
-		: (review.tmdbData as TMDBShow).first_air_date;
-	if (!dateStr) return null;
-	return new Date(dateStr).getFullYear();
-}
-
 // --- Data ---
 
 const { polite: announce } = useAnnouncer();
 
-const { data: items } = await useAsyncData(`review-grid-filter-${props.collection}`, () =>
-	queryCollection(props.collection)
+// Split the query per collection because `season_number` is only valid on
+// show reviews and the `.select()` signature narrows by literal collection type.
+const { data: items } = await useAsyncData(`review-grid-filter-${props.collection}`, async (): Promise<FilterableReview[]> => {
+	if (props.collection === 'show') {
+		const rows = await queryCollection('show')
+			.select('id', 'title', 'path', 'rating', 'poster_path', 'date_published', 'season_number', 'genres', 'release_year')
+			.where('draft', '=', false)
+			.order('date_published', 'DESC')
+			.all();
+		return rows as unknown as FilterableReview[];
+	}
+	const rows = await queryCollection('movie')
+		.select('id', 'title', 'path', 'rating', 'poster_path', 'date_published', 'genres', 'release_year')
 		.where('draft', '=', false)
 		.order('date_published', 'DESC')
-		.all(),
-);
+		.all();
+	return rows as unknown as FilterableReview[];
+});
+
+// --- Pre-indexed filter structures ---
+// Built once from the fetched dataset so the `filteredItems` computed doesn't
+// rebuild set/year lookups on every keystroke.
+
+type ReviewIndex = {
+	genreSet: Map<string, Set<string>>; // id -> Set<genreName>
+	yearById: Map<string, number | null>;
+};
+
+const reviewIndex = computed<ReviewIndex>(() => {
+	const genreSet = new Map<string, Set<string>>();
+	const yearById = new Map<string, number | null>();
+	for (const item of items.value ?? []) {
+		genreSet.set(item.id, new Set(item.genres ?? []));
+		yearById.set(item.id, item.release_year ?? null);
+	}
+	return { genreSet, yearById };
+});
 
 // --- Filter options derived from data ---
 
@@ -149,8 +174,8 @@ const availableGenres = computed(() => {
 	if (!items.value) return [];
 	const genres = new Set<string>();
 	for (const item of items.value) {
-		for (const genre of item.tmdbData?.genres ?? []) {
-			genres.add(genre.name);
+		for (const name of item.genres ?? []) {
+			genres.add(name);
 		}
 	}
 	return [...genres].sort();
@@ -160,8 +185,7 @@ const availableYears = computed(() => {
 	if (!items.value) return [];
 	const years = new Set<string>();
 	for (const item of items.value) {
-		const year = getReleaseYear(item);
-		if (year) years.add(String(year));
+		if (item.release_year) years.add(String(item.release_year));
 	}
 	return [...years].sort().reverse();
 });
@@ -208,21 +232,25 @@ function clearFilters() {
 const filteredItems = computed(() => {
 	if (!items.value) return [];
 
+	const { genreSet, yearById } = reviewIndex.value;
+	const selectedYearSet = new Set(selectedYears.value);
+	const selectedGenreList = selectedGenres.value;
+	const minRating = Number(selectedMinRating.value) || 0;
+
 	let result = items.value.filter((item) => {
-		// Genre filter
-		if (selectedGenres.value.length > 0) {
-			const itemGenres = item.tmdbData.genres.map(g => g.name);
-			if (!selectedGenres.value.some(g => itemGenres.includes(g))) return false;
+		// Genre filter — O(1) lookups via pre-indexed Set.
+		if (selectedGenreList.length > 0) {
+			const itemGenres = genreSet.get(item.id);
+			if (!itemGenres || !selectedGenreList.some(g => itemGenres.has(g))) return false;
 		}
 
 		// Year filter
-		if (selectedYears.value.length > 0) {
-			const year = getReleaseYear(item);
-			if (!year || !selectedYears.value.includes(String(year))) return false;
+		if (selectedYearSet.size > 0) {
+			const year = yearById.get(item.id);
+			if (!year || !selectedYearSet.has(String(year))) return false;
 		}
 
 		// Min rating filter
-		const minRating = Number(selectedMinRating.value) || 0;
 		if (minRating && item.rating < minRating) return false;
 
 		return true;
@@ -237,8 +265,8 @@ const filteredItems = computed(() => {
 			case 'title':
 				return a.title.localeCompare(b.title);
 			case 'year': {
-				const ya = getReleaseYear(a) ?? 0;
-				const yb = getReleaseYear(b) ?? 0;
+				const ya = yearById.get(a.id) ?? 0;
+				const yb = yearById.get(b.id) ?? 0;
 				return yb - ya;
 			}
 			default: // 'date' — already ordered by date_published DESC from query

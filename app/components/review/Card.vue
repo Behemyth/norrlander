@@ -4,7 +4,7 @@
 		class="group flex flex-col gap-2"
 	>
 		<div
-			class="relative aspect-[2/3] overflow-hidden rounded-sm"
+			class="relative aspect-2/3 overflow-hidden rounded-sm"
 			:style="{ viewTransitionName: `review-poster${path.replaceAll('/', '-')}` }"
 		>
 			<NuxtImg

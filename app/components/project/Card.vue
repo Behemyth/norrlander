@@ -24,10 +24,13 @@
 </template>
 
 <script setup lang="ts">
-import type { ProjectCollectionItem } from '@nuxt/content';
-
 interface Props {
-	project: ProjectCollectionItem;
+	project: {
+		title: string;
+		description: string;
+		path: string;
+		link: string;
+	};
 }
 
 const { project } = defineProps<Props>();

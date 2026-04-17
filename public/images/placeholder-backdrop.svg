@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" fill="none">
+  <rect width="1200" height="500" fill="#1a1a2e"/>
+  <path d="M580 220 L580 280 L630 250 Z" fill="#4a4a6a"/>
+  <text x="600" y="320" text-anchor="middle" fill="#4a4a6a" font-family="system-ui" font-size="16">No API Key</text>
+</svg>

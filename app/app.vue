@@ -1,7 +1,7 @@
 <template>
 	<UApp
 		:scroll-body="false"
-		:locale="uiLocales[locale]"
+		:locale="uiLocale"
 	>
 		<NuxtAnnouncer />
 		<AppHeader />
@@ -15,29 +15,34 @@
 </template>
 
 <script setup lang="ts">
-import { en, de, pl, sv } from '@nuxt/ui/locale';
+import { en } from '@nuxt/ui/locale';
 
-const uiLocales: Record<string, any> = { en, de, pl, sv };
 const { locale } = useI18n();
 
-const { data: feedPages } = await useAsyncData('feed-links', () =>
-	queryCollection('content')
-		.select('path', 'title', 'feed')
-		.where('feed', 'IS NOT NULL')
-		.all(),
-);
+// Dynamically import the active UI locale to avoid bundling all four locale
+// packs in the initial client payload. `en` is statically imported as a safe
+// SSR default (matches `i18n.defaultLocale`); others are code-split chunks
+// loaded only when the user switches to that locale.
+const uiLocale = shallowRef<typeof en>(en);
 
-const links = computed(() =>
-	(feedPages.value ?? []).map(page => ({
-		rel: 'alternate',
-		title: page.title,
-		type: 'application/json',
-		href: 'https://norrlander.com/feed' + page.path + '.json',
-	})),
-);
+const uiLocaleLoaders: Record<string, () => Promise<typeof en>> = {
+	en: async () => en,
+	de: () => import('@nuxt/ui/runtime/locale/de.js').then(m => m.default ?? m.de),
+	pl: () => import('@nuxt/ui/runtime/locale/pl.js').then(m => m.default ?? m.pl),
+	sv: () => import('@nuxt/ui/runtime/locale/sv.js').then(m => m.default ?? m.sv),
+};
 
-// These links are for external services, and will not be picked up by the prerender (not relative)
-useHead({
-	link: links,
+watchEffect(async () => {
+	if (!import.meta.client) return;
+	const loader = uiLocaleLoaders[locale.value] ?? uiLocaleLoaders.en;
+	try {
+		uiLocale.value = await loader!();
+	}
+	catch {
+		uiLocale.value = en;
+	}
 });
+
+// Per-page alternate feed `<link>` is emitted in `pages/[...slug].vue` for the
+// current route; no global list is needed here.
 </script>

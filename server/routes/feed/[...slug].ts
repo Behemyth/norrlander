@@ -41,7 +41,7 @@ const feedConfigs: Record<string, { collection: FeedableCollections; config: Fee
 	},
 };
 
-export default defineEventHandler(async (event) => {
+export default defineCachedEventHandler(async (event) => {
 	const { queryCollection } = await import('@nuxt/content/server');
 
 	const slugParts = getRouterParam(event, 'slug');
@@ -102,4 +102,8 @@ export default defineEventHandler(async (event) => {
 	setResponseHeader(event, 'cache-control', 'public, max-age=3600, s-maxage=3600');
 
 	return response.content;
+}, {
+	name: 'feed',
+	maxAge: 3600,
+	getKey: event => getRouterParam(event, 'slug') ?? 'unknown',
 });

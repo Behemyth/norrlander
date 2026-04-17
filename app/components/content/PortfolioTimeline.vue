@@ -47,10 +47,12 @@ const { t } = useI18n();
 const { data: portfolioItems } = await useAsyncData('portfolio-timeline', async () => {
 	const [careers, academics] = await Promise.all([
 		queryCollection('career')
+			.select('id', 'title', 'path', 'start_date', 'end_date', 'link', 'position', 'achievements', 'location', 'tags')
 			.where('draft', '=', false)
 			.order('start_date', 'DESC')
 			.all(),
 		queryCollection('academic')
+			.select('id', 'title', 'path', 'start_date', 'end_date', 'link', 'degree', 'location')
 			.where('draft', '=', false)
 			.order('start_date', 'DESC')
 			.all(),

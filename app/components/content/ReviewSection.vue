@@ -12,21 +12,16 @@ const props = defineProps<{
 	collection: 'movie' | 'show';
 }>();
 
-// Get collection metadata (published and draft counts)
+// Get collection metadata (published and draft counts) in a single query
 const { data: metadata } = await useAsyncData(`review-header-${props.collection}`, async () => {
-	const [published, drafts] = await Promise.all([
-		queryCollection(props.collection)
-			.where('draft', '=', false)
-			.count(),
-		queryCollection(props.collection)
-			.where('draft', '=', true)
-			.count(),
-	]);
+	const rows = await queryCollection(props.collection).select('draft').all();
+	const drafts = rows.filter(r => r.draft === true).length;
+	const published = rows.length - drafts;
 
 	return {
 		published_count: published,
 		drafted_count: drafts,
-		total_count: published + drafts,
+		total_count: rows.length,
 	};
 });
 
