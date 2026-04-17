@@ -23,6 +23,11 @@ export const ReviewMetadataSchema = PageSchema.extend({
 	rating: z.number().int().nonnegative().lte(8),
 	TMDB_ID: z.number().int(),
 	poster_path: z.string().optional(),
+	// Denormalized from TMDB at build time so `ReviewGridFilter` can
+	// `.select()` tiny scalars instead of the full `tmdbData` / `seasonTmdbData`
+	// objects.
+	genres: z.array(z.string()).optional().default([]),
+	release_year: z.number().int().optional(),
 });
 
 /**

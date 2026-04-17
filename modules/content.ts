@@ -32,6 +32,18 @@ function toImageSrc(path: string): string {
 	return `tmdb${path}`;
 }
 
+/**
+ * Extract the 4-digit year from a TMDB date string (YYYY-MM-DD). Returns
+ * `undefined` when the date is missing or malformed so the consumer can omit
+ * the field entirely.
+ */
+function yearFromTmdbDate(dateStr: string | undefined | null): number | undefined {
+	if (!dateStr) return undefined;
+	const d = new Date(dateStr);
+	if (Number.isNaN(d.getTime())) return undefined;
+	return d.getFullYear();
+}
+
 export default defineNuxtModule({
 	setup(resolvedOptions, nuxt) {
 		const config = useRuntimeConfig();
@@ -57,6 +69,7 @@ export default defineNuxtModule({
 							title: String(ctx.content.title || `Movie ${ctx.content.TMDB_ID}`),
 						} satisfies TMDBMovie;
 						ctx.content.poster_path = '/images/placeholder-poster.svg';
+						ctx.content.genres = [];
 						break;
 					case 'show':
 						ctx.content.tmdbData = {
@@ -67,6 +80,7 @@ export default defineNuxtModule({
 							name: String(ctx.content.title || `Show ${ctx.content.TMDB_ID}`),
 						} satisfies TMDBShow;
 						ctx.content.poster_path = '/images/placeholder-poster.svg';
+						ctx.content.genres = [];
 						break;
 					default:
 				}
@@ -96,6 +110,9 @@ export default defineNuxtModule({
 					tmdbData.backdrop_path = toImageSrc(tmdbData.backdrop_path);
 					ctx.content.tmdbData = tmdbData;
 					ctx.content.poster_path = tmdbData.poster_path;
+					ctx.content.genres = (tmdbData.genres ?? []).map(g => g.name);
+					const movieYear = yearFromTmdbDate(tmdbData.release_date);
+					if (movieYear !== undefined) ctx.content.release_year = movieYear;
 					break;
 				}
 				case 'show':
@@ -134,6 +151,7 @@ export default defineNuxtModule({
 					tmdbData.poster_path = toImageSrc(tmdbData.poster_path);
 					tmdbData.backdrop_path = toImageSrc(tmdbData.backdrop_path);
 					ctx.content.tmdbData = tmdbData;
+					ctx.content.genres = (tmdbData.genres ?? []).map(g => g.name);
 
 					if (seasonTmdbData) {
 						if (seasonTmdbData.poster_path) {
@@ -142,9 +160,15 @@ export default defineNuxtModule({
 						ctx.content.seasonTmdbData = seasonTmdbData;
 						ctx.content.title = `${tmdbData.name}: Season ${ctx.content.season_number}`;
 						ctx.content.poster_path = seasonTmdbData.poster_path ?? tmdbData.poster_path;
+						const seasonYear = yearFromTmdbDate(seasonTmdbData.air_date);
+						if (seasonYear !== undefined) ctx.content.release_year = seasonYear;
 					}
 					else {
 						ctx.content.poster_path = tmdbData.poster_path;
+					}
+					if (ctx.content.release_year === undefined) {
+						const showYear = yearFromTmdbDate(tmdbData.first_air_date);
+						if (showYear !== undefined) ctx.content.release_year = showYear;
 					}
 					break;
 				}
