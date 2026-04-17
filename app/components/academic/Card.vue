@@ -24,10 +24,13 @@
 </template>
 
 <script setup lang="ts">
-import type { AcademicCollectionItem } from '@nuxt/content';
-
 interface Props {
-	academic: AcademicCollectionItem;
+	academic: {
+		title: string;
+		degree: string;
+		path: string;
+		location?: string;
+	};
 }
 
 const { academic } = defineProps<Props>();

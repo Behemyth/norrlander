@@ -7,7 +7,7 @@
 			:path="review.path"
 			:rating="Number(review.rating)"
 			:poster-path="review.poster_path ?? ''"
-			:season-number="'season_number' in review ? review.season_number : undefined"
+			:season-number="getSeasonNumber(review)"
 		/>
 	</div>
 </template>
@@ -49,4 +49,9 @@ const { data: items } = await useAsyncData(cacheKey, async () => {
 		.sort((a, b) => new Date(b.date_published).getTime() - new Date(a.date_published).getTime())
 		.slice(0, props.count);
 });
+
+function getSeasonNumber(review: { season_number?: number } | Record<string, unknown>): number | undefined {
+	const value = (review as { season_number?: unknown }).season_number;
+	return typeof value === 'number' ? value : undefined;
+}
 </script>

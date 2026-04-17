@@ -51,10 +51,15 @@
 </template>
 
 <script setup lang="ts">
-import type { CareerCollectionItem } from '@nuxt/content';
-
 interface Props {
-	job: CareerCollectionItem;
+	job: {
+		title: string;
+		position: string;
+		path: string;
+		achievements?: string[];
+		location?: string;
+		tags?: string[];
+	};
 }
 const { job: career } = defineProps<Props>();
 </script>
