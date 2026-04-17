@@ -70,9 +70,9 @@ export default defineNuxtConfig({
 	},
 
 	routeRules: {
-		'/': { appLayout: 'default' },
-		'/contact': { appLayout: 'default' },
-		'/**': { appLayout: 'content' },
+		'/': { appLayout: 'default', prerender: true },
+		'/contact': { appLayout: 'default', prerender: true },
+		'/**': { appLayout: 'content', prerender: true },
 	},
 
 	future: {
@@ -181,7 +181,9 @@ export default defineNuxtConfig({
 	// https://image.nuxt.com/
 	image: {
 		provider: 'ipx',
-		format: ['webp'],
+		// AVIF first (broad support, ~20–40% smaller than WebP on photo content); WebP fallback.
+		format: ['avif', 'webp'],
+		densities: [1, 2],
 		domains: ['image.tmdb.org'],
 		alias: {
 			tmdb: 'https://image.tmdb.org/t/p/original',

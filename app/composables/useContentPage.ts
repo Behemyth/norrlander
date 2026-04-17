@@ -1,13 +1,15 @@
 import type { PageCollections } from '@nuxt/content';
 
-interface ContentPageOptions {
+interface ContentPageOptions<T extends keyof PageCollections> {
 	/** Filter out drafts (default: true for non-content collections) */
 	filterDrafts?: boolean;
+	/** Optional list of fields to `.select()` — reduces payload size for pages that don't need full TMDB/body data. */
+	select?: Array<keyof PageCollections[T] & string>;
 }
 
 /**
  * Composable for fetching content pages.
- * Handles useAsyncData with route-based caching.
+ * Handles useAsyncData with collection-scoped route-based caching.
  *
  * @param collection - The content collection to query
  * @param options - Optional configuration
@@ -19,15 +21,18 @@ interface ContentPageOptions {
  */
 export const useContentPage = async <T extends keyof PageCollections>(
 	collection: T,
-	options: ContentPageOptions = {},
+	options: ContentPageOptions<T> = {},
 ): Promise<{ page: Ref<PageCollections[T] | null> }> => {
 	const route = useRoute();
-	const { filterDrafts = collection !== 'content' } = options;
+	const { filterDrafts = collection !== 'content', select } = options;
 
-	const { data: page } = await useAsyncData(route.path, () => {
+	const { data: page } = await useAsyncData(`${collection}:${route.path}`, () => {
 		let query = queryCollection(collection).path(route.path);
 		if (filterDrafts) {
 			query = query.where('draft', '=', false);
+		}
+		if (select && select.length > 0) {
+			query = (query as unknown as { select: (...fields: string[]) => typeof query }).select(...select);
 		}
 		return query.first();
 	});

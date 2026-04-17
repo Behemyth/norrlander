@@ -29,7 +29,7 @@ export async function useRelatedSeasons(content: ShowCollectionItem) {
 			return [];
 		}
 
-		return relatedReviews.value
+		return [...relatedReviews.value]
 			.sort((a, b) => {
 				// Non-seasonal reviews come first (null/undefined season_number)
 				const aNum = a.season_number ?? -1;

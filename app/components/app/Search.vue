@@ -17,7 +17,11 @@
 </template>
 
 <script setup lang="ts">
-const { data: files } = useLazyAsyncData(
+// Defer the ~14 content queries below off the critical path. They're only
+// needed once the search modal is opened. We trigger `execute()` on first
+// idle after mount (fallback to a short timeout) so the initial page load
+// isn't blocked by search-index work.
+const { data: files, execute: executeFiles } = useLazyAsyncData(
 	'search-data',
 	async () => {
 		const results = await Promise.all([
@@ -32,10 +36,10 @@ const { data: files } = useLazyAsyncData(
 
 		return results.flat();
 	},
-	{ server: false },
+	{ server: false, immediate: false },
 );
 
-const { data: navigation } = useLazyAsyncData(
+const { data: navigation, execute: executeNavigation } = useLazyAsyncData(
 	'search-navigation',
 	async () => {
 		const results = await Promise.all([
@@ -50,8 +54,23 @@ const { data: navigation } = useLazyAsyncData(
 
 		return results.flat();
 	},
-	{ server: false },
+	{ server: false, immediate: false },
 );
 
 const searchTerm = ref('');
+
+if (import.meta.client) {
+	onMounted(() => {
+		const load = () => {
+			executeFiles();
+			executeNavigation();
+		};
+		if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+			(window as Window & typeof globalThis).requestIdleCallback(load, { timeout: 3000 });
+		}
+		else {
+			setTimeout(load, 1500);
+		}
+	});
+}
 </script>

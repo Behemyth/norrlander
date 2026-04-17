@@ -102,10 +102,26 @@
 </template>
 
 <script setup lang="ts">
-import type { MovieCollectionItem, ShowCollectionItem } from '@nuxt/content';
-import type { TMDBMovie, TMDBShow } from '~~/shared/types/tmdb';
-
-type ReviewItem = MovieCollectionItem | ShowCollectionItem;
+/**
+ * Structural type for a review row after `.select()` narrowing. Covers both
+ * movie and show shapes so filter/sort code can operate on the union without
+ * re-widening to the full collection item types.
+ */
+type FilterableReview = {
+	id: string;
+	title: string;
+	path: string;
+	rating: number;
+	poster_path?: string | null;
+	date_published: string | Date;
+	season_number?: number;
+	tmdbData: {
+		genres?: { id: number; name: string }[];
+		release_date?: string;
+		first_air_date?: string;
+	};
+	seasonTmdbData?: { air_date?: string } | null;
+};
 
 const { t } = useI18n();
 
@@ -113,14 +129,12 @@ const props = defineProps<{
 	collection: 'movie' | 'show';
 }>();
 
-function getReleaseYear(review: ReviewItem): number | null {
-	if ('seasonTmdbData' in review && review.seasonTmdbData?.air_date) {
+function getReleaseYear(review: FilterableReview): number | null {
+	if (review.seasonTmdbData?.air_date) {
 		return new Date(review.seasonTmdbData.air_date).getFullYear();
 	}
 	if (!review.tmdbData) return null;
-	const dateStr = 'title' in review.tmdbData
-		? (review.tmdbData as TMDBMovie).release_date
-		: (review.tmdbData as TMDBShow).first_air_date;
+	const dateStr = review.tmdbData.release_date ?? review.tmdbData.first_air_date;
 	if (!dateStr) return null;
 	return new Date(dateStr).getFullYear();
 }
@@ -129,12 +143,25 @@ function getReleaseYear(review: ReviewItem): number | null {
 
 const { polite: announce } = useAnnouncer();
 
-const { data: items } = await useAsyncData(`review-grid-filter-${props.collection}`, () =>
-	queryCollection(props.collection)
+// Split the query per collection because `season_number` / `seasonTmdbData`
+// are only valid on show reviews and the `.select()` signature narrows by
+// literal collection type.
+const { data: items } = await useAsyncData(`review-grid-filter-${props.collection}`, async (): Promise<FilterableReview[]> => {
+	if (props.collection === 'show') {
+		const rows = await queryCollection('show')
+			.select('id', 'title', 'path', 'rating', 'poster_path', 'date_published', 'season_number', 'tmdbData', 'seasonTmdbData')
+			.where('draft', '=', false)
+			.order('date_published', 'DESC')
+			.all();
+		return rows as unknown as FilterableReview[];
+	}
+	const rows = await queryCollection('movie')
+		.select('id', 'title', 'path', 'rating', 'poster_path', 'date_published', 'tmdbData')
 		.where('draft', '=', false)
 		.order('date_published', 'DESC')
-		.all(),
-);
+		.all();
+	return rows as unknown as FilterableReview[];
+});
 
 // --- Filter options derived from data ---
 
@@ -204,7 +231,7 @@ const filteredItems = computed(() => {
 	let result = items.value.filter((item) => {
 		// Genre filter
 		if (selectedGenres.value.length > 0) {
-			const itemGenres = item.tmdbData.genres.map(g => g.name);
+			const itemGenres = (item.tmdbData.genres ?? []).map(g => g.name);
 			if (!selectedGenres.value.some(g => itemGenres.includes(g))) return false;
 		}
 
