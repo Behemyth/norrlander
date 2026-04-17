@@ -40,11 +40,35 @@
 </template>
 
 <script setup lang="ts">
-import type { CareerCollectionItem, AcademicCollectionItem } from '@nuxt/content';
-
 const { t } = useI18n();
 
-const { data: portfolioItems } = await useAsyncData('portfolio-timeline', async () => {
+type CareerTimelineItem = {
+	id: string;
+	title: string;
+	path: string;
+	start_date: string | Date;
+	end_date?: string | Date;
+	link?: string;
+	position: string;
+	achievements?: string[];
+	location?: string;
+	tags?: string[];
+};
+
+type AcademicTimelineItem = {
+	id: string;
+	title: string;
+	path: string;
+	start_date: string | Date;
+	end_date?: string | Date;
+	link?: string;
+	degree: string;
+	location?: string;
+};
+
+type PortfolioTimelineItem = CareerTimelineItem | AcademicTimelineItem;
+
+const { data: portfolioItems } = await useAsyncData('portfolio-timeline', async (): Promise<PortfolioTimelineItem[]> => {
 	const [careers, academics] = await Promise.all([
 		queryCollection('career')
 			.select('id', 'title', 'path', 'start_date', 'end_date', 'link', 'position', 'achievements', 'location', 'tags')
@@ -58,8 +82,8 @@ const { data: portfolioItems } = await useAsyncData('portfolio-timeline', async 
 			.all(),
 	]);
 
-	return [...careers, ...academics]
-		.sort((a, b) => new Date(b.start_date).getTime() - new Date(a.start_date).getTime());
+	const combined = [...careers, ...academics] as unknown as PortfolioTimelineItem[];
+	return combined.sort((a, b) => new Date(b.start_date).getTime() - new Date(a.start_date).getTime());
 });
 
 // Transform items into timeline format
@@ -72,11 +96,11 @@ const timelineItems = computed(() => (portfolioItems.value ?? []).map(item => ({
 })));
 
 // Type guard to determine item type
-function isCareerItem(item: CareerCollectionItem | AcademicCollectionItem): item is CareerCollectionItem {
+function isCareerItem(item: PortfolioTimelineItem): item is CareerTimelineItem {
 	return 'position' in item;
 }
 
-function isAcademicItem(item: CareerCollectionItem | AcademicCollectionItem): item is AcademicCollectionItem {
+function isAcademicItem(item: PortfolioTimelineItem): item is AcademicTimelineItem {
 	return !('position' in item);
 }
 </script>

@@ -27,9 +27,9 @@ const uiLocale = shallowRef<typeof en>(en);
 
 const uiLocaleLoaders: Record<string, () => Promise<typeof en>> = {
 	en: async () => en,
-	de: () => import('@nuxt/ui/runtime/locale/de.js').then(m => m.default ?? m.de),
-	pl: () => import('@nuxt/ui/runtime/locale/pl.js').then(m => m.default ?? m.pl),
-	sv: () => import('@nuxt/ui/runtime/locale/sv.js').then(m => m.default ?? m.sv),
+	de: () => import('@nuxt/ui/runtime/locale/de.js').then(m => m.default),
+	pl: () => import('@nuxt/ui/runtime/locale/pl.js').then(m => m.default),
+	sv: () => import('@nuxt/ui/runtime/locale/sv.js').then(m => m.default),
 };
 
 watchEffect(async () => {

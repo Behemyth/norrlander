@@ -4,7 +4,7 @@
 		:items="projects ?? []"
 		arrows
 		dots
-		:ui="{ item: 'basis-1/2 lg:basis-1/3' }"
+		:ui="{ item: 'basis-full sm:basis-1/2 lg:basis-1/3' }"
 	>
 		<ProjectCard :project="project" />
 	</UCarousel>
