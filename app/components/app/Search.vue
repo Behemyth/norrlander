@@ -12,6 +12,7 @@
 			:files="files"
 			:navigation="navigation"
 			:color-mode="false"
+			:search-delay="100"
 		/>
 	</ClientOnly>
 </template>
