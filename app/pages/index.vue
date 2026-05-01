@@ -3,7 +3,7 @@
 		<UPageHero
 			orientation="horizontal"
 			title="Asher Norland"
-			headline="The Norrlander"
+			headline="Deep breath"
 			:description="$t('index.heroDescription')"
 			:links="heroLinks"
 			:ui="{ container: 'flex flex-col lg:grid py-16 sm:py-24 lg:py-28 gap-16 sm:gap-y-24' }"
@@ -28,16 +28,20 @@
 			:description="$t('index.trailMarkersDescription')"
 			:ui="{ container: 'flex flex-col lg:grid py-12 sm:py-16 lg:py-20 gap-8 sm:gap-16' }"
 		>
-			<UPageGrid>
-				<UPageCard
-					v-for="feature in features"
-					:key="feature.to"
-					:title="feature.title"
-					:description="feature.description"
-					:icon="feature.icon"
-					:to="feature.to"
+			<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+				<ContentCard
+					v-for="card in trailCards"
+					:key="card.to"
+					:title="card.title"
+					:description="card.description"
+					:to="card.to"
+					:icon="card.icon"
+					:kind="card.kind"
+					:date="card.date"
+					:count="card.count"
+					:image="card.image"
 				/>
-			</UPageGrid>
+			</div>
 		</UPageSection>
 		<UPageSection
 			:links="sectionLinks"
@@ -51,21 +55,17 @@
 
 <script lang="ts" setup>
 import type { ButtonProps } from '@nuxt/ui';
+import type { ContentCardProps } from '~/composables/useLatestContent';
 
 const { t } = useI18n();
 
 const heroLinks = computed<ButtonProps[]>(() => [
 	{
-		label: t('index.viewPortfolio'),
-		to: '/portfolio',
-		icon: 'i-mdi-briefcase',
-		size: 'lg',
-	},
-	{
-		label: t('index.readBlog'),
-		to: '/blog',
-		icon: 'i-mdi-note-edit',
+		label: t('index.viewSource'),
+		to: 'https://github.com/Behemyth/norrlander',
+		target: '_blank',
 		variant: 'outline',
+		icon: 'i-mdi-github',
 		size: 'lg',
 	},
 ]);
@@ -80,32 +80,77 @@ const sectionLinks = computed<ButtonProps[]>(() => [
 	},
 ]);
 
-const features = computed(() => [
-	{
-		title: t('index.blog'),
-		description: t('index.blogDescription'),
-		icon: 'i-mdi-note-edit',
-		to: '/blog',
-	},
-	{
-		title: t('index.photography'),
-		description: t('index.photographyDescription'),
-		icon: 'i-mdi-camera',
-		to: '/photography',
-	},
-	{
-		title: t('index.portfolio'),
-		description: t('index.portfolioDescription'),
-		icon: 'i-mdi-briefcase',
-		to: '/portfolio',
-	},
-	{
-		title: t('index.reviews'),
-		description: t('index.reviewsDescription'),
-		icon: 'i-mdi-star',
-		to: '/review',
-	},
-]);
+// --- Trail Markers: latest from each section ---
+
+const { data: latestBlogData } = await useLatestBlog(1);
+const { data: latestPhotoData } = await useLatestPhotography(1);
+const { data: latestProjectData } = await useLatestProjects(1);
+const { data: latestReviewData } = await useLatestReviews(1);
+
+const { data: counts } = await useAsyncData('index-stats', async () => {
+	const [blog, photography, project, movie, show] = await Promise.all([
+		queryCollection('blog').where('draft', '=', false).count(),
+		queryCollection('photography').where('draft', '=', false).count(),
+		queryCollection('project').where('draft', '=', false).count(),
+		queryCollection('movie').where('draft', '=', false).count(),
+		queryCollection('show').where('draft', '=', false).count(),
+	]);
+	return { blog, photography, project, reviews: movie + show };
+});
+
+const trailCards = computed<ContentCardProps[]>(() => {
+	const sections = [
+		{
+			row: latestBlogData.value?.[0],
+			...CATEGORIES.blog,
+			count: counts.value?.blog ?? 0,
+		},
+		{
+			row: latestPhotoData.value?.[0],
+			...CATEGORIES.photography,
+			count: counts.value?.photography ?? 0,
+		},
+		{
+			row: latestProjectData.value?.[0],
+			...CATEGORIES.project,
+			count: counts.value?.project ?? 0,
+		},
+		{
+			row: latestReviewData.value?.[0],
+			...CATEGORIES.review,
+			count: counts.value?.reviews ?? 0,
+		},
+	] as const;
+
+	return sections.map(({ row, icon, labelKey, path: categoryPath, count }) => {
+		const kind = t(labelKey);
+		if (!row) {
+			return {
+				title: t('index.noContent', { kind }),
+				to: categoryPath,
+				icon,
+				kind,
+				count,
+			};
+		}
+		return {
+			title: row.title,
+			description: 'description' in row ? row.description : undefined,
+			to: row.path,
+			icon,
+			kind,
+			date: 'date_published' in row ? row.date_published : undefined,
+			count,
+			image: 'poster_path' in row && row.poster_path
+				? row.poster_path
+				: 'images' in row && Array.isArray(row.images) && row.images[0]?.src
+					? row.images[0].src
+					: 'image' in row && typeof row.image === 'string'
+						? row.image
+						: undefined,
+		};
+	});
+});
 
 definePageMeta({
 	layout: 'default',

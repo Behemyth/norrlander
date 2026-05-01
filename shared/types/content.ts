@@ -77,6 +77,7 @@ export const AcademicSchema = PageSchema.extend({
 
 export const ProjectSchema = PageSchema.extend({
 	link: z.string().url(),
+	image: z.string(),
 });
 
 export const JobSchema = PageSchema.extend({

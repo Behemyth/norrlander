@@ -22,6 +22,7 @@
 		"viewSource": "Zobacz kod źródłowy",
 		"trailMarkers": "Drogowskazy",
 		"trailMarkersDescription": "Najnowsze drogowskazy na każdym szlaku.",
+		"latest": "Najnowsze",
 		"aboutTitle": "O Asherze Norlandzie",
 		"aboutDescription": "Jestem Minnesotańczykiem z rodziny i ducha. Mój dziadek był sadownikiem, więc jestem umownie zobowiązany kochać wszystko, co jabłkowe. Żeby skraść moje serce, zabierz mnie na mocny cydr.",
 		"contactMe": "Napisz do mnie",
@@ -36,7 +37,8 @@
 			"reviews": "Recenzje",
 			"blogPosts": "Wpisy na blogu",
 			"photographySeries": "Serie zdjęć",
-			"projects": "Projekty"
+			"projects": "Projekty",
+			"total": "łącznie"
 		}
 	},
 	"contact": "Kontakt",

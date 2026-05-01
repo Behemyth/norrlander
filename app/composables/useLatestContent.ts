@@ -24,8 +24,9 @@ export const useLatestPhotography = (limit?: number) =>
 export const useLatestProjects = (limit?: number) =>
 	useAsyncData(`project-latest-${limit ?? 'all'}`, () => {
 		let query = queryCollection('project')
-			.select('title', 'description', 'path', 'link')
-			.where('draft', '=', false);
+			.select('title', 'description', 'path', 'link', 'image', 'date_published')
+			.where('draft', '=', false)
+			.order('date_published', 'DESC');
 		if (limit) query = query.limit(limit);
 		return query.all();
 	});
@@ -70,4 +71,6 @@ export interface ContentCardProps {
 	icon?: string;
 	kind?: string;
 	date?: string | Date;
+	count?: number;
+	image?: string;
 }

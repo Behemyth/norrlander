@@ -22,6 +22,7 @@
         "viewSource": "Visa källkod",
         "trailMarkers": "Vägvisare",
         "trailMarkersDescription": "De senaste vägvisarna på varje stig.",
+        "latest": "Senaste",
         "aboutTitle": "Om Asher Norland",
         "aboutDescription": "Jag är Minnesotabo till familj och själ. Min farfar var fruktodlare och därför är jag avtalsenligt skyldig att älska allt som har med äpplen att göra. Vill du stjäla mitt hjärta, bjud mig på en stark cider.",
         "contactMe": "Kontakta mig",
@@ -36,7 +37,8 @@
             "reviews": "Recensioner",
             "blogPosts": "Blogginlägg",
             "photographySeries": "Fotoserier",
-            "projects": "Projekt"
+            "projects": "Projekt",
+            "total": "totalt"
         }
     },
     "contact": "Kontakt",

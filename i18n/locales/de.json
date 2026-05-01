@@ -22,6 +22,7 @@
 		"viewSource": "Quellcode ansehen",
 		"trailMarkers": "Wegweiser",
 		"trailMarkersDescription": "Die neuesten Wegweiser auf jedem Pfad.",
+		"latest": "Neueste",
 		"aboutTitle": "Über Asher Norland",
 		"aboutDescription": "Ich bin Minnesotaner durch Familie und Geist. Mein Großvater war Obstbauer und deshalb bin ich vertraglich verpflichtet, alles rund um Äpfel zu lieben. Um mein Herz zu stehlen, nimm mich auf einen starken Cider mit.",
 		"contactMe": "Kontaktiere mich",
@@ -36,7 +37,8 @@
 			"reviews": "Rezensionen",
 			"blogPosts": "Blogbeiträge",
 			"photographySeries": "Fotoserien",
-			"projects": "Projekte"
+			"projects": "Projekte",
+			"total": "gesamt"
 		}
 	},
 	"contact": "Kontakt",
