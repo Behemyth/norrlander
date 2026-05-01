@@ -4,6 +4,8 @@
 		:items="projects ?? []"
 		arrows
 		dots
+		:prev="{ variant: 'subtle' }"
+		:next="{ variant: 'subtle' }"
 		:ui="{ item: 'basis-full sm:basis-1/2 lg:basis-1/3' }"
 	>
 		<ProjectCard :project="project" />
@@ -11,10 +13,5 @@
 </template>
 
 <script setup lang="ts">
-const { data: projects } = await useAsyncData('project-display', () =>
-	queryCollection('project')
-		.select('title', 'description', 'path', 'link')
-		.where('draft', '=', false)
-		.all(),
-);
+const { data: projects } = await useLatestProjects();
 </script>

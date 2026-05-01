@@ -30,8 +30,7 @@ The construction and traversal timings were both nearly double that of the basel
 
 Additionally, there were implementation bugs that I was unable to fully address. There were edge cases where geometry would incorrectly be excluded from the hierarchy. I wasn't properly able to debug this issue but it stemmed from my mapping scheme not being truly bijective due to my incorrect choice of floating-point quantization.
 
-::NuxtImg{src="/images/thesis-satellite.png" width="500" alt="Large Scene" class="mx-auto block"}
-::
+![Large Scene](/images/thesis-satellite.png){width=500 class="mx-auto block"}
 
 I presented the paper at a poster session to RPI peers and professors and spent a good deal of time talking about the failures of the project. While I was proud of the work I had done, I was also acutely aware of its shortcomings. The experience taught me a lot about the research process and how to manage expectations when working on open-ended problems.
 
@@ -85,8 +84,7 @@ I took part is various intramural sports and events, but two clubs were the pill
 
 ***Rensselaer Center for Open Source***
 
-::NuxtImg{src="/images/rcos-red.png" width="300" alt="RCOS Logo"}
-::
+![RCOS Logo](/images/rcos-red.png){width=300}
 
 Half credited class, half club, RCOS brought together a community of students interested in open source software development. The class not only provided the knowledge and resources to understand the how and why of open source, but also the mentorship and external connections to get involved in real world projects. [Soul Engine](/portfolio/project/soul-engine) had some of its first work done as a RCOS project with the help, contributions, and support of that community.
 
@@ -97,8 +95,7 @@ Half credited class, half club, RCOS brought together a community of students in
 
 ***Rensselaer Outing Club***
 
-::NuxtImg{src="/images/roc-logo.png" width="300" alt="ROC Logo"}
-::
+![ROC Logo](/images/roc-logo.png){width=300}
 
 It took me years to warm up to hiking for fun, but once I dipped my toes into the Outing Club, I was yanked into the scene. ROC organizes trips nearly every weekend and I will always remember my first hikes into the Adirondacks and the local Taconic Range. Having those nearby outdoor experiences to grow and make mistakes in a safe and supportive way led to me spending extensive time in nature in my twenties. That time truly ended up being a highlight.
 

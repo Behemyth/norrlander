@@ -19,21 +19,28 @@
 	},
 	"index": {
 		"heroDescription": "Osobista przestrzeń ze świeżym powietrzem",
-		"viewPortfolio": "Zobacz portfolio",
-		"readBlog": "Czytaj blog",
+		"heroHeadline": "Wdech",
+		"viewSource": "Zobacz kod źródłowy",
 		"trailMarkers": "Drogowskazy",
-		"trailMarkersDescription": "Odkryj różne sekcje tej strony. Będę Twoim przewodnikiem.",
-		"aboutTitle": "O Asherze Norlandzie",
+		"trailMarkersDescription": "Najnowsze drogowskazy na każdym szlaku.",
+		"latest": "Najnowsze",
+		"about": "{name} — o mnie",
 		"aboutDescription": "Jestem Minnesotańczykiem z rodziny i ducha. Mój dziadek był sadownikiem, więc jestem umownie zobowiązany kochać wszystko, co jabłkowe. Żeby skraść moje serce, zabierz mnie na mocny cydr.",
 		"contactMe": "Napisz do mnie",
-		"blog": "Blog",
-		"blogDescription": "Pomysły, spostrzeżenia i poradniki na różne tematy techniczne.",
-		"photography": "Fotografia",
-		"photographyDescription": "Wizualne historie i uchwycone chwile z moich przygód i codziennego życia.",
-		"portfolio": "Portfolio",
-		"portfolioDescription": "Prezentacja mojej pracy zawodowej i projektów.",
-		"reviews": "Recenzje",
-		"reviewsDescription": "Moje przemyślenia i opinie o filmach."
+		"noContent": "Brak {kind}",
+		"kinds": {
+			"blog": "Blog",
+			"photography": "Fotografia",
+			"project": "Projekt",
+			"review": "Recenzja"
+		},
+		"stats": {
+			"reviews": "Recenzje",
+			"blogPosts": "Wpisy na blogu",
+			"photographySeries": "Serie zdjęć",
+			"projects": "Projekty",
+			"total": "łącznie"
+		}
 	},
 	"contact": "Kontakt",
 	"contactPage": {

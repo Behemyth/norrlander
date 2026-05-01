@@ -1,7 +1,5 @@
 <template>
 	<UCard
-		title="Asher Norland"
-		description="Graphics Engineer"
 		:variant="props.variant as any"
 	>
 		<UUser

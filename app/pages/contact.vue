@@ -28,7 +28,7 @@
 						<UPageFeature
 							v-for="(info, index) in contact"
 							:key="index"
-							class="m-2"
+							class="px-3 py-4"
 							variant="ghost"
 							:title="info.name"
 							:icon="info.icon"
@@ -46,7 +46,7 @@
 						<UPageFeature
 							v-for="(social, index) in socials"
 							:key="index"
-							class="m-2"
+							class="px-3 py-4"
 							variant="ghost"
 							:title="social.name"
 							:icon="social.icon"
