@@ -18,37 +18,7 @@ const props = defineProps<{
 	count: number;
 }>();
 
-const cacheKey = props.collection ? `review-grid-${props.collection}` : 'review-grid-all';
-
-const movieQuery = (limit: number) =>
-	queryCollection('movie')
-		.select('id', 'title', 'path', 'rating', 'date_published', 'poster_path')
-		.where('draft', '=', false)
-		.order('date_published', 'DESC')
-		.limit(limit);
-
-const showQuery = (limit: number) =>
-	queryCollection('show')
-		.select('id', 'title', 'path', 'rating', 'date_published', 'poster_path', 'season_number')
-		.where('draft', '=', false)
-		.order('date_published', 'DESC')
-		.limit(limit);
-
-const { data: items } = await useAsyncData(cacheKey, async () => {
-	if (props.collection === 'movie') {
-		return movieQuery(props.count).all();
-	}
-	if (props.collection === 'show') {
-		return showQuery(props.count).all();
-	}
-	const [movies, shows] = await Promise.all([
-		movieQuery(props.count).all(),
-		showQuery(props.count).all(),
-	]);
-	return [...movies, ...shows]
-		.sort((a, b) => new Date(b.date_published).getTime() - new Date(a.date_published).getTime())
-		.slice(0, props.count);
-});
+const { data: items } = await useLatestReviews(props.count, props.collection);
 
 function getSeasonNumber(review: { season_number?: number } | Record<string, unknown>): number | undefined {
 	const value = (review as { season_number?: unknown }).season_number;

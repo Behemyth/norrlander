@@ -13,10 +13,5 @@
 </template>
 
 <script setup lang="ts">
-const { data: projects } = await useAsyncData('project-display', () =>
-	queryCollection('project')
-		.select('title', 'description', 'path', 'link')
-		.where('draft', '=', false)
-		.all(),
-);
+const { data: projects } = await useLatestProjects();
 </script>
