@@ -23,7 +23,7 @@
 		"trailMarkers": "Drogowskazy",
 		"trailMarkersDescription": "Najnowsze drogowskazy na każdym szlaku.",
 		"latest": "Najnowsze",
-		"aboutTitle": "O Asherze Norlandzie",
+		"about": "{name} — o mnie",
 		"aboutDescription": "Jestem Minnesotańczykiem z rodziny i ducha. Mój dziadek był sadownikiem, więc jestem umownie zobowiązany kochać wszystko, co jabłkowe. Żeby skraść moje serce, zabierz mnie na mocny cydr.",
 		"contactMe": "Napisz do mnie",
 		"noContent": "Brak {kind}",

@@ -23,7 +23,7 @@
 		"trailMarkers": "Trail Markers",
 		"trailMarkersDescription": "The latest signposts on each trail.",
 		"latest": "Latest",
-		"aboutTitle": "About Asher Norland",
+		"about": "About {name}",
 		"aboutDescription": "I'm Minnesotan by family and spirit. My grandfather was an orchardist and as a result I'm contractually obligated to love all things apple. To steal my heart, take me out for a strong cider.",
 		"contactMe": "Contact Me",
 		"noContent": "No {kind} yet",

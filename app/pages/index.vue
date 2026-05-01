@@ -45,7 +45,7 @@
 		</UPageSection>
 		<UPageSection
 			:links="sectionLinks"
-			:title="$t('index.aboutTitle')"
+			:title="$t('index.about', { name: 'Asher Norland' })"
 			:description="$t('index.aboutDescription')"
 			class="bg-gray-50 dark:bg-gray-800/50"
 			:ui="{ container: 'flex flex-col lg:grid py-12 sm:py-16 lg:py-20 gap-8 sm:gap-16' }"
