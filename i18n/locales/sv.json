@@ -19,21 +19,25 @@
     },
     "index": {
         "heroDescription": "En personlig plats med frisk luft",
-        "viewPortfolio": "Se portfolio",
-        "readBlog": "Läs bloggen",
+        "viewSource": "Visa källkod",
         "trailMarkers": "Vägvisare",
-        "trailMarkersDescription": "Utforska de olika delarna av denna webbplats. Jag guidar dig.",
+        "trailMarkersDescription": "De senaste vägvisarna på varje stig.",
         "aboutTitle": "Om Asher Norland",
         "aboutDescription": "Jag är Minnesotabo till familj och själ. Min farfar var fruktodlare och därför är jag avtalsenligt skyldig att älska allt som har med äpplen att göra. Vill du stjäla mitt hjärta, bjud mig på en stark cider.",
         "contactMe": "Kontakta mig",
-        "blog": "Blogg",
-        "blogDescription": "Idéer, insikter och handledningar om olika tekniska ämnen.",
-        "photography": "Fotografi",
-        "photographyDescription": "Visuella berättelser och fångade ögonblick från mina äventyr och vardag.",
-        "portfolio": "Portfolio",
-        "portfolioDescription": "En presentation av mitt professionella arbete och mina projekt.",
-        "reviews": "Recensioner",
-        "reviewsDescription": "Mina tankar och åsikter om film."
+        "noContent": "Inga {kind} ännu",
+        "kinds": {
+            "blog": "Blogg",
+            "photography": "Fotografi",
+            "project": "Projekt",
+            "review": "Recension"
+        },
+        "stats": {
+            "reviews": "Recensioner",
+            "blogPosts": "Blogginlägg",
+            "photographySeries": "Fotoserier",
+            "projects": "Projekt"
+        }
     },
     "contact": "Kontakt",
     "contactPage": {
