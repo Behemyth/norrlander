@@ -3,7 +3,7 @@
 		<UPageHero
 			orientation="horizontal"
 			title="Asher Norland"
-			headline="Deep breath"
+			:headline="$t('index.heroHeadline')"
 			:description="$t('index.heroDescription')"
 			:links="heroLinks"
 			:ui="{ container: 'flex flex-col lg:grid py-16 sm:py-24 lg:py-28 gap-16 sm:gap-y-24' }"
