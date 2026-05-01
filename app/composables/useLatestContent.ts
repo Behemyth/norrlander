@@ -15,7 +15,6 @@ export const useLatestBlog = (limit?: number) =>
 export const useLatestPhotography = (limit?: number) =>
 	useAsyncData(`photography-latest-${limit ?? 'all'}`, () => {
 		let query = queryCollection('photography')
-			.select('title', 'description', 'path', 'date_published', 'images')
 			.where('draft', '=', false)
 			.order('date_published', 'DESC');
 		if (limit) query = query.limit(limit);

@@ -11,7 +11,7 @@
 		"lint:fix": "eslint . --fix",
 		"typecheck": "nuxi typecheck",
 		"check": "npm run lint && npm run typecheck",
-		"test": "vitest",
+		"test": "vitest run",
 		"test:run": "vitest run",
 		"test:coverage": "vitest run --coverage"
 	},
