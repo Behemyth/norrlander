@@ -82,21 +82,28 @@ const sectionLinks = computed<ButtonProps[]>(() => [
 
 // --- Trail Markers: latest from each section ---
 
-const { data: latestBlogData } = await useLatestBlog(1);
-const { data: latestPhotoData } = await useLatestPhotography(1);
-const { data: latestProjectData } = await useLatestProjects(1);
-const { data: latestReviewData } = await useLatestReviews(1);
-
-const { data: counts } = await useAsyncData('index-stats', async () => {
-	const [blog, photography, project, movie, show] = await Promise.all([
-		queryCollection('blog').where('draft', '=', false).count(),
-		queryCollection('photography').where('draft', '=', false).count(),
-		queryCollection('project').where('draft', '=', false).count(),
-		queryCollection('movie').where('draft', '=', false).count(),
-		queryCollection('show').where('draft', '=', false).count(),
-	]);
-	return { blog, photography, project, reviews: movie + show };
-});
+const [
+	{ data: latestBlogData },
+	{ data: latestPhotoData },
+	{ data: latestProjectData },
+	{ data: latestReviewData },
+	{ data: counts },
+] = await Promise.all([
+	useLatestBlog(1),
+	useLatestPhotography(1),
+	useLatestProjects(1),
+	useLatestReviews(1),
+	useAsyncData('index-stats', async () => {
+		const [blog, photography, project, movie, show] = await Promise.all([
+			queryCollection('blog').where('draft', '=', false).count(),
+			queryCollection('photography').where('draft', '=', false).count(),
+			queryCollection('project').where('draft', '=', false).count(),
+			queryCollection('movie').where('draft', '=', false).count(),
+			queryCollection('show').where('draft', '=', false).count(),
+		]);
+		return { blog, photography, project, reviews: movie + show };
+	}),
+]);
 
 const trailCards = computed<ContentCardProps[]>(() => {
 	const sections = [
