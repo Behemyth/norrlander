@@ -24,18 +24,26 @@
 			}"
 			class="w-full max-w-3xl mx-auto"
 		>
-			<NuxtImg
-				:src="item.src"
-				:alt="item.alt"
-				:width="item.width"
-				:height="item.height"
-				:sizes="item.sizes"
-				:densities="item.densities"
-				loading="lazy"
-				:style="index === 0 ? { viewTransitionName: `photo${page.path.replaceAll('/', '-')}` } : undefined"
-				class="mx-auto"
-			/>
+			<button
+				type="button"
+				class="block w-full cursor-zoom-in"
+				:aria-label="$t('photography.viewFullSize')"
+				@click="zoomed = item"
+			>
+				<NuxtImg
+					:src="item.src"
+					:alt="item.alt"
+					:width="item.width"
+					:height="item.height"
+					:sizes="item.sizes"
+					:densities="item.densities"
+					loading="lazy"
+					:style="index === 0 ? { viewTransitionName: `photo${page.path.replaceAll('/', '-')}` } : undefined"
+					class="mx-auto"
+				/>
+			</button>
 		</UCarousel>
+		<PhotographyLightbox v-model="zoomed" />
 	</UPage>
 	<PageNotFound
 		v-else
@@ -48,6 +56,10 @@
 </template>
 
 <script lang="ts" setup>
+import type { PhotographyImage } from '~~/shared/types/content';
+
 const { page } = await useContentPage('photography');
 useSeoMeta({ title: page.value?.title, description: page.value?.description });
+
+const zoomed = ref<PhotographyImage | null>(null);
 </script>
