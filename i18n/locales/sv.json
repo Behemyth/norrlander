@@ -65,7 +65,9 @@
     "photography": {
         "notFound": "Fotot hittades inte",
         "notFoundDescription": "Fotoserien du letar efter finns inte eller har tagits bort.",
-        "backToPhotography": "Tillbaka till fotografi"
+        "backToPhotography": "Tillbaka till fotografi",
+        "viewFullSize": "Visa i full storlek",
+        "closeFullSize": "Stäng helskärmsvy"
     },
     "portfolio": {
         "viewCompany": "Visa företag",

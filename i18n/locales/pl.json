@@ -65,7 +65,9 @@
 	"photography": {
 		"notFound": "Nie znaleziono zdjęcia",
 		"notFoundDescription": "Seria zdjęć, której szukasz, nie istnieje lub została usunięta.",
-		"backToPhotography": "Wróć do fotografii"
+		"backToPhotography": "Wróć do fotografii",
+		"viewFullSize": "Zobacz w pełnym rozmiarze",
+		"closeFullSize": "Zamknij widok pełnoekranowy"
 	},
 	"portfolio": {
 		"viewCompany": "Zobacz firmę",
