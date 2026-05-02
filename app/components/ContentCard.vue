@@ -40,13 +40,23 @@
 				</UBadge>
 			</div>
 		</template>
-		<NuxtImg
+		<div
 			v-if="image"
-			:src="image"
-			:alt="title"
-			class="rounded-md aspect-3/2 object-cover w-full opacity-70 saturate-75 transition-[opacity,filter] duration-300 group-hover:opacity-100 group-hover:saturate-100"
-			loading="lazy"
-		/>
+			class="relative aspect-3/2 w-full overflow-hidden rounded-md opacity-70 saturate-75 transition-[opacity,filter] duration-300 group-hover:opacity-100 group-hover:saturate-100"
+			:style="imageAspect === 'poster' ? backdropStyle : undefined"
+		>
+			<NuxtImg
+				:src="image"
+				:alt="title"
+				:placeholder="img(image, { height: 10, blur: 2, quality: 50 })"
+				sizes="100vw sm:50vw lg:320px"
+				:class="[
+					'h-full w-full',
+					imageAspect === 'poster' ? 'object-contain' : 'object-cover',
+				]"
+				loading="lazy"
+			/>
+		</div>
 	</UPageCard>
 </template>
 
@@ -60,11 +70,24 @@ const props = defineProps<{
 	date?: string | Date;
 	count?: number;
 	image?: string;
+	imageAspect?: 'landscape' | 'poster';
 }>();
+
+const img = useImage();
 
 const formattedDate = computed(() => {
 	if (!props.date) return '';
 	const d = typeof props.date === 'string' ? new Date(props.date) : props.date;
 	return d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+});
+
+const backdropStyle = computed(() => {
+	if (!props.image) return undefined;
+	const url = img(props.image, { width: 60, height: 90, blur: 20, quality: 40 });
+	return {
+		backgroundImage: `url("${url}")`,
+		backgroundSize: 'cover',
+		backgroundPosition: 'center',
+	};
 });
 </script>

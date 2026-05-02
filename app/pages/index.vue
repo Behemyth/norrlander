@@ -40,6 +40,7 @@
 					:date="card.date"
 					:count="card.count"
 					:image="card.image"
+					:image-aspect="card.imageAspect"
 				/>
 			</div>
 		</UPageSection>
@@ -155,6 +156,7 @@ const trailCards = computed<ContentCardProps[]>(() => {
 					: 'image' in row && typeof row.image === 'string'
 						? row.image
 						: undefined,
+			imageAspect: 'poster_path' in row && row.poster_path ? 'poster' : 'landscape',
 		};
 	});
 });

@@ -9,10 +9,10 @@
 		>
 			<NuxtImg
 				:src="posterPath"
-				loading="lazy"
 				:placeholder="img(posterPath, { height: 10, blur: 2, quality: 50 })"
 				sizes="50vw md:33vw lg:16vw"
 				class="h-full w-full object-cover"
+				loading="lazy"
 			/>
 			<div class="absolute inset-0 bg-white/0 transition-colors duration-300 group-hover:bg-white/10" />
 			<!-- Season badge for seasonal reviews -->
