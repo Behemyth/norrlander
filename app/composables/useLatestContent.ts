@@ -73,4 +73,5 @@ export interface ContentCardProps {
 	date?: string | Date;
 	count?: number;
 	image?: string;
+	imageAspect?: 'landscape' | 'poster';
 }
