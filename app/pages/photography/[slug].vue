@@ -43,38 +43,7 @@
 				/>
 			</button>
 		</UCarousel>
-		<UModal
-			:open="zoomed !== null"
-			fullscreen
-			:ui="{ content: 'bg-black/95', body: 'p-0 h-full' }"
-			@update:open="(value) => { if (!value) zoomed = null; }"
-		>
-			<template #content>
-				<div
-					class="relative h-full w-full flex items-center justify-center cursor-zoom-out"
-					@click.self="zoomed = null"
-				>
-					<UButton
-						icon="i-lucide-x"
-						color="neutral"
-						variant="solid"
-						size="lg"
-						class="absolute top-4 right-4 z-10 cursor-pointer"
-						:aria-label="$t('photography.closeFullSize')"
-						@click="zoomed = null"
-					/>
-					<NuxtPicture
-						v-if="zoomed"
-						:src="zoomed.src"
-						:alt="zoomed.alt"
-						:img-attrs="{
-							class: 'max-w-full max-h-full w-auto h-auto object-contain cursor-zoom-out',
-							onClick: () => { zoomed = null; },
-						}"
-					/>
-				</div>
-			</template>
-		</UModal>
+		<PhotographyLightbox v-model="zoomed" />
 	</UPage>
 	<PageNotFound
 		v-else
@@ -87,9 +56,10 @@
 </template>
 
 <script lang="ts" setup>
+import type { PhotographyImage } from '~~/shared/types/content';
+
 const { page } = await useContentPage('photography');
 useSeoMeta({ title: page.value?.title, description: page.value?.description });
 
-type PhotoImage = NonNullable<typeof page.value>['images'][number];
-const zoomed = ref<PhotoImage | null>(null);
+const zoomed = ref<PhotographyImage | null>(null);
 </script>

@@ -125,3 +125,8 @@ export const LocationSchema = z.object({
  * Base interface for all review types
  */
 export type BaseReview = z.infer<typeof ReviewMetadataSchema>;
+
+/**
+ * A single image entry within a photography series.
+ */
+export type PhotographyImage = z.infer<typeof PhotographySchema>['images'][number];
