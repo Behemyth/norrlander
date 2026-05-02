@@ -60,12 +60,12 @@
 						:aria-label="$t('photography.closeFullSize')"
 						@click="zoomed = null"
 					/>
-					<img
+					<NuxtPicture
 						v-if="zoomed"
 						:src="zoomed.src"
 						:alt="zoomed.alt"
-						class="max-w-full max-h-full w-auto h-auto object-contain"
-					>
+						:img-attrs="{ class: 'max-w-full max-h-full w-auto h-auto object-contain' }"
+					/>
 				</div>
 			</template>
 		</UModal>
