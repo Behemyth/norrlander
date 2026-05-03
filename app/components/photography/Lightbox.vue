@@ -19,14 +19,13 @@
 					:aria-label="$t('photography.closeFullSize')"
 					@click="emit('update:modelValue', null)"
 				/>
-				<NuxtPicture
+				<NuxtImg
 					v-if="modelValue"
 					:src="modelValue.src"
 					:alt="modelValue.alt"
-					:img-attrs="{
-						class: 'max-w-full max-h-full w-auto h-auto object-contain cursor-zoom-out',
-						onClick: () => emit('update:modelValue', null),
-					}"
+					preset="fullscreen"
+					class="max-w-full max-h-full w-auto h-auto object-contain cursor-zoom-out"
+					@click="emit('update:modelValue', null)"
 				/>
 			</div>
 		</template>
