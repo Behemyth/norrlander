@@ -13,7 +13,6 @@
 		<UCarousel
 			v-slot="{ item, index }"
 			auto-height
-			arrows
 			dots
 			:items="page.images"
 			:ui="{
@@ -45,7 +44,10 @@
 		</UCarousel>
 		<PhotographyLightbox v-model="zoomed" />
 		<!-- SSR-rendered hints so the static prerenderer discovers lightbox IPX variants -->
-		<div hidden aria-hidden="true">
+		<div
+			hidden
+			aria-hidden="true"
+		>
 			<NuxtImg
 				v-for="image in page.images"
 				:key="image.src"
