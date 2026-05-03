@@ -12,13 +12,15 @@
 		</UPageBody>
 		<UCarousel
 			v-slot="{ item, index }"
-			auto-height
+			arrows
 			dots
 			:items="page.images"
 			:ui="{
-				container: 'transition-[height]',
-				controls: 'absolute -top-8 inset-x-12',
-				dots: '-top-7',
+				controls: 'flex items-center justify-center gap-2 mt-4',
+				arrows: 'contents',
+				prev: 'static translate-y-0',
+				next: 'static translate-y-0 order-last',
+				dots: 'static flex items-center gap-3',
 				dot: 'w-6 h-1',
 			}"
 			class="w-full max-w-3xl mx-auto"
