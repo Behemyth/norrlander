@@ -2,10 +2,7 @@
 	<UCarousel
 		v-slot="{ item: project }"
 		:items="projects ?? []"
-		arrows
 		dots
-		:prev="{ variant: 'subtle' }"
-		:next="{ variant: 'subtle' }"
 		:ui="{ item: 'basis-full sm:basis-1/2 lg:basis-1/3' }"
 	>
 		<ProjectCard :project="project" />

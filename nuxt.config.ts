@@ -188,6 +188,13 @@ export default defineNuxtConfig({
 		alias: {
 			tmdb: 'https://image.tmdb.org/t/p/original',
 		},
+		// Workaround for nuxt/image#1433: bare "100vw" produces 1w/2w srcsets.
+		// This preset expands to all screen breakpoints until the upstream fix lands.
+		presets: {
+			fullscreen: {
+				sizes: 'sm:100vw md:100vw lg:100vw xl:100vw 2xl:100vw',
+			},
+		},
 	},
 
 	// Disable og-image in test environment to avoid SSR warnings
