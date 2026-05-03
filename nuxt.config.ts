@@ -89,11 +89,10 @@ export default defineNuxtConfig({
 
 	nitro: {
 		// static: true, // Not set, to support 'dev' server. Default is `static: true` for 'start' and 'generate' commands
-		logLevel: 'verbose',
 		prerender: {
-			verbose: true, // Surface underlying handler errors (e.g. IPX upstream fetch failures) instead of bare [500]
 			crawlLinks: true,
 			autoSubfolderIndex: false, // Prevents a 404 with trailing slashes catch-alls for nuxt/content
+			concurrency: 1, // Serialize route prerendering so TMDB image fetch bursts don't overlap and trigger CDN rate limiting
 			interval: 50, // To avoid rate limiting of the TMDB API
 			routes: [
 				'/sitemap.xml',
