@@ -69,6 +69,7 @@ export default defineNuxtModule({
 							title: String(ctx.content.title || `Movie ${ctx.content.TMDB_ID}`),
 						} satisfies TMDBMovie;
 						ctx.content.poster_path = '/images/placeholder-poster.svg';
+						ctx.content.backdrop_path = '/images/placeholder-backdrop.svg';
 						ctx.content.genres = [];
 						break;
 					case 'show':
@@ -80,6 +81,7 @@ export default defineNuxtModule({
 							name: String(ctx.content.title || `Show ${ctx.content.TMDB_ID}`),
 						} satisfies TMDBShow;
 						ctx.content.poster_path = '/images/placeholder-poster.svg';
+						ctx.content.backdrop_path = '/images/placeholder-backdrop.svg';
 						ctx.content.genres = [];
 						break;
 					default:
@@ -110,6 +112,7 @@ export default defineNuxtModule({
 					tmdbData.backdrop_path = toImageSrc(tmdbData.backdrop_path);
 					ctx.content.tmdbData = tmdbData;
 					ctx.content.poster_path = tmdbData.poster_path;
+					ctx.content.backdrop_path = tmdbData.backdrop_path;
 					ctx.content.genres = (tmdbData.genres ?? []).map(g => g.name);
 					const movieYear = yearFromTmdbDate(tmdbData.release_date);
 					if (movieYear !== undefined) ctx.content.release_year = movieYear;
@@ -151,6 +154,7 @@ export default defineNuxtModule({
 					tmdbData.poster_path = toImageSrc(tmdbData.poster_path);
 					tmdbData.backdrop_path = toImageSrc(tmdbData.backdrop_path);
 					ctx.content.tmdbData = tmdbData;
+					ctx.content.backdrop_path = tmdbData.backdrop_path;
 					ctx.content.genres = (tmdbData.genres ?? []).map(g => g.name);
 
 					if (seasonTmdbData) {

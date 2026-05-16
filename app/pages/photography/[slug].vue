@@ -31,17 +31,18 @@
 				:aria-label="$t('photography.viewFullSize')"
 				@click="zoomed = item"
 			>
-				<NuxtImg
-					:src="item.src"
-					:alt="item.alt"
-					:width="item.width"
-					:height="item.height"
-					:sizes="item.sizes"
-					:densities="item.densities"
-					loading="lazy"
-					:style="index === 0 ? { viewTransitionName: `photo${page.path.replaceAll('/', '-')}` } : undefined"
-					class="mx-auto"
-				/>
+				<div
+					class="relative mx-auto flex w-full items-center justify-center overflow-hidden rounded-sm bg-elevated"
+					:style="getSlideFrameStyle(item, index)"
+				>
+					<NuxtImg
+						:src="item.src"
+						:alt="item.alt"
+						sizes="100vw md:768px"
+						loading="lazy"
+						class="h-full w-full object-contain"
+					/>
+				</div>
 			</button>
 		</UCarousel>
 		<PhotographyLightbox v-model="zoomed" />
@@ -75,4 +76,39 @@ const { page } = await useContentPage('photography');
 useSeoMeta({ title: page.value?.title, description: page.value?.description });
 
 const zoomed = ref<PhotographyImage | null>(null);
+const slideMaxHeightSvh = 70;
+const defaultPhotoFrame = {
+	aspectRatio: '3 / 2',
+	aspectRatioValue: 3 / 2,
+};
+
+const leadPhotoTransitionName = computed(() => {
+	if (!page.value?.path) return undefined;
+	return `photo${page.value.path.replaceAll('/', '-')}`;
+});
+
+function getPhotoFrame(image: PhotographyImage) {
+	if (!image.width || !image.height) {
+		return defaultPhotoFrame;
+	}
+
+	return {
+		aspectRatio: `${image.width} / ${image.height}`,
+		aspectRatioValue: image.width / image.height,
+	};
+}
+
+function getSlideFrameStyle(image: PhotographyImage, index: number) {
+	const frame = getPhotoFrame(image);
+	const style: Record<string, string> = {
+		aspectRatio: frame.aspectRatio,
+		maxWidth: `min(100%, ${slideMaxHeightSvh * frame.aspectRatioValue}svh)`,
+	};
+
+	if (index === 0 && leadPhotoTransitionName.value) {
+		style.viewTransitionName = leadPhotoTransitionName.value;
+	}
+
+	return style;
+}
 </script>
