@@ -107,30 +107,43 @@ const [
 ]);
 
 const trailCards = computed<ContentCardProps[]>(() => {
+	const blog = latestBlogData.value?.[0];
+	const photo = latestPhotoData.value?.[0];
+	const project = latestProjectData.value?.[0];
+	const review = latestReviewData.value?.[0];
+
 	const sections = [
 		{
-			row: latestBlogData.value?.[0],
+			row: blog,
 			...CATEGORIES.blog,
 			count: counts.value?.blog ?? 0,
+			image: undefined,
+			imageAspect: 'landscape',
 		},
 		{
-			row: latestPhotoData.value?.[0],
+			row: photo,
 			...CATEGORIES.photography,
 			count: counts.value?.photography ?? 0,
+			image: photo?.images?.[0]?.src,
+			imageAspect: 'landscape',
 		},
 		{
-			row: latestProjectData.value?.[0],
+			row: project,
 			...CATEGORIES.project,
 			count: counts.value?.project ?? 0,
+			image: project?.image,
+			imageAspect: 'landscape',
 		},
 		{
-			row: latestReviewData.value?.[0],
+			row: review,
 			...CATEGORIES.review,
 			count: counts.value?.reviews ?? 0,
+			image: review?.backdrop_path ?? review?.poster_path,
+			imageAspect: review?.backdrop_path ? 'landscape' : 'poster',
 		},
 	] as const;
 
-	return sections.map(({ row, icon, labelKey, path: categoryPath, count }) => {
+	return sections.map(({ row, icon, labelKey, path: categoryPath, count, image, imageAspect }) => {
 		const kind = t(labelKey);
 		if (!row) {
 			return {
@@ -149,14 +162,8 @@ const trailCards = computed<ContentCardProps[]>(() => {
 			kind,
 			date: 'date_published' in row ? row.date_published : undefined,
 			count,
-			image: 'poster_path' in row && row.poster_path
-				? row.poster_path
-				: 'images' in row && Array.isArray(row.images) && row.images[0]?.src
-					? row.images[0].src
-					: 'image' in row && typeof row.image === 'string'
-						? row.image
-						: undefined,
-			imageAspect: 'poster_path' in row && row.poster_path ? 'poster' : 'landscape',
+			image,
+			imageAspect,
 		};
 	});
 });
