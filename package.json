@@ -17,7 +17,7 @@
 	},
 	"devDependencies": {
 		"@iconify-json/mdi": "^1.2.3",
-		"@nuxt/content": "^3.13.0",
+		"@nuxt/content": "^3.14.0",
 		"@nuxt/eslint": "^1.15.2",
 		"@nuxt/fonts": "^0.14.0",
 		"@nuxt/image": "^2.0.0",
@@ -28,11 +28,11 @@
 		"nuxt": "^4.4.2",
 		"typescript": "^6.0.3",
 		"vitest": "^4.1.6",
-		"vue-tsc": "^3.2.9"
+		"vue-tsc": "^3.3.0"
 	},
 	"dependencies": {
 		"@giscus/vue": "^3.1.1",
-		"@takumi-rs/core": "^1.1.2",
+		"@takumi-rs/core": "^1.2.1",
 		"feed": "^5.2.1"
 	}
 }
