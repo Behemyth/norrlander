@@ -11,17 +11,9 @@ const props = defineProps<{
 	title?: string;
 }>();
 
-const { data: metadata } = await useAsyncData(`content-section-${props.collection}`, async () => {
-	const rows = await queryCollection(props.collection).select('draft').all();
-	const drafts = rows.filter(r => r.draft === true).length;
-	const published = rows.length - drafts;
-
-	return {
-		published_count: published,
-		drafted_count: drafts,
-		total_count: rows.length,
-	};
-});
+const { data: total } = await useAsyncData(`content-section-${props.collection}`, () =>
+	queryCollection(props.collection).count(),
+);
 
 const sectionTitle = computed(() => {
 	if (props.title) {
@@ -33,12 +25,7 @@ const sectionTitle = computed(() => {
 });
 
 const sectionDescription = computed(() => {
-	const publishedCount = metadata.value?.published_count || 0;
-	const draftCount = metadata.value?.drafted_count || 0;
-
-	const publishedText = publishedCount === 1 ? '1 Published Post' : `${publishedCount} Published Posts`;
-	const draftText = draftCount === 1 ? '1 Draft' : `${draftCount} Drafts`;
-
-	return `${publishedText}, ${draftText}`;
+	const count = total.value ?? 0;
+	return count === 1 ? '1 Published Post' : `${count} Published Posts`;
 });
 </script>

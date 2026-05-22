@@ -81,7 +81,6 @@
 	"review": {
 		"allReviews": "All {type} Reviews",
 		"publishedReview": "1 Published Review | {n} Published Reviews",
-		"draftedReview": "1 Drafted Review | {n} Drafted Reviews",
 		"season": "Season | Seasons",
 		"episodes": "Episodes",
 		"cast": "Cast",

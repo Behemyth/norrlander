@@ -1,8 +1,6 @@
 import type { PageCollections } from '@nuxt/content';
 
 interface ContentPageOptions<T extends keyof PageCollections> {
-	/** Filter out drafts (default: true for non-content collections) */
-	filterDrafts?: boolean;
 	/** Optional list of fields to `.select()` — reduces payload size for pages that don't need full TMDB/body data. */
 	select?: Array<keyof PageCollections[T] & string>;
 }
@@ -24,13 +22,10 @@ export const useContentPage = async <T extends keyof PageCollections>(
 	options: ContentPageOptions<T> = {},
 ): Promise<{ page: Ref<PageCollections[T] | null> }> => {
 	const route = useRoute();
-	const { filterDrafts = collection !== 'content', select } = options;
+	const { select } = options;
 
 	const { data: page } = await useAsyncData(`${collection}:${route.path}`, () => {
 		let query = queryCollection(collection).path(route.path);
-		if (filterDrafts) {
-			query = query.where('draft', '=', false);
-		}
 		if (select && select.length > 0) {
 			query = (query as unknown as { select: (...fields: string[]) => typeof query }).select(...select);
 		}

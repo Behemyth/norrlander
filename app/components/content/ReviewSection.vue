@@ -12,18 +12,10 @@ const props = defineProps<{
 	collection: 'movie' | 'show';
 }>();
 
-// Get collection metadata (published and draft counts) in a single query
-const { data: metadata } = await useAsyncData(`review-header-${props.collection}`, async () => {
-	const rows = await queryCollection(props.collection).select('draft').all();
-	const drafts = rows.filter(r => r.draft === true).length;
-	const published = rows.length - drafts;
-
-	return {
-		published_count: published,
-		drafted_count: drafts,
-		total_count: rows.length,
-	};
-});
+// Total review count for this collection
+const { data: total } = await useAsyncData(`review-header-${props.collection}`, () =>
+	queryCollection(props.collection).count(),
+);
 
 // Compute the collection title based on the collection type
 const collectionTitle = computed(() => {
@@ -32,12 +24,6 @@ const collectionTitle = computed(() => {
 
 // Compute the section description with proper grammar
 const sectionDescription = computed(() => {
-	const publishedCount = metadata.value?.published_count || 0;
-	const draftCount = metadata.value?.drafted_count || 0;
-
-	const publishedText = t('review.publishedReview', publishedCount);
-	const draftText = t('review.draftedReview', draftCount);
-
-	return `${publishedText}, ${draftText}`;
+	return t('review.publishedReview', total.value ?? 0);
 });
 </script>

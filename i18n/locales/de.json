@@ -81,7 +81,6 @@
 	"review": {
 		"allReviews": "Alle {type}-Rezensionen",
 		"publishedReview": "1 veröffentlichte Rezension | {n} veröffentlichte Rezensionen",
-		"draftedReview": "1 Entwurf | {n} Entwürfe",
 		"season": "Staffel | Staffeln",
 		"episodes": "Folgen",
 		"cast": "Besetzung",

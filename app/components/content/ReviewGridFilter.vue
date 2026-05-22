@@ -136,14 +136,12 @@ const { data: items } = await useAsyncData(`review-grid-filter-${props.collectio
 	if (props.collection === 'show') {
 		const rows = await queryCollection('show')
 			.select('id', 'title', 'path', 'rating', 'poster_path', 'date_published', 'season_number', 'genres', 'release_year')
-			.where('draft', '=', false)
 			.order('date_published', 'DESC')
 			.all();
 		return rows as unknown as FilterableReview[];
 	}
 	const rows = await queryCollection('movie')
 		.select('id', 'title', 'path', 'rating', 'poster_path', 'date_published', 'genres', 'release_year')
-		.where('draft', '=', false)
 		.order('date_published', 'DESC')
 		.all();
 	return rows as unknown as FilterableReview[];

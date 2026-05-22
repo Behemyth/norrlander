@@ -37,8 +37,10 @@
 			:src="content.tmdbData.poster_path"
 			:alt="content.title"
 			:placeholder="img(content.tmdbData.poster_path, { height: 10, blur: 2, quality: 50 })"
+			:width="400"
+			:height="600"
 			:img-attrs="{
-				class: 'aspect-[2/3]',
+				class: 'aspect-[2/3] w-full h-auto',
 			}"
 			:style="{ viewTransitionName: `review-poster${content.path.replaceAll('/', '-')}` }"
 			sizes="100vw sm:50vw md:25vw"

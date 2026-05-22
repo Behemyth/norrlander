@@ -18,11 +18,11 @@ const { t } = useI18n();
 
 const { data: counts } = await useAsyncData('index-stats', async () => {
 	const [blog, photography, project, movie, show] = await Promise.all([
-		queryCollection('blog').where('draft', '=', false).count(),
-		queryCollection('photography').where('draft', '=', false).count(),
-		queryCollection('project').where('draft', '=', false).count(),
-		queryCollection('movie').where('draft', '=', false).count(),
-		queryCollection('show').where('draft', '=', false).count(),
+		queryCollection('blog').count(),
+		queryCollection('photography').count(),
+		queryCollection('project').count(),
+		queryCollection('movie').count(),
+		queryCollection('show').count(),
 	]);
 	return { blog, photography, project, reviews: movie + show };
 });
