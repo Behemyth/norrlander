@@ -1,6 +1,6 @@
 ---
 title: Westward
-description:
+description: Maryland -> California, with Ola
 date_published: 2026-04-28
 date_modified: 2026-04-28
 images:

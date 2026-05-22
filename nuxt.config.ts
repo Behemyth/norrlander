@@ -31,9 +31,6 @@ export default defineNuxtConfig({
 	// https://content.nuxtjs.org
 	content: {
 		build: {
-			transformers: [
-				'~/transformers/seo-draft',
-			],
 			markdown: {
 				toc: {
 					depth: 3,
@@ -92,8 +89,7 @@ export default defineNuxtConfig({
 		prerender: {
 			crawlLinks: true,
 			autoSubfolderIndex: false, // Prevents a 404 with trailing slashes catch-alls for nuxt/content
-			concurrency: 1, // Serialize route prerendering so TMDB image fetch bursts don't overlap and trigger CDN rate limiting
-			interval: 50, // To avoid rate limiting of the TMDB API
+			concurrency: 4,
 			routes: [
 				'/sitemap.xml',
 				'/robots.txt',

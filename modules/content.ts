@@ -1,6 +1,6 @@
 import type { FileAfterParseHook } from '@nuxt/content';
 
-import { defineNuxtModule, useRuntimeConfig } from '@nuxt/kit';
+import { defineNuxtModule } from '@nuxt/kit';
 
 import { $fetch } from 'ofetch';
 
@@ -46,17 +46,18 @@ function yearFromTmdbDate(dateStr: string | undefined | null): number | undefine
 
 export default defineNuxtModule({
 	setup(resolvedOptions, nuxt) {
-		const config = useRuntimeConfig();
-
-		// Skip TMDB fetching in test environment or when API credentials are not configured
+		// Skip TMDB fetching in test environment
 		const isTestEnv = process.env.NODE_ENV === 'test' || process.env.VITEST === 'true';
-		const hasApiCredentials = Boolean(config.apiSecret && config.public.apiBase);
 
 		if (isTestEnv) {
 			return;
 		}
 
 		nuxt.hook('content:file:afterParse' as any, async (ctx: FileAfterParseHook) => {
+			// Read env at hook-invocation time
+			const apiSecret = process.env.NUXT_API_SECRET ?? '';
+			const apiBase = process.env.NUXT_PUBLIC_API_BASE ?? '';
+			const hasApiCredentials = Boolean(apiSecret && apiBase);
 			if (!hasApiCredentials) {
 				// Stub minimal data so the layout renders with placeholders
 				switch (ctx.collection.name) {
@@ -93,15 +94,17 @@ export default defineNuxtModule({
 				case 'movie':
 				{
 					const tmdbData = await $fetch<TMDBMovie>(`/movie/${ctx.content.TMDB_ID}`, {
-						baseURL: `${config.public.apiBase}`,
+						baseURL: `${apiBase}`,
 						params: {
 							language: 'en-US',
 							append_to_response: 'credits',
 						},
 						headers: {
-							Authorization: `Bearer ${config.apiSecret}`,
+							Authorization: `Bearer ${apiSecret}`,
 						},
-
+						retry: 5,
+						retryDelay: 500,
+						retryStatusCodes: [408, 425, 429, 500, 502, 503, 504],
 					});
 
 					ctx.content.title = tmdbData.title;
@@ -122,26 +125,32 @@ export default defineNuxtModule({
 				{
 					const [tmdbData, seasonTmdbData] = await Promise.all([
 						$fetch<TMDBShow>(`/tv/${ctx.content.TMDB_ID}`, {
-							baseURL: `${config.public.apiBase}`,
+							baseURL: `${apiBase}`,
 							params: {
 								language: 'en-US',
 								append_to_response: 'credits',
 							},
 							headers: {
-								Authorization: `Bearer ${config.apiSecret}`,
+								Authorization: `Bearer ${apiSecret}`,
 							},
+							retry: 5,
+							retryDelay: 500,
+							retryStatusCodes: [408, 425, 429, 500, 502, 503, 504],
 						}),
 						ctx.content.season_number !== undefined
 							? $fetch<TMDBSeason>(
 									`/tv/${ctx.content.TMDB_ID}/season/${ctx.content.season_number}`,
 									{
-										baseURL: `${config.public.apiBase}`,
+										baseURL: `${apiBase}`,
 										params: {
 											language: 'en-US',
 										},
 										headers: {
-											Authorization: `Bearer ${config.apiSecret}`,
+											Authorization: `Bearer ${apiSecret}`,
 										},
+										retry: 5,
+										retryDelay: 500,
+										retryStatusCodes: [408, 425, 429, 500, 502, 503, 504],
 									},
 								)
 							: Promise.resolve(undefined),

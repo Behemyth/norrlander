@@ -81,7 +81,6 @@
 	"review": {
 		"allReviews": "Wszystkie recenzje: {type}",
 		"publishedReview": "1 opublikowana recenzja | {n} opublikowanych recenzji",
-		"draftedReview": "1 szkic recenzji | {n} szkiców recenzji",
 		"season": "Sezon | Sezony",
 		"episodes": "Odcinki",
 		"cast": "Obsada",

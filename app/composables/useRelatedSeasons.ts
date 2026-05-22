@@ -19,7 +19,6 @@ export async function useRelatedSeasons(content: ShowCollectionItem) {
 		`related-seasons-${content.TMDB_ID}`,
 		() => queryCollection('show')
 			.where('TMDB_ID', '=', content.TMDB_ID)
-			.where('draft', '=', false)
 			.all(),
 	);
 

@@ -69,7 +69,6 @@ export default defineCachedEventHandler(async (event) => {
 	const feed = createFeed(feedEntry.config, siteUrl, author);
 
 	const data = await queryCollection(event, feedEntry.collection)
-		.where('draft', '=', false)
 		.order('date_published', 'DESC')
 		.all();
 

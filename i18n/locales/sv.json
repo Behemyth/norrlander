@@ -81,7 +81,6 @@
     "review": {
         "allReviews": "Alla {type}-recensioner",
         "publishedReview": "1 publicerad recension | {n} publicerade recensioner",
-        "draftedReview": "1 utkast till recension | {n} utkast till recensioner",
         "season": "Säsong | Säsonger",
         "episodes": "Avsnitt",
         "cast": "Skådespelare",

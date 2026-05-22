@@ -19,6 +19,13 @@ import {
 
 const SeoFields = { robots: defineRobotsSchema(), sitemap: defineSitemapSchema() };
 
+// Drafts are visible in dev for previewing, but excluded
+// from production builds. Override with `NUXT_INCLUDE_DRAFTS=true` to include drafts in a prod build.
+const excludeDrafts = process.env.NUXT_INCLUDE_DRAFTS === 'true'
+	? false
+	: process.env.NODE_ENV === 'production';
+const draftExclude: string[] = excludeDrafts ? ['**/_*.md'] : [];
+
 // Collection definitions
 
 export default defineContentConfig({
@@ -45,37 +52,37 @@ export default defineContentConfig({
 		}),
 		blog: defineCollection({
 			type: 'page',
-			source: 'blog/*.md',
+			source: { include: 'blog/*.md', exclude: draftExclude },
 			schema: BlogSchema.extend(SeoFields),
 		}),
 		photography: defineCollection({
 			type: 'page',
-			source: 'photography/*.md',
+			source: { include: 'photography/*.md', exclude: draftExclude },
 			schema: PhotographySchema.extend(SeoFields),
 		}),
 		academic: defineCollection({
 			type: 'page',
-			source: 'portfolio/academic/*.md',
+			source: { include: 'portfolio/academic/*.md', exclude: draftExclude },
 			schema: AcademicSchema.extend(SeoFields),
 		}),
 		career: defineCollection({
 			type: 'page',
-			source: 'portfolio/career/*.md',
+			source: { include: 'portfolio/career/*.md', exclude: draftExclude },
 			schema: JobSchema.extend(SeoFields),
 		}),
 		project: defineCollection({
 			type: 'page',
-			source: 'portfolio/project/*.md',
+			source: { include: 'portfolio/project/*.md', exclude: draftExclude },
 			schema: ProjectSchema.extend(SeoFields),
 		}),
 		movie: defineCollection({
 			type: 'page',
-			source: 'review/movie/*.md',
+			source: { include: 'review/movie/*.md', exclude: draftExclude },
 			schema: ReviewMovieSchema.extend(SeoFields),
 		}),
 		show: defineCollection({
 			type: 'page',
-			source: 'review/show/*.md',
+			source: { include: 'review/show/*.md', exclude: draftExclude },
 			schema: ReviewShowSchema.extend(SeoFields),
 		}),
 		content: defineCollection({
@@ -92,6 +99,7 @@ export default defineContentConfig({
 					'portfolio/project/*.md',
 					'review/movie/*.md',
 					'review/show/*.md',
+					...draftExclude,
 				],
 			},
 			schema: ContentSchema.extend(SeoFields),

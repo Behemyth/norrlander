@@ -9,7 +9,6 @@ import { TMDBMovieSchema, TMDBShowSchema, TMDBSeasonSchema } from './tmdb';
 export const PageSchema = z.object({
 	title: z.string(),
 	description: z.string(),
-	draft: z.boolean().default(false),
 	date_published: z.coerce.date(),
 	date_modified: z.coerce.date(),
 });
