@@ -9,11 +9,14 @@
 		:ui="carouselUi"
 		class="w-full max-w-3xl mx-auto"
 	>
-		<button
+		<UButton
 			type="button"
-			class="block w-full cursor-zoom-in"
+			color="neutral"
+			variant="ghost"
+			block
+			class="w-full cursor-zoom-in bg-transparent p-0 hover:bg-transparent active:bg-transparent focus-visible:bg-transparent"
 			:aria-label="$t('photography.viewFullSize')"
-			@click="openLightbox(index, $event)"
+			@click="zoomed = index"
 		>
 			<div
 				class="relative mx-auto flex w-full items-center justify-center overflow-hidden rounded-sm bg-elevated"
@@ -27,12 +30,11 @@
 					class="h-full w-full object-contain"
 				/>
 			</div>
-		</button>
+		</UButton>
 	</UCarousel>
 	<PhotographyLightbox
 		v-model="zoomed"
 		:images="images"
-		:return-focus="returnFocusElement"
 	/>
 	<!-- SSR-rendered hints so the static prerenderer discovers lightbox IPX variants -->
 	<div
@@ -63,7 +65,6 @@ type CarouselHandle = {
 
 const carousel = useTemplateRef<CarouselHandle>('carousel');
 const zoomed = ref<number | null>(null);
-const returnFocusElement = shallowRef<HTMLElement | null>(null);
 const slideMaxHeightSvh = 70;
 const carouselUi = {
 	controls: 'flex items-center justify-center gap-2 mt-4',
@@ -82,11 +83,6 @@ watch(zoomed, (index) => {
 	if (index === null) return;
 	carousel.value?.emblaApi?.scrollTo(index, true);
 }, { flush: 'post' });
-
-function openLightbox(index: number, event: MouseEvent) {
-	returnFocusElement.value = event.currentTarget as HTMLElement;
-	zoomed.value = index;
-}
 
 function getPhotoFrame(image: PhotographyImage) {
 	if (!image.width || !image.height) {
