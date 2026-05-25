@@ -13,22 +13,18 @@
 			<div
 				ref="lightbox"
 				class="relative isolate h-full w-full overflow-hidden bg-black/95"
-				@focusin="showControls"
-				@focusout="handleFocusout"
+				@focusin="revealControls"
 				@keydown.capture="handleKeydown"
 				@pointerdown="revealControls"
 				@pointermove="revealControls"
 			>
 				<UButton
-					data-lightbox-control
 					icon="i-lucide-x"
 					color="neutral"
 					variant="solid"
 					size="lg"
 					:class="closeButtonClass"
-					:aria-hidden="!controlsVisible"
 					:aria-label="$t('photography.closeFullSize')"
-					:tabindex="controlTabIndex"
 					@click="close"
 				/>
 				<UCarousel
@@ -72,7 +68,6 @@ import type { PhotographyImage } from '~~/shared/types/content';
 const props = defineProps<{
 	modelValue: number | null;
 	images: PhotographyImage[];
-	returnFocus?: HTMLElement | null;
 }>();
 
 const emit = defineEmits<{
@@ -110,7 +105,6 @@ const controlVisibilityClass = computed(() => controlsVisible.value
 const controlInteractivityClass = computed(() => controlsVisible.value
 	? 'pointer-events-auto'
 	: 'pointer-events-none');
-const controlTabIndex = computed(() => controlsVisible.value ? 0 : -1);
 const closeButtonClass = computed(() => [
 	'absolute end-4 top-4 z-50 cursor-pointer rounded-full transition-opacity duration-500 ease-out',
 	controlButtonClass,
@@ -145,11 +139,6 @@ watch(() => props.modelValue, async (value, previousValue) => {
 	revealControls();
 }, { flush: 'post' });
 
-watch(controlsVisible, async (visible) => {
-	await nextTick();
-	setCarouselControlsInert(!visible);
-}, { flush: 'post' });
-
 onBeforeUnmount(clearControlsFadeTimeout);
 
 function close() {
@@ -162,12 +151,6 @@ function handleOpenChange(value: boolean) {
 
 function handleCloseAutoFocus(event: Event) {
 	event.preventDefault();
-	props.returnFocus?.focus({ preventScroll: true });
-}
-
-async function handleFocusout() {
-	await nextTick();
-	if (!hasControlFocus()) scheduleControlsFade();
 }
 
 function handleKeydown(event: KeyboardEvent) {
@@ -232,26 +215,7 @@ function revealControls() {
 function scheduleControlsFade() {
 	clearControlsFadeTimeout();
 	controlsFadeTimeout = setTimeout(() => {
-		if (hasControlFocus()) return;
 		controlsVisible.value = false;
 	}, controlsIdleDelay);
-}
-
-function setCarouselControlsInert(inert: boolean) {
-	lightbox.value
-		?.querySelector<HTMLElement>('[data-slot="controls"]')
-		?.toggleAttribute('inert', inert);
-}
-
-function hasControlFocus() {
-	if (!import.meta.client || !(document.activeElement instanceof HTMLElement)) return false;
-
-	const controlLayer = lightbox.value?.querySelector<HTMLElement>('[data-slot="controls"]');
-	const closeButton = lightbox.value?.querySelector<HTMLElement>('[data-lightbox-control]');
-
-	return Boolean(
-		controlLayer?.contains(document.activeElement)
-		|| closeButton?.contains(document.activeElement),
-	);
 }
 </script>
