@@ -72,7 +72,14 @@
 	"portfolio": {
 		"viewCompany": "View Company",
 		"viewInstitution": "View Institution",
-		"present": "Present"
+		"present": "Present",
+		"backToPortfolio": "Back to portfolio",
+		"academicNotFound": "Academic entry not found",
+		"academicNotFoundDescription": "The academic entry you're looking for doesn't exist or has been removed.",
+		"careerNotFound": "Career entry not found",
+		"careerNotFoundDescription": "The career entry you're looking for doesn't exist or has been removed.",
+		"projectNotFound": "Project not found",
+		"projectNotFoundDescription": "The project you're looking for doesn't exist or has been removed."
 	},
 	"profile": {
 		"location": "Location",
@@ -90,7 +97,16 @@
 		"creator": "Creator",
 		"createdBy": "Created By",
 		"noCreator": "No creator information available",
-		"as": " as "
+		"as": " as ",
+		"notFound": "Review not found",
+		"notFoundDescription": "The review you're looking for doesn't exist or has been removed.",
+		"backToReviews": "Back to reviews",
+		"fullSeries": "Full Series"
+	},
+	"contentSection": {
+		"blogTitle": "All Blog Posts",
+		"photographyTitle": "All Photography Posts",
+		"publishedPosts": "1 Published Post | {n} Published Posts"
 	},
 	"filter": {
 		"allGenres": "All genres",

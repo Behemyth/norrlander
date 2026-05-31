@@ -40,31 +40,19 @@
 </template>
 
 <script setup lang="ts">
+import type { CareerCollectionItem, AcademicCollectionItem } from '@nuxt/content';
+
 const { t } = useI18n();
 
-type CareerTimelineItem = {
-	id: string;
-	title: string;
-	path: string;
-	start_date: string | Date;
-	end_date?: string | Date;
-	link?: string;
-	position: string;
-	achievements?: string[];
-	location?: string;
-	tags?: string[];
-};
+type CareerTimelineItem = Pick<
+	CareerCollectionItem,
+	'id' | 'title' | 'path' | 'start_date' | 'end_date' | 'link' | 'position' | 'achievements' | 'location' | 'tags'
+>;
 
-type AcademicTimelineItem = {
-	id: string;
-	title: string;
-	path: string;
-	start_date: string | Date;
-	end_date?: string | Date;
-	link?: string;
-	degree: string;
-	location?: string;
-};
+type AcademicTimelineItem = Pick<
+	AcademicCollectionItem,
+	'id' | 'title' | 'path' | 'start_date' | 'end_date' | 'link' | 'degree' | 'location'
+>;
 
 type PortfolioTimelineItem = CareerTimelineItem | AcademicTimelineItem;
 
@@ -80,7 +68,7 @@ const { data: portfolioItems } = await useAsyncData('portfolio-timeline', async 
 			.all(),
 	]);
 
-	const combined = [...careers, ...academics] as unknown as PortfolioTimelineItem[];
+	const combined: PortfolioTimelineItem[] = [...careers, ...academics];
 	return combined.sort((a, b) => new Date(b.start_date).getTime() - new Date(a.start_date).getTime());
 });
 

@@ -1,9 +1,8 @@
 <template>
-	<UPageCard
+	<BaseContentCard
 		:title="post.title"
 		:description="post.description"
 		:to="post.path"
-		variant="ghost"
 	/>
 </template>
 

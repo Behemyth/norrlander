@@ -51,19 +51,10 @@ import { mapContentNavigation } from '@nuxt/ui/utils/content';
 
 const { t } = useI18n();
 
-const navLabelMap: Record<string, string> = {
-	'Blog': 'nav.blog',
-	'Photography': 'nav.photography',
-	'Portfolio': 'nav.portfolio',
-	'Reviews': 'nav.reviews',
-	'Movie Reviews': 'nav.movieReviews',
-	'Show Reviews': 'nav.showReviews',
-};
-
 function translateContentNavigation(navItems: ContentNavigationItem[]): ContentNavigationItem[] {
 	return navItems.map(item => ({
 		...item,
-		title: navLabelMap[item.title] ? t(navLabelMap[item.title]!) : item.title,
+		title: translateNavLabel(item.title, t),
 		children: Array.isArray(item.children) && item.children.length ? translateContentNavigation(item.children) : item.children,
 	}));
 }

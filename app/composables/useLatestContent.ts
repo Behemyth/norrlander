@@ -4,28 +4,25 @@
 
 export const useLatestBlog = (limit?: number) =>
 	useAsyncData(`blog-latest-${limit ?? 'all'}`, () => {
-		let query = queryCollection('blog')
+		const query = queryCollection('blog')
 			.select('title', 'description', 'path', 'date_published')
 			.order('date_published', 'DESC');
-		if (limit) query = query.limit(limit);
-		return query.all();
+		return (limit ? query.limit(limit) : query).all();
 	});
 
 export const useLatestPhotography = (limit?: number) =>
 	useAsyncData(`photography-latest-${limit ?? 'all'}`, () => {
-		let query = queryCollection('photography')
+		const query = queryCollection('photography')
 			.order('date_published', 'DESC');
-		if (limit) query = query.limit(limit);
-		return query.all();
+		return (limit ? query.limit(limit) : query).all();
 	});
 
 export const useLatestProjects = (limit?: number) =>
 	useAsyncData(`project-latest-${limit ?? 'all'}`, () => {
-		let query = queryCollection('project')
+		const query = queryCollection('project')
 			.select('title', 'description', 'path', 'link', 'image', 'date_published')
 			.order('date_published', 'DESC');
-		if (limit) query = query.limit(limit);
-		return query.all();
+		return (limit ? query.limit(limit) : query).all();
 	});
 
 export const useLatestReviews = (limit: number, collection?: 'movie' | 'show') =>

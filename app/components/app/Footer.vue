@@ -9,7 +9,6 @@
 		<template #left>
 			<AppProfileCard
 				orientation="horizontal"
-				variant="ghost"
 			/>
 		</template>
 

@@ -11,6 +11,8 @@ const props = defineProps<{
 	title?: string;
 }>();
 
+const { t } = useI18n();
+
 const { data: total } = await useAsyncData(`content-section-${props.collection}`, () =>
 	queryCollection(props.collection).count(),
 );
@@ -20,12 +22,12 @@ const sectionTitle = computed(() => {
 		return props.title;
 	}
 
-	const collectionTitle = props.collection.charAt(0).toUpperCase() + props.collection.slice(1);
-	return `All ${collectionTitle} Posts`;
+	return props.collection === 'blog'
+		? t('contentSection.blogTitle')
+		: t('contentSection.photographyTitle');
 });
 
-const sectionDescription = computed(() => {
-	const count = total.value ?? 0;
-	return count === 1 ? '1 Published Post' : `${count} Published Posts`;
-});
+const sectionDescription = computed(() =>
+	t('contentSection.publishedPosts', total.value ?? 0),
+);
 </script>

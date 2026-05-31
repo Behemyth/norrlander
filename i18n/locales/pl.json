@@ -72,7 +72,14 @@
 	"portfolio": {
 		"viewCompany": "Zobacz firmę",
 		"viewInstitution": "Zobacz uczelnię",
-		"present": "Obecnie"
+		"present": "Obecnie",
+		"backToPortfolio": "Wróć do portfolio",
+		"academicNotFound": "Nie znaleziono wpisu akademickiego",
+		"academicNotFoundDescription": "Wpis akademicki, którego szukasz, nie istnieje lub został usunięty.",
+		"careerNotFound": "Nie znaleziono wpisu zawodowego",
+		"careerNotFoundDescription": "Wpis zawodowy, którego szukasz, nie istnieje lub został usunięty.",
+		"projectNotFound": "Nie znaleziono projektu",
+		"projectNotFoundDescription": "Projekt, którego szukasz, nie istnieje lub został usunięty."
 	},
 	"profile": {
 		"location": "Lokalizacja",
@@ -90,7 +97,16 @@
 		"creator": "Twórca",
 		"createdBy": "Stworzone przez",
 		"noCreator": "Brak informacji o twórcy",
-		"as": " jako "
+		"as": " jako ",
+		"notFound": "Nie znaleziono recenzji",
+		"notFoundDescription": "Recenzja, której szukasz, nie istnieje lub została usunięta.",
+		"backToReviews": "Wróć do recenzji",
+		"fullSeries": "Cały serial"
+	},
+	"contentSection": {
+		"blogTitle": "Wszystkie wpisy na blogu",
+		"photographyTitle": "Wszystkie wpisy fotograficzne",
+		"publishedPosts": "1 opublikowany wpis | {n} opublikowanych wpisów"
 	},
 	"filter": {
 		"allGenres": "Wszystkie gatunki",

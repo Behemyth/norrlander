@@ -16,16 +16,7 @@
 <script setup lang="ts">
 const { t } = useI18n();
 
-const { data: counts } = await useAsyncData('index-stats', async () => {
-	const [blog, photography, project, movie, show] = await Promise.all([
-		queryCollection('blog').count(),
-		queryCollection('photography').count(),
-		queryCollection('project').count(),
-		queryCollection('movie').count(),
-		queryCollection('show').count(),
-	]);
-	return { blog, photography, project, reviews: movie + show };
-});
+const { data: counts } = await useIndexStats();
 
 const stats = computed(() => [
 	{

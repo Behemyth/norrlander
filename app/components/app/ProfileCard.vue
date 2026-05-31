@@ -1,7 +1,5 @@
 <template>
-	<UCard
-		:variant="props.variant as any"
-	>
+	<UCard>
 		<UUser
 			name="Asher Norland"
 			description="Graphics Engineer"
@@ -34,7 +32,6 @@
 <script setup lang="ts">
 interface Props {
 	orientation: 'horizontal' | 'vertical';
-	variant?: 'ghost' | 'solid' | 'outline' | 'soft' | 'subtle' | 'naked';
 	footer?: boolean;
 }
 

@@ -9,7 +9,7 @@
 		>
 			<UPageAside>
 				<UContentToc
-					title="Contents"
+					:title="$t('common.contents')"
 					highlight
 					:links="page.body.toc.links"
 				/>
@@ -26,9 +26,9 @@
 	<PageNotFound
 		v-else
 		icon="i-lucide-folder-open"
-		title="Project not found"
-		description="The project you're looking for doesn't exist or has been removed."
-		back-label="Back to portfolio"
+		:title="$t('portfolio.projectNotFound')"
+		:description="$t('portfolio.projectNotFoundDescription')"
+		:back-label="$t('portfolio.backToPortfolio')"
 		back-to="/portfolio"
 	/>
 </template>

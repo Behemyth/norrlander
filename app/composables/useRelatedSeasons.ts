@@ -13,6 +13,7 @@ export interface SeasonLink {
  */
 export async function useRelatedSeasons(content: ShowCollectionItem) {
 	const route = useRoute();
+	const { t } = useI18n();
 
 	// Query all show reviews with the same TMDB_ID
 	const { data: relatedReviews } = await useAsyncData(
@@ -36,7 +37,7 @@ export async function useRelatedSeasons(content: ShowCollectionItem) {
 				return aNum - bNum;
 			})
 			.map(review => ({
-				label: review.season_number ? `S${review.season_number}` : 'Full Series',
+				label: review.season_number ? `S${review.season_number}` : t('review.fullSeries'),
 				seasonNumber: review.season_number ?? null,
 				path: review.path,
 				isCurrent: review.path === route.path,
