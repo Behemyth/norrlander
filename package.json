@@ -24,7 +24,7 @@
 		"@nuxt/test-utils": "^4.0.3",
 		"@nuxt/ui": "^4.8.2",
 		"@nuxtjs/i18n": "^10.4.0",
-		"@nuxtjs/seo": "^5.1.4",
+		"@nuxtjs/seo": "^5.2.0",
 		"nuxt": "^4.4.2",
 		"typescript": "^6.0.3",
 		"vitest": "^4.1.8",
