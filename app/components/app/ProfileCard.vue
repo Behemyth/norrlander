@@ -1,5 +1,5 @@
 <template>
-	<UCard>
+	<UCard :variant="variant">
 		<UUser
 			name="Asher Norland"
 			description="Graphics Engineer"
@@ -30,9 +30,12 @@
 </template>
 
 <script setup lang="ts">
+import type { CardProps } from '@nuxt/ui';
+
 interface Props {
 	orientation: 'horizontal' | 'vertical';
 	footer?: boolean;
+	variant?: CardProps['variant'];
 }
 
 const props = withDefaults(defineProps<Props>(), {
