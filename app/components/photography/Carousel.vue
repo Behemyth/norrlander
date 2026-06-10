@@ -8,6 +8,7 @@
 		:items="images"
 		:ui="carouselUi"
 		class="w-full max-w-3xl mx-auto"
+		@select="warmLightboxImage"
 	>
 		<UButton
 			type="button"
@@ -40,7 +41,8 @@
 		v-model="zoomed"
 		:images="images"
 	/>
-	<!-- SSR-rendered hints so the static prerenderer discovers lightbox IPX variants.
+	<!-- SSR-rendered hints so the static prerenderer discovers the lightbox IPX variants
+		(must mirror the Lightbox NuxtImg props exactly so the URLs match).
 		lazy prevents clients from eagerly fetching them (display:none defeats the
 		IntersectionObserver, so they never load); useImagePrefetch warms them instead. -->
 	<div
@@ -51,7 +53,9 @@
 			v-for="image in images"
 			:key="image.src"
 			:src="image.src"
-			preset="fullscreen"
+			:width="getLightboxWidth(image)"
+			:format="LIGHTBOX_FORMAT"
+			densities="1x"
 			loading="lazy"
 		/>
 	</div>
@@ -59,6 +63,7 @@
 
 <script lang="ts" setup>
 import type { PhotographyImage } from '~~/shared/types/content';
+import { getLightboxWidth, LIGHTBOX_FORMAT } from '~/utils/images';
 
 const props = defineProps<{
 	images: PhotographyImage[];
@@ -70,11 +75,29 @@ const slideSizes = 'sm:100vw md:768px';
 // First slide is the LCP on photography pages.
 useImagePreload(props.images[0]?.src, { sizes: slideSizes });
 
-// Warm the cache for the remaining slides and the fullscreen lightbox variants.
+// Warm the cache for the remaining slides and the first slide's lightbox variant.
+// Full-resolution files are large even as webp, so the other lightbox variants
+// are warmed per-slide as the user navigates to them (see warmLightboxImage).
+const img = useImage();
 useImagePrefetch(() => [
 	...props.images.slice(1).map(image => ({ src: image.src, sizes: slideSizes })),
-	...props.images.map(image => ({ src: image.src, preset: 'fullscreen' })),
+	...props.images.slice(0, 1).map(image => ({ url: lightboxUrl(image) })),
 ]);
+
+const warmedLightboxUrls = new Set<string>();
+
+function lightboxUrl(image: PhotographyImage) {
+	return img(image.src, { width: getLightboxWidth(image), format: LIGHTBOX_FORMAT });
+}
+
+function warmLightboxImage(index: number) {
+	const image = props.images[index];
+	if (!image || hasSaveData()) return;
+	const url = lightboxUrl(image);
+	if (warmedLightboxUrls.has(url)) return;
+	warmedLightboxUrls.add(url);
+	prefetchImage(url);
+}
 
 type CarouselHandle = {
 	emblaApi?: {

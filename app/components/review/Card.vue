@@ -18,20 +18,17 @@
 				loading="lazy"
 			/>
 			<div class="absolute inset-0 bg-white/0 transition-colors duration-300 group-hover:bg-white/10" />
-			<!-- Season badge for seasonal reviews -->
-			<UBadge
-				v-if="seasonNumber"
-				variant="solid"
-				size="xs"
-				class="absolute top-2 right-2"
-			>
-				S{{ seasonNumber }}
-			</UBadge>
 		</div>
 
 		<div class="flex flex-col gap-1">
 			<p class="line-clamp-2 text-sm font-semibold text-highlighted">
-				{{ title }}
+				{{ displayTitle }}
+			</p>
+			<p
+				v-if="seasonNumber"
+				class="text-xs text-muted"
+			>
+				{{ $t('review.season', 1) }} {{ seasonNumber }}
 			</p>
 			<ReviewStarRating
 				:value="rating"
@@ -44,7 +41,7 @@
 <script setup lang="ts">
 const img = useImage();
 
-defineProps({
+const props = defineProps({
 	title: {
 		type: String,
 		required: true,
@@ -65,5 +62,13 @@ defineProps({
 		type: Number,
 		default: undefined,
 	},
+});
+
+// The content module bakes seasons into the stored title ("<Show>: Season <n>")
+// for SEO/feeds; cards strip that suffix and show the season on its own line.
+const displayTitle = computed(() => {
+	if (props.seasonNumber == null) return props.title;
+	const suffix = `: Season ${props.seasonNumber}`;
+	return props.title.endsWith(suffix) ? props.title.slice(0, -suffix.length) : props.title;
 });
 </script>

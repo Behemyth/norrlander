@@ -13,7 +13,7 @@
 			<LazyReviewDiscussion
 				:category="capitalizedCategory"
 				:title="page.title"
-				:season-number="'season_number' in page ? page.season_number : undefined"
+				:season-number="'season_number' in page && page.season_number != null ? Number(page.season_number) : undefined"
 			/>
 		</ClientOnly>
 	</UPage>

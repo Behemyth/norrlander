@@ -3,7 +3,7 @@
 		<!-- Left: Title and metadata -->
 		<div class="my-auto">
 			<ProseH2 class="my-0! mb-2!">
-				{{ content.title }}
+				{{ displayTitle }}
 			</ProseH2>
 			<div class="flex flex-wrap items-center gap-x-2 text-sm text-muted mb-2">
 				<span v-if="releaseYear">{{ releaseYear }}</span>
@@ -11,7 +11,11 @@
 					<span class="text-xs">•</span>
 					<span>{{ formattedRuntime }}</span>
 				</template>
-				<template v-if="isShow && numberOfSeasons">
+				<template v-if="isSeason && seasonNumber">
+					<span class="text-xs">•</span>
+					<span>{{ $t('review.season', 1) }} {{ seasonNumber }}</span>
+				</template>
+				<template v-else-if="isShow && numberOfSeasons">
 					<span class="text-xs">•</span>
 					<span>{{ numberOfSeasons }} {{ $t('review.season', numberOfSeasons) }}</span>
 				</template>
@@ -180,6 +184,9 @@ const props = defineProps<{
 const {
 	isMovie,
 	isShow,
+	isSeason,
+	displayTitle,
+	seasonNumber,
 	releaseYear,
 	formattedRuntime,
 	numberOfSeasons,

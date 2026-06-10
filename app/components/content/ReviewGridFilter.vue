@@ -90,7 +90,7 @@
 					:path="review.path"
 					:rating="Number(review.rating)"
 					:poster-path="review.poster_path ?? ''"
-					:season-number="'season_number' in review ? review.season_number : undefined"
+					:season-number="'season_number' in review && review.season_number != null ? Number(review.season_number) : undefined"
 				/>
 			</div>
 		</div>
