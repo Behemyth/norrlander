@@ -22,11 +22,15 @@
 				class="relative mx-auto flex w-full items-center justify-center overflow-hidden rounded-sm bg-elevated"
 				:style="getSlideFrameStyle(item)"
 			>
+				<!-- Workaround for nuxt/image#1433: every vw entry needs a breakpoint prefix
+					(no bare values, and no xs: — it's not in the default screens).
+					Container is max-w-3xl (768px): full-bleed below md, capped at 768px above. -->
 				<NuxtImg
 					:src="item.src"
 					:alt="item.alt"
-					sizes="100vw md:768px"
-					loading="lazy"
+					:sizes="slideSizes"
+					:loading="index === 0 ? 'eager' : 'lazy'"
+					:fetchpriority="index === 0 ? 'high' : undefined"
 					class="h-full w-full object-contain"
 				/>
 			</div>
@@ -36,7 +40,9 @@
 		v-model="zoomed"
 		:images="images"
 	/>
-	<!-- SSR-rendered hints so the static prerenderer discovers lightbox IPX variants -->
+	<!-- SSR-rendered hints so the static prerenderer discovers lightbox IPX variants.
+		lazy prevents clients from eagerly fetching them (display:none defeats the
+		IntersectionObserver, so they never load); useImagePrefetch warms them instead. -->
 	<div
 		hidden
 		aria-hidden="true"
@@ -46,6 +52,7 @@
 			:key="image.src"
 			:src="image.src"
 			preset="fullscreen"
+			loading="lazy"
 		/>
 	</div>
 </template>
@@ -53,9 +60,21 @@
 <script lang="ts" setup>
 import type { PhotographyImage } from '~~/shared/types/content';
 
-defineProps<{
+const props = defineProps<{
 	images: PhotographyImage[];
 }>();
+
+// Container is max-w-3xl (768px): full-bleed below md, capped at 768px above.
+const slideSizes = 'sm:100vw md:768px';
+
+// First slide is the LCP on photography pages.
+useImagePreload(props.images[0]?.src, { sizes: slideSizes });
+
+// Warm the cache for the remaining slides and the fullscreen lightbox variants.
+useImagePrefetch(() => [
+	...props.images.slice(1).map(image => ({ src: image.src, sizes: slideSizes })),
+	...props.images.map(image => ({ src: image.src, preset: 'fullscreen' })),
+]);
 
 type CarouselHandle = {
 	emblaApi?: {

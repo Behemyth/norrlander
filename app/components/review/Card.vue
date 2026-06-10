@@ -7,10 +7,13 @@
 			class="relative aspect-2/3 overflow-hidden rounded-sm"
 			:style="{ viewTransitionName: `review-poster${path.replaceAll('/', '-')}` }"
 		>
+			<!-- Workaround for nuxt/image#1433: every vw entry needs a breakpoint prefix
+				(no bare values, and no xs: — it's not in the default screens).
+				Grid: grid-cols-2 md:grid-cols-3 lg:grid-cols-6. -->
 			<NuxtImg
 				:src="posterPath"
 				:placeholder="img(posterPath, { height: 10, blur: 2, quality: 50 })"
-				sizes="50vw md:33vw lg:16vw"
+				sizes="sm:50vw md:33vw lg:16vw"
 				class="h-full w-full object-cover"
 				loading="lazy"
 			/>

@@ -94,13 +94,15 @@
 			v-if="content.tmdbData?.backdrop_path"
 			class="aspect-12/5 w-full overflow-hidden"
 		>
+			<!-- Workaround for nuxt/image#1433: bare vw sizes produce 1w/2w srcsets, so
+				every vw entry must carry a breakpoint prefix (matches the fullscreen preset). -->
 			<NuxtImg
 				:src="content.tmdbData.backdrop_path"
 				:alt="content.title"
 				:placeholder="img(content.tmdbData.backdrop_path, { height: 10, blur: 2, quality: 50 })"
+				:sizes="backdropSizes"
 				loading="eager"
 				fetchpriority="high"
-				preload
 				class="object-cover w-full h-full"
 			/>
 		</div>
@@ -117,6 +119,11 @@ const img = useImage();
 const props = defineProps<{
 	content: MovieCollectionItem | ShowCollectionItem;
 }>();
+
+// Container is max-w-4xl (896px); full-bleed below lg.
+const backdropSizes = 'sm:100vw md:100vw lg:896px';
+
+useImagePreload(props.content.tmdbData?.backdrop_path, { sizes: backdropSizes });
 
 const {
 	isMovie,

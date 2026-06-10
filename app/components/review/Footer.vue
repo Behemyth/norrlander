@@ -32,6 +32,7 @@
 		</div>
 
 		<!-- Poster -->
+		<!-- Bare px sizes are safe (nuxt/image#1433 only affects bare vw values). -->
 		<NuxtImg
 			v-if="content.tmdbData?.poster_path"
 			:src="content.tmdbData.poster_path"
@@ -39,11 +40,9 @@
 			:placeholder="img(content.tmdbData.poster_path, { height: 10, blur: 2, quality: 50 })"
 			:width="400"
 			:height="600"
-			:img-attrs="{
-				class: 'aspect-[2/3] w-full h-auto',
-			}"
+			class="aspect-[2/3] w-full h-auto max-w-64 mx-auto sm:max-w-none"
 			:style="{ viewTransitionName: `review-poster${content.path.replaceAll('/', '-')}` }"
-			sizes="100vw sm:50vw md:25vw"
+			sizes="256px sm:50vw md:25vw"
 			loading="lazy"
 		/>
 

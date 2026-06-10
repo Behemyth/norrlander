@@ -45,11 +45,13 @@
 			class="relative aspect-3/2 w-full overflow-hidden rounded-md opacity-70 saturate-75 transition-[opacity,filter] duration-300 group-hover:opacity-100 group-hover:saturate-100"
 			:style="imageAspect === 'poster' ? backdropStyle : undefined"
 		>
+			<!-- Workaround for nuxt/image#1433: every vw entry needs a breakpoint prefix
+				(no bare values, and no xs: — it's not in the default screens). -->
 			<NuxtImg
 				:src="image"
 				:alt="title"
 				:placeholder="img(image, { height: 10, blur: 2, quality: 50 })"
-				sizes="100vw sm:50vw lg:320px"
+				sizes="sm:100vw md:50vw lg:320px"
 				:class="[
 					'h-full w-full',
 					imageAspect === 'poster' ? 'object-contain' : 'object-cover',
