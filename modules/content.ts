@@ -25,6 +25,91 @@ function trimCredits(credits: TMDBCredits): TMDBCredits {
 	};
 }
 
+function addUniquePerson(names: string[], name: string | undefined | null) {
+	const trimmed = name?.trim();
+	if (trimmed && !names.includes(trimmed)) {
+		names.push(trimmed);
+	}
+}
+
+export function peopleFromTmdb(tmdbData: TMDBMovie | TMDBShow): string[] {
+	const people: string[] = [];
+	for (const member of tmdbData.credits?.cast ?? []) {
+		addUniquePerson(people, member.name);
+	}
+	for (const member of tmdbData.credits?.crew ?? []) {
+		addUniquePerson(people, member.name);
+	}
+	if ('created_by' in tmdbData) {
+		for (const creator of tmdbData.created_by ?? []) {
+			addUniquePerson(people, creator.name);
+		}
+	}
+	return people;
+}
+
+type UnknownRecord = Record<string, unknown>;
+
+function isRecord(value: unknown): value is UnknownRecord {
+	return Boolean(value && typeof value === 'object' && !Array.isArray(value));
+}
+
+function stringValue(value: unknown): string | undefined {
+	return typeof value === 'string' ? value.trim() || undefined : undefined;
+}
+
+function personNameFromNode(node: UnknownRecord): string | undefined {
+	const type = stringValue(node.type);
+	const name = stringValue(node.name) ?? stringValue(node.tag) ?? stringValue(node.component) ?? stringValue(node.componentName);
+	if (name !== 'person' && name !== 'Person') return undefined;
+	if (type && !['textComponent', 'leafComponent', 'component', 'containerComponent'].includes(type)) return undefined;
+
+	for (const key of ['props', 'attributes', 'attrs']) {
+		const attrs = node[key];
+		if (!isRecord(attrs)) continue;
+		const mentionedName = stringValue(attrs.name);
+		if (mentionedName) return mentionedName;
+	}
+	return undefined;
+}
+
+export function personMentionsFromBody(body: unknown): string[] {
+	const mentions: string[] = [];
+
+	function visit(value: unknown) {
+		if (Array.isArray(value)) {
+			for (const child of value) visit(child);
+			return;
+		}
+		if (!isRecord(value)) return;
+
+		addUniquePerson(mentions, personNameFromNode(value));
+		for (const child of Object.values(value)) {
+			visit(child);
+		}
+	}
+
+	visit(body);
+	return mentions;
+}
+
+export function unknownPersonMentions(body: unknown, knownPeople: readonly string[]): string[] {
+	const known = new Set(knownPeople);
+	return personMentionsFromBody(body).filter(name => !known.has(name));
+}
+
+function warnOrThrowUnknownPersonMentions(content: Record<string, unknown>, people: readonly string[]) {
+	const unknown = unknownPersonMentions(content.body, people);
+	if (unknown.length === 0) return;
+
+	const location = stringValue(content.path) ?? stringValue(content.title) ?? 'unknown review';
+	const message = `[content] Unknown :person mention${unknown.length === 1 ? '' : 's'} in ${location}: ${unknown.map(name => `"${name}"`).join(', ')}. Match TMDB credit names exactly so review-grid links can resolve.`;
+	if (process.env.NUXT_CONTENT_PERSON_MENTION_STRICT === 'true') {
+		throw new Error(message);
+	}
+	console.warn(message);
+}
+
 /**
  * Prefix a TMDB image path so NuxtImg resolves it via the `tmdb` alias.
  */
@@ -72,6 +157,7 @@ export default defineNuxtModule({
 						ctx.content.poster_path = '/images/placeholder-poster.svg';
 						ctx.content.backdrop_path = '/images/placeholder-backdrop.svg';
 						ctx.content.genres = [];
+						ctx.content.people = [];
 						break;
 					case 'show':
 						ctx.content.tmdbData = {
@@ -84,6 +170,7 @@ export default defineNuxtModule({
 						ctx.content.poster_path = '/images/placeholder-poster.svg';
 						ctx.content.backdrop_path = '/images/placeholder-backdrop.svg';
 						ctx.content.genres = [];
+						ctx.content.people = [];
 						break;
 					default:
 				}
@@ -117,6 +204,9 @@ export default defineNuxtModule({
 					ctx.content.poster_path = tmdbData.poster_path;
 					ctx.content.backdrop_path = tmdbData.backdrop_path;
 					ctx.content.genres = (tmdbData.genres ?? []).map(g => g.name);
+					const people = peopleFromTmdb(tmdbData);
+					ctx.content.people = people;
+					warnOrThrowUnknownPersonMentions(ctx.content, people);
 					const movieYear = yearFromTmdbDate(tmdbData.release_date);
 					if (movieYear !== undefined) ctx.content.release_year = movieYear;
 					break;
@@ -165,6 +255,9 @@ export default defineNuxtModule({
 					ctx.content.tmdbData = tmdbData;
 					ctx.content.backdrop_path = tmdbData.backdrop_path;
 					ctx.content.genres = (tmdbData.genres ?? []).map(g => g.name);
+					const people = peopleFromTmdb(tmdbData);
+					ctx.content.people = people;
+					warnOrThrowUnknownPersonMentions(ctx.content, people);
 
 					if (seasonTmdbData) {
 						if (seasonTmdbData.poster_path) {

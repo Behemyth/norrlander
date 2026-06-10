@@ -27,6 +27,7 @@ export const ReviewMetadataSchema = PageSchema.extend({
 	// `.select()` tiny scalars instead of the full `tmdbData` / `seasonTmdbData`
 	// objects.
 	genres: z.array(z.string()).optional().default([]),
+	people: z.array(z.string()).optional().default([]),
 	release_year: z.number().int().optional(),
 });
 

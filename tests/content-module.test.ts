@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { $fetch } from 'ofetch';
+import { peopleFromTmdb, personMentionsFromBody, unknownPersonMentions } from '../modules/content';
 
 // We test the TMDB module's core logic by simulating what the hook does
 // Since the module has a skip guard for test environments, we test the logic directly
@@ -112,6 +113,76 @@ describe('TMDB content module', () => {
 			});
 			expect(ctx.content.title).toBe('The Matrix');
 			expect(ctx.content.tmdbData).toBe(movieData);
+		});
+	});
+
+	describe('people extraction', () => {
+		it('dedupes movie cast and crew names in display order', () => {
+			expect(peopleFromTmdb({
+				id: 1,
+				title: 'Test Movie',
+				genres: [],
+				poster_path: '',
+				backdrop_path: '',
+				credits: {
+					cast: [
+						{ id: 10, name: 'Joaquin Phoenix', character: 'Beau', order: 0 },
+						{ id: 11, name: 'Patti LuPone', character: 'Mona', order: 1 },
+					],
+					crew: [
+						{ id: 12, name: 'Ari Aster', job: 'Director', department: 'Directing' },
+						{ id: 12, name: 'Ari Aster', job: 'Writer', department: 'Writing' },
+					],
+				},
+			})).toEqual(['Joaquin Phoenix', 'Patti LuPone', 'Ari Aster']);
+		});
+
+		it('includes show creators after cast and crew', () => {
+			expect(peopleFromTmdb({
+				id: 1,
+				name: 'Test Show',
+				genres: [],
+				poster_path: '',
+				backdrop_path: '',
+				credits: {
+					cast: [{ id: 10, name: 'Lead Actor', character: 'Lead', order: 0 }],
+					crew: [{ id: 11, name: 'Episode Director', job: 'Director', department: 'Directing' }],
+				},
+				created_by: [{ id: 12, name: 'Series Creator', profile_path: null }],
+			})).toEqual(['Lead Actor', 'Episode Director', 'Series Creator']);
+		});
+	});
+
+	describe('person mention validation', () => {
+		it('extracts MDC person mentions from parsed bodies', () => {
+			const body = {
+				type: 'root',
+				children: [
+					{
+						type: 'paragraph',
+						children: [
+							// Label syntax — `:person[Ari]{name="Ari Aster"}` — keeps the
+							// canonical name in attributes while children carry the label.
+							{ type: 'textComponent', name: 'person', attributes: { name: 'Ari Aster' }, children: [{ type: 'text', value: 'Ari' }] },
+							{ type: 'textComponent', name: 'person', props: { name: 'Joaquin Phoenix' } },
+						],
+					},
+				],
+			};
+
+			expect(personMentionsFromBody(body)).toEqual(['Ari Aster', 'Joaquin Phoenix']);
+		});
+
+		it('reports mentions that are not in the known people list', () => {
+			const body = {
+				type: 'root',
+				children: [
+					{ type: 'textComponent', name: 'person', attributes: { name: 'Ari Aster' } },
+					{ type: 'textComponent', name: 'person', attributes: { name: 'Typo Aster' } },
+				],
+			};
+
+			expect(unknownPersonMentions(body, ['Ari Aster'])).toEqual(['Typo Aster']);
 		});
 	});
 

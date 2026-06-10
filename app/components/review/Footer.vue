@@ -61,7 +61,10 @@
 					:key="member.id"
 					class="text-xs"
 				>
-					<span class="font-medium">{{ member.name }}</span>
+					<Person
+						:name="member.name"
+						:category="reviewCategory"
+					/>
 					<span class="text-muted">{{ $t('review.as') }}{{ member.character }}</span>
 				</li>
 			</ul>
@@ -85,7 +88,16 @@
 						{{ $t('review.director', directors.length) }}
 					</ProseH3>
 					<ProseP class="my-0!">
-						{{ directors.map(d => d.name).join(', ') }}
+						<template
+							v-for="(director, index) in directors"
+							:key="director.id"
+						>
+							<span v-if="index > 0">, </span>
+							<Person
+								:name="director.name"
+								:category="reviewCategory"
+							/>
+						</template>
 					</ProseP>
 				</div>
 				<div v-if="uniqueWriterNames.length > 0">
@@ -93,7 +105,16 @@
 						{{ $t('review.screenplay') }}
 					</ProseH3>
 					<ProseP class="my-0!">
-						{{ uniqueWriterNames.join(', ') }}
+						<template
+							v-for="(writer, index) in uniqueWriterNames"
+							:key="writer"
+						>
+							<span v-if="index > 0">, </span>
+							<Person
+								:name="writer"
+								:category="reviewCategory"
+							/>
+						</template>
 					</ProseP>
 				</div>
 			</template>
@@ -104,7 +125,16 @@
 						{{ creators.length === 1 ? $t('review.creator') : $t('review.createdBy') }}
 					</ProseH3>
 					<ProseP class="my-0!">
-						{{ creators.map(c => c.name).join(', ') }}
+						<template
+							v-for="(creator, index) in creators"
+							:key="creator.id"
+						>
+							<span v-if="index > 0">, </span>
+							<Person
+								:name="creator.name"
+								:category="reviewCategory"
+							/>
+						</template>
 					</ProseP>
 				</div>
 				<div
@@ -115,7 +145,16 @@
 						{{ $t('review.director', directors.length) }}
 					</ProseH3>
 					<ProseP class="my-0!">
-						{{ directors.map(d => d.name).join(', ') }}
+						<template
+							v-for="(director, index) in directors"
+							:key="director.id"
+						>
+							<span v-if="index > 0">, </span>
+							<Person
+								:name="director.name"
+								:category="reviewCategory"
+							/>
+						</template>
 					</ProseP>
 				</div>
 				<ProseP
@@ -153,4 +192,6 @@ const {
 } = useReviewMetadata(props.content);
 
 const topCast = getTopCast(5);
+
+const reviewCategory = computed(() => isMovie.value ? 'movie' as const : 'show' as const);
 </script>
