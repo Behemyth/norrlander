@@ -24,16 +24,20 @@
 			<p class="line-clamp-2 text-sm font-semibold text-highlighted">
 				{{ displayTitle }}
 			</p>
-			<p
-				v-if="seasonNumber"
-				class="text-xs text-muted"
-			>
-				{{ $t('review.season', 1) }} {{ seasonNumber }}
-			</p>
-			<ReviewStarRating
-				:value="rating"
-				:size="14"
-			/>
+			<div class="flex items-center gap-1.5">
+				<ReviewStarRating
+					:value="rating"
+					:size="14"
+				/>
+				<UBadge
+					v-if="seasonNumber"
+					color="neutral"
+					variant="subtle"
+					size="sm"
+				>
+					S{{ seasonNumber }}
+				</UBadge>
+			</div>
 		</div>
 	</NuxtLink>
 </template>
