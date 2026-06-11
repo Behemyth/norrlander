@@ -17,6 +17,8 @@
 </template>
 
 <script setup lang="ts">
+import type { PageCardProps } from '@nuxt/ui';
+
 /**
  * Collection-specific cards wrap this and supply their own feature rows.
  */
@@ -25,7 +27,7 @@ withDefaults(
 		title: string;
 		description?: string;
 		to: string;
-		variant?: 'solid' | 'outline' | 'soft' | 'subtle' | 'ghost' | 'naked';
+		variant?: PageCardProps['variant'];
 		featureUi?: Record<string, string>;
 	}>(),
 	{
