@@ -1,13 +1,13 @@
 <template>
 	<div class="flex flex-col">
 		<UPageHeader
-			:title="content.title"
+			:title="displayTitle"
 			:ui="{ root: 'pb-4' }"
 		>
 			<template #title>
 				<div class="flex flex-col gap-2">
 					<ProseH1 class="mb-0! text-3xl font-bold">
-						{{ content.title }}
+						{{ displayTitle }}
 					</ProseH1>
 					<div class="flex flex-row items-center flex-wrap gap-x-2">
 						<ReviewStarRating
@@ -40,7 +40,13 @@
 								</template>
 							</span>
 						</template>
-						<!-- Show (seasonal): display episode count for this season only -->
+						<!-- Show (seasonal): display season number and episode count for this season only -->
+						<template v-if="isSeason && seasonNumber">
+							<span class="text-muted text-xs">•</span>
+							<span class="text-lg text-muted">
+								{{ $t('review.season', 1) }} {{ seasonNumber }}
+							</span>
+						</template>
 						<template v-if="isSeason && seasonEpisodeCount">
 							<span class="text-muted text-xs">•</span>
 							<span class="text-lg text-muted">
@@ -94,13 +100,15 @@
 			v-if="content.tmdbData?.backdrop_path"
 			class="aspect-12/5 w-full overflow-hidden"
 		>
+			<!-- Workaround for nuxt/image#1433: bare vw sizes produce 1w/2w srcsets, so
+				every vw entry must carry a breakpoint prefix. -->
 			<NuxtImg
 				:src="content.tmdbData.backdrop_path"
 				:alt="content.title"
 				:placeholder="img(content.tmdbData.backdrop_path, { height: 10, blur: 2, quality: 50 })"
+				:sizes="backdropSizes"
 				loading="eager"
 				fetchpriority="high"
-				preload
 				class="object-cover w-full h-full"
 			/>
 		</div>
@@ -118,10 +126,17 @@ const props = defineProps<{
 	content: MovieCollectionItem | ShowCollectionItem;
 }>();
 
+// Container is max-w-4xl (896px); full-bleed below lg.
+const backdropSizes = 'sm:100vw md:100vw lg:896px';
+
+useImagePreload(props.content.tmdbData?.backdrop_path, { sizes: backdropSizes });
+
 const {
 	isMovie,
 	isShow,
 	isSeason,
+	displayTitle,
+	seasonNumber,
 	releaseYear,
 	genres,
 	formattedRuntime,

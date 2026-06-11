@@ -13,16 +13,16 @@
 			<LazyReviewDiscussion
 				:category="capitalizedCategory"
 				:title="page.title"
-				:season-number="'season_number' in page ? page.season_number : undefined"
+				:season-number="'season_number' in page && page.season_number != null ? Number(page.season_number) : undefined"
 			/>
 		</ClientOnly>
 	</UPage>
 	<PageNotFound
 		v-else
 		icon="i-lucide-film"
-		title="Review not found"
-		description="The review you're looking for doesn't exist or has been removed."
-		back-label="Back to reviews"
+		:title="$t('review.notFound')"
+		:description="$t('review.notFoundDescription')"
+		:back-label="$t('review.backToReviews')"
 		back-to="/review"
 	/>
 </template>
@@ -31,7 +31,7 @@
 const route = useRoute();
 
 if (route.params.category !== 'movie' && route.params.category !== 'show') {
-	throw createError('Invalid review category');
+	throw createError({ statusCode: 404, statusMessage: 'Invalid review category', fatal: true });
 }
 const category = route.params.category as 'movie' | 'show';
 

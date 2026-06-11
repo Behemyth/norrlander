@@ -1,26 +1,16 @@
 <template>
-	<UPageCard
+	<BaseContentCard
 		:title="project.title"
 		:description="project.description"
 		:to="project.path"
-		variant="ghost"
+		:feature-ui="{ description: 'text-sm truncate' }"
 	>
-		<UTheme
-			:ui="{
-				pageFeature: {
-					description: 'text-sm truncate',
-				},
-			}"
-		>
-			<UPageList>
-				<UPageFeature
-					v-if="project.link"
-					:icon="linkIcon"
-					:description="linkLabel"
-				/>
-			</UPageList>
-		</UTheme>
-	</UPageCard>
+		<UPageFeature
+			v-if="project.link"
+			:icon="linkIcon"
+			:description="linkLabel"
+		/>
+	</BaseContentCard>
 </template>
 
 <script setup lang="ts">

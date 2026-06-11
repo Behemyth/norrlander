@@ -3,15 +3,6 @@ import { findPageBreadcrumb } from '@nuxt/content/utils';
 import { mapContentNavigation } from '@nuxt/ui/utils/content';
 import type { ContentNavigationItem } from '@nuxt/content';
 
-const navLabelKeys: Record<string, string> = {
-	'Blog': 'nav.blog',
-	'Photography': 'nav.photography',
-	'Portfolio': 'nav.portfolio',
-	'Reviews': 'nav.reviews',
-	'Movie Reviews': 'nav.movieReviews',
-	'Show Reviews': 'nav.showReviews',
-};
-
 /**
  * Shared composable for site navigation backed by @nuxt/content navigation.
  */
@@ -30,7 +21,7 @@ export const findBreadcrumb = (navigation: ContentNavigationItem[] | undefined, 
 	const chain = findPageBreadcrumb(navigation, path, { current: true, indexAsChild: true });
 	const items = mapContentNavigation(chain).map(({ icon, ...link }: any) => ({
 		...link,
-		label: navLabelKeys[link.label] ? t(navLabelKeys[link.label]!) : link.label,
+		label: translateNavLabel(link.label, t),
 	}));
 
 	items.unshift({ label: t('nav.home'), to: '/' });

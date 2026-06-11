@@ -28,6 +28,7 @@ export function isSeasonReview(content: ReviewContent): content is ShowCollectio
  * Composable for extracting and normalizing review metadata from TMDB data
  */
 export function useReviewMetadata(content: ReviewContent) {
+	const { locale } = useI18n();
 	const isMovie = computed(() => isMovieReview(content));
 	const isShow = computed(() => isShowReview(content));
 	const isSeason = computed(() => isSeasonReview(content));
@@ -163,7 +164,7 @@ export function useReviewMetadata(content: ReviewContent) {
 	// Formatted published date
 	const formattedPublishedDate = computed(() => {
 		if (!publishedDate.value) return null;
-		return publishedDate.value.toLocaleDateString('en-US', {
+		return publishedDate.value.toLocaleDateString(locale.value, {
 			year: 'numeric',
 			month: 'long',
 			day: 'numeric',

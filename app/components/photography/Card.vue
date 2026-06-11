@@ -10,10 +10,12 @@
 			class="relative aspect-3/2 w-full overflow-hidden rounded-md bg-elevated"
 			:style="{ viewTransitionName: `photo${photo.path.replaceAll('/', '-')}` }"
 		>
+			<!-- Workaround for nuxt/image#1433: every vw entry needs a breakpoint prefix
+				(no bare values, and no xs: — it's not in the default screens). -->
 			<NuxtImg
 				:src="leadImage.src"
 				:alt="leadImage.alt"
-				sizes="100vw sm:50vw lg:320px"
+				sizes="sm:100vw md:50vw lg:320px"
 				loading="lazy"
 				class="h-full w-full object-cover"
 			/>

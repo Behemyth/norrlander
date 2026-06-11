@@ -72,7 +72,14 @@
     "portfolio": {
         "viewCompany": "Visa företag",
         "viewInstitution": "Visa lärosäte",
-        "present": "Nuvarande"
+        "present": "Nuvarande",
+        "backToPortfolio": "Tillbaka till portfolio",
+        "academicNotFound": "Akademisk post hittades inte",
+        "academicNotFoundDescription": "Den akademiska posten du letar efter finns inte eller har tagits bort.",
+        "careerNotFound": "Karriärpost hittades inte",
+        "careerNotFoundDescription": "Karriärposten du letar efter finns inte eller har tagits bort.",
+        "projectNotFound": "Projektet hittades inte",
+        "projectNotFoundDescription": "Projektet du letar efter finns inte eller har tagits bort."
     },
     "profile": {
         "location": "Plats",
@@ -90,7 +97,16 @@
         "creator": "Skapare",
         "createdBy": "Skapad av",
         "noCreator": "Ingen information om skapare tillgänglig",
-        "as": " som "
+        "as": " som ",
+        "notFound": "Recensionen hittades inte",
+        "notFoundDescription": "Recensionen du letar efter finns inte eller har tagits bort.",
+        "backToReviews": "Tillbaka till recensioner",
+        "fullSeries": "Hela serien"
+    },
+    "contentSection": {
+        "blogTitle": "Alla blogginlägg",
+        "photographyTitle": "Alla fotoinlägg",
+        "publishedPosts": "1 publicerat inlägg | {n} publicerade inlägg"
     },
     "filter": {
         "allGenres": "Alla genrer",
@@ -98,7 +114,9 @@
         "any": "Alla",
         "sortBy": "Sortera efter",
         "genre": "Genre",
+        "person": "Person",
         "year": "År",
+        "allPeople": "Alla medverkande",
         "minRating": "Lägsta betyg",
         "clearFilters": "Rensa filter",
         "showing": "Visar {filtered} av {total} recensioner",

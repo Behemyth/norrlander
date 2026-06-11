@@ -9,7 +9,7 @@
 		<template #left>
 			<AppProfileCard
 				orientation="horizontal"
-				variant="ghost"
+				variant="soft"
 			/>
 		</template>
 

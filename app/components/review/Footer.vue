@@ -3,7 +3,7 @@
 		<!-- Left: Title and metadata -->
 		<div class="my-auto">
 			<ProseH2 class="my-0! mb-2!">
-				{{ content.title }}
+				{{ displayTitle }}
 			</ProseH2>
 			<div class="flex flex-wrap items-center gap-x-2 text-sm text-muted mb-2">
 				<span v-if="releaseYear">{{ releaseYear }}</span>
@@ -11,7 +11,11 @@
 					<span class="text-xs">•</span>
 					<span>{{ formattedRuntime }}</span>
 				</template>
-				<template v-if="isShow && numberOfSeasons">
+				<template v-if="isSeason && seasonNumber">
+					<span class="text-xs">•</span>
+					<span>{{ $t('review.season', 1) }} {{ seasonNumber }}</span>
+				</template>
+				<template v-else-if="isShow && numberOfSeasons">
 					<span class="text-xs">•</span>
 					<span>{{ numberOfSeasons }} {{ $t('review.season', numberOfSeasons) }}</span>
 				</template>
@@ -32,6 +36,7 @@
 		</div>
 
 		<!-- Poster -->
+		<!-- Bare px sizes are safe (nuxt/image#1433 only affects bare vw values). -->
 		<NuxtImg
 			v-if="content.tmdbData?.poster_path"
 			:src="content.tmdbData.poster_path"
@@ -39,11 +44,9 @@
 			:placeholder="img(content.tmdbData.poster_path, { height: 10, blur: 2, quality: 50 })"
 			:width="400"
 			:height="600"
-			:img-attrs="{
-				class: 'aspect-[2/3] w-full h-auto',
-			}"
+			class="aspect-[2/3] w-full h-auto max-w-64 mx-auto sm:max-w-none"
 			:style="{ viewTransitionName: `review-poster${content.path.replaceAll('/', '-')}` }"
-			sizes="100vw sm:50vw md:25vw"
+			sizes="256px sm:50vw md:25vw"
 			loading="lazy"
 		/>
 
@@ -61,7 +64,10 @@
 					:key="member.id"
 					class="text-xs"
 				>
-					<span class="font-medium">{{ member.name }}</span>
+					<Person
+						:name="member.name"
+						:category="reviewCategory"
+					/>
 					<span class="text-muted">{{ $t('review.as') }}{{ member.character }}</span>
 				</li>
 			</ul>
@@ -85,7 +91,16 @@
 						{{ $t('review.director', directors.length) }}
 					</ProseH3>
 					<ProseP class="my-0!">
-						{{ directors.map(d => d.name).join(', ') }}
+						<template
+							v-for="(director, index) in directors"
+							:key="director.id"
+						>
+							<span v-if="index > 0">, </span>
+							<Person
+								:name="director.name"
+								:category="reviewCategory"
+							/>
+						</template>
 					</ProseP>
 				</div>
 				<div v-if="uniqueWriterNames.length > 0">
@@ -93,7 +108,16 @@
 						{{ $t('review.screenplay') }}
 					</ProseH3>
 					<ProseP class="my-0!">
-						{{ uniqueWriterNames.join(', ') }}
+						<template
+							v-for="(writer, index) in uniqueWriterNames"
+							:key="writer"
+						>
+							<span v-if="index > 0">, </span>
+							<Person
+								:name="writer"
+								:category="reviewCategory"
+							/>
+						</template>
 					</ProseP>
 				</div>
 			</template>
@@ -104,7 +128,16 @@
 						{{ creators.length === 1 ? $t('review.creator') : $t('review.createdBy') }}
 					</ProseH3>
 					<ProseP class="my-0!">
-						{{ creators.map(c => c.name).join(', ') }}
+						<template
+							v-for="(creator, index) in creators"
+							:key="creator.id"
+						>
+							<span v-if="index > 0">, </span>
+							<Person
+								:name="creator.name"
+								:category="reviewCategory"
+							/>
+						</template>
 					</ProseP>
 				</div>
 				<div
@@ -115,7 +148,16 @@
 						{{ $t('review.director', directors.length) }}
 					</ProseH3>
 					<ProseP class="my-0!">
-						{{ directors.map(d => d.name).join(', ') }}
+						<template
+							v-for="(director, index) in directors"
+							:key="director.id"
+						>
+							<span v-if="index > 0">, </span>
+							<Person
+								:name="director.name"
+								:category="reviewCategory"
+							/>
+						</template>
 					</ProseP>
 				</div>
 				<ProseP
@@ -142,6 +184,9 @@ const props = defineProps<{
 const {
 	isMovie,
 	isShow,
+	isSeason,
+	displayTitle,
+	seasonNumber,
 	releaseYear,
 	formattedRuntime,
 	numberOfSeasons,
@@ -153,4 +198,6 @@ const {
 } = useReviewMetadata(props.content);
 
 const topCast = getTopCast(5);
+
+const reviewCategory = computed(() => isMovie.value ? 'movie' as const : 'show' as const);
 </script>

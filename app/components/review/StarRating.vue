@@ -2,7 +2,7 @@
 	<div class="flex flex-row relative">
 		<UIcon
 			v-for="index in fullStars"
-			:key="index"
+			:key="`full-${index}`"
 			name="i-mdi-star"
 			:size="props.size.toString()"
 			aria-hidden="true"
@@ -11,7 +11,7 @@
 		/>
 		<UIcon
 			v-for="index in halfStars"
-			:key="index"
+			:key="`half-${index}`"
 			name="i-mdi-star-half-full"
 			:size="props.size.toString()"
 			aria-hidden="true"
@@ -20,7 +20,7 @@
 		/>
 		<UIcon
 			v-for="index in noStars"
-			:key="index"
+			:key="`empty-${index}`"
 			name="i-mdi-star-outline"
 			:size="props.size.toString()"
 			aria-hidden="true"

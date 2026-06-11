@@ -4,7 +4,6 @@
 			<UPageAside class="hidden lg:block">
 				<AppProfileCard
 					orientation="vertical"
-					variant="ghost"
 					footer
 				/>
 			</UPageAside>
@@ -26,8 +25,8 @@
 				>
 					<UPageList divide>
 						<UPageFeature
-							v-for="(info, index) in contact"
-							:key="index"
+							v-for="info in contact"
+							:key="info.link"
 							class="px-3 py-4"
 							variant="ghost"
 							:title="info.name"
@@ -44,8 +43,8 @@
 				>
 					<UPageList divide>
 						<UPageFeature
-							v-for="(social, index) in socials"
-							:key="index"
+							v-for="social in socials"
+							:key="social.link"
 							class="px-3 py-4"
 							variant="ghost"
 							:title="social.name"

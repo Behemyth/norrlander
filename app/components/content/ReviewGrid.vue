@@ -21,7 +21,11 @@ const props = defineProps<{
 const { data: items } = await useLatestReviews(props.count, props.collection);
 
 function getSeasonNumber(review: { season_number?: number } | Record<string, unknown>): number | undefined {
+	// The content DB returns scalars as strings (same reason `rating` is wrapped
+	// in `Number()` above), so coerce instead of type-checking.
 	const value = (review as { season_number?: unknown }).season_number;
-	return typeof value === 'number' ? value : undefined;
+	if (value == null) return undefined;
+	const num = Number(value);
+	return Number.isNaN(num) ? undefined : num;
 }
 </script>
