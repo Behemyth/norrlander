@@ -6,7 +6,11 @@
 		orientation="horizontal"
 		reverse
 		class="group"
-		:ui="{ title: 'text-xl sm:text-2xl', description: 'mt-2' }"
+		:ui="{
+			title: 'text-xl sm:text-2xl',
+			description: 'mt-2',
+			footer: 'w-full',
+		}"
 	>
 		<template #description>
 			<div class="flex flex-col gap-1">
@@ -28,16 +32,22 @@
 			v-if="date || count != null"
 			#footer
 		>
-			<div class="flex items-center justify-between gap-2 text-xs text-muted">
-				<span v-if="date">{{ formattedDate }}</span>
-				<UBadge
+			<div class="flex justify-between text-xs text-muted">
+				<UText
+					v-if="date"
+					size="xs"
+					color="gray"
+				>
+					{{ formattedDate }}
+				</UText>
+				<UText
 					v-if="count != null"
-					variant="outline"
-					color="neutral"
-					size="sm"
+					size="xs"
+					color="gray"
+					class="tabular-nums"
 				>
 					{{ count }} {{ $t('index.stats.total') }}
-				</UBadge>
+				</UText>
 			</div>
 		</template>
 		<div
