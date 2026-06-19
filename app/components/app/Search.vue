@@ -12,6 +12,12 @@
 			:search-status="status"
 			:color-mode="false"
 			:search-delay="100"
+			:input="{
+				autocapitalize: 'off',
+				autocomplete: 'off',
+				autocorrect: 'off',
+				spellcheck: false,
+			}"
 		/>
 	</ClientOnly>
 </template>
