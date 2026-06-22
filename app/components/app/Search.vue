@@ -23,23 +23,9 @@
 </template>
 
 <script setup lang="ts">
-// Deferred loading of the search collection to improve initial load performance
-const { status, search, init } = useSearchCollection(
+// The search index loads on the first query via search(), not on page load.
+const { status, search } = useSearchCollection(
 	['blog', 'photography', 'career', 'academic', 'project', 'movie', 'show'],
 	{ immediate: false, ignoredTags: ['style', 'code'] },
 );
-
-if (import.meta.client) {
-	onMounted(() => {
-		const load = () => {
-			init();
-		};
-		if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
-			(window as Window & typeof globalThis).requestIdleCallback(load, { timeout: 3000 });
-		}
-		else {
-			setTimeout(load, 1500);
-		}
-	});
-}
 </script>
