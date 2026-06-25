@@ -33,21 +33,15 @@
 			#footer
 		>
 			<div class="flex justify-between text-xs text-muted">
-				<UText
-					v-if="date"
-					size="xs"
-					color="gray"
-				>
+				<span v-if="date">
 					{{ formattedDate }}
-				</UText>
-				<UText
+				</span>
+				<span
 					v-if="count != null"
-					size="xs"
-					color="gray"
 					class="tabular-nums"
 				>
 					{{ count }} {{ $t('index.stats.total') }}
-				</UText>
+				</span>
 			</div>
 		</template>
 		<div
