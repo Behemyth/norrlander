@@ -16,7 +16,7 @@
 		"test:coverage": "vitest run --coverage"
 	},
 	"devDependencies": {
-		"@iconify-json/lucide": "^1.2.132",
+		"@iconify-json/lucide": "^1.2.134",
 		"@iconify-json/mdi": "^1.2.3",
 		"@nuxt/content": "^3.16.0",
 		"@nuxt/eslint": "^1.17.0",
@@ -26,7 +26,7 @@
 		"@nuxt/ui": "^4.11.1",
 		"@nuxtjs/i18n": "^10.6.0",
 		"@nuxtjs/seo": "^5.3.16",
-		"@unhead/vue": "^3.4.0",
+		"@unhead/vue": "^3.4.1",
 		"@vueuse/core": "^14.4.0",
 		"nuxt": "^4.5.0",
 		"typescript": "^6.0.3",
@@ -35,7 +35,7 @@
 	},
 	"dependencies": {
 		"@giscus/vue": "^3.1.1",
-		"@takumi-rs/core": "^2.13.7",
+		"@takumi-rs/core": "^2.14.0",
 		"feed": "^6.0.0"
 	}
 }
