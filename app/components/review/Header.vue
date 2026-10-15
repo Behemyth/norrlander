@@ -114,6 +114,7 @@
 				:alt="content.title"
 				:placeholder="img(content.tmdbData.backdrop_path, { height: 10, blur: 2, quality: 50 })"
 				:sizes="backdropSizes"
+				:preload="{ fetchPriority: 'high' }"
 				loading="eager"
 				fetchpriority="high"
 				class="object-cover w-full h-full"
@@ -137,8 +138,6 @@ const props = defineProps<{
 
 // Container is max-w-4xl (896px); full-bleed below lg.
 const backdropSizes = 'sm:100vw md:100vw lg:896px';
-
-useImagePreload(props.content.tmdbData?.backdrop_path, { sizes: backdropSizes });
 
 const {
 	isMovie,
