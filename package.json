@@ -16,12 +16,12 @@
 		"test:coverage": "vitest run --coverage"
 	},
 	"devDependencies": {
-		"@iconify-json/lucide": "^1.2.145",
+		"@iconify-json/lucide": "^1.2.146",
 		"@iconify-json/mdi": "^1.2.3",
 		"@nuxt/content": "^3.16.2",
 		"@nuxt/eslint": "^1.17.0",
 		"@nuxt/fonts": "^0.14.0",
-		"@nuxt/image": "^2.1.0",
+		"@nuxt/image": "^2.2.0",
 		"@nuxt/test-utils": "^4.3.4",
 		"@nuxt/ui": "^4.12.0",
 		"@nuxtjs/i18n": "^10.6.0",
@@ -35,7 +35,7 @@
 	},
 	"dependencies": {
 		"@giscus/vue": "^3.1.1",
-		"@takumi-rs/core": "^2.16.3",
+		"@takumi-rs/core": "^2.17.0",
 		"feed": "^6.0.0"
 	}
 }
