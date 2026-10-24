@@ -1,9 +1,13 @@
 import type { FileAfterParseHook } from '@nuxt/content';
+import { readFile } from 'node:fs/promises';
+import { resolve } from 'node:path';
 
 import { defineNuxtModule } from '@nuxt/kit';
+import { imageMeta } from 'image-meta';
 
 import { $fetch } from 'ofetch';
 
+import type { PhotographyImage } from '~~/shared/types/content';
 import type { TMDBMovie, TMDBShow, TMDBSeason, TMDBCredits } from '~~/shared/types/tmdb';
 
 const KEPT_CREW_JOBS = ['Director', 'Screenplay', 'Writer', 'Story'];
@@ -129,8 +133,23 @@ function yearFromTmdbDate(dateStr: string | undefined | null): number | undefine
 	return d.getFullYear();
 }
 
+export async function resolvePhotographyImages(images: PhotographyImage[], publicDir: string): Promise<PhotographyImage[]> {
+	return Promise.all(images.map(async (image) => {
+		if (!image.src.startsWith('/images/')) return image;
+		const metadata = imageMeta(await readFile(resolve(publicDir, `.${image.src}`)));
+		return { ...image, width: metadata?.width, height: metadata?.height };
+	}));
+}
+
 export default defineNuxtModule({
 	setup(resolvedOptions, nuxt) {
+		nuxt.hook('content:file:afterParse' as any, async (ctx: FileAfterParseHook) => {
+			if (ctx.collection.name !== 'photography') return;
+			const images = ctx.content.images as PhotographyImage[] | undefined;
+			if (!images) return;
+			ctx.content.images = await resolvePhotographyImages(images, resolve(nuxt.options.rootDir, nuxt.options.dir.public));
+		});
+
 		// Skip TMDB fetching in test environment
 		const isTestEnv = process.env.NODE_ENV === 'test' || process.env.VITEST === 'true';
 

@@ -54,8 +54,7 @@
 			v-for="image in images"
 			:key="image.src"
 			:src="image.src"
-			:width="getLightboxWidth(image)"
-			:format="LIGHTBOX_FORMAT"
+			format="webp"
 			densities="1x"
 			loading="lazy"
 		/>
@@ -64,7 +63,6 @@
 
 <script lang="ts" setup>
 import type { PhotographyImage } from '~~/shared/types/content';
-import { getLightboxWidth, LIGHTBOX_FORMAT } from '~/utils/images';
 
 const props = defineProps<{
 	images: PhotographyImage[];
@@ -85,7 +83,7 @@ useImagePrefetch(() => [
 const warmedLightboxUrls = new Set<string>();
 
 function lightboxUrl(image: PhotographyImage) {
-	return img(image.src, { width: getLightboxWidth(image), format: LIGHTBOX_FORMAT });
+	return img(image.src, { format: 'webp' });
 }
 
 function warmLightboxImage(index: number) {

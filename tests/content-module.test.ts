@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { fileURLToPath } from 'node:url';
 import { $fetch } from 'ofetch';
-import { peopleFromTmdb, personMentionsFromBody, unknownPersonMentions } from '../modules/content';
+import { peopleFromTmdb, personMentionsFromBody, unknownPersonMentions, resolvePhotographyImages } from '../modules/content';
 
 // We test the TMDB module's core logic by simulating what the hook does
 // Since the module has a skip guard for test environments, we test the logic directly
@@ -67,6 +68,29 @@ async function processContent(ctx: ContentCtx, apiBase: string, apiSecret: strin
 
 const API_BASE = 'https://api.themoviedb.org/3';
 const API_SECRET = 'test-token';
+
+describe('photography image metadata', () => {
+	const publicDir = fileURLToPath(new URL('../public/', import.meta.url));
+
+	it('derives landscape and portrait dimensions without frontmatter metadata', async () => {
+		const images = [
+			{ src: '/images/iceland/river.png', alt: 'River Crossing' },
+			{ src: '/images/iceland/canyon.png', alt: 'Canyon' },
+		];
+
+		expect(await resolvePhotographyImages(images, publicDir)).toEqual([
+			{ ...images[0], width: 5600, height: 4000 },
+			{ ...images[1], width: 2000, height: 2800 },
+		]);
+		expect(images[0]).not.toHaveProperty('width');
+	});
+
+	it('leaves remote images unchanged', async () => {
+		const image = { src: 'https://example.com/photo.png', alt: 'Remote' };
+
+		expect(await resolvePhotographyImages([image], publicDir)).toEqual([image]);
+	});
+});
 
 describe('TMDB content module', () => {
 	beforeEach(() => {

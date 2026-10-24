@@ -47,14 +47,13 @@
 						class="flex h-svh w-svw cursor-zoom-out items-center justify-center"
 						@click.self="close"
 					>
-						<!-- Full intrinsic width (IPX never upscales): pinch-zoom doesn't re-evaluate
+						<!-- Full source resolution: pinch-zoom doesn't re-evaluate
 							srcset, so the maximum has to be requested upfront to stay sharp zoomed in.
 							The placeholder reuses the carousel-sized variant for instant pixels. -->
 						<NuxtImg
 							:src="item.src"
 							:alt="item.alt"
-							:width="getLightboxWidth(item)"
-							:format="LIGHTBOX_FORMAT"
+							format="webp"
 							densities="1x"
 							:placeholder="img(item.src, { width: 768 })"
 							:style="getMediaStyle(item)"
@@ -70,7 +69,6 @@
 
 <script lang="ts" setup>
 import type { PhotographyImage } from '~~/shared/types/content';
-import { getLightboxWidth, LIGHTBOX_FORMAT } from '~/utils/images';
 
 const props = defineProps<{
 	modelValue: number | null;
