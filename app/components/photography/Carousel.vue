@@ -30,6 +30,7 @@
 					:src="item.src"
 					:alt="item.alt"
 					:sizes="slideSizes"
+					:preload="index === 0 ? { fetchPriority: 'high' } : false"
 					:loading="index === 0 ? 'eager' : 'lazy'"
 					:fetchpriority="index === 0 ? 'high' : undefined"
 					class="h-full w-full object-contain"
@@ -71,9 +72,6 @@ const props = defineProps<{
 
 // Container is max-w-3xl (768px): full-bleed below md, capped at 768px above.
 const slideSizes = 'sm:100vw md:768px';
-
-// First slide is the LCP on photography pages.
-useImagePreload(props.images[0]?.src, { sizes: slideSizes });
 
 // Warm the cache for the remaining slides and the first slide's lightbox variant.
 // Full-resolution files are large even as webp, so the other lightbox variants
