@@ -7,8 +7,8 @@ import { imageMeta } from 'image-meta';
 
 import { $fetch } from 'ofetch';
 
-import type { PhotographyImage } from '~~/shared/types/content';
-import type { TMDBMovie, TMDBShow, TMDBSeason, TMDBCredits } from '~~/shared/types/tmdb';
+import type { PhotographyImage } from '../shared/types/content';
+import type { TMDBMovie, TMDBShow, TMDBSeason, TMDBCredits } from '../shared/types/tmdb';
 
 const KEPT_CREW_JOBS = ['Director', 'Screenplay', 'Writer', 'Story'];
 

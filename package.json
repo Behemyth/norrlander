@@ -16,27 +16,30 @@
 		"test:coverage": "vitest run --coverage"
 	},
 	"devDependencies": {
-		"@iconify-json/lucide": "^1.2.147",
+		"@iconify-json/lucide": "^1.2.148",
 		"@iconify-json/mdi": "^1.2.3",
 		"@nuxt/content": "^3.16.2",
 		"@nuxt/eslint": "^1.17.0",
-		"@nuxt/fonts": "^0.14.0",
+		"@nuxt/fonts": "^1.2.0",
 		"@nuxt/image": "^2.2.0",
 		"@nuxt/test-utils": "^4.3.4",
 		"@nuxt/ui": "^4.12.0",
 		"@nuxtjs/i18n": "^10.6.0",
-		"@nuxtjs/seo": "^5.3.16",
+		"@nuxtjs/seo": "^6.0.1",
+		"@types/node": "^26.6.5",
 		"@unhead/vue": "^3.4.3",
-		"@vueuse/core": "^14.4.0",
+		"@vueuse/core": "^15.0.0",
+		"esbuild": "^0.28.2",
 		"image-meta": "^0.3.0",
-		"nuxt": "^4.5.0",
+		"nuxt": "^4.6.3",
 		"typescript": "^6.0.3",
 		"vitest": "^5.0.5",
 		"vue-tsc": "^3.3.13"
 	},
 	"dependencies": {
 		"@giscus/vue": "^3.1.1",
-		"@takumi-rs/core": "^2.17.1",
-		"feed": "^6.0.0"
+		"@takumi-rs/core": "^2.18.2",
+		"feed": "^6.0.0",
+		"zod": "^4.6.7"
 	}
 }

@@ -118,6 +118,11 @@ export default defineNuxtConfig({
 	},
 
 	typescript: {
+		nodeTsConfig: {
+			compilerOptions: {
+				types: ['node'],
+			},
+		},
 		strict: true,
 	},
 
@@ -198,4 +203,6 @@ export default defineNuxtConfig({
 	sitemap: {
 		cacheMaxAgeSeconds: 3600,
 	},
+
+	skewProtection: false,
 });
