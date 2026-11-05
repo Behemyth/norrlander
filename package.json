@@ -16,7 +16,7 @@
 		"test:coverage": "vitest run --coverage"
 	},
 	"devDependencies": {
-		"@iconify-json/lucide": "^1.2.149",
+		"@iconify-json/lucide": "^1.2.150",
 		"@iconify-json/mdi": "^1.2.3",
 		"@nuxt/content": "^3.16.2",
 		"@nuxt/eslint": "^1.17.0",
@@ -33,7 +33,7 @@
 		"image-meta": "^0.3.1",
 		"nuxt": "^4.6.3",
 		"typescript": "^6.0.3",
-		"vitest": "^5.0.5",
+		"vitest": "^5.1.0",
 		"vue-tsc": "^3.3.14"
 	},
 	"dependencies": {
