@@ -16,7 +16,7 @@
 		"test:coverage": "vitest run --coverage"
 	},
 	"devDependencies": {
-		"@iconify-json/lucide": "^1.2.153",
+		"@iconify-json/lucide": "^1.2.154",
 		"@iconify-json/mdi": "^1.2.3",
 		"@nuxt/content": "^3.16.2",
 		"@nuxt/eslint": "^1.17.0",
